@@ -37,7 +37,7 @@ export class PreselectionComponent {
       dApprentissage: ['',Validators.required],
       aExperience: ['',Validators.required],
       ePrecedent: ['',Validators.required],
-      passport: ['',Validators.required],
+      passport: [ false,Validators.required],
       nationalite: ['',Validators.required],
       cWhatapp: ['',Validators.required],
     parrain: ['',Validators.required],
