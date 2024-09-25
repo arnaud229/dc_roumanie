@@ -9,6 +9,10 @@ import { PreselectionComponent } from './preselection/preselection.component';
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
 import { DashboardPartenaireComponent } from './dashboard-partenaire/dashboard-partenaire.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environement } from '../environements/environement';
 
 @NgModule({
   declarations: [
@@ -18,11 +22,16 @@ import { DashboardPartenaireComponent } from './dashboard-partenaire/dashboard-p
     PreselectionComponent,
     DashboardUserComponent,
     DashboardAdminComponent,
-    DashboardPartenaireComponent
+    DashboardPartenaireComponent,
+    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AngularFireModule.initializeApp(environement.firebaseConfig),
+    AngularFirestoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,25 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SingninComponent } from './singnin/singnin.component';
+import { SingnupComponent } from './singnup/singnup.component';
+import { PreselectionComponent } from './preselection/preselection.component';
+import { DashboardAdminComponent } from './dashboard-admin/dashboard-admin.component';
+import { DashboardPartenaireComponent } from './dashboard-partenaire/dashboard-partenaire.component';
+import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: SingninComponent },
+  { path: 'signin', component: SingninComponent },
+  { path: 'signup', component: SingnupComponent },
+  { path: 'preselection', component: PreselectionComponent },
+  { path: 'dashboardAdmin', component: DashboardAdminComponent },
+  { path: 'dashboardPartenaire', component: DashboardPartenaireComponent },
+  { path: 'dashboardUser', component: DashboardUserComponent },
+];
+
+
+
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

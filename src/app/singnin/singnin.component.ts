@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-singnin',
@@ -7,4 +9,114 @@ import { Component } from '@angular/core';
 })
 export class SingninComponent {
 
+  loading = false;
+  userform!: FormGroup;
+  log_erreur = false;
+  erreur_message = '';
+  accepter_rappelle = false;
+  binding = "";
+
+  constructor(
+    private formbuilder: FormBuilder,
+    private router: Router,
+    // public authService: AuthService,
+    // private utilsService: UtilsService,
+    // private alertController: AbortController,
+  ) {
+
+    this.init_form();
+  }
+
+  ngOnInit() {
+    this.init_form();
+  }
+
+
+ 
+
+
+  init_form(){
+    this.userform = this.formbuilder.group({
+      //  telephone: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
+      mail: ['', [Validators.required, Validators.pattern(/.{4,}@/)]],
+      mdp: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/[A-Z]+/),
+          Validators.pattern(/[0-9]+/),
+          Validators.pattern(/[@|$|µ]+/),
+          Validators.minLength(8),
+        ],
+      ],
+    });
+  } 
+
+  async change_password() {
+
+    console.log("toto");
+    console.log("userform", this.userform.value);
+    
+    if (this.userform.controls['mail'].value !== '') {
+      
+      // this.authService.resetPassword(this.userform.controls['mail'].value);
+
+      // const alert = await this.alertController.create({
+      //   // header: 'Education',
+      //   mode: 'md',
+      //   // subHeader: 'Important message',
+      //   message: 'Veuillez consulter vore email.',
+      //   buttons: [
+      //     {
+      //       text: 'ok',
+      //       role: 'cancel',
+      //     },
+         
+      //   ],
+      // });
+  
+      // await alert.present();
+
+    } else {
+      this.erreur_message =
+        'Veuillez entrer votre email avant d’appuyer sur `’’ Mot de passe oublier ‘’';
+
+        // const alert = await this.alertController.create({
+        //   // header: 'Education',
+        //   mode: 'md',
+        //   // subHeader: 'Important message',
+        //   message: this.erreur_message,
+        //   buttons: [
+        //     {
+        //       text: 'ok',
+        //       role: 'cancel',
+        //     },
+           
+        //   ],
+        // });
+    
+        // await alert.present();
+
+        console.log("a corriger");
+
+
+      this.log_erreur = true;
+    }
+  }
+
+  ferme_erreur() {
+    this.log_erreur = !this.log_erreur;
+  }
+
+
+  connected() {
+    console.log("toto", this.binding);
+    console.log('parfait', this.userform.value);
+
+  }
+
+
+
 }
+
+

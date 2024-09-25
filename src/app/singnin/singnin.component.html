@@ -1,1 +1,39 @@
-<p>singnin works!</p>
+    <div class="content_in">
+
+        <div class="card-in" >
+
+            <h1>Se connecter</h1>
+
+            
+      <p class="petit_texte"> veuillez entrer votre email ci-dessous pour commencer à utiliser l'application </p>
+            
+
+            <div class="inputs"  [formGroup]="userform" >
+                
+                <input type="email" [ngClass]="{'error': userform.controls['mail'].invalid && userform.controls['mail'].value!=''}"  formControlName="mail" placeholder="Email" >
+                <input type="password" [ngClass]="{'error': userform.controls['mdp'].invalid && userform.controls['mdp'].value!=''}" formControlName="mdp" placeholder="Mot de passe">
+
+                <div class="les_boutons">
+     
+                    <button  class="boutton"  (click)="connected()">Me connecter</button> 
+                    <a id="botton_bas" routerLink="../signup" > je suis nouveau ici </a>
+
+                </div>
+
+                <a id="mdp_oublier" (click)="change_password()" >Mot de passe oublié ?</a>
+
+            </div>
+
+        </div>
+
+       
+
+      
+
+  <div  *ngIf="loading" class="loader">
+
+      <div class="lds-ring"><div></div><div></div><div></div></div>
+
+  </div>
+
+    </div>

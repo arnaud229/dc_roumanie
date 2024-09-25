@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {initializeApp, } from '@angular/fire/app';
+import { environement } from 'src/environements/environement';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'as_voyageur';
+
+ 
 }
+
+
