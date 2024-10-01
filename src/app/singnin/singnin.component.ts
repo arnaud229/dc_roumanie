@@ -1,6 +1,7 @@
 import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-singnin',
@@ -19,7 +20,7 @@ export class SingninComponent {
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
-    // public authService: AuthService,
+    public authService: AuthService,
     // private utilsService: UtilsService,
     // private alertController: AbortController,
   ) {
@@ -59,43 +60,15 @@ export class SingninComponent {
     
     if (this.userform.controls['mail'].value !== '') {
       
-      // this.authService.resetPassword(this.userform.controls['mail'].value);
+    
 
-      // const alert = await this.alertController.create({
-      //   // header: 'Education',
-      //   mode: 'md',
-      //   // subHeader: 'Important message',
-      //   message: 'Veuillez consulter vore email.',
-      //   buttons: [
-      //     {
-      //       text: 'ok',
-      //       role: 'cancel',
-      //     },
-         
-      //   ],
-      // });
-  
-      // await alert.present();
+      this.erreur_message = 'connexion avec succès';
 
     } else {
       this.erreur_message =
         'Veuillez entrer votre email avant d’appuyer sur `’’ Mot de passe oublier ‘’';
 
-        // const alert = await this.alertController.create({
-        //   // header: 'Education',
-        //   mode: 'md',
-        //   // subHeader: 'Important message',
-        //   message: this.erreur_message,
-        //   buttons: [
-        //     {
-        //       text: 'ok',
-        //       role: 'cancel',
-        //     },
-           
-        //   ],
-        // });
-    
-        // await alert.present();
+       
 
         console.log("a corriger");
 
@@ -110,8 +83,25 @@ export class SingninComponent {
 
 
   connected() {
-    console.log("toto", this.binding);
     console.log('parfait', this.userform.value);
+
+    this.loading = true;
+
+   this.authService
+     .signInWithFirebase( this.userform.value)
+     .then(async (res) => {
+      setTimeout(() => {
+          console.log('res :>> ', res);
+      this.loading = false;
+      console.log('succès sucès');
+          
+    
+
+
+      this.router.navigate(['dashboardUser'])   ;
+      }, 2000);
+
+    })
 
   }
 

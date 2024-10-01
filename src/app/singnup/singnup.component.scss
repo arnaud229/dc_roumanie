@@ -9,6 +9,9 @@
     padding-bottom: 10%;
     // padding-right: 10%;
     position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 
 }
 
@@ -434,3 +437,93 @@ cursor: pointer;
     // margin-top: 10px;
     margin-left: 2px;
 }
+
+
+
+
+@media (max-width: 1000px ) {
+
+    .content_in
+  {
+      width: 100%;
+      height: 100%;
+      padding-top: 10%;
+      padding-bottom: 10%;
+      position: absolute;
+  
+  }
+  
+  .card-in {
+   top: 10%; 
+  }
+    
+  }
+
+
+  @media (max-width: 500px ) {
+
+    .content_in
+    {
+        background: none;
+        padding-top: 0%;
+        padding-bottom: 5%;
+    }
+    
+
+    .card-in
+    {
+        border: none;
+        top: 0%;
+        width: 95%;
+        background-image: url("./../../assets/motifafro.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    
+  .petit_texte { 
+    font-size: 18px;
+    margin-left: 2%;
+   }
+
+
+   .groupe p {
+   
+    font-size: 14px;
+
+  }
+
+  .condition {
+    margin-left: 4%;
+    font-size: 18px;
+
+ }
+
+ .les_boutons {
+    flex-direction: column;
+    position: relative;
+    left: 25%;
+    /* transform: translateX(-50%); */
+    }
+
+    .boutton {
+      
+        height: 40px; 
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    #botton_bas 
+    {
+        font-size: 15px;
+        margin-left: 4%;
+        margin-bottom: 30px;
+    }
+
+  
+
+  }
+
+
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,8 @@ export class PreselectionComponent {
   pre = "";
   edite = "";
   switch = false;
+  @ViewChild('fileInput')
+  fileInput!: ElementRef; 
 
 
   constructor(
@@ -55,6 +57,9 @@ export class PreselectionComponent {
 
     this.switch = !this.switch;
 
+  }
+  getfils() {
+    this.fileInput.nativeElement.click();
   }
 
   preselect(){

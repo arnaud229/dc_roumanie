@@ -49,11 +49,17 @@
 </div>
 
 <div>
-    <div class="inputs" *ngIf="switch"  [formGroup]="preselectform" >
-            
-     
+    <div class="inputs_suivant" *ngIf="switch"  [formGroup]="preselectform" >
+
+          <p>Ajouter les images des reçus de la presélection</p>
+
+
+          <div class="card-inputFils" (click)="getfils()">
+              +
+          </div>
+                
         
-        <input  type="file"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
+        <input  type="file"  #fileInput [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
            
     
             <button  class="boutton"  (click)="preselect()">Soumettre</button> 

@@ -1,4 +1,4 @@
-export interface Use {
+export interface User {
     id?: any
     nom: string,
     prenom: string,
@@ -19,7 +19,9 @@ export interface Use {
     parrain: string,
     region: string,
     ldtep2: string,
-    filss: RecuFile[],
+    fils: RecuFile[],
+    admin: boolean,
+    partenaire: boolean,
 
 
 }

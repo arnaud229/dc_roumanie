@@ -47,10 +47,7 @@ import { map } from "rxjs";
         const { startAt, limit } = pagination || {};
         const { whereQueries, orderByQueries, like } = filters || {};
         const collection = this.firestore.collection<any>('utilisateurs', (ref) => {
-          // const whereRef = whereQuery(ref, whereQueries);
-          // const likeRef = likeQuery(whereRef, like);
-          // const orderRef = orderByQuery(whereRef, orderByQueries);
-          // return applyPagination( like ? likeRef : orderRef, pagination);
+        
           return applyPagination(
             orderByQuery(whereQuery(ref, whereQueries), orderByQueries),
             pagination
