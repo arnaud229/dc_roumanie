@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
+import { User } from 'src/models/variables';
 
 @Component({
   selector: 'app-singnup',
@@ -28,7 +30,7 @@ export class SingnupComponent {
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
-    // public authService: AuthService,
+    public authService: AuthService,
     // private utilsService: UtilsService,
     // private alertController: AbortController,
   ) {
@@ -44,7 +46,8 @@ export class SingnupComponent {
     this.userform = this.formbuilder.group({
       nom: ['',Validators.required],
       prenom: ['',Validators.required],
-       telephone: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
+      code: ['',Validators.required],
+       numero: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
       mail: ['', [Validators.required, Validators.pattern(/.{4,}@/)]],
       mdp: [
         '',
@@ -61,7 +64,64 @@ export class SingnupComponent {
 
  async sign_up() {
 
+  console.log(this.userform.value);
+
+  const user : User =  {
+    nom: this.userform.value.nom,
+    prenom:  this.userform.value.prenom,
+    telephone: {
+      code: this.userform.value.code,
+      numero: this.userform.value.numero
+    },
+    mail: this.userform.value.mail,
+    mdp: this.userform.value.mdp,
+    age: '',
+    sMatrimoniale: '',
+    NEtude: '',
+    metier: '',
+    aDiplome: 0,
+    dApprentissage: 0,
+    aExperience: 0,
+    ePrecedent: '',
+    passport: false,
+    nationalite: '',
+    cWhatapp: '',
+    parrain: '',
+    region: '',
+    ldtep2: '',
+    fils: [],
+    admin: false,
+    partenaire: false
+  }
+  // console.log("le mot de passe :", this.userform.value.mdp);
+  // console.log("confirme mot de passe :", this.confirm_mdp);
+
   this.loading = true;
+
+  this.authService.createFirebaseUser(user).then(
+
+    (res) => { 
+      console.log(res);
+
+      this.loading = false;
+
+    }
+  ).catch(
+    (error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message
+      this.erreur_message = errorMessage;
+
+      if (errorCode = "auth/network-request-failed") {
+
+        this.erreur_message = ' Verifiez votre connexion internet'
+        
+      } else if(errorCode = "auth/email-already-in-use") {
+        this.erreur_message = ' Un compte existe déjà avec ce email.'
+        
+      }
+    }
+  )
 
   }
 

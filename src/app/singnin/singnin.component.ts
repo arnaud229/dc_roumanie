@@ -60,8 +60,7 @@ export class SingninComponent {
     
     if (this.userform.controls['mail'].value !== '') {
       
-    
-
+      this.authService.resetPassword(this.userform.controls['mail'].value);
       this.erreur_message = 'connexion avec succès';
 
     } else {
@@ -94,10 +93,6 @@ export class SingninComponent {
           console.log('res :>> ', res);
       this.loading = false;
       console.log('succès sucès');
-          
-    
-
-
       this.router.navigate(['dashboardUser'])   ;
       }, 2000);
 

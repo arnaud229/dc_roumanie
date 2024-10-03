@@ -21,14 +21,14 @@
 
                 <div class="groupe_prefixe">
                      
-                    <input id='code_pays' type="text"    placeholder="+229" >
+                    <input id='code_pays' type="text"   [ngClass]="{'error': userform.controls['code'].invalid && userform.controls['code'].value!=''}"  formControlName="code"   placeholder="+229" >
 
                     <!-- <svg  width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="black" fill-opacity="0.6"/>
                       </svg> -->
                
                 </div>
-                  <input id= 'input_number' type="text"  [ngClass]="{'error': userform.controls['telephone'].invalid && userform.controls['telephone'].value!=''}"  formControlName="telephone" placeholder="Numéro de téléphone" >
+                  <input id= 'input_number' type="text"  [ngClass]="{'error': userform.controls['numero'].invalid && userform.controls['numero'].value!=''}"  formControlName="numero" placeholder="Numéro de téléphone" >
         
                 </div>
 
@@ -46,6 +46,8 @@
 
                  
                   </div>
+
+      </div>
 
 
                   <div class="groupe">
@@ -73,9 +75,7 @@
       
                        </div>
           
-          
-            <!-- <input type="password" [ngClass]="{'error': userform.controls['mdp'].invalid && userform.controls['mdp'].value!=''}" formControlName="mdp" placeholder="Mot de passe"> -->
-
+    
             <div class="les_boutons">
  
                 <button  class="boutton"  (click)="sign_up()">S'INSCRIRE</button> 
@@ -83,7 +83,7 @@
 
             </div>
 
-        </div>
+       
 
     </div>
 

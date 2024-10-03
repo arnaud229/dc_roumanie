@@ -2,7 +2,7 @@ export interface User {
     id?: any
     nom: string,
     prenom: string,
-     telephone: string,
+     telephone: telephone,
     mail: string,
     mdp: string,
     age: string,
@@ -23,7 +23,11 @@ export interface User {
     admin: boolean,
     partenaire: boolean,
 
+}
 
+export type telephone = {
+    code: string;
+    numero: string
 }
 
 export type RecuFile = {

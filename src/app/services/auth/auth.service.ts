@@ -9,6 +9,7 @@ import { User } from "src/models/variables";
 
 
 
+
 @Injectable({
     providedIn: 'root',
   })
@@ -22,7 +23,8 @@ import { User } from "src/models/variables";
         private localStorageService: LocalstorageService,
         private firestore: AngularFirestore,
         private injector: Injector,
-        private router: Router
+        private router: Router,
+  
       ) {
         this.reloadUser();
       }
@@ -34,6 +36,8 @@ import { User } from "src/models/variables";
 
       if (res) {
         const user = res.toJSON() as any;
+        console.log("user", user);
+        
         this.userTempService = this.injector.get(UsersService);
         const userData = await this.userTempService
           .getUser(user.uid)
@@ -80,7 +84,10 @@ import { User } from "src/models/variables";
         id: "",
         nom: "",
         prenom: "",
-        telephone: "",
+        telephone: {
+          code: "",
+          numero: ""
+        },
         mail: "",
         mdp: "",
         age: "",
@@ -142,18 +149,20 @@ import { User } from "src/models/variables";
               'vous aviez une erreur 2 ' + errorCode + ' : ' + errorMessage
             );
           });
+          console.log("avant le log");
+          
 
         this.router.navigate(['../signin']);
       })
-    // .catch((error: any) => {
-    //   console.log('toto12');
+    .catch((error: any) => {
+      console.log('toto12');
 
-    //   var errorCode = error.code;
-    //   var errorMessage = error.message;
-    //   console.log(
-    //     'vous aviez une erreur 3 ' + errorCode + ': ' + errorMessage
-    //   );
-    // });
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      console.log(
+        'vous aviez une erreur 3 ' + errorCode + ': ' + errorMessage
+      );
+    });
   }
 
 
