@@ -1,1 +1,33 @@
-<p>dashboard-user works!</p>
+<div class="card_dash">
+
+    <div class="nav_dash">
+
+        <ul>    
+
+            <div class="card_user" >
+                <img src="./../../assets/1077114.png" alt="">
+                <p>
+                    <span> toto </span>
+                    <span> jojo </span>
+                </p>
+
+            </div>
+
+            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
+            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
+            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Etat Finacière</li>
+            <li (click)="logOut()"  [ngClass]="{'selctIn': selecter == 3}" >Déconxion</li>
+
+        </ul>
+
+    </div>
+
+    <div class="card_rest">
+
+        <div class="" *ngIf="selecter==0"> card 1 </div>
+        <div class="" *ngIf="selecter==1"> card 2 </div>
+        <div class="" *ngIf="selecter==2"> card 3 </div>
+
+    </div>
+
+</div>
