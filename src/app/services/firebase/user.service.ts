@@ -68,5 +68,32 @@ import { map } from "rxjs";
         console.log('result$ :>> ', result$);
         return result$;
       }
+
+
+      preselect(data: any, index: string) {
+        this.firestore.doc(`utilisateurs/${index}`).update({
+          //les nouvelles valeurs wifi195100 40zu78
+
+          age: data.age,
+      sMatrimoniale: data.sMatrimoniale,
+      NEtude: data.NEtude,
+      metier: data.metier,
+      aDiplome: data.aDiplome,
+      dApprentissage: data.dApprentissage,
+      aExperience: data.aExperience,
+      ePrecedent: data.ePrecedent,
+      passport: data.passport,
+      nationalite: data.nationalite,
+      cWhatapp: data.cWhatapp,
+       parrain: data.parrain,
+      region: data.region, 
+      ldtep2: data.ldtep2, 
+      fils_recus: data.fils_recus, 
+
+        }
+
+        )
+
+      }
     
   }

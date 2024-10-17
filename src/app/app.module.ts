@@ -13,6 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environement } from '../environements/environement';
+import { SelectionComponent } from './selection/selection.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +27,7 @@ import { environement } from '../environements/environement';
     DashboardUserComponent,
     DashboardAdminComponent,
     DashboardPartenaireComponent,
+    SelectionComponent,
     
   ],
   imports: [
@@ -30,8 +35,10 @@ import { environement } from '../environements/environement';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatProgressBarModule,
     AngularFireModule.initializeApp(environement.firebaseConfig),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

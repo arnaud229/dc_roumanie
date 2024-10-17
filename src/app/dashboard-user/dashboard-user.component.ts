@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { User } from 'src/models/variables';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -11,18 +12,31 @@ import { LocalstorageService } from '../services/localStorage/localStorage.servi
 export class DashboardUserComponent {
 
   selecter = 0;
+  userId = ""; 
+  currentUser! : User
+
 
 
   constructor(
     private router: Router,
     public authService: AuthService,
     public localstorageService: LocalstorageService,
+    private Aroute: ActivatedRoute
   ) {}
 
 
   ngOnInit() {
+
+    this.currentUser = this.localstorageService.getCurrentUser();
+
+  //   this.Aroute.params.subscribe(params => {
+  //     this.userId = params['userID'];   
+
+  //     console.log('User ID:', this.userId);
+  //     // Use the userId for your component's logic
    
-  }
+  // })
+}
 
 
 

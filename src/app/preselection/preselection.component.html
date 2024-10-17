@@ -10,15 +10,20 @@
 
         <div class="inputs"  [formGroup]="preselectform" >
             
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['age'].invalid && preselectform.controls['age'].value!=''}"  formControlName="age" placeholder="Age" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!=''}"  formControlName="sMatrimoniale" placeholder="Situation Matrimoniale" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['age'].invalid || preselectform.controls['age'].value>120}"  formControlName="age" placeholder="Age" >
+          
+            <select   formControlName="sMatrimoniale"  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
+                <option *ngFor="let item of listMatrimonial" value="">  {{item}} </option>
+
+               </select>
+
             <input  type="text"  [ngClass]="{'error': preselectform.controls['NEtude'].invalid && preselectform.controls['NEtude'].value!=''}"  formControlName="NEtude" placeholder="Niveau d'étude" >
             <input  type="text"  [ngClass]="{'error': preselectform.controls['metier'].invalid && preselectform.controls['metier'].value!=''}"  formControlName="metier" placeholder="Métier" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['aDiplome'].invalid && preselectform.controls['aDiplome'].value!=''}"  formControlName="aDiplome" placeholder="Année de Diplôme" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['dApprentissage'].invalid && preselectform.controls['dApprentissage'].value!=''}"  formControlName="dApprentissage" placeholder="Durée d'apprentissage" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['aExperience'].invalid && preselectform.controls['aExperience'].value!=''}"  formControlName="aExperience" placeholder="Année d'experience" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['aDiplome'].invalid || preselectform.controls['aDiplome'].value>=2026}"  formControlName="aDiplome" placeholder="Année de Diplôme" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['dApprentissage'].invalid || preselectform.controls['dApprentissage'].value>=60}"  formControlName="dApprentissage" placeholder="Durée d'apprentissage" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['aExperience'].invalid || preselectform.controls['aExperience'].value>=50}"  formControlName="aExperience" placeholder="Année d'experience" >
             <input  type="text"  [ngClass]="{'error': preselectform.controls['ePrecedent'].invalid && preselectform.controls['ePrecedent'].value!=''}"  formControlName="ePrecedent" placeholder="Employeur précédent" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['passport'].invalid && preselectform.controls['passport'].value!=''}"  formControlName="passport" placeholder="Passeport" >
+            <!-- <input  type="boolean"  [ngClass]="{'error': preselectform.controls['passport'].invalid && preselectform.controls['passport'].value!=''}"  formControlName="passport" placeholder="Passeport" > -->
             <input  type="text"  [ngClass]="{'error': preselectform.controls['nationalite'].invalid && preselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" placeholder="Nationalité" >
           
             <div class="groupe_number">
@@ -28,16 +33,23 @@
                     <input id='code_pays' type="text" [(ngModel)]="pre"   placeholder="+229" >
                
                 </div>
-                  <input id= 'input_number' type="text"  [(ngModel)]="edite" placeholder="Numéro de téléphone" >
+                  <input id= 'input_number' type="text"  [(ngModel)]="edite" placeholder="Numéro Whatsapp" >
         
                 </div>
           
             <input  type="text"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
             <input  type="text"  [ngClass]="{'error': preselectform.controls['region'].invalid && preselectform.controls['region'].value!=''}"  formControlName="region" placeholder="Région" >
            
+            <div  class="lecheck">
+               
+                <input id="lecheck_input1" type="checkbox"  [ngClass]="{'checked': preselectform.controls['passport'].value}"  formControlName="passport" placeholder="Passeport" >
+               Aviez vous un Passeport en cours de validité ?
+              
+               </div>
+
            <div  class="lecheck">
             <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': preselectform.controls['ldtep2'].invalid && preselectform.controls['ldtep2'].value!='', 'checked':  preselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
-            être vous immediatement disponible
+            êtes vous immediatement disponible ?
           
            </div>
           
@@ -59,9 +71,16 @@
           </div>
                 
         
-        <input  type="file"  #fileInput [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
+        <input  type="file" multiple #fileInput [ngClass]="{'error': preselectform.controls['fils_recus'].invalid && preselectform.controls['fils_recus'].value!=''}"  formControlName="fils_recus" placeholder="" (change)="onFilesSelected($event)" >
            
-    
+       <ul class="files_choisi" *ngIf="liste_fils != []" >
+        <h1>Les fichiers choisis</h1>
+        <li  *ngFor="let fs of liste_fils" >  
+            <!-- <img [src]="fs.url" alt=""></li> -->
+            <img src="./../../assets/roumanie-visiter.jpg" alt=""></li>
+
+
+       </ul>
             <button  class="boutton"  (click)="preselect()">Soumettre</button> 
           
     </div>

@@ -81,32 +81,69 @@ import { User } from "src/models/variables";
       buyer: true
     }
     const user: User = {
-        id: "",
+      id: "",
+      nom: "",
+      prenom: "",
+      telephone: {
+        code: "",
+        numero: ""
+      },
+      mail: "",
+      mdp: "",
+      age: 0,
+      sMatrimoniale: "",
+      NEtude: "",
+      metier: "",
+      aDiplome: 0,
+      dApprentissage: 0,
+      aExperience: 0,
+      ePrecedent: "",
+      passport: false,
+      nationalite: "",
+      cWhatapp: "",
+      parrain: "",
+      region: "",
+      ldtep2: "",
+      fils: [],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: "",
+      dateNaissance: new Date(),
+      paysNaissance: "",
+      Pere: {
         nom: "",
-        prenom: "",
-        telephone: {
-          code: "",
-          numero: ""
-        },
-        mail: "",
-        mdp: "",
-        age: "",
-        sMatrimoniale: "",
-        NEtude: "",
-        metier: "",
-        aDiplome: 0,
-        dApprentissage: 0,
-        aExperience: 0,
-        ePrecedent: "",
-        passport: false,
-        nationalite: "",
-        cWhatapp: "",
-        parrain: "",
-        region: "",
-        ldtep2: "",
-        fils: [],
-        admin: false,
-        partenaire: false
+        prenoms: ""
+      },
+      Mere: {
+        nom: "",
+        prenoms: ""
+      },
+      nPasseport: "",
+      lieuPasseport: "",
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: "",
+      derniereResidencePays: "",
+      derniereResidenceVillage: "",
+      qualiProfession: "",
+      pricipalProfession: "",
+      langueParler: "",
+      expProfesionnel: [],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [],
+      fil_photo: {
+        type: "",
+        url: ""
+      },
+      fil_passportPhoto: {
+        type: "",
+        url: ""
+      },
+      fil_casierJudiciere: {
+        type: "",
+        url: ""
+      }
     };
     await this.firestore
       .collection('utilisateurs')

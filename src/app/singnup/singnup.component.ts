@@ -68,14 +68,14 @@ export class SingnupComponent {
 
   const user : User =  {
     nom: this.userform.value.nom,
-    prenom:  this.userform.value.prenom,
+    prenom: this.userform.value.prenom,
     telephone: {
       code: this.userform.value.code,
       numero: this.userform.value.numero
     },
     mail: this.userform.value.mail,
     mdp: this.userform.value.mdp,
-    age: '',
+    age: 0,
     sMatrimoniale: '',
     NEtude: '',
     metier: '',
@@ -91,7 +91,44 @@ export class SingnupComponent {
     ldtep2: '',
     fils: [],
     admin: false,
-    partenaire: false
+    partenaire: false,
+    LieuNaissance: '',
+    dateNaissance: new Date(),
+    paysNaissance: '',
+    Pere: {
+      nom: '',
+      prenoms: ''
+    },
+    Mere: {
+      nom: '',
+      prenoms: ''
+    },
+    nPasseport: '',
+    lieuPasseport: '',
+    dateEmiPasseport: new Date(),
+    dateExpPasseport: new Date(),
+    derniereResidence: '',
+    derniereResidencePays: '',
+    derniereResidenceVillage: '',
+    qualiProfession: '',
+    pricipalProfession: '',
+    langueParler: '',
+    expProfesionnel: [],
+    nbrEnfants: 0,
+    dHonneur: false,
+    fils_diplome: [],
+    fil_photo: {
+      type: '',
+      url: ''
+    },
+    fil_passportPhoto: {
+      type: '',
+      url: ''
+    },
+    fil_casierJudiciere: {
+      type: '',
+      url: ''
+    }
   }
   // console.log("le mot de passe :", this.userform.value.mdp);
   // console.log("confirme mot de passe :", this.confirm_mdp);

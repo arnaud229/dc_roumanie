@@ -89,12 +89,17 @@ export class SingninComponent {
    this.authService
      .signInWithFirebase( this.userform.value)
      .then(async (res) => {
-      setTimeout(() => {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+         if (res.user) {
           console.log('res :>> ', res);
+          console.log('res :>> ', res.user.uid );
       this.loading = false;
       console.log('succès sucès');
-      this.router.navigate(['dashboardUser'])   ;
-      }, 2000);
+      this.router.navigate(['dashboardUser', {userID: res.user.uid}])   ;
+          
+         }
+          
+    
 
     })
 

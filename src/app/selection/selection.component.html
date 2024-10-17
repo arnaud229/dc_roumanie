@@ -1,0 +1,168 @@
+<div class="content_pre">
+
+    <div class="card-in" *ngIf="!switch" >
+
+        <h1>Selection</h1>
+
+         <div class="titles">
+            <span  [ngClass]="{'titleSelect': telVisible ==0}" > Informations Personnelles</span>
+            <span  [ngClass]="{'titleSelect': telVisible ==1}" > Informations professionnelles</span>
+            <span  [ngClass]="{'titleSelect': telVisible ==2}" > Les documents </span>
+
+         </div>
+        
+  <p class="petit_texte"> veuillez entrer vos informations pour la préselectform </p>
+        
+
+        <div class="inputs"  [formGroup]="selectform" >
+
+           <div class="groupInfos"  *ngIf="telVisible==0" >
+
+            <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!=''}"  formControlName="paysNaissance" placeholder="Pays de naissance" >
+            <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
+          
+
+            <div class="groupe_Parent">
+
+                <label for="">Père</label>
+
+                <div class="groupeNomsPrenoms">
+                     
+                    <input class='theNom' type="text" [(ngModel)]="pereName"   placeholder="Nom de votre Père" >
+                    <input class='theNom' type="text"  [(ngModel)]="perePrenoms" placeholder="Prénoms de votre père" >
+               
+                </div>
+                
+        
+                </div>
+
+
+                <div class="groupe_Parent">
+
+                    <label for="">Mère</label>
+    
+                    <div class="groupeNomsPrenoms">
+                         
+                        <input class='theNom' type="text" [(ngModel)]="mereName"   placeholder="Nom de votre mère" >
+                        <input class='theNom' type="text"  [(ngModel)]="merePrenoms" placeholder="Prénoms de votre mère" >
+                   
+                    </div>
+                    
+            
+                    </div>
+
+            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!=''}"  formControlName="derniereResidencePays" placeholder="Votre Pays de résidence" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" placeholder="ville/village de résidence" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidenceVillage'].invalid && selectform.controls['derniereResidenceVillage'].value!=''}"  formControlName="derniereResidenceVillage" placeholder="Quartier de résidence" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['qualiProfession'].invalid && selectform.controls['qualiProfession'].value!=''}"  formControlName="qualiProfession" placeholder="Qualification professionnelle" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" placeholder="Profession Principale" >
+           
+            <select   formControlName="langueParler"  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  formControlName="sMatrimoniale" >
+                <option *ngFor="let item of listLangue" value="">  {{item}} </option>
+
+               </select>
+
+            <input  type="number"  [ngClass]="{'error': selectform.controls['nbrEnfants'].invalid && selectform.controls['nbrEnfants'].value!=''}"  formControlName="nbrEnfants" placeholder="Nombre d'enfant" >
+           
+            <div  class="lecheck">
+                <input id="lecheck_input" type="checkbox"  [ngClass]="{
+                    'error': selectform.controls['dHonneur'].invalid && selectform.controls['dHonneur'].value!='', 
+                    'checked':  selectform.controls['dHonneur'].value === true} " 
+                     formControlName="dHonneur">
+                     Je déclare que je n’ai pas de casier criminel, que j’ai l’aptitude médicale apte au travail
+                      et j’ai une connaissance d’une langue circulation internationale
+              
+               </div>
+
+
+               <button  class="boutton"  (click)="suivant(1)"> Suivant </button> 
+             
+           </div>
+
+           <div class="groupInfos" *ngIf="telVisible==1" >
+
+            <h2>  Ajouter vos experiences professionnelles</h2>
+
+            <div>
+                
+                <input  type="text"  [(ngModel)]="Lentreprise" placeholder="L'entrerise" >
+                <input  type="text"  [(ngModel)]="posteOccupe" placeholder="Poste occupé" >
+                <input  type="text"  [(ngModel)]="periode" placeholder="La période" >
+
+                <button  class="boutton"  (click)="ajout()"> Ajouter </button> 
+
+            </div>
+
+            <div class="lesboutonSP">
+
+                <button  class="boutton1"  (click)="precedent(0)"> Précédent </button> 
+                <button  class="boutton"  (click)="suivant(2)"> Suivant </button> 
+
+            </div>
+
+           </div>
+            
+              
+        </div>
+
+</div>
+
+<div>
+    <div class="inputs_suivant"  *ngIf="telVisible==2" [formGroup]="selectform" >
+
+          <p>Ajouter les images des differents documents </p>
+
+
+            <div>
+
+                <div class="cardFils">
+                    <p>le(s) Diplôme(s)</p>
+                    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar> -->
+  
+                    <span (click)="getfils()"> 
+                        <img src="./../../assets/download_icon.png " alt="">
+                    </span>
+                </div>
+
+                <div class="cardFils">
+                    <p>une photo de complete</p>
+                    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar> -->
+  
+                    <span (click)="getfils1()"> 
+                        <img src="./../../assets/download_icon.png " alt="">
+                    </span>
+                </div>
+
+                <div class="cardFils">
+                    <p>une photo de complete</p>
+                    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar> -->
+  
+                    <span (click)="getfils2()"> 
+                        <img src="./../../assets/download_icon.png " alt="">
+                    </span>
+                </div>
+
+                <div class="cardFils">
+                    <p>une photo de complete</p>
+                    <mat-progress-bar mode="indeterminate"  *ngIf="isUploading"></mat-progress-bar>
+  
+                    <span (click)="getfils3()"> 
+                        <img src="./../../assets/download_icon.png " alt="">
+                    </span>
+                </div>
+
+            </div>        
+        
+        <input  type="file" multiple #fileInput [ngClass]="{'error': selectform.controls['fils_diplome'].invalid && selectform.controls['fils_diplome'].value!=''}"  formControlName="fils_diplome" placeholder="" (change)="onFilesSelected($event)" >
+        <input  type="file"  #fileInput1 [ngClass]="{'error': selectform.controls['fil_photo'].invalid && selectform.controls['fil_photo'].value!=''}"  formControlName="fil_photo" placeholder="" (change)="onFilesSelected1($event)" >
+        <input  type="file"  #fileInput2 [ngClass]="{'error': selectform.controls['fil_passportPhoto'].invalid && selectform.controls['fil_passportPhoto'].value!=''}"  formControlName="fil_passportPhoto" placeholder="" (change)="onFilesSelected2($event)" >
+        <input  type="file"  #fileInput3 [ngClass]="{'error': selectform.controls['fil_casierJudiciere'].invalid && selectform.controls['fil_casierJudiciere'].value!=''}"  formControlName="fil_casierJudiciere" placeholder="" (change)="onFilesSelected3($event)" >
+           
+       
+            <button  class="boutton"  (click)="select()">Soumettre</button> 
+          
+    </div>
+
+</div>
+
