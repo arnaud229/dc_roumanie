@@ -16,6 +16,9 @@ export class SelectionComponent {
   pre = "";
   edite = "";
   isUploading = false;
+  isUploading1 = false;
+  isUploading2= false;
+  isUploading3 = false;
   switch = false;
   listMatrimonial = ["Situation Matrimoniale","Célibataire", "Marié(e)", "Veuf(ve) "];
   listLangue = ["Langue étrangère parler","Anglais","Français", "Roumain", "Espagnol"];
@@ -31,6 +34,9 @@ export class SelectionComponent {
 
   @ViewChild('fileInput3')
   fileInput3!: ElementRef; 
+
+  @ViewChild('dateInput') 
+  dateInput!: ElementRef ;
   
   filPhoto: RecuFile = {
     type: '',
@@ -47,9 +53,9 @@ export class SelectionComponent {
     url: ''
   }
   
-   
+   valAjout = false;
   imgs = "./../../assets/roumanie-visiter.jpg"
-  userId = "fvgsversvedskgzqofza"
+  userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
  
 
   telVisible =0;
@@ -60,14 +66,16 @@ export class SelectionComponent {
 
   Lentreprise ='';
   posteOccupe ='';
-  periode = '';
+  dateDebut!: Date ;
+  datefin!: Date;
   expTable = [
 
     {
 
       entreprise: 'this.Lentreprise',
       posteOccupe: 'this.posteOccupe',
-      periode: "this.periode"
+      dateDebut: new Date(),
+      datefin: new Date()
 
     }
   ];
@@ -157,10 +165,12 @@ export class SelectionComponent {
   }
 
   getfils3() {
-    this.fileInput2.nativeElement.click();
+    this.fileInput3.nativeElement.click();
   }
 
   onFilesSelected1(event : any) {
+
+    this.isUploading1 = true;
     const files = event.target.files;
     console.log("files de input",files);
     console.log("files de tyoe ",typeof files);
@@ -170,11 +180,18 @@ export class SelectionComponent {
       type: files[0].type,
             url: files[0].name
     }
+
+    
+    setTimeout(() => {
+      this.isUploading1 = false;
+    }, 5000);
    
 
   }
 
   onFilesSelected2(event : any) {
+
+    this.isUploading2 = true;
 
     const files = event.target.files;
     console.log("files de input",files);
@@ -186,11 +203,16 @@ export class SelectionComponent {
             url: files[0].name
     }
 
+    
+    setTimeout(() => {
+      this.isUploading2 = false;
+    }, 5000);
+
   }
 
   onFilesSelected3(event : any) {
 
-    this.isUploading = true;
+    this.isUploading3 = true;
 
     const files = event.target.files;
     console.log("files de input",files);
@@ -203,7 +225,7 @@ export class SelectionComponent {
     }
 
     setTimeout(() => {
-      this.isUploading = false;
+      this.isUploading3 = false;
     }, 5000);
 
   
@@ -211,6 +233,8 @@ export class SelectionComponent {
   }
   
   onFilesSelected(event : any) {
+
+    this.isUploading = true;
     const files = event.target.files;
     console.log("files de input",files);
     console.log("files de tyoe ",typeof files);
@@ -232,6 +256,11 @@ export class SelectionComponent {
                   
     }   
 
+    
+    setTimeout(() => {
+      this.isUploading = false;
+    }, 5000);
+
   }
 
   ajout() {
@@ -240,7 +269,8 @@ export class SelectionComponent {
 
       entreprise: this.Lentreprise,
       posteOccupe: this.posteOccupe,
-      periode: this.periode
+      dateDebut: this.dateDebut,
+      datefin: this.datefin
 
     }
 
@@ -248,7 +278,9 @@ export class SelectionComponent {
 
     this.Lentreprise ="";
     this.posteOccupe ="";
-    this.periode = ""
+    this.dateDebut = new Date();
+    this.datefin = new Date()
+    this.valAjout = true;
 
     console.log("le tableau", this.expTable);
     
@@ -256,7 +288,71 @@ export class SelectionComponent {
 
   }
 
+  clearDate() {
+    this.dateInput.nativeElement.value = '';
+  }
+
   select() {
+
+      console.log("Select",this.selectform.value);
+      if (this.selectform.valid) {  }
+      
+  
+      const infoPreselect = 
+      {
+        
+        LieuNaissance: this.selectform.value.LieuNaissance,
+        dateNaissance: this.selectform.value.dateNaissance,
+        paysNaissance: this.selectform.value.paysNaissance,
+        Pere: {
+                 nom: this.pereName,
+                 prenoms: this.perePrenoms
+
+              },
+        Mere: {
+          nom: this.mereName,
+          prenoms: this.merePrenoms
+
+             },
+        nPasseport: this.selectform.value.nPasseport,
+        lieuPasseport: this.selectform.value.lieuPasseport,
+        dateEmiPasseport: this.selectform.value.dateEmiPasseport,
+        dateExpPasseport: this.selectform.value.dateExpPasseport,
+        derniereResidence: this.selectform.value.derniereResidence,
+        derniereResidencePays: this.selectform.value.derniereResidencePays,
+        derniereResidenceVillage: this.selectform.value.derniereResidenceVillage,
+        qualiProfession: this.selectform.value.qualiProfession,
+        principalProfession: this.selectform.value.principalProfession,
+        langueParler: this.selectform.value.langueParler,
+        expProfesionnel: this.selectform.value.expProfesionnel,
+        nbrEnfants: this.selectform.value.nbrEnfants,
+        dHonneur: this.selectform.value.dHonneur,   
+        fils_diplome:this.liste_fils,    
+        fil_photo: this.filPhoto ,    
+        fil_passportPhoto: this.filPhotoPassport,    
+        fil_casierJudiciere: this.filPhotoCasier,    
+        
+  
+      }
+  
+       try {
+            
+        this.userServ.select(infoPreselect, this.userId)
+        this.router.navigate(["dashboardUser", {index: 1}])
+       }    
+      
+      catch  {
+  
+        (error: { code: any; message: any }) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
+        };
+  
+      }
+  
+    
+  
      
   }
 

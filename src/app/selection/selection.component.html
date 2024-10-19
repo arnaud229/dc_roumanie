@@ -11,12 +11,14 @@
 
          </div>
         
-  <p class="petit_texte"> veuillez entrer vos informations pour la préselectform </p>
+  <!-- <p class="petit_texte"> veuillez entrer vos informations pour la préselectform </p> -->
         
 
-        <div class="inputs"  [formGroup]="selectform" >
+        <div class="inputs" >
 
-           <div class="groupInfos"  *ngIf="telVisible==0" >
+           <div class="groupInfos"  *ngIf="telVisible==0"  [formGroup]="selectform"  >
+
+            <h2>  Ajouter vos informations personnelles</h2>
 
             <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!=''}"  formControlName="paysNaissance" placeholder="Pays de naissance" >
@@ -76,7 +78,7 @@
                </div>
 
 
-               <button  class="boutton"  (click)="suivant(1)"> Suivant </button> 
+               <button [disabled]="!selectform.get('dHonneur')?.valid"  class="boutton"  (click)="suivant(1)"> Suivant </button> 
              
            </div>
 
@@ -88,16 +90,17 @@
                 
                 <input  type="text"  [(ngModel)]="Lentreprise" placeholder="L'entrerise" >
                 <input  type="text"  [(ngModel)]="posteOccupe" placeholder="Poste occupé" >
-                <input  type="text"  [(ngModel)]="periode" placeholder="La période" >
+                <input  type="date" #dateInput [(ngModel)]="dateDebut" placeholder="La date de début" >
+                <input  type="date"  [(ngModel)]="datefin" placeholder="La date fin" >
 
-                <button  class="boutton"  (click)="ajout()"> Ajouter </button> 
+                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> Ajouter </button> 
 
             </div>
 
             <div class="lesboutonSP">
 
                 <button  class="boutton1"  (click)="precedent(0)"> Précédent </button> 
-                <button  class="boutton"  (click)="suivant(2)"> Suivant </button> 
+                <button [disabled]="!valAjout" class="boutton"  (click)="suivant(2)"> Suivant </button> 
 
             </div>
 
@@ -106,63 +109,74 @@
               
         </div>
 
-</div>
 
-<div>
-    <div class="inputs_suivant"  *ngIf="telVisible==2" [formGroup]="selectform" >
+       <div class="inputs_suivant"  *ngIf="telVisible==2" [formGroup]="selectform" >
 
           <p>Ajouter les images des differents documents </p>
 
 
-            <div>
+         <div>
 
-                <div class="cardFils">
-                    <p>le(s) Diplôme(s)</p>
-                    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar> -->
+             <div class="cardFils">
+                 <p>le(s) Diplôme(s)</p>
+                 <mat-progress-bar id="laBarDownload" mode="indeterminate" *ngIf="isUploading"></mat-progress-bar>
+
+                 <span (click)="getfils()"> 
+                     <img src="./../../assets/download_icon.png " alt="">
+                 </span>
+             </div>
+
+             <div class="cardFils">
+                 <p>une photo de complete</p>
+                 <mat-progress-bar id="laBarDownload1" mode="indeterminate" *ngIf="isUploading1"></mat-progress-bar>
+
+                 <span (click)="getfils1()"> 
+                     <img src="./../../assets/download_icon.png " alt="">
+                 </span>
+             </div>
+
+             <div class="cardFils">
+                 <p>une photo de vote passeport</p>
+            
+                 <mat-progress-bar id="laBarDownload2" mode="indeterminate" *ngIf="isUploading2"></mat-progress-bar>
+                 <span (click)="getfils2()"> 
+                     <img src="./../../assets/download_icon.png " alt="">
+                 </span>
+             </div>
+
+             <div class="cardFils">
+                 <p>une photo de vote cassier judicière</p>
+                   
+                 <mat-progress-bar id="laBarDownload3" mode="indeterminate"  *ngIf="isUploading3"></mat-progress-bar>
+
+                 <span (click)="getfils3()"> 
+                     <img src="./../../assets/download_icon.png " alt="">
+                 </span>
+             </div>
+
+         </div>        
   
-                    <span (click)="getfils()"> 
-                        <img src="./../../assets/download_icon.png " alt="">
-                    </span>
-                </div>
-
-                <div class="cardFils">
-                    <p>une photo de complete</p>
-                    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar> -->
-  
-                    <span (click)="getfils1()"> 
-                        <img src="./../../assets/download_icon.png " alt="">
-                    </span>
-                </div>
-
-                <div class="cardFils">
-                    <p>une photo de complete</p>
-                    <!-- <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar> -->
-  
-                    <span (click)="getfils2()"> 
-                        <img src="./../../assets/download_icon.png " alt="">
-                    </span>
-                </div>
-
-                <div class="cardFils">
-                    <p>une photo de complete</p>
-                    <mat-progress-bar mode="indeterminate"  *ngIf="isUploading"></mat-progress-bar>
-  
-                    <span (click)="getfils3()"> 
-                        <img src="./../../assets/download_icon.png " alt="">
-                    </span>
-                </div>
-
-            </div>        
+                   <input  type="file" multiple #fileInput [ngClass]="{'error': selectform.controls['fils_diplome'].invalid && selectform.controls['fils_diplome'].value!=''}"  formControlName="fils_diplome" placeholder="" (change)="onFilesSelected($event)" >
+                   <input  type="file"  #fileInput1 [ngClass]="{'error': selectform.controls['fil_photo'].invalid && selectform.controls['fil_photo'].value!=''}"  formControlName="fil_photo" placeholder="" (change)="onFilesSelected1($event)" >
+                   <input  type="file"  #fileInput2 [ngClass]="{'error': selectform.controls['fil_passportPhoto'].invalid && selectform.controls['fil_passportPhoto'].value!=''}"  formControlName="fil_passportPhoto" placeholder="" (change)="onFilesSelected2($event)" >
+                   <input  type="file"  #fileInput3 [ngClass]="{'error': selectform.controls['fil_casierJudiciere'].invalid && selectform.controls['fil_casierJudiciere'].value!=''}"  formControlName="fil_casierJudiciere" placeholder="" (change)="onFilesSelected3($event)" >
+     
+ 
+    
+         <div class="lesboutonSP">
         
-        <input  type="file" multiple #fileInput [ngClass]="{'error': selectform.controls['fils_diplome'].invalid && selectform.controls['fils_diplome'].value!=''}"  formControlName="fils_diplome" placeholder="" (change)="onFilesSelected($event)" >
-        <input  type="file"  #fileInput1 [ngClass]="{'error': selectform.controls['fil_photo'].invalid && selectform.controls['fil_photo'].value!=''}"  formControlName="fil_photo" placeholder="" (change)="onFilesSelected1($event)" >
-        <input  type="file"  #fileInput2 [ngClass]="{'error': selectform.controls['fil_passportPhoto'].invalid && selectform.controls['fil_passportPhoto'].value!=''}"  formControlName="fil_passportPhoto" placeholder="" (change)="onFilesSelected2($event)" >
-        <input  type="file"  #fileInput3 [ngClass]="{'error': selectform.controls['fil_casierJudiciere'].invalid && selectform.controls['fil_casierJudiciere'].value!=''}"  formControlName="fil_casierJudiciere" placeholder="" (change)="onFilesSelected3($event)" >
+             <button  class="boutton1"  (click)="precedent(1)"> Précédent </button> 
+            
+             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="select()">Soumettre</button> 
+        
+         </div>
            
-       
-            <button  class="boutton"  (click)="select()">Soumettre</button> 
-          
-    </div>
+        /div>
 
 </div>
+
+</div>
+
+<div>
+  
 

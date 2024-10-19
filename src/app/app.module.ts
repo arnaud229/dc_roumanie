@@ -16,6 +16,8 @@ import { environement } from '../environements/environement';
 import { SelectionComponent } from './selection/selection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -38,6 +40,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule,
     AngularFireModule.initializeApp(environement.firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireModule,
+    HttpClientModule,
+    // AngularFirestorageModule,
     BrowserAnimationsModule
   ],
   providers: [],

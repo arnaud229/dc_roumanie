@@ -29,13 +29,13 @@ export class DashboardUserComponent {
 
     this.currentUser = this.localstorageService.getCurrentUser();
 
-  //   this.Aroute.params.subscribe(params => {
-  //     this.userId = params['userID'];   
+    this.Aroute.params.subscribe(params => {
+      this.selecter = params['index'];   
 
-  //     console.log('User ID:', this.userId);
-  //     // Use the userId for your component's logic
+      console.log('selector:', this.selecter);
+      // Use the userId for your component's logic
    
-  // })
+  })
 }
 
 

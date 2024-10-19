@@ -72,6 +72,7 @@
               "browserTarget": "as_voyageur:build:development"
             }
           },
+          
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

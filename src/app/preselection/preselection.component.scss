@@ -258,12 +258,12 @@ margin-bottom: 30px;
 
 }
 
-.inputs_suivant > p
+.inputs_suivant > h2
 {
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 20px;
     line-height: 24px;
     margin-bottom: 30px;
 }
@@ -313,7 +313,13 @@ ul > li > img
   
   .card-in {
    top: 10%; 
-  }
+  } 
+
+  
+.inputs_suivant > h2
+{
+    margin-top: 20px;
+}
     
   }
 
@@ -335,7 +341,7 @@ ul > li > img
         border: none;
         top: 0%;
         width: 100%;
-        padding-left: 5%;
+        padding-left: 10%;
         padding-right: 5%;
          background-image: url("./../../assets/motifafro.png");
         background-repeat: no-repeat;
@@ -392,6 +398,7 @@ ul > li > img
 
     {
         border: none;
+        padding-left: 15%;
     }
 
 

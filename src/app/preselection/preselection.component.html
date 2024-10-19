@@ -63,7 +63,7 @@
 <div>
     <div class="inputs_suivant" *ngIf="switch"  [formGroup]="preselectform" >
 
-          <p>Ajouter les images des reçus de la presélection</p>
+          <h2>Ajouter les images des reçus de la presélection</h2>
 
 
           <div class="card-inputFils" (click)="getfils()">
@@ -76,8 +76,8 @@
        <ul class="files_choisi" *ngIf="liste_fils != []" >
         <h1>Les fichiers choisis</h1>
         <li  *ngFor="let fs of liste_fils" >  
-            <!-- <img [src]="fs.url" alt=""></li> -->
-            <img src="./../../assets/roumanie-visiter.jpg" alt=""></li>
+            <img [src]="fs.url" alt=""></li>
+            <!-- <img src="./../../assets/roumanie-visiter.jpg" alt=""></li> -->
 
 
        </ul>

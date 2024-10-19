@@ -1,8 +1,14 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RecuFile } from 'src/models/variables';
+import { RecuFile, User } from 'src/models/variables';
 import { UsersService } from '../services/firebase/user.service';
+import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat/firestore';
+
+import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { StorageService } from '../services/storage/storage.service';
+
+
 
 @Component({
   selector: 'app-preselection',
@@ -20,19 +26,28 @@ export class PreselectionComponent {
   @ViewChild('fileInput')
   fileInput!: ElementRef; 
   imgs = "./../../assets/roumanie-visiter.jpg"
-  userId = "fvgsversvedskgzqofza"
+  userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
+ 
+  currentUser! : User;
+
+  les_url = [""];
 
 
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
-    private userServ : UsersService
+    private userServ : UsersService,
+    private afs: AngularFirestore,
+    private firebaseStorageService: StorageService,
+    public localstorageService: LocalstorageService,
   ) {
 
     this.init_form();
   }
 
   ngOnInit() {
+    this.currentUser = this.localstorageService.getCurrentUser();
+    this.userId = this.currentUser.uid
     this.init_form();
   }
 
@@ -69,9 +84,33 @@ export class PreselectionComponent {
     this.fileInput.nativeElement.click();
   }
 
-  preselect(){
-    console.log("Preselect",this.preselectform.value);
-    if (this.preselectform.valid) {  }
+  async preselect(){
+    console.log("Preselect",this.preselectform.value)
+
+    
+    if (this.preselectform.invalid) {  } 
+
+
+     this.liste_fils.map(async (image) => {
+
+      const  response = await fetch(image.url);
+      const blod = await response.blob()
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsRecus',
+        filename:
+          'Recus-preinscription-' +
+          new Date().getTime() +
+          this.userId +
+          '.' +
+          image.type,
+        file: blod,
+       
+      });
+
+       this.les_url.push(url);
+
+      // return url;
+    });
 
     const infoPreselect = 
     {
@@ -90,14 +129,23 @@ export class PreselectionComponent {
        parrain: this.preselectform.value.parrain,
       region: this.preselectform.value.region, 
       ldtep2: this.preselectform.value.ldtep2, 
-      fils_recus: this.liste_fils, 
+      fils_recus: this.les_url, 
 
     }
 
      try {
-          
-      this.userServ.preselect(infoPreselect, this.userId)
-      this.router.navigate(["dashboardUser", {userID: this.userId}])
+
+      const docRef: AngularFirestoreDocument<any> = this.afs.doc(`utilisateurs/${this.userId}`);
+    const docSnapshot = await docRef.get().toPromise();
+
+      // if(docSnapshot.exists) {
+     
+              
+        await this.userServ.preselect(infoPreselect, this.userId)
+      this.router.navigate(["dashboardUser", {index: 0}])
+
+      // }
+   
      }    
     
     catch  {
@@ -123,13 +171,16 @@ export class PreselectionComponent {
         // console.log('index : ', i);
         
 
-        // console.log("res", files[i]);
+        console.log("res", files[i]);
+
+ 
+        
         
        
         this.liste_fils.push(
           {
-            type: files[i].name,
-            url: files[i].type
+            type: files[i].type,
+            url: files[i].name
           }
         );
         

@@ -1,5 +1,5 @@
 export interface User {
-    id?: any
+    uid?: any
     nom: string,
     prenom: string,
      telephone: telephone,
@@ -19,7 +19,7 @@ export interface User {
     parrain: string,
     region: string,
     ldtep2: string,
-    fils: RecuFile[],
+    fils_recus: [],
     admin: boolean,
     partenaire: boolean,
     LieuNaissance:string,
@@ -35,7 +35,7 @@ export interface User {
     derniereResidencePays: string,
     derniereResidenceVillage: string,
     qualiProfession: string,
-    pricipalProfession: string,
+    principalProfession: string,
     langueParler: string,
     expProfesionnel: experience[] ,
     nbrEnfants:number,
@@ -50,7 +50,8 @@ export interface User {
 export type experience = {
     entreprise: string;
     posteOccupe: string;
-    periode: string;
+    datedebut: Date;
+    datefin: Date;
 }
 
 

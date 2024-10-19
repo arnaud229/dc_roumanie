@@ -81,7 +81,7 @@ import { User } from "src/models/variables";
       buyer: true
     }
     const user: User = {
-      id: "",
+      uid: "",
       nom: "",
       prenom: "",
       telephone: {
@@ -104,7 +104,7 @@ import { User } from "src/models/variables";
       parrain: "",
       region: "",
       ldtep2: "",
-      fils: [],
+      fils_recus: [],
       admin: false,
       partenaire: false,
       LieuNaissance: "",
@@ -126,7 +126,7 @@ import { User } from "src/models/variables";
       derniereResidencePays: "",
       derniereResidenceVillage: "",
       qualiProfession: "",
-      pricipalProfession: "",
+      principalProfession: "",
       langueParler: "",
       expProfesionnel: [],
       nbrEnfants: 0,

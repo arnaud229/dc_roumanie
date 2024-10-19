@@ -9,5 +9,9 @@ export const environement = {
         storageBucket: "asvoyageur.appspot.com",
         messagingSenderId: "506707895234",
         appId: "1:506707895234:web:8ad74d9a2182d368d2ec5b"
-    }
+    },
+
+    adminServerConfig: {
+        baseUrl: 'http://localhost:5000'
+      }
 }

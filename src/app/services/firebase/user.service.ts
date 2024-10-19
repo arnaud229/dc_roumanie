@@ -4,6 +4,14 @@ import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { AuthService } from "../auth/auth.service";
 import { applyPagination, orderByQuery, whereQuery } from "./firebase-utils";
 import { map } from "rxjs";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+  deleteObject,
+  getBlob
+} from 'firebase/storage';
 
 
 
@@ -70,8 +78,8 @@ import { map } from "rxjs";
       }
 
 
-      preselect(data: any, index: string) {
-        this.firestore.doc(`utilisateurs/${index}`).update({
+    async  preselect(data: any, index: string) {
+     await   this.firestore.doc(`utilisateurs/${index}`).update({
           //les nouvelles valeurs wifi195100 40zu78
 
           age: data.age,
@@ -92,8 +100,52 @@ import { map } from "rxjs";
 
         }
 
+        ).then(() => {
+          console.log('Document mis à jour avec succès');
+        })
+        .catch(error => {
+          console.error('Erreur lors de la mise à jour du document:', error);
+          // Afficher un message à l'utilisateur si nécessaire
+        });
+
+      }
+
+
+      select(data: any, index: string) {
+        this.firestore.doc(`utilisateurs/${index}`).update({
+          //les nouvelles valeurs wifi195100 40zu78
+
+          LieuNaissance: data.LieuNaissance,
+          dateNaissance: data.dateNaissance,
+          paysNaissance:  data.paysNaissance,
+          Pere: data.Pere,
+          Mere: data.Mere,
+          nPasseport: data.nPasseport,
+          lieuPasseport: data.lieuPasseport,
+          dateEmiPasseport: data.dateEmiPasseport,
+          dateExpPasseport: data.dateExpPasseport,
+          derniereResidence: data.derniereResidence,
+          derniereResidencePays: data.derniereResidencePays,
+          derniereResidenceVillage: data.derniereResidenceVillage,
+          qualiProfession: data.qualiProfession,
+          principalProfession: data.principalProfession,
+          langueParler: data.langueParler,
+          expProfesionnel: data.expProfesionnel,
+          nbrEnfants: data.nbrEnfants,
+          dHonneur: data.dHonneur,  
+          fils_diplome: data.fils_diplome,
+          fil_photo: data.fil_photo,
+          fil_passportPhoto: data.fil_passportPhoto,
+          fil_casierJudiciere: data.fil_casierJudiciere,
+
+
+        }
+
         )
 
       }
+
+
+   
     
   }
