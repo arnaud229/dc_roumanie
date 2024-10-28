@@ -3,6 +3,8 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { environement } from 'src/environements/environement';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { BehaviorSubject, interval, Observable, Subject } from 'rxjs';
+import { finalize, map, take, takeWhile } from 'rxjs/operators';
 
 import {
     getStorage,
@@ -28,6 +30,9 @@ import { AuthService } from "../auth/auth.service";
         stores: 'stores',
         users: 'users',
       };
+
+      private isUploadingSubject = new BehaviorSubject<boolean>(false);
+  isUploading$ = this.isUploadingSubject.asObservable();
 
     //   appServerUrl = environement.adminServerConfig.baseUrl;
 
@@ -155,7 +160,23 @@ import { AuthService } from "../auth/auth.service";
     //     });
     //   }
 
-
+    // uploadFileProgress(file: File): Observable<number> {
+    //   this.isUploadingSubject.next(true); // Indique que l'upload a commencé
+  
+    //   return interval(1000).pipe(
+    //     takeWhile(()=> {
+    //       // Au lieu d'utiliser isUploading$.value, on s'abonne à isUploading$
+    //       return this.isUploading$.pipe(
+    //         take(1), // Prendre seulement la première valeur émise
+    //         map(isUploading => isUploading) // Mapper la valeur pour retourner le booléen
+    //       );
+    //     }),
+    //     map(i => Math.floor((i + 1) / 10) * 10),
+    //     finalize(() => {
+    //       this.isUploadingSubject.next(false); // Indique que l'upload est terminé
+    //     })
+    //   );
+    // }
       
     
 

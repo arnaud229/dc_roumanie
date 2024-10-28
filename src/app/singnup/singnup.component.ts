@@ -85,10 +85,13 @@ export class SingnupComponent {
     ePrecedent: '',
     passport: false,
     nationalite: '',
-    cWhatapp: '',
+    cWhatapp:{
+      code: "",
+      numero: ""
+    },
     parrain: '',
-    region: '',
-    ldtep2: '',
+    religion: '',
+    ldtep2: false,
     fils_recus: [],
     admin: false,
     partenaire: false,
@@ -128,7 +131,9 @@ export class SingnupComponent {
     fil_casierJudiciere: {
       type: '',
       url: ''
-    }
+    },
+    isvalidePreselect: false,
+    isvalidSelect: false
   }
   // console.log("le mot de passe :", this.userform.value.mdp);
   // console.log("confirme mot de passe :", this.confirm_mdp);

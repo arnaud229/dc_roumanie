@@ -5,14 +5,11 @@
     justify-content: flex-start;
     width: 100%;
     background-color: white;
-    
+    height: 100%;
 }
 
 .nav_dash
 {
-    width: 210px;
-   
-   position: relative;
    background-color: #F0F0F2;
    box-shadow: 5px 5px 2px #F0F0F2;
    font-family: 'Inter';
@@ -22,6 +19,10 @@
    line-height: 22px;
    text-align: center;
    margin-right: 2%;
+   position: fixed;
+   height: 100%;
+   width: 200px;
+   display: block;
    
 }
 
@@ -54,9 +55,398 @@
 {
     width: 80px;
     height: 80px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    // margin-left: 5%;
+}
+
+.card_user > p 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
 }
 .selctIn
 {
     color: white;
     background-color: #764929;
 }
+
+.card_rest
+{
+    width: 80%;
+    margin-top: 16px;
+}
+
+.notvalide
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    padding-left: 20%;
+    padding-top: 20%;
+
+}
+
+.notvalide > p 
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    margin-right: 2%;
+    margin-bottom: 50px;
+}
+
+.notvalide > button
+
+{
+    width: 125px;
+    height: 33px;
+    text-align: center;
+    color:  white;
+    background: #764929;
+   border: 1px solid #764929;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+margin-bottom: 30px;
+margin-left: 40%;
+}
+
+.seePresect
+ {
+       display: flex;
+       flex-direction: column;
+       width: 100%;
+    //    margin-left: 4%;
+       margin-bottom: 30px;
+}
+
+.cardHead
+{
+    display: flex;
+    justify-content: space-between;
+    width: calc(100vw - 300px );
+   
+    padding-left: 250px;
+    margin-bottom: 30px;
+
+}
+
+
+.cardStatut{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    margin-right: 10px;
+   
+    
+}
+
+.statutSimple
+{
+    background: rgba(128, 128, 128, 0.5);
+    width: 45%;
+    color: black;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.colorSelect
+{
+    background: rgba(144, 238, 144, 0.5);
+    width: 45%;
+    color: rgba(85, 107, 47, 1);
+}
+
+.cardHead > h1 {
+
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 18px;
+    line-height: 24px;
+    padding-top: 20px;
+
+}
+
+.statut
+{
+   margin-bottom: 20px;
+}
+
+.cardHead > img
+{
+   width: 30px;
+   height: 30px;
+   cursor: pointer;
+   margin-top: 10px;
+}
+
+.contentViewPreselect, .contentViewSelect
+{
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 220px);
+    padding-left: 200px;
+}
+
+.groupViewPreselect
+{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 5%;
+    margin-bottom: 10px;
+
+}
+
+.groupViewPreselect > p
+{
+   
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 24px;
+    text-decoration: underline;
+}
+
+.groupViewPreselect >  .viewValue
+
+{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    padding-left: 10px;
+ 
+
+}
+
+.cardParents
+{
+    display: flex;
+    flex-direction: column;
+}
+
+.cardParents > h2, .cardExperience > h2
+
+{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    // padding-left: 10px;
+    text-align: center;
+}
+
+.cardExperience
+{
+    display: flex;
+    flex-direction: column;
+}
+
+table 
+{
+    border-collapse: collapse;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    width:90%;
+
+}
+
+tr, td, th
+{
+    border: solid 1px black;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 9px;
+    padding-bottom: 9px;
+}
+.cardHeadMobile
+{
+    display: none;
+}
+
+@media (max-width: 1000px ) {
+
+    .cardStatut
+    {
+        width: 40%;
+    }
+    
+    .cardHeadMobile
+    {
+        display: none;
+    }
+
+
+
+}
+
+@media (max-width: 500px ) {
+
+    .cardHead {
+        display: none;
+    }
+
+    .nav_dash {
+        display: none;
+    }
+
+    .seePresect
+    {
+        width: 100%;
+    }
+
+ 
+
+  .cardHeadMobile
+  {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+  
+  }
+
+  .groupe1Mobile
+  {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+  }
+
+  .groupe1Mobile > img 
+  {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+
+  }
+
+   .groupe1Mobile > h1 
+   {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 5px;
+   }
+
+   .card_rest {
+    width: 94%;
+    padding-left: 3%;
+    padding-right: 3%;
+   }
+
+   .contentViewPreselect, .contentViewSelect
+   {
+    width: 100%;
+    padding-left: 0px;
+    
+   }
+
+   .groupViewPreselect{
+   
+    margin-left: 0%;
+
+}  
+
+.navBarMobile
+{
+    background-color: #F0F0F2;
+    box-shadow: 5px 5px 2px #F0F0F2;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 22px;
+    text-align: center;
+    position: absolute;
+    top: 0px;
+    height: auto;
+    width: 100%;
+    display: block;
+    margin-left: -3%;
+}
+
+.navBarMobile > ul {
+    position: relative;
+    height: 100%;
+    padding-left: 0px;
+
+}
+
+.navBarMobile > ul > li 
+{
+    cursor: pointer;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    list-style-type: none;
+}
+
+#iconFerme
+{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    right: 15px;
+}
+
+.card_dash {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

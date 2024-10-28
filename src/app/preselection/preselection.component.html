@@ -38,7 +38,7 @@
                 </div>
           
             <input  type="text"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['region'].invalid && preselectform.controls['region'].value!=''}"  formControlName="region" placeholder="Région" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['religion'].invalid && preselectform.controls['religion'].value!=''}"  formControlName="religion" placeholder="Région" >
            
             <div  class="lecheck">
                
@@ -54,14 +54,17 @@
            </div>
           
  
-                <button  class="boutton"  (click)="suivant()"> Suivant </button> 
+                <button  class="boutton" [disabled]="preselectform.get('ldtep2')?.value === false "   (click)="suivant()"> Suivant </button> 
               
         </div>
 
 </div>
 
-<div>
-    <div class="inputs_suivant" *ngIf="switch"  [formGroup]="preselectform" >
+</div>
+
+
+<div  class="content_preImg" *ngIf="switch">
+    <div class="inputs_suivant"   [formGroup]="preselectform" >
 
           <h2>Ajouter les images des reçus de la presélection</h2>
 
@@ -69,21 +72,23 @@
           <div class="card-inputFils" (click)="getfils()">
               +
           </div>
+
+         
+            <mat-progress-bar id="laBarDownload33" mode="determinate" [value]="progressValue"  *ngIf="isUploading"></mat-progress-bar>
+
+            <span (click)="getfils()"> 
+                <img src="./../../assets/download_icon.png " alt="">
+            </span>
+       
                 
         
         <input  type="file" multiple #fileInput [ngClass]="{'error': preselectform.controls['fils_recus'].invalid && preselectform.controls['fils_recus'].value!=''}"  formControlName="fils_recus" placeholder="" (change)="onFilesSelected($event)" >
            
-       <ul class="files_choisi" *ngIf="liste_fils != []" >
-        <h1>Les fichiers choisis</h1>
-        <li  *ngFor="let fs of liste_fils" >  
-            <img [src]="fs.url" alt=""></li>
-            <!-- <img src="./../../assets/roumanie-visiter.jpg" alt=""></li> -->
+  
 
-
-       </ul>
-            <button  class="boutton"  (click)="preselect()">Soumettre</button> 
+            <button  id="boutton1"  (click)="preselect()">Soumettre</button> 
           
     </div>
 
-</div>
+
 

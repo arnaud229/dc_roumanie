@@ -18,6 +18,7 @@ import { StorageService } from '../services/storage/storage.service';
 export class PreselectionComponent {
 
   preselectform!: FormGroup;
+  isUploading = false;
   pre = "";
   edite = "";
   switch = false;
@@ -31,6 +32,7 @@ export class PreselectionComponent {
   currentUser! : User;
 
   les_url = [""];
+  progressValue  = 0;
 
 
   constructor(
@@ -65,7 +67,7 @@ export class PreselectionComponent {
       nationalite: ['',Validators.required],
       cWhatapp: ['',Validators.required],
     parrain: ['',Validators.required],
-      region: ['',Validators.required], 
+      religion: ['',Validators.required], 
       ldtep2: [false,Validators.required], 
       fils_recus: ['',Validators.required], 
       
@@ -125,7 +127,12 @@ export class PreselectionComponent {
       ePrecedent: this.preselectform.value.ePrecedent,
       passport: this.preselectform.value.passport,
       nationalite: this.preselectform.value.nationalite,
-      cWhatapp: this.pre+this.edite,
+      cWhatapp:
+      {
+        code: this.pre,
+        numero: this.edite
+      },
+       
        parrain: this.preselectform.value.parrain,
       region: this.preselectform.value.region, 
       ldtep2: this.preselectform.value.ldtep2, 
@@ -161,28 +168,26 @@ export class PreselectionComponent {
   }
 
   onFilesSelected(event : any) {
+
+    this.isUploading = true;
     const files = event.target.files;
     console.log("files de input",files);
     console.log("files de tyoe ",typeof files);
     if (files.length > 0) {
 
+
       for (let i = 0; i < files.length; i++) {
-
-        // console.log('index : ', i);
-        
-
         console.log("res", files[i]);
-
  
         
-        
-       
-        this.liste_fils.push(
+            this.liste_fils.push(
           {
             type: files[i].type,
             url: files[i].name
           }
         );
+
+  
         
       }
 
@@ -191,10 +196,23 @@ export class PreselectionComponent {
                   
     }
 
-    
-     
-
   }
+
+
+//   uploadFileProgress(file: File): Observable<number> {
+//   this.isUploadingSubject.next(true);
+
+//   return interval(1000).pipe(
+//     takeWhile(() => this.isUploading$.pipe(
+//       first(), // Take the first emitted value
+//       map(isUploading => isUploading) // Map the value to a boolean
+//     )),
+//     map(i => Math.floor((i + 1) / 10) * 10),
+//     finalize(() => {
+//       this.isUploadingSubject.next(false);
+//     })
+//   );
+// }
 
 
 }

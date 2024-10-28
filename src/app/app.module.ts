@@ -18,6 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
+import { VideosComponent } from './videos/videos.component';
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { HttpClientModule } from '@angular/common/http';
     DashboardAdminComponent,
     DashboardPartenaireComponent,
     SelectionComponent,
+    VideosComponent,
     
   ],
   imports: [

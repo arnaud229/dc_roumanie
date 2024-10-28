@@ -1,0 +1,56 @@
+<div class="content_pre">
+
+    <div class="card-in" *ngIf="!switch" >
+
+        <h1>Pré selection</h1>
+
+        
+  <p class="petit_texte"> veuillez entrer vos informations pour la préselection </p>
+        
+
+        <div class="inputs"  [formGroup]="videoform" >
+         
+            <input  type="text"  [ngClass]="{'error': videoform.controls['secteur'].invalid && videoform.controls['secteur'].value!=''}"  formControlName="secteur" placeholder="Le secteur d'activité" >
+            <input  type="text"  [ngClass]="{'error': videoform.controls['description'].invalid && videoform.controls['description'].value!=''}"  formControlName="description" placeholder="Description sur le secteur" >
+           
+           
+            <button  class="boutton" [disabled]="videoform.get('ldtep2')?.value === false "   (click)="suivant()"> Suivant </button> 
+              
+          
+          
+        </div>
+
+</div>
+
+</div>
+
+
+<div  class="content_preImg" *ngIf="switch">
+    <div class="inputs_suivant"   [formGroup]="videoform" >
+
+          <h2>Ajouter les images des reçus de la presélection</h2>
+
+
+          <div class="card-inputFils" (click)="getfils()">
+              +
+          </div>
+
+         
+            <mat-progress-bar id="laBarDownload33" mode="determinate" value="100"  *ngIf="isUploading"></mat-progress-bar>
+
+            <span (click)="getfils()"> 
+                <img src="./../../assets/download_icon.png " alt="">
+            </span>
+       
+                
+        
+        <input  type="file" multiple #fileInput [ngClass]="{'error': videoform.controls['fils_recus'].invalid && videoform.controls['fils_recus'].value!=''}"  formControlName="fils_recus" placeholder="" (change)="onFilesSelected($event)" >
+           
+  
+
+            <button  id="boutton1"  (click)="AjoutVideo()">Soumettre</button> 
+          
+    </div>
+
+
+

@@ -15,11 +15,11 @@ export interface User {
     ePrecedent: string,
     passport: boolean,
     nationalite: string,
-    cWhatapp: string,
+    cWhatapp: telephone,
     parrain: string,
-    region: string,
-    ldtep2: string,
-    fils_recus: [],
+    religion: string,
+    ldtep2: boolean,
+    fils_recus: string[],
     admin: boolean,
     partenaire: boolean,
     LieuNaissance:string,
@@ -44,6 +44,8 @@ export interface User {
     fil_photo: RecuFile,
     fil_passportPhoto: RecuFile,
     fil_casierJudiciere: RecuFile,
+    isvalidePreselect : boolean,
+    isvalidSelect: boolean,
 
 }
 
@@ -71,3 +73,13 @@ export type RecuFile = {
     type: string;
     url: string;
   };
+
+
+  export interface videos  {
+    idVideo: string,
+    secteur: string,
+    filVideo: RecuFile,
+    description: string,
+    userId: string,
+    
+ }

@@ -100,10 +100,14 @@ import { User } from "src/models/variables";
       ePrecedent: "",
       passport: false,
       nationalite: "",
-      cWhatapp: "",
+      cWhatapp:
+      {
+        code: "",
+        numero: ""
+      },
       parrain: "",
-      region: "",
-      ldtep2: "",
+      religion: "",
+      ldtep2: false,
       fils_recus: [],
       admin: false,
       partenaire: false,
@@ -143,7 +147,9 @@ import { User } from "src/models/variables";
       fil_casierJudiciere: {
         type: "",
         url: ""
-      }
+      },
+      isvalidePreselect: false,
+      isvalidSelect: false
     };
     await this.firestore
       .collection('utilisateurs')
