@@ -1,0 +1,568 @@
+
+.content_pre
+{
+    width: 100%;
+    height: auto;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    background-image: url("./../../assets/roumanie-barsana_990.jpg");
+    // padding-left: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    // padding-right: 10%;
+    position: absolute;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+
+.card-in
+{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    // height: 400px;
+    background: white;
+    border: solid 1px #764929;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    color:  black;
+    width: 90%;
+    font-family: 'Source Serif 4';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 68px;
+}
+
+.inputs
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 15px;
+}
+
+input
+{
+   width: 90%;
+   margin-bottom: 30px;
+   height: 52px;
+   padding-left: 10px;
+   background: #FFFFFF;
+   border: 1px solid #D9D9D9;
+   border-radius: 8px;
+   margin-left: 9px;
+
+}
+
+select 
+{
+    width: 93%;
+    margin-bottom: 30px;
+    height: 52px;
+    padding-left: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    margin-left: 9px;
+}
+
+select > option 
+{
+    width: 93%;
+
+}
+
+
+.petit_texte
+{
+    width: 90%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #52526F;
+}
+
+input .error {
+    border: solid 1px #c93b2d;
+  }
+
+input ::placeholder
+{
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+
+
+.groupe_number
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 95%;
+    height: 52px;
+    margin-bottom: 30px;
+}
+
+.groupe_prefixe
+{
+    position: relative;
+    width: 30%;
+    margin-right: 5%;
+}
+
+#code_pays
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 52px;
+    // padding: 14px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+}
+
+#input_number
+{
+    width: 65%;
+    height: 52px;
+    // padding: 14px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+ border-radius: 5px;
+
+}
+
+.boutton
+{
+    width: 40%;
+    height: 33px;
+    text-align: center;
+    border-radius: 500px;
+    color:  white;
+    background: #764929;
+   border: 1px solid #764929;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+margin-bottom: 30px;
+   
+}
+
+.boutton1
+{
+    width: 40%;
+    height: 33px;
+    text-align: center;
+    border-radius: 500px;
+    color:  #764929;
+    border: 1px solid #764929;
+    background: white;
+//    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+margin-bottom: 30px;
+   
+}
+
+.lecheck
+{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    font-family: 'Inter';
+    font-style: normal;
+    // font-weight: 600;
+    font-size: 10px;
+    // line-height: 24p
+    margin-bottom: 20px;
+    color: black;
+       
+}
+
+.checked 
+{
+    background-color: #764929;
+}
+
+#lecheck_input1
+{
+    width: 50px;
+    margin-bottom: 30px;
+    height: 22px;
+    padding-left: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    margin-left: 9px;
+    margin-right: 10px;
+}
+
+
+
+#lecheck_input
+{
+    width: 50px;
+    margin-bottom: 30px;
+    height: 22px;
+    padding-left: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    margin-left: 9px;
+    margin-right: 10px;
+}
+
+
+.card-inputFils
+{
+    display: block;
+    width: 50%;
+    height: 60px;   
+    color: #D9D9D9;
+    border: dashed 2px #D9D9D9;
+    padding: 20%;
+    border: dashed 2px #D9D9D9;
+    padding: 20%;
+    text-align: center;
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 30px;   
+    cursor: pointer; 
+}
+
+.inputs_suivant > input
+{
+    display: none;
+}
+
+.inputs_suivant
+{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background-color: white;
+    // border: solid 1px #764929;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-left: 5%;
+    padding-right: 5%;
+
+}
+
+.inputs_suivant > p
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+ul > h1 
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+}
+
+ul > li 
+{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    list-style-type: none;
+    width: 150px;
+    height: 150px;
+    padding-left: 85px;
+
+}
+
+ul > li > img
+{
+    width: 95%;
+    height: 95%;
+}
+
+.groupe_Parent
+{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 30px;
+}
+
+.groupe_Parent > label
+{
+    font-family: 'Inter';
+    font-style: normal;
+    // font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.groupeNomsPrenoms
+{
+   display: flex;
+   justify-content: space-between;
+}
+
+.theNom
+{
+    width: 45%;
+    height: 52px;
+    padding-left: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    margin-left: 9px;
+}
+
+.titles
+{
+    display: flex;
+    width: 100%;
+}
+
+.titles > span 
+{
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 16px;
+    margin-bottom: 10px;
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-right: 5px;
+    color: black;
+    background: #D9D9D9;
+    text-align: center;
+
+}
+
+.titles > span.titleSelect 
+{
+    background: #764929;
+    color: #FFFFFF;
+}
+
+.lesboutonSP
+{
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    margin-top: 52px;
+}
+
+h2 {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 30px;
+    text-align: center;
+
+}
+
+.cardFils
+{
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+}
+
+.cardFils > p 
+{
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    margin-left: 9px;
+}
+
+.cardFils > span
+{
+   width: 20px;
+   height: 20px;
+//    margin-top: 10px;
+}
+
+.cardFils > span > img
+{
+    width: 100%;
+    height: 100%;
+}
+
+:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    // color: #888;
+}
+
+#laBarDownload, #laBarDownload1, #laBarDownload2, #laBarDownload3
+{
+   width: 30%;
+   margin-top: 5px;
+}
+
+label {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 9px;
+    padding-left: 10px;
+
+}
+
+
+
+
+
+@media (max-width: 1000px ) {
+
+    .content_pre
+  {
+      width: 100%;
+      height: 100%;
+      padding-top: 10%;
+      padding-bottom: 10%;
+      position: absolute;
+  
+  }
+  
+  .card-in {
+   top: 10%; 
+  }
+    
+  }
+
+
+  @media (max-width: 500px ) {
+
+    .content_pre
+    {
+         background: none;
+        padding-top: 0%;
+        padding-bottom: 5%;
+        background-image: url("./../../assets/motifafro.png");
+        
+    }
+    
+
+    .card-in
+    {
+        border: none;
+        top: 0%;
+        width: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+         background-image: url("./../../assets/motifafro.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+
+    .inputs_suivant {
+        border: none;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        padding-left: 5%;
+        padding-right: 5%;
+         background-image: url("./../../assets/motifafro.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+
+
+    
+  .petit_texte { 
+    font-size: 18px;
+    margin-left: 2%;
+   }
+
+
+   .groupe p {
+   
+    font-size: 14px;
+
+  }
+
+  .condition {
+    margin-left: 4%;
+    font-size: 18px;
+
+ }
+
+
+
+    .boutton {
+      
+        height: 40px; 
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+
+    .inputs_suivant
+
+    {
+        border: none;
+        padding-right: 0%;
+
+    }
+
+
+  
+
+  }
+
+

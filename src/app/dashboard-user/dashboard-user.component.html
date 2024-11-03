@@ -30,8 +30,8 @@
 
                 <img (click)="openMenu()" src="./../../assets/menuHamberger.png" alt="">
 
-                <h1>Selection</h1>
-                <img (click)="editPreselect()" src="./../../assets/edit2.png" alt="">
+                <h1> {{ titleHeadMobile }} </h1>
+                <img (click)="editMobile()" src="./../../assets/edit2.png" alt="">
             </div>
 
 
@@ -110,14 +110,7 @@
 
                 </div>
 
-                <div *ngIf="isEditPreselect" >
-
-                </div>
-
-
-
-
-
+               
 
                 <div class="contentViewPreselect" *ngIf="!isEditPreselect">
 
@@ -274,12 +267,6 @@
 
                </div>
 
-               
-
-
-               <div  *ngIf="isEditSelect">
-
-               </div>
 
 
                
@@ -496,17 +483,6 @@
 
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 

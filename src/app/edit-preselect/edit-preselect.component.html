@@ -1,0 +1,148 @@
+<div class="content_pre">
+
+    <div class="card-in" *ngIf="!switch" >
+
+        <h1>Pré-selection</h1>
+
+        
+  <p class="petit_texte"> veuillez modifier vos informations pour la préselection </p>
+        
+
+        <div class="inputs"  [formGroup]="editPreselectform" >
+            <label for="">Age</label>
+            <input  type="number"  [ngClass]="{'error': editPreselectform.controls['age'].invalid || editPreselectform.controls['age'].value>120}"  formControlName="age" placeholder="Age" >
+          
+            <label for="">Situation Matriminiale</label>
+            <select   formControlName="sMatrimoniale"  [ngClass]="{'error': editPreselectform.controls['sMatrimoniale'].invalid && editPreselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
+                <option *ngFor="let item of listMatrimonial" value="currentUser.sMatrimoniale">  {{item}} </option>
+
+               </select>
+
+               <label for="">Niveau d'étude</label>
+            <input  type="text"  [ngClass]="{'error': editPreselectform.controls['NEtude'].invalid && editPreselectform.controls['NEtude'].value!=''}"  formControlName="NEtude" placeholder="Niveau d'étude" >
+           
+            <label for="">Métier</label>
+            <input  type="text"  [ngClass]="{'error': editPreselectform.controls['metier'].invalid && editPreselectform.controls['metier'].value!=''}"  formControlName="metier" placeholder="Métier" >
+          
+            <label for="">Année du dîplome</label>
+            <input  type="number"  [ngClass]="{'error': editPreselectform.controls['aDiplome'].invalid || editPreselectform.controls['aDiplome'].value>=2026}"  formControlName="aDiplome" placeholder="Année de Diplôme" >
+          
+            <label for="">Durée d'apprentissage</label>
+            <input  type="number"  [ngClass]="{'error': editPreselectform.controls['dApprentissage'].invalid || editPreselectform.controls['dApprentissage'].value>=60}"  formControlName="dApprentissage" placeholder="Durée d'apprentissage" >
+          
+            <label for="">Année d'experience</label>
+            <input  type="number"  [ngClass]="{'error': editPreselectform.controls['aExperience'].invalid || editPreselectform.controls['aExperience'].value>=50}"  formControlName="aExperience" placeholder="Année d'experience" >
+          
+            <label for="">Employeur précédant</label>
+            <input  type="text"  [ngClass]="{'error': editPreselectform.controls['ePrecedent'].invalid && editPreselectform.controls['ePrecedent'].value!=''}"  formControlName="ePrecedent" placeholder="Employeur précédent" >
+            
+        
+            <label for="">Nationalité</label>
+            <input  type="text"  [ngClass]="{'error': editPreselectform.controls['nationalite'].invalid && editPreselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" placeholder="Nationalité" >
+          
+           
+           
+
+
+                <label for="">Parrain</label>
+            <input  type="text"  [ngClass]="{'error': editPreselectform.controls['parrain'].invalid && editPreselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
+           
+            <label for="">Votre Réligion</label>
+            <input  type="text"  [ngClass]="{'error': editPreselectform.controls['religion'].invalid && editPreselectform.controls['religion'].value!=''}"  formControlName="religion" placeholder="Région" >
+           
+          
+ 
+        </div>
+
+        <label for="">Numéro whatsapp</label>
+        <div class="groupe_number">
+
+            <div class="groupe_prefixe">
+                 
+                <input id='code_pays' type="text" [(ngModel)]="pre"   placeholder="+229" >
+           
+            </div>
+              <input id= 'input_number' type="text"  [(ngModel)]="edite" placeholder="Numéro Whatsapp" >
+    
+            </div>
+
+            <div  [formGroup]="editPreselectform" >
+
+                
+            <div  class="lecheck">
+               
+                <input id="lecheck_input1" type="checkbox"  [ngClass]="{'checked': editPreselectform.controls['passport'].value}"  formControlName="passport" placeholder="Passeport" >
+               Aviez vous un Passeport en cours de validité ?
+              
+               </div>
+
+           <div  class="lecheck">
+            <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': editPreselectform.controls['ldtep2'].invalid && editPreselectform.controls['ldtep2'].value!='', 'checked':  editPreselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
+            êtes vous immediatement disponible ?
+          
+           </div>
+
+           
+           <button  class="boutton" [disabled]="editPreselectform.get('ldtep2')?.value === false "   (click)="suivantPreselect()"> Suivant </button> 
+              
+
+            </div>
+
+            
+
+</div>
+
+</div>
+
+
+<div  class="content_preImg" *ngIf="switch">
+    <div class="inputs_suivant"  [formGroup]="editPreselectform"  >
+
+          <h2>Ajouter les images des reçus de la presélection</h2>
+
+
+          <div class="card-inputFils" (click)="getfilsPreselect()">
+              +
+          </div>
+
+         
+            <mat-progress-bar id="laBarDownload33" mode="determinate" [value]="progressValue"  *ngIf="isUploading"></mat-progress-bar>
+
+            <span (click)="getfilsPreselect()"> 
+                <img src="./../../assets/download_icon.png " alt="">
+            </span>
+
+          
+       
+            <ul *ngIf="!ChoixImg" >
+                <li  *ngFor="let to of les_url , let i = index">
+                
+                  <img class="delect" (click)="delete(i) " src="./../../assets/croixDelete.png" alt="Delete">
+                  <img class="imgCard" [src]="to" alt="Image" >
+                </li>
+              </ul>
+
+             
+        
+        <input  type="file" multiple #fileInput [ngClass]="{'error': editPreselectform.controls['fils_recus'].invalid && editPreselectform.controls['fils_recus'].value!=''}"  formControlName="fils_recus" placeholder="" (change)="onFilesSelectedPreselect($event)" >
+           
+
+  
+
+           
+            <div class="lesboutonSP">
+
+                <button  class="boutton1"  (click)="suivantPreselect()"> Précédent </button> 
+                <button  id="boutton1"  (click)="editPreselect()">Soumettre</button> 
+
+            </div>
+
+          
+          
+    </div>
+
+
+   
+
+
+

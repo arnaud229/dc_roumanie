@@ -95,7 +95,7 @@ export class SingninComponent {
           console.log('res :>> ', res.user.uid );
       this.loading = false;
       console.log('succès sucès');
-      this.router.navigate(['dashboardUser', {userID: res.user.uid}])   ;
+      this.router.navigate(['dashboardUser'])   ;
           
          }
           

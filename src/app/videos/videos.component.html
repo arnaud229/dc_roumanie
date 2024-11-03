@@ -1,4 +1,4 @@
-<div class="content_pre">
+<!-- <div class="content_pre">
 
     <div class="card-in" *ngIf="!switch" >
 
@@ -50,7 +50,19 @@
 
             <button  id="boutton1"  (click)="AjoutVideo()">Soumettre</button> 
           
-    </div>
+    </div> -->
 
+
+
+
+    <ul>
+        <li  *ngFor="let to of les_url , let i = index">
+            <!-- <p> {{to}} </p>
+            <p> {{i}} </p> -->
+        
+          <!-- <img class="delect" src="./../../assets/croixDelete.png" alt="Delete"> -->
+          <img class="imgCard" [src]="to" alt="Image" >
+        </li>
+      </ul>
 
 

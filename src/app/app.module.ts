@@ -19,6 +19,9 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { VideosComponent } from './videos/videos.component';
+import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
+import { EditSelectComponent } from './edit-select/edit-select.component';
+import { PictuerPickerComponent } from './pictuer-picker/pictuer-picker.component';
 
 
 @NgModule({
@@ -32,6 +35,9 @@ import { VideosComponent } from './videos/videos.component';
     DashboardPartenaireComponent,
     SelectionComponent,
     VideosComponent,
+    EditPreselectComponent,
+    EditSelectComponent,
+    PictuerPickerComponent,
     
   ],
   imports: [

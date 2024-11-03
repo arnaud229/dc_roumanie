@@ -1,0 +1,94 @@
+.file-input-area {
+
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 4px 8px;
+    gap: 8px;
+  
+    width: 90px;
+    height: 30px;
+  
+    background: #F4F4F4;
+    border: 0.5px solid #BEBEBE;
+  
+  
+  
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 8px;
+    line-height: 22px;
+    /* identical to box height, or 275% */
+  
+  
+    color: #BEBEBE;
+  }
+  
+  
+  .selectedImages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 1fr;
+    // gap: 20px;
+    padding: 10px 0px;
+    padding-right: 10px;
+  
+    .file {
+      position: relative;
+      width: auto;
+      height: 100px;
+  
+      &.image {
+        width: 100px;
+        img {
+          border-radius: 10px;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+  
+      &.video {
+  height: 200px;
+  
+        video {
+          flex-shrink: 1;
+          border-radius: 10px;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+  
+    .remove-icon {
+      background: #d10606;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 3px;
+      padding: 5px;
+      position: absolute;
+      right: -10px;
+      top: -10px;
+  
+      mat-icon {
+        width: unset;
+        height: unset;
+        font-size: 10px;
+      }
+    }
+  }
+  
+  .noit
+  {
+    display: none;
+  }
+  

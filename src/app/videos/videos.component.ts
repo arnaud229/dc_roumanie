@@ -11,7 +11,8 @@ import { RecuFile } from 'src/models/variables';
 })
 export class VideosComponent {
 
-
+ 
+  les_url = ["./../../assets/croixDelete.png", "./../../assets/croixDelete.png", "./../../assets/bio-guera.jpg"];
 
   videoform!: FormGroup;
   @ViewChild('fileInput')
@@ -24,7 +25,8 @@ export class VideosComponent {
     url: ''
   }
 
-  
+
+
 
   constructor(
     private formbuilder: FormBuilder,

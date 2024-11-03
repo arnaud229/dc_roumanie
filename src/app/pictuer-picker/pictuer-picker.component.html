@@ -1,0 +1,26 @@
+<div class="file-input-area d-flex align-items-center gap-10" (click)="pickFile()" *ngIf="displayMode === 'input'">
+    <img src="/assets/icons/download.png" alt="" />
+    <div>Télécharger</div>
+  </div>
+  <div class="" (click)="pickFile()" *ngIf="displayMode === 'empty'">
+    <ng-content></ng-content>
+  </div>
+  
+  <div class="selectedImages" *ngIf="preview && selectedImages.length > 0">
+    <div class="file" [ngClass]="{ image: fileIs('image', file), video: fileIs('video', file) }"
+      *ngFor="let file of selectedImages; let i = index">
+      <button class="remove-icon" (click)="unselectImage(i)">
+        <img class="delect" src="./../../assets/croixDelete.png" alt="Delete">
+      </button>
+      <!-- <img src="https://picsum.photos/200" alt=""> -->
+      <img [src]="file.previewUrl" alt="" *ngIf="fileIs('image', file)" />
+      <div *ngIf="fileIs('video', file)">
+        <!-- <span>{{utilsService.formatBytes(file.size)}}</span> -->
+        <video [src]="file.previewUrl" disablePictureInPicture controlsList="nodownload nofullscreen" controls></video>
+      </div>
+  
+    </div>
+  </div>
+  
+  <input #fileInput [multiple]="multiple" [accept]="acceptedFormat()" (change)="onFileChange($event)" type="file"
+    name="picture-picker" id="picture-picker" style="position: fixed; left: 90000000000000000px" class="inputfile" /> 

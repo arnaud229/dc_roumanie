@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
-import { User } from 'src/models/variables';
+import { RecuFile, User } from 'src/models/variables';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -141,6 +142,24 @@ export class DashboardUserComponent {
   viewDisponibilite = 'non';
   viewPasseportDisponible = 'non';
   isOpenMenu = false;
+  titleHeadMobile = 'Preselect';
+
+  //modifier preselect vatiable
+
+  preselectform!: FormGroup;
+  isUploading = false;
+  pre = "";
+  edite = "";
+  switch = false;
+  listMatrimonial = ["Situation Matrimoniale","Célibataire", "Marié(e)", "Veuf(ve) "];
+  liste_fils: RecuFile[] = [];
+  @ViewChild('fileInput')
+  fileInput!: ElementRef; 
+  imgs = "./../../assets/roumanie-visiter.jpg"
+
+
+  les_url = [""];
+  progressValue  = 0;
 
   
 
@@ -151,7 +170,8 @@ export class DashboardUserComponent {
     private router: Router,
     public authService: AuthService,
     public localstorageService: LocalstorageService,
-    private Aroute: ActivatedRoute
+    private Aroute: ActivatedRoute,
+    private formbuilder: FormBuilder,
   ) {}
 
 
@@ -159,17 +179,26 @@ export class DashboardUserComponent {
 
     // this.currentUser = this.localstorageService.getCurrentUser();
 
-    //  this.Aroute.params.subscribe(params => {
-    //   this.selecter = params['index'];   
-    //   this.selecterMobile = params['index'];   
+    // if (this.Aroute.params) {
+
+    //      this.Aroute.params.subscribe(params => {
+    //   this.selecter = params['index']; 
+    //   this.selecterMobile = params['index']; 
 
     //   console.log('selector:', this.selecter);
     //   // Use the userId for your component's logic
    
     //   })
 
+    
+    // this.getEtat()
+    
+    // } 
+  
 
-     this.getEtat()
+  
+
+
 }
 
 
@@ -180,6 +209,8 @@ export class DashboardUserComponent {
       this.selecter = 0 ;
       this.selecterMobile = 0 ;
       this.isOpenMenu = false;
+      this.isEditPreselect = false;
+      this.titleHeadMobile = "Préselection";
 
 
       console.log(1);
@@ -217,12 +248,14 @@ export class DashboardUserComponent {
        this.selecter = 1;
        this.selecterMobile = 1;
        this.isOpenMenu = false;
+       this.isEditSelect = false;
+       this.titleHeadMobile = "Selection"
 
     } else if (index == 2) {
 
       this.selecter = 2 ;
       this.selecterMobile = 2 ;
-
+      this.titleHeadMobile = "Etat Finacière"
       this.isOpenMenu = false;
       
     }
@@ -258,6 +291,7 @@ export class DashboardUserComponent {
   if (this.selecter ==0  ) {
 
     console.log(1);
+    this.titleHeadMobile = 'Préseléction'
     
 
     if (this.currentUser.ldtep2) {
@@ -300,6 +334,7 @@ export class DashboardUserComponent {
     if (!this.currentUser.dHonneur ) {
 
       this.viewHonneur = 'oui'
+      this.titleHeadMobile ='Seléction'
 
       this.isSelect = true;
 
@@ -319,6 +354,14 @@ export class DashboardUserComponent {
 
     }
     
+  } else if(this.selecter ==2 ) {
+
+
+    this.selecter = 2;
+    this.selecterMobile = 2;
+    this.isOpenMenu = false;
+    this.titleHeadMobile ='Etat Finacière'
+    
   }
 
  }
@@ -327,9 +370,13 @@ export class DashboardUserComponent {
 
  editPreselect() {
 
+  this.isEditPreselect = true;
+
  }
 
  editSelect() {
+
+  this.isEditSelect = true;
 
  }
 
@@ -339,4 +386,24 @@ export class DashboardUserComponent {
   this.isOpenMenu = !this.isOpenMenu
 
  }
+
+ editMobile() 
+ {
+
+  if (this.selecter == 0) {
+
+    this.router.navigate(['editpreselect'])   ;
+
+    
+  } else if (this.selecter == 1) {
+
+    this.router.navigate(['editselect'])   ;
+    
+  }
+
+ }
+
+ 
+
+
 }

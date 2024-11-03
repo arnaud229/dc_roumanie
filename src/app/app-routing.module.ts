@@ -8,6 +8,8 @@ import { DashboardPartenaireComponent } from './dashboard-partenaire/dashboard-p
 import { DashboardUserComponent } from './dashboard-user/dashboard-user.component';
 import { SelectionComponent } from './selection/selection.component';
 import { VideosComponent } from './videos/videos.component';
+import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
+import { EditSelectComponent } from './edit-select/edit-select.component';
 
 const routes: Routes = [
   { path: '', component: SingninComponent },
@@ -16,6 +18,8 @@ const routes: Routes = [
   { path: 'preselection', component: PreselectionComponent },
   { path: 'selection', component: SelectionComponent },
   { path: 'videos', component: VideosComponent },
+  { path: 'editpreselect', component: EditPreselectComponent },
+  { path: 'editselect', component: EditSelectComponent },
   { path: 'dashboardAdmin', component: DashboardAdminComponent },
   { path: 'dashboardPartenaire', component: DashboardPartenaireComponent },
   { path: 'dashboardUser', component: DashboardUserComponent },

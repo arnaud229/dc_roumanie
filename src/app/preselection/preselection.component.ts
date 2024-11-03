@@ -142,8 +142,8 @@ export class PreselectionComponent {
 
      try {
 
-      const docRef: AngularFirestoreDocument<any> = this.afs.doc(`utilisateurs/${this.userId}`);
-    const docSnapshot = await docRef.get().toPromise();
+    //   const docRef: AngularFirestoreDocument<any> = this.afs.doc(`utilisateurs/${this.userId}`);
+    // const docSnapshot = await docRef.get().toPromise();
 
       // if(docSnapshot.exists) {
      
