@@ -40,12 +40,22 @@ export interface User {
     expProfesionnel: experience[] ,
     nbrEnfants:number,
     dHonneur: boolean,  
-    fils_diplome: RecuFile[],
-    fil_photo: RecuFile,
-    fil_passportPhoto: RecuFile,
-    fil_casierJudiciere: RecuFile,
+    fils_diplome: string[],
+    fil_photo: string,
+    fil_passportPhoto: string,
+    fil_casierJudiciere: string,
     isvalidePreselect : boolean,
     isvalidSelect: boolean,
+
+}
+
+export interface videoPresentation  {
+    id ?: any,
+    secteur : string,
+    description: string,
+    fileVideo: string,
+    uid: string,
+    createdAt?: any,
 
 }
 
@@ -75,11 +85,3 @@ export type RecuFile = {
   };
 
 
-  export interface videos  {
-    idVideo: string,
-    secteur: string,
-    filVideo: RecuFile,
-    description: string,
-    userId: string,
-    
- }

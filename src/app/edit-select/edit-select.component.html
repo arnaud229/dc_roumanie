@@ -93,7 +93,9 @@
                </div>
 
 
-               <button [disabled]="!selectform.get('dHonneur')?.valid"  class="boutton"  (click)="suivant(1)"> Suivant </button> 
+               <button
+                 [disabled]="!selectform.get('dHonneur')?.valid "  
+                class="boutton"  (click)="suivant(1)"> Suivant </button> 
              
            </div>
 
@@ -122,7 +124,7 @@
                         <input  type="date"  [(ngModel)]=" item.datefin" placeholder="La date fin" >
   
                                             
-                        <button  class="boutton1"   [disabled]="!datefin"   (click)="editExperience(i)"> Ajouter Modification </button> 
+                        <!-- <button  class="boutton1"   (click)="editExperience(i)"> Ajouter Modification </button>  -->
                               
   
                     </div>

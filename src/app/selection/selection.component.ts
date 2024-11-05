@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/firebase/user.service';
 import { RecuFile } from 'src/models/variables';
+import { StorageService } from '../services/storage/storage.service';
 
 
 @Component({
@@ -38,20 +39,14 @@ export class SelectionComponent {
   @ViewChild('dateInput') 
   dateInput!: ElementRef ;
   
-  filPhoto: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filPhoto ='';
+  maxFileSize = 10;
+  message ="";
+  filPhotoDiplomes!: any[];
 
-  filPhotoPassport: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filPhotoPassport = "";
 
-  filPhotoCasier: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filPhotoCasier ="";
   
    valAjout = false;
   imgs = "./../../assets/roumanie-visiter.jpg"
@@ -86,7 +81,8 @@ export class SelectionComponent {
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
-    private userServ : UsersService
+    private userServ : UsersService,
+    private firebaseStorageService: StorageService,
   ) {
 
     this.init_form();
@@ -168,19 +164,39 @@ export class SelectionComponent {
     this.fileInput3.nativeElement.click();
   }
 
-  onFilesSelected1(event : any) {
+ async  onFilesSelected1(event : any) {
 
     this.isUploading1 = true;
-    const files = event.target.files;
-    console.log("files de input",files);
-    console.log("files de tyoe ",typeof files);
+    const filess = event.target.files;
+    console.log("files de input",filess);
+    console.log("files de tyoe ",typeof filess);
 
 
-    this.filPhoto = {
-      type: files[0].type,
-            url: files[0].name
+    console.log('event', event);
+    let files = [...event.target.files];
+    event.target.value = null;
+    const invalidFile = files.find(
+      (e) => e.size / 1024 / 1024 > this.maxFileSize
+    );
+    if (invalidFile) {
+    
+      this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+      return;
     }
-
+  
+    const url = await this.firebaseStorageService.uploadFile({
+      folder: 'filsPhoto',
+      filename:
+        'filsPhoto-file-' +
+        new Date().getTime() +
+        this.userId +
+        '.' +
+        filess.format,
+      file: filess.file,
+    });
+  
+    this.filPhoto = url;
+  
     
     setTimeout(() => {
       this.isUploading1 = false;
@@ -189,20 +205,40 @@ export class SelectionComponent {
 
   }
 
-  onFilesSelected2(event : any) {
+ async  onFilesSelected2(event : any) {
 
     this.isUploading2 = true;
 
-    const files = event.target.files;
-    console.log("files de input",files);
-    console.log("files de tyoe ",typeof files);
+    const filess = event.target.files;
+    console.log("files de input",filess);
+    console.log("files de tyoe ",typeof filess);
 
-
-    this.filPhotoPassport = {
-      type: files[0].type,
-            url: files[0].name
+  
+    console.log('event', event);
+    let files = [...event.target.files];
+    event.target.value = null;
+    const invalidFile = files.find(
+      (e) => e.size / 1024 / 1024 > this.maxFileSize
+    );
+    if (invalidFile) {
+    
+      this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+      return;
     }
-
+    
+     const url = await this.firebaseStorageService.uploadFile({
+      folder: 'filsPhotoPasseport',
+      filename:
+        'filsPhotoPasseport-file-' +
+        new Date().getTime() +
+        this.userId +
+        '.' +
+        filess.format,
+      file: filess.file,
+    });
+    
+    
+      this.filPhotoPassport = url;
     
     setTimeout(() => {
       this.isUploading2 = false;
@@ -210,19 +246,43 @@ export class SelectionComponent {
 
   }
 
-  onFilesSelected3(event : any) {
-
+  async onFilesSelected3(event : any) {
+    
     this.isUploading3 = true;
 
-    const files = event.target.files;
-    console.log("files de input",files);
-    console.log("files de tyoe ",typeof files);
+    const filess = event.target.files;
+    console.log("files de input",filess);
+    console.log("files de tyoe ",typeof filess);
 
 
-    this.filPhotoCasier = {
-      type: files[0].type,
-            url: files[0].name
-    }
+    console.log('event', event);
+    let files = [...event.target.files];
+    event.target.value = null;
+    const invalidFile = files.find(
+      (e) => e.size / 1024 / 1024 > this.maxFileSize
+    );
+    
+      if (invalidFile) {
+    
+        this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+        return;
+      }
+      
+    
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsPhotoCXasier',
+        filename:
+          'filsPhotoCassier-file-' +
+          new Date().getTime() +
+          this.userId +
+          '.' +
+          filess.format,
+        file: filess.file,
+      });
+    
+    
+      this.filPhotoCasier = url;
+    
 
     setTimeout(() => {
       this.isUploading3 = false;
@@ -232,35 +292,50 @@ export class SelectionComponent {
 
   }
   
-  onFilesSelected(event : any) {
+  async onFilesSelected(event : any) {
 
-    this.isUploading = true;
-    const files = event.target.files;
-    console.log("files de input",files);
-    console.log("files de tyoe ",typeof files);
-    if (files.length > 0) {
-
-      for (let i = 0; i < files.length; i++) {
-       
-        this.liste_fils.push(
-          {
-            type: files[i].type,
-            url: files[i]. name
-          }
-        );
-        
+    for (let index = 0; index < event.length; index++) {
+      const element = {
+         url: event.target.files[index].name
       }
-
-      console.log("fin", this.liste_fils);
+  
+      this.filPhotoDiplomes.push(element)
       
-                  
-    }   
-
+    }
+  
+    console.log('event', event);
+    let files = [...this.filPhotoDiplomes];
+    event.target.value = null;
+    const invalidFile = files.find(
+      (e) => e.size / 1024 / 1024 > this.maxFileSize
+    );
+    if (invalidFile) {
+    
+      this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+      return;
+    }
+    // .filter(e=>e.type.trim().length>0);
+    for (let index = 0; index < files.length; index++) {
+      const element = files[index];
+      element.url = element;
+      element.previewUrl = await this.fileToBase64(element);
+    }
+    this.liste_fils =  [...files];
+  
     
     setTimeout(() => {
       this.isUploading = false;
     }, 5000);
 
+  }
+
+  fileToBase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
   }
 
   ajout() {
@@ -292,10 +367,34 @@ export class SelectionComponent {
     this.dateInput.nativeElement.value = '';
   }
 
-  select() {
+ async select() {
 
-      console.log("Select",this.selectform.value);
-      if (this.selectform.valid) {  }
+  
+
+    console.log(" edith select",this.selectform.value);
+    
+    if (this.selectform.invalid) return
+    
+    if (this.selectform.invalid) return
+    
+    let imagesDiplomes: any = this.liste_fils.map(async (asset: any) => {
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsDiplomes',
+        filename:
+          'filsDiplomes-file-' +
+          new Date().getTime() +
+          this.userId +
+          '.' +
+          asset.format,
+        file: asset.file,
+      });
+    
+      asset.downloadUrl = url;
+    
+      return url;
+    });
+    
+    imagesDiplomes = await Promise.all(imagesDiplomes);
       
   
       const infoPreselect = 
@@ -327,7 +426,7 @@ export class SelectionComponent {
         expProfesionnel: this.selectform.value.expProfesionnel,
         nbrEnfants: this.selectform.value.nbrEnfants,
         dHonneur: this.selectform.value.dHonneur,   
-        fils_diplome:this.liste_fils,    
+        fils_diplome:imagesDiplomes,    
         fil_photo: this.filPhoto ,    
         fil_passportPhoto: this.filPhotoPassport,    
         fil_casierJudiciere: this.filPhotoCasier,    

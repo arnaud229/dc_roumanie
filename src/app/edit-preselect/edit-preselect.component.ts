@@ -124,28 +124,10 @@ export class EditPreselectComponent {
     ],
     nbrEnfants: 0,
     dHonneur: false,
-    fils_diplome: [
-      {
-        type: 'image/jpg',
-        url:  "./../../assets/bio-guera.jpg"
-      },
-      {
-        type: 'image/jpg',
-        url:  "./../../assets/roumanie-visiter.jpg"
-      },
-    ],
-    fil_photo: {
-      type: 'image/jpg',
-      url:  "./../../assets/roumanie-visiter.jpg"
-    },
-    fil_passportPhoto: {
-      type: 'image/jpg',
-      url:  "./../../assets/roumanie-visiter.jpg"
-    },
-    fil_casierJudiciere: {
-      type: 'image/jpg',
-      url:  "./../../assets/roumanie-visiter.jpg"
-    },
+    fils_diplome: [],
+    fil_photo:"./../../assets/roumanie-visiter.jpg",
+    fil_passportPhoto:  "./../../assets/roumanie-visiter.jpg",
+    fil_casierJudiciere:"./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
     isvalidSelect: false
   };

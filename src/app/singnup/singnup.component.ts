@@ -120,18 +120,9 @@ export class SingnupComponent {
     nbrEnfants: 0,
     dHonneur: false,
     fils_diplome: [],
-    fil_photo: {
-      type: '',
-      url: ''
-    },
-    fil_passportPhoto: {
-      type: '',
-      url: ''
-    },
-    fil_casierJudiciere: {
-      type: '',
-      url: ''
-    },
+    fil_photo:"",
+    fil_passportPhoto:"",
+    fil_casierJudiciere:"",
     isvalidePreselect: false,
     isvalidSelect: false
   }

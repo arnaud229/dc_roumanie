@@ -111,6 +111,11 @@ import {
       }
 
 
+      uploadVidoe(data: any, index: string) {
+
+      }
+
+
       select(data: any, index: string) {
         this.firestore.doc(`utilisateurs/${index}`).update({
           //les nouvelles valeurs wifi195100 40zu78

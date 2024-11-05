@@ -1,8 +1,9 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecuFile, User } from 'src/models/variables';
 import { UsersService } from '../services/firebase/user.service';
+import { StorageService } from '../services/storage/storage.service';
 
 @Component({
   selector: 'app-edit-select',
@@ -37,20 +38,11 @@ export class EditSelectComponent {
   @ViewChild('dateInput') 
   dateInput!: ElementRef ;
   
-  filPhoto: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filPhoto = "";
 
-  filPhotoPassport: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filPhotoPassport ='';
 
-  filPhotoCasier: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filPhotoCasier ="";
   
    valAjout = false;
   imgs = "./../../assets/roumanie-visiter.jpg"
@@ -144,54 +136,39 @@ export class EditSelectComponent {
         datedebut: new Date(),
         datefin: new Date()
       },
-      {
-        entreprise: 'string',
-        posteOccupe: 'cuisine',
-        datedebut: new Date(),
-        datefin: new Date()
-      },
-      {
-        entreprise: 'string',
-        posteOccupe: 'cuisine',
-        datedebut: new Date(),
-        datefin: new Date()
-      }
+  
     ],
     nbrEnfants: 0,
-    dHonneur: false,
-    fils_diplome: [
-      {
-        type: 'image/jpg',
-        url: ' "./../../assets/roumanie-visiter.jpg"'
-      },
-      {
-        type: 'image/jpg',
-        url: ' "./../../assets/roumanie-visiter.jpg"'
-      },
-    ],
-    fil_photo: {
-      type: 'image/jpg',
-      url: ' "./../../assets/roumanie-visiter.jpg"'
-    },
-    fil_passportPhoto: {
-      type: 'image/jpg',
-      url: ' "./../../assets/roumanie-visiter.jpg"'
-    },
-    fil_casierJudiciere: {
-      type: 'image/jpg',
-      url: ' "./../../assets/roumanie-visiter.jpg"'
-    },
+    dHonneur: true,
+    fils_diplome: [ ],
+    fil_photo: 
+       "./../../assets/roumanie-visiter.jpg"
+    ,
+    fil_passportPhoto:"./../../assets/roumanie-visiter.jpg",
+    fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg"
+    ,
     isvalidePreselect: false,
     isvalidSelect: false
   };
+  message ='';
+  maxFileSize = 10;
+ 
+  multiple: boolean = false;
+  multiple1: boolean = false;
+  multiple2: boolean = false;
+  multiple3: boolean = false;
+  change: EventEmitter<any[]> = new EventEmitter();
 
+  filPhotoDiplomes! : any[];
+  ChoixImg : boolean = false;
 
 
   
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
-    private userServ : UsersService
+    private userServ : UsersService,
+    private firebaseStorageService: StorageService,
   ) {
 
     this.init_form();
@@ -291,19 +268,37 @@ getfils3() {
   this.fileInput3.nativeElement.click();
 }
 
-onFilesSelected1(event : any) {
+  async onFilesSelected1(event : any) {
 
-  this.isUploading1 = true;
-  const files = event.target.files;
-  console.log("files de input",files);
-  console.log("files de tyoe ",typeof files);
+  
 
+  const filess = event.target.files;
 
-  this.filPhoto = {
-    type: files[0].type,
-          url: files[0].name
+  console.log('event', event);
+  let files = [...event.target.files];
+  event.target.value = null;
+  const invalidFile = files.find(
+    (e) => e.size / 1024 / 1024 > this.maxFileSize
+  );
+  if (invalidFile) {
+  
+    this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+    return;
   }
 
+  const url = await this.firebaseStorageService.uploadFile({
+    folder: 'filsPhoto',
+    filename:
+      'filsPhoto-file-' +
+      new Date().getTime() +
+      this.userId +
+      '.' +
+      filess.format,
+    file: filess.file,
+  });
+
+  this.filPhoto = url;
+ 
   
   setTimeout(() => {
     this.isUploading1 = false;
@@ -312,19 +307,40 @@ onFilesSelected1(event : any) {
 
 }
 
-onFilesSelected2(event : any) {
+async onFilesSelected2(event : any) {
 
   this.isUploading2 = true;
 
-  const files = event.target.files;
-  console.log("files de input",files);
-  console.log("files de tyoe ",typeof files);
+  const filess = event.target.files;
+  console.log("files de input",filess);
+  console.log("files de tyoe ",typeof filess);
+
+  
+console.log('event', event);
+let files = [...event.target.files];
+event.target.value = null;
+const invalidFile = files.find(
+  (e) => e.size / 1024 / 1024 > this.maxFileSize
+);
+if (invalidFile) {
+
+  this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+  return;
+}
+
+ const url = await this.firebaseStorageService.uploadFile({
+  folder: 'filsPhotoPasseport',
+  filename:
+    'filsPhotoPasseport-file-' +
+    new Date().getTime() +
+    this.userId +
+    '.' +
+    filess.format,
+  file: filess.file,
+});
 
 
-  this.filPhotoPassport = {
-    type: files[0].type,
-          url: files[0].name
-  }
+  this.filPhotoPassport = url;
 
   
   setTimeout(() => {
@@ -333,19 +349,42 @@ onFilesSelected2(event : any) {
 
 }
 
-onFilesSelected3(event : any) {
+async onFilesSelected3(event : any) {
 
   this.isUploading3 = true;
 
-  const files = event.target.files;
-  console.log("files de input",files);
-  console.log("files de tyoe ",typeof files);
+  const filess = event.target.files;
+  console.log("files de input",filess);
+  console.log("files de tyoe ",typeof filess);
 
+  console.log('event', event);
+let files = [...event.target.files];
+event.target.value = null;
+const invalidFile = files.find(
+  (e) => e.size / 1024 / 1024 > this.maxFileSize
+);
 
-  this.filPhotoCasier = {
-    type: files[0].type,
-          url: files[0].name
+  if (invalidFile) {
+
+    this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+    return;
   }
+  
+
+  const url = await this.firebaseStorageService.uploadFile({
+    folder: 'filsPhotoCXasier',
+    filename:
+      'filsPhotoCassier-file-' +
+      new Date().getTime() +
+      this.userId +
+      '.' +
+      filess.format,
+    file: filess.file,
+  });
+
+
+  this.filPhotoCasier = url;
+
 
   setTimeout(() => {
     this.isUploading3 = false;
@@ -355,29 +394,42 @@ onFilesSelected3(event : any) {
 
 }
 
-onFilesSelected(event : any) {
+async onFilesSelected(event : any) {
 
-  this.isUploading = true;
-  const files = event.target.files;
-  console.log("files de input",files);
-  console.log("files de tyoe ",typeof files);
-  if (files.length > 0) {
-
-    for (let i = 0; i < files.length; i++) {
-     
-      this.liste_fils.push(
-        {
-          type: files[i].type,
-          url: files[i]. name
-        }
-      );
-      
+  for (let index = 0; index < event.length; index++) {
+    const element = {
+       url: event.target.files[index].name
     }
 
-    console.log("fin", this.liste_fils);
+    this.filPhotoDiplomes.push(element)
     
-                
-  }   
+  }
+
+  console.log('event', event);
+  let files = [...this.filPhotoDiplomes];
+  event.target.value = null;
+  const invalidFile = files.find(
+    (e) => e.size / 1024 / 1024 > this.maxFileSize
+  );
+  if (invalidFile) {
+  
+    this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+    return;
+  }
+  // .filter(e=>e.type.trim().length>0);
+  for (let index = 0; index < files.length; index++) {
+    const element = files[index];
+    element.url = element;
+    element.previewUrl = await this.fileToBase64(element);
+  }
+  this.liste_fils = this.multiple
+    ? [...this.liste_fils, ...files]
+    : [...files];
+  this.emitChangeEvent();
+  // this.les_url = new Array(10).fill({}).map(e=>files[0])
+  console.log('this.les_url', this.currentUser.fils_diplome);
+  this.ChoixImg = true;
+  
 
   
   setTimeout(() => {
@@ -386,10 +438,25 @@ onFilesSelected(event : any) {
 
 }
 
-editExperience(i:number) {
+fileToBase64(file: File) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = reject;
+  });
+}
 
+async emitChangeEvent() {
+  // const isMobile = this.platform.is('mobile');
 
+  if (this.multiple) {
+    this.change.emit(this.currentUser.fils_diplome);
+  }
 
+  if (!this.multiple) {
+    // this.change.emit(this.currentUser.fils_diplome[0]  );
+  }
 }
 
 activeAjoutExperience() {
@@ -430,7 +497,91 @@ clearDate() {
   this.dateInput.nativeElement.value = '';
 }
 
-select() {}
+async select() {
+
+  console.log(" edith select",this.selectform.value);
+    
+if (this.selectform.invalid) return
+
+if (this.selectform.invalid) return
+
+let imagesDiplomes: any = this.liste_fils.map(async (asset: any) => {
+  const url = await this.firebaseStorageService.uploadFile({
+    folder: 'filsDiplomes',
+    filename:
+      'filsDiplomes-file-' +
+      new Date().getTime() +
+      this.userId +
+      '.' +
+      asset.format,
+    file: asset.file,
+  });
+
+  asset.downloadUrl = url;
+
+  return url;
+});
+
+imagesDiplomes = await Promise.all(imagesDiplomes);
+
+const infoPreselect = 
+{
+  
+  LieuNaissance: this.selectform.value.LieuNaissance,
+  dateNaissance: this.selectform.value.dateNaissance,
+  paysNaissance: this.selectform.value.paysNaissance,
+  Pere: {
+           nom: this.pereName,
+           prenoms: this.perePrenoms
+
+        },
+  Mere: {
+    nom: this.mereName,
+    prenoms: this.merePrenoms
+
+       },
+  nPasseport: this.selectform.value.nPasseport,
+  lieuPasseport: this.selectform.value.lieuPasseport,
+  dateEmiPasseport: this.selectform.value.dateEmiPasseport,
+  dateExpPasseport: this.selectform.value.dateExpPasseport,
+  derniereResidence: this.selectform.value.derniereResidence,
+  derniereResidencePays: this.selectform.value.derniereResidencePays,
+  derniereResidenceVillage: this.selectform.value.derniereResidenceVillage,
+  qualiProfession: this.selectform.value.qualiProfession,
+  principalProfession: this.selectform.value.principalProfession,
+  langueParler: this.selectform.value.langueParler,
+  expProfesionnel: this.selectform.value.expProfesionnel,
+  nbrEnfants: this.selectform.value.nbrEnfants,
+  dHonneur: this.selectform.value.dHonneur,   
+  fils_diplome: imagesDiplomes ,    
+  fil_photo: this.filPhoto ,    
+  fil_passportPhoto: this.filPhotoPassport,    
+  fil_casierJudiciere: this.filPhotoCasier,    
+  
+
+}
+
+try {
+            
+  this.userServ.select(infoPreselect, this.userId)
+  this.router.navigate(["dashboardUser", {index: 1}])
+ }    
+
+catch  {
+
+  (error: { code: any; message: any }) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
+  };
+
+}
+
+
+
+
+
+}
 
 
 

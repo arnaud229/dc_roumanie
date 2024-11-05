@@ -2,7 +2,9 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
-import { RecuFile } from 'src/models/variables';
+import { RecuFile, User, videoPresentation } from 'src/models/variables';
+import { StorageService } from '../services/storage/storage.service';
+import { VideosService } from '../services/videos/videos.service';
 
 @Component({
   selector: 'app-videos',
@@ -17,13 +19,16 @@ export class VideosComponent {
   videoform!: FormGroup;
   @ViewChild('fileInput')
   fileInput!: ElementRef; 
-  switch = false;
+
   isUploading = false;
   progressValue  = 0;
-  filPhoto: RecuFile = {
-    type: '',
-    url: ''
-  }
+  filVideo = "";
+  message = "";
+  userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
+ 
+  currentUser! : User;
+  maxFileSize = 10;
+ 
 
 
 
@@ -32,7 +37,8 @@ export class VideosComponent {
     private formbuilder: FormBuilder,
     private router: Router,
     public authService: AuthService,
-    // private utilsService: UtilsService,
+    private firebaseStorageService: StorageService,
+    private videoService: VideosService,
    
   ) {
 
@@ -58,26 +64,45 @@ export class VideosComponent {
     });
   } 
 
-  suivant() {
-
-    this.switch = !this.switch;
-
-  }
+  
   getfils() {
     this.fileInput.nativeElement.click();
   }
 
-  onFilesSelected(event : any) {
+ async onFilesSelected(event : any) {
 
-    this.isUploading = true;
-    const files = event.target.files;
-    console.log("files de input",files);
-    console.log("files de tyoe ",typeof files);
+    const filess = event.target.files;
+    console.log("files de input",filess);
+    console.log("files de tyoe ",typeof filess);
 
-    this.filPhoto = {
-      type: files[0].type,
-            url: files[0].name
-    }
+
+    console.log('event', event);
+    let files = [...event.target.files];
+    event.target.value = null;
+    const invalidFile = files.find(
+      (e) => e.size / 1024 / 1024 > this.maxFileSize
+    );
+    
+      if (invalidFile) {
+    
+        this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+        return;
+      }
+      
+    
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsVideoPresentation',
+        filename:
+          'filsVideoPresentation-file-' +
+          new Date().getTime() +
+          this.userId +
+          '_' +
+          filess.format,
+        file: filess.video,
+      });
+
+    
+      this.filVideo = url;
 
     
     setTimeout(() => {
@@ -87,8 +112,39 @@ export class VideosComponent {
 
   }
 
-  AjoutVideo() {
+  fileToBase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
+  }
 
+  ajoutVideo() {
+
+    if (this.videoform.invalid) { } 
+
+      const updateData = {
+        
+        secteur : this.videoform.value.secteur ,
+        description: this.videoform.value.description ,
+        fileVideo: this.filVideo,
+        uid: this.currentUser.uid
+      
+
+      };
+
+
+      this.videoService.CreateVideo(updateData)
+      .then((res) => {
+        console.log('res :>> ', res);
+    
+        this.router.navigate(["dashboardUser", {index: 2}]);
+      })
+      .catch((err) => {
+        console.log('err :>> ', err);
+      });
   }
 
 
