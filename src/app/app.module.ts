@@ -22,6 +22,7 @@ import { VideosComponent } from './videos/videos.component';
 import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
 import { EditSelectComponent } from './edit-select/edit-select.component';
 import { PictuerPickerComponent } from './pictuer-picker/pictuer-picker.component';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import { PictuerPickerComponent } from './pictuer-picker/pictuer-picker.componen
     AngularFireAuthModule,
     AngularFireModule,
     HttpClientModule,
+    GoogleChartsModule,
     // AngularFirestorageModule,
     BrowserAnimationsModule
   ],

@@ -50,7 +50,7 @@ export interface User {
 }
 
 export interface videoPresentation  {
-    id ?: any,
+    id?: any,
     secteur : string,
     description: string,
     fileVideo: string,
@@ -65,8 +65,6 @@ export type experience = {
     datedebut: Date;
     datefin: Date;
 }
-
-
 
 
 export type names = {

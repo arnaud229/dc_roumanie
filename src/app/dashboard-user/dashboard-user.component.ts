@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { RecuFile, User } from 'src/models/variables';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { VideosService } from '../services/videos/videos.service';
 
 @Component({
   selector: 'app-dashboard-user',
@@ -116,11 +117,15 @@ export class DashboardUserComponent {
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
     isvalidSelect: false
+   
   };
   isPreselect = false;
   isSelect = true;
+  isVideo = false;
+  isFinance = false;
   statutPreselect = 'En cours'
   statutFinance = 'En cours'
+  liste_videos!: any [];
 
   colorValidPreselect = false;
   colorValidSelect = true;
@@ -160,13 +165,15 @@ export class DashboardUserComponent {
     public authService: AuthService,
     public localstorageService: LocalstorageService,
     private Aroute: ActivatedRoute,
-    private formbuilder: FormBuilder,
+  
+    private videoService: VideosService,
   ) {}
 
 
   ngOnInit() {
 
     // this.currentUser = this.localstorageService.getCurrentUser();
+    // this.userId = this.currentUser.uid;
 
     // if (this.Aroute.params) {
 
@@ -176,13 +183,15 @@ export class DashboardUserComponent {
 
     //   console.log('selector:', this.selecter);
     //   // Use the userId for your component's logic
-   
+        
     //   })
 
     
     // this.getEtat()
     
     // } 
+
+    this.getVideoByUser();
   
 
   
@@ -247,6 +256,12 @@ export class DashboardUserComponent {
       this.titleHeadMobile = "Etat Finacière"
       this.isOpenMenu = false;
       
+    } else if(index == 3) {
+
+      this.selecter = 3 ;
+      this.selecterMobile = 3 ;
+      this.titleHeadMobile = "Videos de présentation"
+      this.isOpenMenu = false;
     }
 
   }
@@ -388,7 +403,31 @@ export class DashboardUserComponent {
 
     this.router.navigate(['editselect'])   ;
     
+  }else if(this.selecter == 3) {
+
   }
+
+ }
+
+ getVideoByUser() {
+
+ 
+   this.videoService.getVideoByUserId(this.userId).subscribe(
+    (res) => {
+
+      this.liste_videos = res.data;
+      console.log("les videos", this.liste_videos);
+      
+    },
+
+    (err: any) => {
+      console.log('err :>> ', err);
+    }
+   )
+
+ }
+
+ editVideo(index: any) {
 
  }
 

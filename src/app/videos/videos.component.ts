@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { RecuFile, User, videoPresentation } from 'src/models/variables';
 import { StorageService } from '../services/storage/storage.service';
 import { VideosService } from '../services/videos/videos.service';
+import { LocalstorageService } from '../services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-videos',
@@ -39,6 +40,7 @@ export class VideosComponent {
     public authService: AuthService,
     private firebaseStorageService: StorageService,
     private videoService: VideosService,
+    public localstorageService: LocalstorageService,
    
   ) {
 
@@ -48,6 +50,8 @@ export class VideosComponent {
 
 
   ngOnInit() {
+    this.currentUser = this.localstorageService.getCurrentUser();
+    this.userId = this.currentUser.uid
     this.init_form();
   }
 
