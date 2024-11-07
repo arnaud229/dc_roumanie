@@ -38,6 +38,8 @@ const parseJsonString = (jsonStr: string) => JSON.parse(jsonStr);
         localStorage.setItem(this.key_currentUser, stringifyJson(data));
       }
 
+      
+
       getCurrentUser() {
         const user = localStorage.getItem(this.key_currentUser);
         if (!user) return null;

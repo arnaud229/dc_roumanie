@@ -22,6 +22,7 @@ export class SingnupComponent {
     le_type = "password";
   le_type1 = "text" ;
   condition_accept = false;
+  iserrorlog: boolean = false
  
 
   // verification_otp = true;
@@ -63,14 +64,16 @@ export class SingnupComponent {
   } 
 
  async sign_up() {
+  
+  
 
-  console.log(this.userform.value);
+  console.log('le vormulaire',this.userform.value);
 
   const user : User =  {
     nom: this.userform.value.nom,
     prenom: this.userform.value.prenom,
     telephone: {
-      code: this.userform.value.code,
+      code: this.userform.value.code || +229,
       numero: this.userform.value.numero
     },
     mail: this.userform.value.mail,
@@ -126,8 +129,9 @@ export class SingnupComponent {
     isvalidePreselect: false,
     isvalidSelect: false
   }
-  // console.log("le mot de passe :", this.userform.value.mdp);
-  // console.log("confirme mot de passe :", this.confirm_mdp);
+  
+  console.log('valeur de user dans signup', user);
+  
 
   this.loading = true;
 
@@ -137,10 +141,14 @@ export class SingnupComponent {
       console.log(res);
 
       this.loading = false;
+     
 
     }
   ).catch(
     (error) => {
+      this.loading = true;
+      this.iserrorlog = true;
+
       var errorCode = error.code;
       var errorMessage = error.message
       this.erreur_message = errorMessage;
@@ -205,6 +213,11 @@ export class SingnupComponent {
 
   goToTerme() {
     this.router.navigateByUrl('/confidentialites/terme');
+  }
+
+  
+  closeError()  {
+    this.iserrorlog = false;
   }
 
 }

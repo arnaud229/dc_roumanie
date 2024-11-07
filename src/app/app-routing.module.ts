@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'editselect', component: EditSelectComponent },
   { path: 'dashboardAdmin', component: DashboardAdminComponent },
   { path: 'dashboardPartenaire', component: DashboardPartenaireComponent },
+  { path: 'dashboardUser', component: DashboardUserComponent },
   { path: 'createdette', component: CreateDetteComponent },
   { path: 'createrembourssement', component: CreateRembourssementComponent },
   { path: 'editdette', component: EditDetteComponent },

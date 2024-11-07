@@ -3,8 +3,10 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { Router } from "@angular/router";
 import { LocalstorageService } from "../localStorage/localStorage.service";
-import { UsersService } from "../firebase/user.service";
+
 import { User } from "src/models/variables";
+import { BehaviorSubject } from "rxjs";
+import { UsersService } from "../firebase/user.service";
 
 
 
@@ -17,6 +19,11 @@ import { User } from "src/models/variables";
 
 
     userTempService: any;
+
+  
+  
+
+
     
     constructor(
         private fbauth: AngularFireAuth,
@@ -24,35 +31,46 @@ import { User } from "src/models/variables";
         private firestore: AngularFirestore,
         private injector: Injector,
         private router: Router,
+       
   
       ) {
         this.reloadUser();
-      }
-
+      }       
         
-        
-  async reloadUser() {
-    this.fbauth.authState.subscribe(async (res) => {
+      async reloadUser() {
+        this.fbauth.authState.subscribe(async (res) => {
 
-      if (res) {
-        const user = res.toJSON() as any;
-        console.log("user", user);
-        
-        this.userTempService = this.injector.get(UsersService);
-        const userData = await this.userTempService
-          .getUser(user.uid)
-          .toPromise();
-
-        const idToken = await res.getIdToken()
-        this.localStorageService.setFirebaseAuthState({ ...res, idToken });
-        this.localStorageService.setCurrentUser({
-          id: user.uid,
-          ...user,
-          ...userData,
+          if (res) {
+            const user = res.toJSON() as any;
+            console.log("user", user);
+            
+            this.userTempService = this.injector.get(UsersService);
+            const userData = await this.userTempService
+              .getUser(user.uid)
+              .toPromise();
+    
+            const idToken = await res.getIdToken()
+            this.localStorageService.setFirebaseAuthState({ ...res, idToken });
+            this.localStorageService.setCurrentUser({
+              id: user.uid,
+              ...user,
+              ...userData,
+            });
+          }
         });
       }
-    });
+
+  async getUser(userId: string): Promise<any> {
+    const userDocRef = this.firestore.doc(`utilisateurs/${userId}`);
+    const userDoc = await userDocRef.get().toPromise();
+    if (userDoc?.exists) {
+      return userDoc.data() as any;
+    } else {
+      return null; // Ou gérer l'erreur différemment
+    }
   }
+
+ 
 
   async getCurrentUserFirebaseIdToken() {
     console.log('getCurrentUserFirebaseIdToken :>> ');
@@ -74,22 +92,17 @@ import { User } from "src/models/variables";
 
 
   async set_user_info(uid: string, value: any) {
-    const defaultUserRoles: any = {
-      productSeller: false,
-      serviceSeller: false,
-      competenceSeller: false,
-      buyer: true
-    }
+   
     const user: User = {
-      uid: "",
-      nom: "",
-      prenom: "",
+      uid: uid,
+      nom: value.nom,
+      prenom: value.prenom,
       telephone: {
-        code: "",
-        numero: ""
+        code: value.telephone.code,
+        numero: value.telephone.numero
       },
-      mail: "",
-      mdp: "",
+      mail: value.mail,
+      mdp: value.mdp,
       age: 0,
       sMatrimoniale: "",
       NEtude: "",
@@ -159,9 +172,13 @@ import { User } from "src/models/variables";
     await this.fbauth
       .createUserWithEmailAndPassword(user.mail, user.mdp)
       .then((res: any) => {
-        console.log(res);
+        // console.log(res);
+        // console.log('valeur avant setInfos', user); 
+        
         this.set_user_info(res.user.uid, user)
           .then((userData) => {
+            console.log('titi je suis dedans');
+            
             console.log('userData :>> ', userData);
             this.fbauth
               .signOut()
@@ -183,10 +200,9 @@ import { User } from "src/models/variables";
               'vous aviez une erreur 2 ' + errorCode + ' : ' + errorMessage
             );
           });
-          console.log("avant le log");
-          
-
-        this.router.navigate(['../signin']);
+          console.log("avant le log");    
+          this.router.navigate(['../signin']);
+      
       })
     .catch((error: any) => {
       console.log('toto12');

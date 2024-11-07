@@ -486,16 +486,9 @@
         <div class="" *ngIf="selecter==2"> 
 
             <div  *ngIf="isFinance">
-
-                <!-- <google-chart
-                   [title]="title"
-                   [type]="chartType"
-                   [data]="dataTable"
-                   [options]="options"
-                   [width]="width"
-                   [height]="height">
-                 </google-chart> -->
-
+                <google-chart [data]="pieChart">
+                    
+                </google-chart>
              
 
             </div>

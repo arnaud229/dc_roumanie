@@ -316,6 +316,8 @@ tr, td, th
     {
         width: 40%;
     }
+
+
     
     .cardHeadMobile
     {
@@ -327,6 +329,12 @@ tr, td, th
 }
 
 @media (max-width: 500px ) {
+
+    .notvalide
+    {
+        padding-left: 0%;
+    
+    }
 
     .cardHead {
         display: none;

@@ -5,6 +5,8 @@ import { LocalstorageService } from '../services/localStorage/localStorage.servi
 import { RecuFile, User } from 'src/models/variables';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideosService } from '../services/videos/videos.service';
+import { ListKeyManager } from '@angular/cdk/a11y';
+import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 // import { Ng2GoogleChartsModule, ChartType } from 'ng2-google-charts';
 
 
@@ -17,8 +19,8 @@ import { VideosService } from '../services/videos/videos.service';
 })
 export class DashboardUserComponent {
 
-  selecter = 1;
-  selecterMobile = 1;
+  selecter = 0;
+  selecterMobile = 0;
   userId = ""; 
   currentUser : User = {
     nom: 'toto',
@@ -126,7 +128,7 @@ export class DashboardUserComponent {
   isPreselect = false;
   isSelect = true;
   isVideo = false;
-  isFinance = false;
+  isFinance = true;
   statutPreselect = 'En cours'
   statutFinance = 'En cours'
   liste_videos!: any [];
@@ -160,7 +162,7 @@ export class DashboardUserComponent {
   progressValue  = 0;
 
 
-  title = 'Répartition des ventes par produit';
+  title = 'Répartition des état de finance';
   // chartType: ChartType = ChartType.DonutChart; // Ici, on utilise 'DonutChart' pour le diagramme en anneau
   dataTable = [
     ['Produit', 'Ventes'],
@@ -177,6 +179,28 @@ export class DashboardUserComponent {
   height = 300;
 
 liste_Dette!: any [];
+
+public pieChart: GoogleChartInterface = {
+  chartType: GoogleChartType.PieChart,
+  dataTable: [
+    ['Etat financière', 'Etat financière'],
+    ['Dette',     11],
+    ['Rembourssement',      2],
+   
+  ],
+  //firstRowIsData: true,
+  options: {
+    title: 'Etat financière',
+    width: 900,
+    height: 500,
+    legend: { position: 'bottom' }, // Position de la légende
+    colors: ['#4CAF50', '#FF9800', '#3F51B5'],
+    pieHole: 0.4 ,// Crée un trou au milieu du camembert
+  
+  },
+ 
+  
+};
   
 
 
@@ -194,8 +218,23 @@ liste_Dette!: any [];
 
   ngOnInit() {
 
-    this.currentUser = this.localstorageService.getCurrentUser();
-    this.userId = this.currentUser.uid;
+   let user = this.localstorageService.getCurrentUser()
+    console.log('user:', user);
+    
+    // this.userId = user;:
+
+    // console.log('user id:', this.userId);
+
+    this.authService.getUser(this.userId).then(
+      (res) => {
+        console.log('user Data', res);
+        
+      }
+    ) 
+    
+
+    console.log('vrai userData',this.currentUser);
+    
 
     if (this.Aroute.params) {
 
@@ -207,19 +246,16 @@ liste_Dette!: any [];
       // Use the userId for your component's logic
         
       })
-
-    
-    this.getEtat()
     
     } 
 
-    this.getVideoByUser();
-  
+    this.getEtat()
 
-  
+    this.getVideoByUser();
 
 
 }
+
 
 
 

@@ -3,7 +3,7 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
 import { AuthService } from "../auth/auth.service";
 import { applyPagination, orderByQuery, whereQuery } from "./firebase-utils";
-import { map } from "rxjs";
+import { BehaviorSubject, map } from "rxjs";
 import {
   getStorage,
   ref,
@@ -20,7 +20,8 @@ import {
   })
   export class UsersService {
 
-    isAuthenticated = false;
+ 
+   isAuthenticated = false;
     constructor(
       public fbauth: AngularFireAuth,
       public firestore: AngularFirestore,
@@ -76,7 +77,6 @@ import {
         console.log('result$ :>> ', result$);
         return result$;
       }
-
 
     async  preselect(data: any, index: string) {
      await   this.firestore.doc(`utilisateurs/${index}`).update({

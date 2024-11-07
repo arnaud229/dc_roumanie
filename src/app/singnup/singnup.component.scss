@@ -438,6 +438,26 @@ cursor: pointer;
     margin-left: 2px;
 }
 
+.smsError{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .groupError {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .groupError > button 
+  {
+    color: white;
+    background: #764929;
+    border-radius: 10px;
+    padding: 5px;
+  }
+
 
 
 

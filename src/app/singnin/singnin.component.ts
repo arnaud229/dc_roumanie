@@ -16,6 +16,7 @@ export class SingninComponent {
   erreur_message = '';
   accepter_rappelle = false;
   binding = "";
+  iserrorlog = false;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -91,18 +92,29 @@ export class SingninComponent {
      .then(async (res) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
          if (res.user) {
-          console.log('res :>> ', res);
-          console.log('res :>> ', res.user.uid );
+        
       this.loading = false;
       console.log('succès sucès');
-      this.router.navigate(['dashboardUser'])   ;
+      this.router.navigate(['dashboardUser']);
           
          }
-          
-    
 
-    })
+    }) 
+    .catch( 
+      (error) =>  {
 
+        this.iserrorlog = true;
+        console.log('le error', error);
+          this.erreur_message = " Votre mot de passe ou email est mal renseigné"
+              
+      }
+    )
+
+  }
+
+
+  closeError()  {
+    this.iserrorlog = false;
   }
 
 

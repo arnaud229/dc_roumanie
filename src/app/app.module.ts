@@ -61,8 +61,8 @@ import { EditRembourssementComponent } from './edit-rembourssement/edit-rembours
     AngularFireModule,
     HttpClientModule,
     Ng2GoogleChartsModule,
-    // AngularFirestorageModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    
   ],
 
   providers: [],
