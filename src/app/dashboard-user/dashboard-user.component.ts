@@ -194,24 +194,24 @@ liste_Dette!: any [];
 
   ngOnInit() {
 
-    // this.currentUser = this.localstorageService.getCurrentUser();
-    // this.userId = this.currentUser.uid;
+    this.currentUser = this.localstorageService.getCurrentUser();
+    this.userId = this.currentUser.uid;
 
-    // if (this.Aroute.params) {
+    if (this.Aroute.params) {
 
-    //      this.Aroute.params.subscribe(params => {
-    //   this.selecter = params['index']; 
-    //   this.selecterMobile = params['index']; 
+         this.Aroute.params.subscribe(params => {
+      this.selecter = params['index']; 
+      this.selecterMobile = params['index']; 
 
-    //   console.log('selector:', this.selecter);
-    //   // Use the userId for your component's logic
+      console.log('selector:', this.selecter);
+      // Use the userId for your component's logic
         
-    //   })
+      })
 
     
-    // this.getEtat()
+    this.getEtat()
     
-    // } 
+    } 
 
     this.getVideoByUser();
   
