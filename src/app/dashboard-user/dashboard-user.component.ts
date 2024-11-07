@@ -5,6 +5,10 @@ import { LocalstorageService } from '../services/localStorage/localStorage.servi
 import { RecuFile, User } from 'src/models/variables';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideosService } from '../services/videos/videos.service';
+// import { Ng2GoogleChartsModule, ChartType } from 'ng2-google-charts';
+
+
+
 
 @Component({
   selector: 'app-dashboard-user',
@@ -155,6 +159,24 @@ export class DashboardUserComponent {
   les_url = [""];
   progressValue  = 0;
 
+
+  title = 'Répartition des ventes par produit';
+  // chartType: ChartType = ChartType.DonutChart; // Ici, on utilise 'DonutChart' pour le diagramme en anneau
+  dataTable = [
+    ['Produit', 'Ventes'],
+    ['Produit A', 1000],
+    ['Produit B', 500],
+    ['Produit C', 800]
+  ];
+  options = {
+    // Options de personnalisation
+    colors: ['#4CAF50', '#FF9800', '#3F51B5'],
+    pieHole: 0.4 // Crée un trou au milieu du camembert
+  };
+  width = 400;
+  height = 300;
+
+liste_Dette!: any [];
   
 
 
@@ -255,6 +277,8 @@ export class DashboardUserComponent {
       this.selecterMobile = 2 ;
       this.titleHeadMobile = "Etat Finacière"
       this.isOpenMenu = false;
+
+      
       
     } else if(index == 3) {
 
@@ -365,6 +389,11 @@ export class DashboardUserComponent {
     this.selecterMobile = 2;
     this.isOpenMenu = false;
     this.titleHeadMobile ='Etat Finacière'
+
+
+         if (this.liste_Dette.length > 0) {
+                 this.isFinance = true;          
+         }
     
   }
 

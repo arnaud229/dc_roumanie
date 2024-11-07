@@ -22,8 +22,11 @@ import { VideosComponent } from './videos/videos.component';
 import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
 import { EditSelectComponent } from './edit-select/edit-select.component';
 import { PictuerPickerComponent } from './pictuer-picker/pictuer-picker.component';
-import { GoogleChartsModule } from 'angular-google-charts';
-
+import { GoogleChartComponent, Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { CreateDetteComponent } from './create-dette/create-dette.component';
+import { CreateRembourssementComponent } from './create-rembourssement/create-rembourssement.component';
+import { EditDetteComponent } from './edit-dette/edit-dette.component';
+import { EditRembourssementComponent } from './edit-rembourssement/edit-rembourssement.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +42,11 @@ import { GoogleChartsModule } from 'angular-google-charts';
     EditPreselectComponent,
     EditSelectComponent,
     PictuerPickerComponent,
+    CreateDetteComponent,
+    CreateRembourssementComponent,
+    EditDetteComponent,
+    EditRembourssementComponent,
+    
     
   ],
   imports: [
@@ -52,10 +60,11 @@ import { GoogleChartsModule } from 'angular-google-charts';
     AngularFireAuthModule,
     AngularFireModule,
     HttpClientModule,
-    GoogleChartsModule,
+    Ng2GoogleChartsModule,
     // AngularFirestorageModule,
     BrowserAnimationsModule
   ],
+
   providers: [],
   bootstrap: [AppComponent]
 })

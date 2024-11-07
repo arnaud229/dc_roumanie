@@ -10,9 +10,14 @@ import { SelectionComponent } from './selection/selection.component';
 import { VideosComponent } from './videos/videos.component';
 import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
 import { EditSelectComponent } from './edit-select/edit-select.component';
+import { CreateDetteComponent } from './create-dette/create-dette.component';
+import { CreateRembourssementComponent } from './create-rembourssement/create-rembourssement.component';
+import { EditDetteComponent } from './edit-dette/edit-dette.component';
+import { EditRembourssementComponent } from './edit-rembourssement/edit-rembourssement.component';
 
 const routes: Routes = [
   { path: '', component: SingninComponent },
+
   { path: 'signin', component: SingninComponent },
   { path: 'signup', component: SingnupComponent },
   { path: 'preselection', component: PreselectionComponent },
@@ -22,7 +27,10 @@ const routes: Routes = [
   { path: 'editselect', component: EditSelectComponent },
   { path: 'dashboardAdmin', component: DashboardAdminComponent },
   { path: 'dashboardPartenaire', component: DashboardPartenaireComponent },
-  { path: 'dashboardUser', component: DashboardUserComponent },
+  { path: 'createdette', component: CreateDetteComponent },
+  { path: 'createrembourssement', component: CreateRembourssementComponent },
+  { path: 'editdette', component: EditDetteComponent },
+  { path: 'editrembourssement', component: EditRembourssementComponent },
 ];
 
 

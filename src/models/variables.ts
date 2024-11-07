@@ -59,6 +59,22 @@ export interface videoPresentation  {
 
 }
 
+export interface dette {
+    id?: any,
+    montantDu: number,
+    dateDette: Date,
+    libele: string,
+    createdAt?: any
+}
+
+export interface rembourssement {
+    id?: any,
+    montantRemboursse: number,
+    dateRembourssement: Date,
+    libele: string,
+    createdAt?: any
+}
+
 export type experience = {
     entreprise: string;
     posteOccupe: string;
