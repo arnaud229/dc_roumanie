@@ -22,37 +22,42 @@
 
             <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!=''}"  formControlName="paysNaissance" placeholder="Pays de naissance" >
+            <label for="">Date de naissance</label>
             <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['nPasseport'].invalid && selectform.controls['nPasseport'].value!=''}"  formControlName="nPasseport" placeholder="Num de votre passeport">
+            <input  type="text"  [ngClass]="{'error': selectform.controls['lieuPasseport'].invalid && selectform.controls['lieuPasseport'].value!=''}"  formControlName="lieuPasseport" placeholder="Lieu d'établissement de votre passeport">
+          
+            <label for="">Date emition du passeport</label>
+            <input  type="date"  [ngClass]="{'error': selectform.controls['dateEmiPasseport'].invalid && selectform.controls['dateEmiPasseport'].value!=null}"  formControlName="dateEmiPasseport" placeholder="Date emition du passeport" >
+            <label for="">Date d'expiration du passeport</label>
+            <input  type="date"  [ngClass]="{'error': selectform.controls['dateExpPasseport'].invalid && selectform.controls['dateExpPasseport'].value!=null}"  formControlName="dateExpPasseport" placeholder="Date d'expiration du passeport" >
           
 
-            <div class="groupe_Parent">
+         <div >
+
+            <div class="groupe_Parent" >
 
                 <label for="">Père</label>
 
-                <div class="groupeNomsPrenoms">
-                     
-                    <input class='theNom' type="text" [(ngModel)]="pereName"   placeholder="Nom de votre Père" >
-                    <input class='theNom' type="text"  [(ngModel)]="perePrenoms" placeholder="Prénoms de votre père" >
-               
+                <div class="groupeNomsPrenoms">      
+                    <input class='theNom' type="text"  [ngClass]="{'error': selectform.controls['pereName'].invalid && selectform.controls['pereName'].value!=''}"  formControlName="pereName"  placeholder="Nom de votre Père" >
+                    <input class='theNom' type="text"     [ngClass]="{'error': selectform.controls['perePrenoms'].invalid && selectform.controls['perePrenoms'].value!=''}"  formControlName="perePrenoms" placeholder="Prénoms de votre père" >
                 </div>
-                
-        
                 </div>
 
-
-                <div class="groupe_Parent">
+                <div class="groupe_Parent"  >
 
                     <label for="">Mère</label>
     
-                    <div class="groupeNomsPrenoms">
-                         
-                        <input class='theNom' type="text" [(ngModel)]="mereName"   placeholder="Nom de votre mère" >
-                        <input class='theNom' type="text"  [(ngModel)]="merePrenoms" placeholder="Prénoms de votre mère" >
+                    <div class="groupeNomsPrenoms">      
+                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['mereName'].invalid && selectform.controls['mereName'].value!=''}"  formControlName="mereName"  placeholder="Nom de votre mère" >
+                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['merePrenoms'].invalid && selectform.controls['merePrenoms'].value!=''}"  formControlName="merePrenoms" placeholder="Prénoms de votre mère" >
                    
-                    </div>
-                    
-            
-                    </div>
+                    </div>    
+             </div>
+
+         </div>
+           
 
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!=''}"  formControlName="derniereResidencePays" placeholder="Votre Pays de résidence" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" placeholder="ville/village de résidence" >
@@ -60,12 +65,12 @@
             <input  type="text"  [ngClass]="{'error': selectform.controls['qualiProfession'].invalid && selectform.controls['qualiProfession'].value!=''}"  formControlName="qualiProfession" placeholder="Qualification professionnelle" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" placeholder="Profession Principale" >
            
-            <select   formControlName="langueParler"  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  formControlName="sMatrimoniale" >
+            <select  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  formControlName="langueParler" >
                 <option *ngFor="let item of listLangue" value="">  {{item}} </option>
 
                </select>
 
-            <input  type="number"  [ngClass]="{'error': selectform.controls['nbrEnfants'].invalid && selectform.controls['nbrEnfants'].value!=''}"  formControlName="nbrEnfants" placeholder="Nombre d'enfant" >
+            <input  type="number"  [ngClass]="{'error': selectform.controls['nbrEnfants'].invalid }"  formControlName="nbrEnfants" placeholder="Nombre d'enfant" >
            
             <div  class="lecheck">
                 <input id="lecheck_input" type="checkbox"  [ngClass]="{
@@ -119,7 +124,7 @@
 
              <div class="cardFils">
                  <p>le(s) Diplôme(s)</p>
-                 <mat-progress-bar id="laBarDownload" mode="indeterminate" *ngIf="isUploading"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload" mode="determinate" [value]="progressValue" *ngIf="isUploading"></mat-progress-bar>
 
                  <span (click)="getfils()"> 
                      <img src="./../../assets/download_icon.png " alt="">
@@ -128,7 +133,7 @@
 
              <div class="cardFils">
                  <p>une photo de complete</p>
-                 <mat-progress-bar id="laBarDownload1" mode="indeterminate" *ngIf="isUploading1"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload1" mode="determinate" [value]="progressValue1" *ngIf="isUploading1"></mat-progress-bar>
 
                  <span (click)="getfils1()"> 
                      <img src="./../../assets/download_icon.png " alt="">
@@ -138,7 +143,7 @@
              <div class="cardFils">
                  <p>une photo de vote passeport</p>
             
-                 <mat-progress-bar id="laBarDownload2" mode="indeterminate" *ngIf="isUploading2"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload2" mode="determinate" [value]="progressValue2" *ngIf="isUploading2"></mat-progress-bar>
                  <span (click)="getfils2()"> 
                      <img src="./../../assets/download_icon.png " alt="">
                  </span>
@@ -147,7 +152,7 @@
              <div class="cardFils">
                  <p>une photo de vote cassier judicière</p>
                    
-                 <mat-progress-bar id="laBarDownload3" mode="indeterminate"  *ngIf="isUploading3"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload3" mode="determinate" [value]="progressValue3"  *ngIf="isUploading3"></mat-progress-bar>
 
                  <span (click)="getfils3()"> 
                      <img src="./../../assets/download_icon.png " alt="">
@@ -176,5 +181,14 @@
 </div>
 
 <div>
+
+        
+  <div  *ngIf="iserrorlog" class="loader">
+    <div class="groupError"  >
+      <p class="smsError"  >  {{message}} </p>
+      <button  (click)="closeError() " >ok</button>
+    </div> 
+
+</div>
   
 

@@ -59,6 +59,7 @@ import { UsersService } from "../firebase/user.service";
           }
         });
       }
+      
 
   async getUser(userId: string): Promise<any> {
     const userDocRef = this.firestore.doc(`utilisateurs/${userId}`);
@@ -204,16 +205,18 @@ import { UsersService } from "../firebase/user.service";
           this.router.navigate(['../signin']);
       
       })
-    .catch((error: any) => {
-      console.log('toto12');
+    // .catch((error: any) => {
+    //   console.log('toto12');
 
-      var errorCode = error.code;
-      var errorMessage = error.message;
-      console.log(
-        'vous aviez une erreur 3 ' + errorCode + ': ' + errorMessage
-      );
-    });
-  }
+    //   var errorCode = error.code;
+    //   var errorMessage = error.message;
+    //   console.log(
+    //     'vous aviez une erreur 3 ' + errorCode + ': ' + errorMessage
+    //   );
+    // });
+  } 
+      
+     
 
 
   signInWithFirebase(data: any) {

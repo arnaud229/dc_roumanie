@@ -30,7 +30,7 @@
 
                 <img (click)="openMenu()" src="./../../assets/menuHamberger.png" alt="">
 
-                <h1> {{ titleHeadMobile }} </h1>
+                <h1> {{ titleHeadMobile}} </h1>
                 <img (click)="editMobile()" src="./../../assets/edit2.png" alt="">
             </div>
 
@@ -40,11 +40,15 @@
                 <div class="statut">
                     <span> Statut</span>
                     <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
+                    <!-- <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> Préselection </span> -->
+                    <!-- <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> Selection </span> -->
                 </div>
 
                 <div class="statut">
                     <span> Statut Finacière</span>
-                    <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}} </span>
+                    <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> Rembourser </span>
+                    <span class="statutSimple" *ngIf="" [ngClass]="{'colorNoSelect': colorValidSelect }"> Dette </span>
+                    <span class="statutSimple"  [ngClass]="{'colorAny': colorValidSelect }"> Aucune </span>
                 </div>
 
             </div>
@@ -426,7 +430,7 @@
                         <tr  *ngFor="let item of currentUser.expProfesionnel; let i = index ">
                             <td> {{i+1}} </td>
                             <td> {{item.entreprise}} </td>
-                            <td>  {{item.datedebut}} </td>
+                            <td>  {{item.dateDebut}} </td>
                             <td>  {{item.datefin}} </td>
 
                         </tr>
@@ -483,7 +487,7 @@
 
 
 
-        <div class="" *ngIf="selecter==2"> 
+        <div class="legooglechart" *ngIf="selecter==2"> 
 
             <div  *ngIf="isFinance">
                 <google-chart [data]="pieChart">

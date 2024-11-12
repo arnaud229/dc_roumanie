@@ -447,6 +447,18 @@ h2 {
    margin-top: 5px;
 }
 
+label {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 9px;
+    padding-left: 10px;
+
+}
+
 
 
 
@@ -479,6 +491,11 @@ h2 {
         padding-bottom: 5%;
         background-image: url("./../../assets/motifafro.png");
         
+    }
+
+    .notvalide > button {
+    
+        margin-left: 30%;
     }
     
 

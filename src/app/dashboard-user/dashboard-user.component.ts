@@ -7,6 +7,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { VideosService } from '../services/videos/videos.service';
 import { ListKeyManager } from '@angular/cdk/a11y';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
+import { FinancesService } from '../services/Finances/finances.service';
 // import { Ng2GoogleChartsModule, ChartType } from 'ng2-google-charts';
 
 
@@ -19,8 +20,8 @@ import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 })
 export class DashboardUserComponent {
 
-  selecter = 0;
-  selecterMobile = 0;
+  selecter: number = 0;
+  selecterMobile: number = 0;
   userId = ""; 
   currentUser : User = {
     nom: 'toto',
@@ -79,32 +80,32 @@ export class DashboardUserComponent {
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
 
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       }
     ],
@@ -142,7 +143,7 @@ export class DashboardUserComponent {
   viewDisponibilite = 'non';
   viewPasseportDisponible = 'non';
   isOpenMenu = false;
-  titleHeadMobile = 'Preselect';
+  titleHeadMobile: string = '';
 
   //modifier preselect vatiable
 
@@ -161,22 +162,10 @@ export class DashboardUserComponent {
   les_url = [""];
   progressValue  = 0;
 
+  TotalsDettes!: number;
+  TotalsRemboursements!: number;
 
-  title = 'Répartition des état de finance';
-  // chartType: ChartType = ChartType.DonutChart; // Ici, on utilise 'DonutChart' pour le diagramme en anneau
-  dataTable = [
-    ['Produit', 'Ventes'],
-    ['Produit A', 1000],
-    ['Produit B', 500],
-    ['Produit C', 800]
-  ];
-  options = {
-    // Options de personnalisation
-    colors: ['#4CAF50', '#FF9800', '#3F51B5'],
-    pieHole: 0.4 // Crée un trou au milieu du camembert
-  };
-  width = 400;
-  height = 300;
+
 
 liste_Dette!: any [];
 
@@ -184,17 +173,17 @@ public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,
   dataTable: [
     ['Etat financière', 'Etat financière'],
-    ['Dette',     11],
-    ['Rembourssement',      2],
+    ['Dette',     this.getTotalsDettes() ],
+    ['Rembourssement',      this.getTotalsRemboursements()],
    
   ],
   //firstRowIsData: true,
   options: {
     title: 'Etat financière',
-    width: 900,
-    height: 500,
+    width: '500px',
+    height: '400px',
     legend: { position: 'bottom' }, // Position de la légende
-    colors: ['#4CAF50', '#FF9800', '#3F51B5'],
+    colors: ['#FF0000', '#0dff00', '#3F51B5'],
     pieHole: 0.4 ,// Crée un trou au milieu du camembert
   
   },
@@ -203,15 +192,12 @@ public pieChart: GoogleChartInterface = {
 };
   
 
-
-
-
   constructor(
     private router: Router,
     public authService: AuthService,
     public localstorageService: LocalstorageService,
     private Aroute: ActivatedRoute,
-  
+    private financeServices: FinancesService,
     private videoService: VideosService,
   ) {}
 
@@ -219,11 +205,12 @@ public pieChart: GoogleChartInterface = {
   ngOnInit() {
 
    let user = this.localstorageService.getCurrentUser()
-    console.log('user:', user);
+    console.log('user honneur:', user.dHonneur);
     
-    // this.userId = user;:
+    this.currentUser  = user;
+    this.getVideoUser();
 
-    // console.log('user id:', this.userId);
+    console.log('selecter11', this.selecter);
 
     this.authService.getUser(this.userId).then(
       (res) => {
@@ -234,26 +221,89 @@ public pieChart: GoogleChartInterface = {
     
 
     console.log('vrai userData',this.currentUser);
-    
-
-    if (this.Aroute.params) {
-
+ 
          this.Aroute.params.subscribe(params => {
-      this.selecter = params['index']; 
-      this.selecterMobile = params['index']; 
+          const indexParams = params['index'];
 
-      console.log('selector:', this.selecter);
-      // Use the userId for your component's logic
-        
-      })
+          if (indexParams !== undefined) {
+         this.selecter = params['index']; 
+        this.selecterMobile = params['index']; 
+
+            console.log('selector:', this.selecter);
+            
     
-    } 
+         } else {
+           console.log('oooo');
+           
+           this.selecter = 0;
+           this.selecterMobile = 0;
+           console.log('selecter', this.selecter);
+           
+         }
 
+  })
+   
     this.getEtat()
 
     this.getVideoByUser();
 
 
+}
+
+getVideoUser() {
+
+  this.videoService.getVideoByUserId(this.userId).forEach(
+    (res) => {
+      this.liste_videos = res.data;
+    }
+  )
+
+}
+getTotalsDettes() {
+
+  let totals: number = 0;
+  
+
+  const tableDette = this.financeServices.getDetteByUserId(this.userId)
+
+  tableDette.forEach(
+    (res) => {
+      res.data.find(
+        (r) => {
+          totals += r.montantDu;
+        }
+      )
+       
+      console.log('valtoto', totals);
+     
+    }
+  )
+ const  valTotal = totals;
+  return valTotal
+
+}
+
+getTotalsRemboursements() {
+
+  let totals: number = 0;
+  
+
+  const tableDette = this.financeServices.getRemboursementByUserId(this.userId)
+
+  tableDette.forEach(
+    (res) => {
+      res.data.find(
+        (r) => {
+          totals += r.montantRembourse;
+        }
+      )
+       
+      console.log('valtoto', totals);
+     
+    }
+  )
+ const  valTotal = totals;
+  return valTotal
 }
 
 
@@ -268,15 +318,42 @@ public pieChart: GoogleChartInterface = {
       this.isEditPreselect = false;
       this.titleHeadMobile = "Préselection";
 
+      console.log('tittle0', this.titleHeadMobile);
 
-      console.log(1);
-    
+    if (this.currentUser.ldtep2) {
+
+      this.viewDisponibilite = 'oui';
+
+      if (this.currentUser.passport) {
+
+        this.viewPasseportDisponible = 'oui'
+        
+      } else 
+      {
+        this.viewPasseportDisponible = 'non'
+      }
+
+      this.isPreselect = true;
+
+      if (this.currentUser.isvalidePreselect ) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Validé'
+        
+      } else {
+        this.statutPreselect = 'En cours'
+      }
+      
+    } else {
+  
+      this.isPreselect = false;
+      this.viewDisponibilite = 'non';
+
+    }
 
       if (this.currentUser.ldtep2) {
 
         this.viewDisponibilite = 'oui';
-  
-        console.log(2);
   
         this.isPreselect = true;
   
@@ -290,7 +367,7 @@ public pieChart: GoogleChartInterface = {
         }
         
       } else {
-        console.log(3);
+      
         this.isPreselect = false;
         this.viewDisponibilite = 'non';
 
@@ -307,12 +384,44 @@ public pieChart: GoogleChartInterface = {
        this.isEditSelect = false;
        this.titleHeadMobile = "Selection"
 
+       console.log('tittle1', this.titleHeadMobile);
+       
+
+       if (this.currentUser.dHonneur ) {
+      
+        
+  
+        this.viewHonneur = 'oui'
+        this.titleHeadMobile ='Seléction'
+  
+        this.isSelect = true;
+  
+        if (this.currentUser.isvalidSelect) {
+          this.colorValidSelect = true;
+  
+          this.statutFinance = 'Validé'
+          
+        } else {
+          this.statutFinance = 'En cours'
+        }
+        
+      } else {
+        console.log(3);
+        this.isSelect = false;
+        this.viewHonneur = 'non'
+  
+      }
+
     } else if (index == 2) {
 
       this.selecter = 2 ;
       this.selecterMobile = 2 ;
       this.titleHeadMobile = "Etat Finacière"
       this.isOpenMenu = false;
+
+      if (this.liste_Dette.length > 0) {
+        this.isFinance = true;          
+}
 
       
       
@@ -352,6 +461,8 @@ public pieChart: GoogleChartInterface = {
 
  getEtat() {
 
+   console.log('selecter is',this.selecter);
+   
   if (this.selecter ==0  ) {
 
     console.log(1);
@@ -395,7 +506,12 @@ public pieChart: GoogleChartInterface = {
     
   } else  if (this.selecter ==1 ) {
 
-    if (!this.currentUser.dHonneur ) {
+    console.log('01');
+    
+
+    if (this.currentUser.dHonneur ) {
+      console.log('02');
+      
 
       this.viewHonneur = 'oui'
       this.titleHeadMobile ='Seléction'

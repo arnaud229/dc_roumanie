@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { dette, rembourssement } from "src/models/variables";
+import { dette, remboursement } from "src/models/variables";
 import { serverTimestamp } from 'firebase/firestore';
 import { map } from "rxjs";
 
@@ -17,7 +17,7 @@ import { map } from "rxjs";
 
 
     collectionName = 'dettes';
-    collectionName1 = 'renbourssements';
+    collectionName1 = 'renboursements';
 
     constructor(
         private firestore: AngularFirestore
@@ -35,8 +35,8 @@ import { map } from "rxjs";
       }
 
       
-    CreateRembourssement(newItem: rembourssement) {
-        const collection = this.firestore.collection<rembourssement>(`/renbourssements/`);
+    CreateRemboursement(newItem: remboursement) {
+        const collection = this.firestore.collection<remboursement>(`/renboursements/`);
         return collection.add({
           createdAt: serverTimestamp(),
           ...newItem,
@@ -68,9 +68,9 @@ import { map } from "rxjs";
 
   }
 
-  getRembourssements() {
+  getRemboursements() {
 
-    const collection = this.firestore.collection<any>('rembourssements'
+    const collection = this.firestore.collection<any>('remboursements'
       // , (ref) => {
       // return applyPagination(orderByQuery(whereQuery(ref, whereQueries), orderByQueries), pagination); }
   );
@@ -104,14 +104,14 @@ import { map } from "rxjs";
       );
   }
 
-  getRembourssementById(id: string) {
+  getRemboursementById(id: string) {
     return this.firestore
-      .collection<rembourssement>(`/${this.collectionName1}/`)
+      .collection<remboursement>(`/${this.collectionName1}/`)
       .doc(id)
       .get()
       .pipe(
         map((data) => {
-          return { ...data.data(), id } as rembourssement;
+          return { ...data.data(), id } as remboursement;
         })
       );
   }
@@ -119,7 +119,7 @@ import { map } from "rxjs";
 
 
   deleteDette() { }
-  deleteRembourssement() { }
+  deleteRemboursement() { }
 
   getDetteByUserId(userId: any) {
     console.log('userId :>> ', userId);
@@ -143,9 +143,9 @@ import { map } from "rxjs";
     return items$;
   }
 
-  getRembourssementByUserId(userId: any) {
+  getRemboursementByUserId(userId: any) {
     console.log('userId :>> ', userId);
-    const collection = this.firestore.collection<rembourssement>('rembourssements', (ref) =>
+    const collection = this.firestore.collection<remboursement>('remboursements', (ref) =>
       ref.where('user_id', '==', userId)
     );
 
@@ -162,7 +162,7 @@ import { map } from "rxjs";
       })
     );
     // console.log('store$ :>> ', stores$);
-    return items$;
+    return items$; 
   }
 
 

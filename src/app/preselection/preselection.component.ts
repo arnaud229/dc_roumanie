@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecuFile, User } from 'src/models/variables';
@@ -31,9 +31,14 @@ export class PreselectionComponent {
  
   currentUser! : User;
 
-  les_url = [""];
+  les_url!: any[];
   progressValue  = 0;
-
+  message = '';
+  ChoixImg : boolean = false;
+  maxFileSize = 10;
+  multiple: boolean = false;
+  change: EventEmitter<any[]> = new EventEmitter();
+  iserrorlog : boolean =  false;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -51,11 +56,12 @@ export class PreselectionComponent {
     this.currentUser = this.localstorageService.getCurrentUser();
     this.userId = this.currentUser.uid
     this.init_form();
+    console.log(this.fileInput);
   }
 
   init_form(){
     this.preselectform = this.formbuilder.group({
-      age: [,Validators.required, Validators.min(0), Validators.max(120)],
+      age: [,Validators.required, Validators.min(1), Validators.max(120)],
       sMatrimoniale: ['',Validators.required],
       NEtude: ['',Validators.required],
       metier: ['',Validators.required],
@@ -70,33 +76,36 @@ export class PreselectionComponent {
       religion: ['',Validators.required], 
       ldtep2: [false,Validators.required], 
       fils_recus: ['',Validators.required], 
-      
-      
-     
-     
+         
     });
   } 
 
+  closeError() {
+   this.iserrorlog = false;
+   this.isUploading = false;
+  }
+
   suivant() {
-
     this.switch = !this.switch;
+  }
 
+  precedent() {
+    this.switch = !this.switch;
   }
   getfils() {
-    this.fileInput.nativeElement.click();
+      console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput.nativeElement.click();
+    }, 500);
   }
 
   async preselect(){
     console.log("Preselect",this.preselectform.value)
-
     
     if (this.preselectform.invalid) {  } 
+      console.log('tete0');
+      const uploadPromises = this.les_url.map(async (image) => {
 
-
-     this.liste_fils.map(async (image) => {
-
-      const  response = await fetch(image.url);
-      const blod = await response.blob()
       const url = await this.firebaseStorageService.uploadFile({
         folder: 'filsRecus',
         filename:
@@ -104,16 +113,28 @@ export class PreselectionComponent {
           new Date().getTime() +
           this.userId +
           '.' +
-          image.type,
-        file: blod,
+          image.format,
+        file: image.file,
        
       });
+        console.log('tete1');
+        
+        image.downloadUrl = url;
 
-       this.les_url.push(url);
+        return url;
 
-      // return url;
     });
 
+    const uploadedUrls = await Promise.all(uploadPromises);
+    // Filtrer les URLs null (échecs de téléchargement)
+    const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+  
+       this.les_url = [...successfulUrls]
+         console.log('tete11');
+
+    console.log('tete2');
+    
     const infoPreselect = 
     {
       
@@ -134,85 +155,86 @@ export class PreselectionComponent {
       },
        
        parrain: this.preselectform.value.parrain,
-      region: this.preselectform.value.region, 
+       religion: this.preselectform.value.religion, 
       ldtep2: this.preselectform.value.ldtep2, 
       fils_recus: this.les_url, 
 
     }
-
-     try {
-
-    //   const docRef: AngularFirestoreDocument<any> = this.afs.doc(`utilisateurs/${this.userId}`);
-    // const docSnapshot = await docRef.get().toPromise();
-
-      // if(docSnapshot.exists) {
-     
-              
-        await this.userServ.preselect(infoPreselect, this.userId)
-      this.router.navigate(["dashboardUser", {index: 0}])
-
-      // }
-   
-     }    
+     console.log('user id: ', this.userId);
+     console.log('preselection: ', infoPreselect);
     
-    catch  {
-
-      (error: { code: any; message: any }) => {
-        var errorCode = error.code;
-        var errorMessage = error.message;
-        console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
-      };
-
+       this.userServ.preselect(infoPreselect, this.userId)
+       .then(
+           (e) => {
+            this.router.navigate(["dashboardUser", {index: 0}])
+           }
+        
+       )
+       
+      .catch(
+        (error: { code: any; message: any }) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
+        }
+ )
+     
     }
+  
 
-  }
-
-  onFilesSelected(event : any) {
+async  onFilesSelected(event : any) {
 
     this.isUploading = true;
-    const files = event.target.files;
-    console.log("files de input",files);
-    console.log("files de tyoe ",typeof files);
-    if (files.length > 0) {
-
-
-      for (let i = 0; i < files.length; i++) {
-        console.log("res", files[i]);
- 
-        
-            this.liste_fils.push(
-          {
-            type: files[i].type,
-            url: files[i].name
-          }
-        );
-
+   
+    console.log('event', event);
+    let files = [...event.target.files];
+    event.target.value = null;
+    const invalidFile = files.find(
+      (e) => e.size / 1024 / 1024 > this.maxFileSize
+    );
+    if (invalidFile) {
+      this.iserrorlog = true;
   
-        
-      }
+      this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
 
-      console.log("fin", this.liste_fils);
-      
-                  
+      return;
     }
+    // .filter(e=>e.type.trim().length>0);
+    for (let index = 0; index < files.length; index++) {
+      const element = files[index];
+      element.file = element;
+      element.previewUrl = await this.fileToBase64(element);
+    }
+    this.les_url = this.multiple
+      ? [...this.les_url, ...files]
+      : [...files];
+    this.emitChangeEvent();
+    // this.les_url = new Array(10).fill({}).map(e=>files[0])
+    console.log('this.les_url', this.les_url);
+    this.ChoixImg = true;
 
   }
 
+  fileToBase64(file: File) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+    });
+  }
 
-//   uploadFileProgress(file: File): Observable<number> {
-//   this.isUploadingSubject.next(true);
+  async emitChangeEvent() {
+    // const isMobile = this.platform.is('mobile');
 
-//   return interval(1000).pipe(
-//     takeWhile(() => this.isUploading$.pipe(
-//       first(), // Take the first emitted value
-//       map(isUploading => isUploading) // Map the value to a boolean
-//     )),
-//     map(i => Math.floor((i + 1) / 10) * 10),
-//     finalize(() => {
-//       this.isUploadingSubject.next(false);
-//     })
-//   );
-// }
+    if (this.multiple) {
+      this.change.emit(this.les_url);
+    }
+
+    if (!this.multiple) {
+      this.change.emit(this.les_url[0]);
+    }
+  }
 
 
 }

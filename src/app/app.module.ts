@@ -24,9 +24,11 @@ import { EditSelectComponent } from './edit-select/edit-select.component';
 import { PictuerPickerComponent } from './pictuer-picker/pictuer-picker.component';
 import { GoogleChartComponent, Ng2GoogleChartsModule } from 'ng2-google-charts';
 import { CreateDetteComponent } from './create-dette/create-dette.component';
-import { CreateRembourssementComponent } from './create-rembourssement/create-rembourssement.component';
+
 import { EditDetteComponent } from './edit-dette/edit-dette.component';
-import { EditRembourssementComponent } from './edit-rembourssement/edit-rembourssement.component';
+
+import { CreateRemboursementComponent } from './create-remboursement/create-remboursement.component';
+import { EditRemboursementComponent } from './edit-remboursement/edit-remboursement.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,9 @@ import { EditRembourssementComponent } from './edit-rembourssement/edit-rembours
     EditSelectComponent,
     PictuerPickerComponent,
     CreateDetteComponent,
-    CreateRembourssementComponent,
     EditDetteComponent,
-    EditRembourssementComponent,
+    CreateRemboursementComponent,
+    EditRemboursementComponent,
     
     
   ],

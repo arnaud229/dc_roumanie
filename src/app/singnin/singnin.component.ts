@@ -115,6 +115,7 @@ export class SingninComponent {
 
   closeError()  {
     this.iserrorlog = false;
+    this.loading = false;
   }
 
 

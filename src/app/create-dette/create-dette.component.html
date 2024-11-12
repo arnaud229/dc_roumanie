@@ -1,1 +1,42 @@
-<p>create-dette works!</p>
+<div class="content_in">
+
+    <div class="card-in" >
+
+        <h1>Se connecter</h1>
+
+        
+  <p class="petit_texte"> veuillez remplir les champ pour enregistrer une nouvelle dette pour un voyageur </p>
+        
+
+        <div class="inputs"  [formGroup]="detteform" >
+            
+            <input type="text" [ngClass]="{'error': detteform.controls['libele'].invalid && detteform.controls['libele'].value!=''}"  formControlName="libele" placeholder="Libéle de la dette" >
+            <input type="number" [ngClass]="{'error': detteform.controls['montantDu'].invalid && detteform.controls['montantDu'].value!=''}"  formControlName="montantDu" placeholder="Montant" >
+            <input  type="number"  [ngClass]="{'error': detteform.controls['dateDette'].invalid }"  formControlName="dateDette" placeholder="Date de la dette" >
+       
+ 
+                <button  class="boutton"  (click)="ajoutDette()">Ajouter</button>               
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+  
+
+<div  *ngIf="loading" class="loader">
+
+  <div *ngIf="!iserrorlog" class="lds-ring"><div></div><div></div><div></div></div>
+
+  <div class="groupError"  *ngIf="iserrorlog" >
+    <p class="smsError"  >  {{erreur_message}} </p>
+    <button  (click)="closeError() " >ok</button>
+  </div>
+
+  
+
+</div>
+

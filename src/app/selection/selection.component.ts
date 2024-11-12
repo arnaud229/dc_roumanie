@@ -1,9 +1,10 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ChangeDetectorRef, EventEmitter, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from '../services/firebase/user.service';
-import { RecuFile } from 'src/models/variables';
+import { RecuFile, User } from 'src/models/variables';
 import { StorageService } from '../services/storage/storage.service';
+import { LocalstorageService } from '../services/localStorage/localStorage.service';
 
 
 @Component({
@@ -14,6 +15,7 @@ import { StorageService } from '../services/storage/storage.service';
 export class SelectionComponent {
 
   selectform!: FormGroup;
+  parentform!: FormGroup;
   pre = "";
   edite = "";
   isUploading = false;
@@ -50,30 +52,30 @@ export class SelectionComponent {
   
    valAjout = false;
   imgs = "./../../assets/roumanie-visiter.jpg"
-  userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
+  userId: string = ""
  
 
   telVisible =0;
-  pereName = '';
-  perePrenoms = '';
-  mereName = '';
-  merePrenoms = '';
+
 
   Lentreprise ='';
   posteOccupe ='';
   dateDebut!: Date ;
   datefin!: Date;
-  expTable = [
+  expTable: any[] = [] ;
 
-    {
+  les_url!: any[];
+  iserrorlog : boolean = false;
+  multiple: boolean = false;
+  change: EventEmitter<any[]> = new EventEmitter();
+  progressValue  = 0;
+  progressValue1  = 0;
+  progressValue2  = 0;
+  progressValue3  = 0;
 
-      entreprise: 'this.Lentreprise',
-      posteOccupe: 'this.posteOccupe',
-      dateDebut: new Date(),
-      datefin: new Date()
+  currentUser!: User 
 
-    }
-  ];
+
 
 
 
@@ -83,6 +85,8 @@ export class SelectionComponent {
     private router: Router,
     private userServ : UsersService,
     private firebaseStorageService: StorageService,
+    private cdr: ChangeDetectorRef,
+    public localstorageService: LocalstorageService,
   ) {
 
     this.init_form();
@@ -90,15 +94,19 @@ export class SelectionComponent {
 
   ngOnInit() {
     this.init_form();
+    this.currentUser = this.localstorageService.getCurrentUser();
+    this.userId = this.currentUser.uid
   }
+
+
 
   init_form(){
     this.selectform = this.formbuilder.group({
       LieuNaissance: ['',Validators.required],
       dateNaissance:  ['',Validators.required],
       paysNaissance:  ['',Validators.required],
-      Pere: ['',Validators.required],
-      Mere: ['',Validators.required],
+      // Pere: ['',Validators.required],
+      // Mere: ['',Validators.required],
       nPasseport: ['',Validators.required],
       lieuPasseport: ['',Validators.required],
       dateEmiPasseport: [,Validators.required],
@@ -115,7 +123,11 @@ export class SelectionComponent {
       fils_diplome: [,Validators.required],    
       fil_photo: [,Validators.required],    
       fil_passportPhoto: [,Validators.required],    
-      fil_casierJudiciere: [,Validators.required],    
+      fil_casierJudiciere: [,Validators.required],
+      pereName: ['',Validators.required],
+      perePrenoms:  ['',Validators.required],
+      mereName:  ['',Validators.required],
+      merePrenoms:  ['',Validators.required],    
       
      
      
@@ -140,6 +152,9 @@ export class SelectionComponent {
       if (index == 1) {
 
         this.telVisible = 1;
+         console.log(" pere et mere ",this.selectform.value);
+      
+        this.cdr.detectChanges();
         
       } else if (index==2) {
         this.telVisible = 2
@@ -149,19 +164,33 @@ export class SelectionComponent {
 
   }
   getfils() {
-    this.fileInput.nativeElement.click();
+    console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput.nativeElement.click();
+    }, 500);
   }
 
   getfils1() {
-    this.fileInput1.nativeElement.click();
+    console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput1.nativeElement.click();
+    }, 500);
   }
 
   getfils2() {
-    this.fileInput2.nativeElement.click();
+   
+    console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput2.nativeElement.click();
+    }, 500);
   }
 
   getfils3() {
-    this.fileInput3.nativeElement.click();
+   
+    console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput3.nativeElement.click();
+    }, 500);
   }
 
  async  onFilesSelected1(event : any) {
@@ -180,7 +209,7 @@ export class SelectionComponent {
     );
     if (invalidFile) {
     
-      this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+      this.message = "La taille de votre fichier lié au photo complet depasse 10MB, veuillez choisi un fichier moins de  10MB"
       return;
     }
   
@@ -198,9 +227,9 @@ export class SelectionComponent {
     this.filPhoto = url;
   
     
-    setTimeout(() => {
-      this.isUploading1 = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.isUploading1 = false;
+    // }, 5000);
    
 
   }
@@ -240,9 +269,9 @@ export class SelectionComponent {
     
       this.filPhotoPassport = url;
     
-    setTimeout(() => {
-      this.isUploading2 = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.isUploading2 = false;
+    // }, 5000);
 
   }
 
@@ -264,13 +293,13 @@ export class SelectionComponent {
     
       if (invalidFile) {
     
-        this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+        this.message = "La taille de votre fichier au cassier juduciaire depasse 10MB, veuillez choisi un fichier moins de  10MB"
         return;
       }
       
     
       const url = await this.firebaseStorageService.uploadFile({
-        folder: 'filsPhotoCXasier',
+        folder: 'filsPhotoCasier',
         filename:
           'filsPhotoCassier-file-' +
           new Date().getTime() +
@@ -284,49 +313,60 @@ export class SelectionComponent {
       this.filPhotoCasier = url;
     
 
-    setTimeout(() => {
-      this.isUploading3 = false;
-    }, 5000);
+    // setTimeout(() => {
+    //   this.isUploading3 = false;
+    // }, 5000);
 
   
 
   }
+
+  closeError() {
+    this.iserrorlog = false;
+    this.isUploading = false;
+    this.isUploading1 = false;
+    this.isUploading2 = false;
+    this.isUploading3 = false;
+   }
   
   async onFilesSelected(event : any) {
+   
+    this.isUploading = true;
 
-    for (let index = 0; index < event.length; index++) {
-      const element = {
-         url: event.target.files[index].name
-      }
-  
-      this.filPhotoDiplomes.push(element)
-      
-    }
-  
     console.log('event', event);
-    let files = [...this.filPhotoDiplomes];
+    let files = [...event.target.files];
     event.target.value = null;
     const invalidFile = files.find(
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
     if (invalidFile) {
-    
+      this.iserrorlog = true;
       this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
+
       return;
     }
+  
     // .filter(e=>e.type.trim().length>0);
     for (let index = 0; index < files.length; index++) {
       const element = files[index];
-      element.url = element;
+      element.file = element;
       element.previewUrl = await this.fileToBase64(element);
     }
-    this.liste_fils =  [...files];
-  
-    
-    setTimeout(() => {
-      this.isUploading = false;
-    }, 5000);
+    this.les_url =  [...files];
+    // this.emitChangeEvent();
+    console.log('this.les_url', this.les_url);
+  }
 
+  async emitChangeEvent() {
+    // const isMobile = this.platform.is('mobile');
+
+    if (this.multiple) {
+      this.change.emit(this.les_url);
+    }
+
+    if (!this.multiple) {
+      this.change.emit(this.les_url[0]);
+    }
   }
 
   fileToBase64(file: File) {
@@ -349,6 +389,9 @@ export class SelectionComponent {
 
     }
 
+    console.log('Otable', Otable);
+    
+
     this.expTable.push(Otable)
 
     this.Lentreprise ="";
@@ -357,7 +400,7 @@ export class SelectionComponent {
     this.datefin = new Date()
     this.valAjout = true;
 
-    console.log("le tableau", this.expTable);
+    console.log("le tableau experience", this.expTable);
     
 
 
@@ -368,12 +411,9 @@ export class SelectionComponent {
   }
 
  async select() {
-
   
-
-    console.log(" edith select",this.selectform.value);
-    
-    if (this.selectform.invalid) return
+    console.log(" select",this.selectform.value); 
+    console.log(" experience ",this.expTable); 
     
     if (this.selectform.invalid) return
     
@@ -389,28 +429,41 @@ export class SelectionComponent {
         file: asset.file,
       });
     
-      asset.downloadUrl = url;
-    
+      asset.downloadUrl = url;   
       return url;
     });
+
+
+    const uploadedUrls = await Promise.all(imagesDiplomes);
+
+    console.log('uploadedUrls',uploadedUrls);
     
-    imagesDiplomes = await Promise.all(imagesDiplomes);
-      
+    // Filtrer les URLs null (échecs de téléchargement)
+    const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+    console.log('succesfulUrls', successfulUrls);
+    
+
   
-      const infoPreselect = 
+       this.les_url = [...successfulUrls]
+         console.log('tete11');
+
+    console.log('tete2');
+     
+        const infoSelect = 
       {
         
         LieuNaissance: this.selectform.value.LieuNaissance,
         dateNaissance: this.selectform.value.dateNaissance,
         paysNaissance: this.selectform.value.paysNaissance,
         Pere: {
-                 nom: this.pereName,
-                 prenoms: this.perePrenoms
+                 nom: this.selectform.value.pereName,
+                 prenoms: this.selectform.value.perePrenoms
 
               },
         Mere: {
-          nom: this.mereName,
-          prenoms: this.merePrenoms
+          nom: this.selectform.value.mereName,
+          prenoms: this.selectform.value.merePrenoms
 
              },
         nPasseport: this.selectform.value.nPasseport,
@@ -421,9 +474,9 @@ export class SelectionComponent {
         derniereResidencePays: this.selectform.value.derniereResidencePays,
         derniereResidenceVillage: this.selectform.value.derniereResidenceVillage,
         qualiProfession: this.selectform.value.qualiProfession,
-        principalProfession: this.selectform.value.principalProfession,
+        principalProfession: this.selectform.value.pricipalProfession,
         langueParler: this.selectform.value.langueParler,
-        expProfesionnel: this.selectform.value.expProfesionnel,
+        expProfesionnel: this.expTable,
         nbrEnfants: this.selectform.value.nbrEnfants,
         dHonneur: this.selectform.value.dHonneur,   
         fils_diplome:imagesDiplomes,    
@@ -433,26 +486,26 @@ export class SelectionComponent {
         
   
       }
-  
-       try {
-            
-        this.userServ.select(infoPreselect, this.userId)
-        this.router.navigate(["dashboardUser", {index: 1}])
-       }    
-      
-      catch  {
-  
+      console.log('toto36');
+      console.log('infos pour selecteur', infoSelect); 
+          
+      this.userServ.select(infoSelect, this.userId)
+      .then(
+        () => 
+        {
+          this.router.navigate(["dashboardUser", {index: 1}]);
+
+        }
+      )   
+      .catch(
+        
         (error: { code: any; message: any }) => {
           var errorCode = error.code;
           var errorMessage = error.message;
           console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
-        };
-  
-      }
-  
-    
-  
-     
+        }
+
+      )       
   }
 
 

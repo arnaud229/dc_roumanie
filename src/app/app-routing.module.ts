@@ -11,10 +11,10 @@ import { VideosComponent } from './videos/videos.component';
 import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
 import { EditSelectComponent } from './edit-select/edit-select.component';
 import { CreateDetteComponent } from './create-dette/create-dette.component';
-import { CreateRembourssementComponent } from './create-rembourssement/create-rembourssement.component';
-import { EditDetteComponent } from './edit-dette/edit-dette.component';
-import { EditRembourssementComponent } from './edit-rembourssement/edit-rembourssement.component';
 
+import { EditDetteComponent } from './edit-dette/edit-dette.component';
+import { CreateRemboursementComponent } from './create-remboursement/create-remboursement.component';
+import { EditRemboursementComponent } from './edit-remboursement/edit-remboursement.component';
 const routes: Routes = [
   { path: '', component: SingninComponent },
 
@@ -29,9 +29,9 @@ const routes: Routes = [
   { path: 'dashboardPartenaire', component: DashboardPartenaireComponent },
   { path: 'dashboardUser', component: DashboardUserComponent },
   { path: 'createdette', component: CreateDetteComponent },
-  { path: 'createrembourssement', component: CreateRembourssementComponent },
+  { path: 'createRemboursement', component: CreateRemboursementComponent },
   { path: 'editdette', component: EditDetteComponent },
-  { path: 'editrembourssement', component: EditRembourssementComponent },
+  { path: 'editremboursement', component: EditRemboursementComponent },
 ];
 
 

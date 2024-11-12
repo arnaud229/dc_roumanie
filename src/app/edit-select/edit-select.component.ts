@@ -120,20 +120,20 @@ export class EditSelectComponent {
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
 
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
   

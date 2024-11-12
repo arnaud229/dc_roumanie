@@ -12,7 +12,7 @@
             
             <input  type="number"  [ngClass]="{'error': preselectform.controls['age'].invalid || preselectform.controls['age'].value>120}"  formControlName="age" placeholder="Age" >
           
-            <select   formControlName="sMatrimoniale"  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
+            <select  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
                 <option *ngFor="let item of listMatrimonial" value="">  {{item}} </option>
 
                </select>
@@ -38,7 +38,7 @@
                 </div>
           
             <input  type="text"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['religion'].invalid && preselectform.controls['religion'].value!=''}"  formControlName="religion" placeholder="Région" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['religion'].invalid && preselectform.controls['religion'].value!=''}"  formControlName="religion" placeholder="Réligion" >
            
             <div  class="lecheck">
                
@@ -86,9 +86,29 @@
            
   
 
+        
+        <div class="lesboutonSP">
+
+            <button  class="boutton1"  (click)="precedent()"> Précédent </button> 
             <button  id="boutton1"  (click)="preselect()">Soumettre</button> 
+            
+        </div>
+
+           
           
     </div>
+
+
+    
+  <div  *ngIf="iserrorlog" class="loader">
+    <div class="groupError"  >
+      <p class="smsError"  >  {{message}} </p>
+      <button  (click)="closeError() " >ok</button>
+    </div> 
+
+</div>
+
+
 
 
 

@@ -54,7 +54,7 @@ export interface videoPresentation  {
     secteur : string,
     description: string,
     fileVideo: string,
-    uid: string,
+    user_id: string,
     createdAt?: any,
 
 }
@@ -64,21 +64,23 @@ export interface dette {
     montantDu: number,
     dateDette: Date,
     libele: string,
-    createdAt?: any
+    createdAt?: any,
+    user_id: any,
 }
 
-export interface rembourssement {
+export interface remboursement {
     id?: any,
-    montantRemboursse: number,
-    dateRembourssement: Date,
+    montantRembourse: number,
+    dateRemboursement: Date,
     libele: string,
-    createdAt?: any
+    createdAt?: any,
+    user_id: any,
 }
 
 export type experience = {
     entreprise: string;
     posteOccupe: string;
-    datedebut: Date;
+    dateDebut: Date;
     datefin: Date;
 }
 

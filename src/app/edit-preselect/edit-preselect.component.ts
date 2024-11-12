@@ -93,32 +93,32 @@ export class EditPreselectComponent {
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
 
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       },
       {
         entreprise: 'string',
         posteOccupe: 'cuisine',
-        datedebut: new Date(),
+        dateDebut: new Date(),
         datefin: new Date()
       }
     ],
@@ -252,7 +252,10 @@ export class EditPreselectComponent {
 
 
   getfilsPreselect() {
-    this.fileInput.nativeElement.click();
+    console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput.nativeElement.click();
+    }, 500);
   }
 
 
@@ -329,7 +332,7 @@ async   onFilesSelectedPreselect(evt : any) {
     });
 
     images = await Promise.all(images);
-
+   
 
     const infoPreselect = 
     {

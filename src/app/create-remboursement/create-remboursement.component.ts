@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { remboursement, User } from 'src/models/variables';
 import { FinancesService } from '../services/Finances/finances.service';
-import { dette, User } from 'src/models/variables';
-import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 
 @Component({
-  selector: 'app-create-dette',
-  templateUrl: './create-dette.component.html',
-  styleUrls: ['./create-dette.component.scss']
+  selector: 'app-create-remboursement',
+  templateUrl: './create-remboursement.component.html',
+  styleUrls: ['./create-remboursement.component.scss']
 })
-export class CreateDetteComponent {
+export class CreateRemboursementComponent {
 
+  
   loading = false;
-  detteform!: FormGroup;
+  remboursementform!: FormGroup;
   log_erreur = false;
   erreur_message = '';
   accepter_rappelle = false;
@@ -45,11 +45,11 @@ export class CreateDetteComponent {
 
 
   init_form(){
-    this.detteform = this.formbuilder.group({
+    this.remboursementform = this.formbuilder.group({
       //  telephone: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
       libele: ['', [Validators.required]],
-      montantDu: ['', [Validators.required, Validators.min(0)]],
-      dateDette: ['', [Validators.required,Validators.pattern(/^[0-9] {4}$/), Validators.max(2026) ]],
+      montantRembourse: ['', [Validators.required, Validators.min(0)]],
+      dateRemboursement: ['', [Validators.required,Validators.pattern(/^[0-9] {4}$/), Validators.max(2026) ]],
   
     });
   } 
@@ -62,40 +62,43 @@ export class CreateDetteComponent {
     this.iserrorlog = false;
   }
 
-  ajoutDette() {
-
-    console.log('parfait', this.detteform.value);
+  ajoutRemboursement()
+  {
+    
+    console.log('parfait', this.remboursementform.value);
 
     this.loading = true;
 
-    
-    if (this.detteform.invalid) {  } 
-      console.log('tete0');
+    if (this.remboursementform.invalid) {  } 
+    console.log('tete0');
 
-      const detteInfo: dette = {
-        montantDu: this.detteform.value.montantDu ,
-        dateDette: this.detteform.value.date,
-        libele: this.detteform.value.libele,
-        user_id: this.userId
-      }
+    const remboursementInfo: remboursement = {
+      montantRembourse: this.remboursementform.value.montantDu ,
+      dateRemboursement: this.remboursementform.value.date,
+      libele: this.remboursementform.value.libele,
+      user_id: this.userId
+    }
 
-      this.financeServices.CreateDette(detteInfo)
-      .then(
-        () => {
-          this.loading = false;
-          this.router.navigate(["dashboardAdmin", {index: 0}])
 
-        } 
-      )
-      .catch((e) => {
+    this.financeServices.CreateRemboursement(remboursementInfo)
+    .then(
+      () => {
         this.loading = false;
-      });
+        this.router.navigate(["dashboardAdmin", {index: 0}])
+      }
+    )
+    .catch(
+      (e) => {
+        this.loading = false;
+      }
+    )
 
 
 
-  }
 
 
+  } 
 
+     
 
 }

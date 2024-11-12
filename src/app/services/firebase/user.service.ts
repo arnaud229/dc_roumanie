@@ -12,6 +12,7 @@ import {
   deleteObject,
   getBlob
 } from 'firebase/storage';
+import { User } from "src/models/variables";
 
 
 
@@ -78,6 +79,19 @@ import {
         return result$;
       }
 
+      getUser(uid: string) {
+        const that = this;
+        return this.firestore
+          .collection('utilisateurs')
+          .doc(uid)
+          .get()
+          .pipe(
+            map((data) => {
+              return data.data() as User;
+            })
+          );
+      }
+
     async  preselect(data: any, index: string) {
      await   this.firestore.doc(`utilisateurs/${index}`).update({
           //les nouvelles valeurs wifi195100 40zu78
@@ -94,7 +108,7 @@ import {
       nationalite: data.nationalite,
       cWhatapp: data.cWhatapp,
        parrain: data.parrain,
-      region: data.region, 
+       religion: data.religion, 
       ldtep2: data.ldtep2, 
       fils_recus: data.fils_recus, 
 
@@ -116,8 +130,8 @@ import {
       }
 
 
-      select(data: any, index: string) {
-        this.firestore.doc(`utilisateurs/${index}`).update({
+   async   select(data: any, index: string) {
+      await  this.firestore.doc(`utilisateurs/${index}`).update({
           //les nouvelles valeurs wifi195100 40zu78
 
           LieuNaissance: data.LieuNaissance,
@@ -146,7 +160,13 @@ import {
 
         }
 
-        )
+        ).then(() => {
+          console.log('Document mis à jour avec succès');
+        })
+        .catch(error => {
+          console.error('Erreur lors de la mise à jour du document:', error);
+          // Afficher un message à l'utilisateur si nécessaire
+        });
 
       }
 

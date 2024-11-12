@@ -134,7 +134,7 @@ export class VideosComponent {
         secteur : this.videoform.value.secteur ,
         description: this.videoform.value.description ,
         fileVideo: this.filVideo,
-        uid: this.currentUser.uid
+        user_id: this.currentUser.uid
       
 
       };
