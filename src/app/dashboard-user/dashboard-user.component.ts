@@ -167,14 +167,16 @@ export class DashboardUserComponent {
 
 
 
-liste_Dette: any [] = [] ;
+liste_Dette: any [] = [];
 
 public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,
   dataTable: [
     ['Etat financière', 'Etat financière'],
-    ['Dette',     this.getTotalsDettes() ],
-    ['Rembourssement',      this.getTotalsRemboursements()],
+    ['Dette',     7 ],
+    ['Rembourssement',    11],
+    // ['Dette',     this.getTotalsDettes() ],
+    // ['Rembourssement',      this.getTotalsRemboursements()],
    
   ],
   //firstRowIsData: true,
