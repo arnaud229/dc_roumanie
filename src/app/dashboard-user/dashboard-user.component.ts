@@ -167,7 +167,7 @@ export class DashboardUserComponent {
 
 
 
-liste_Dette!: any [];
+liste_Dette: any [] = [] ;
 
 public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,

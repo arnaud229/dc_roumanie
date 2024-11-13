@@ -459,12 +459,14 @@ tr, td, th
     width: 100%;
     display: block;
     margin-left: -3%;
+    z-index: 2;
 }
 
 .navBarMobile > ul {
     position: relative;
     height: 100%;
     padding-left: 0px;
+    z-index: 2;
 
 }
 
@@ -489,39 +491,4 @@ tr, td, th
     display: flex;
     flex-direction: column;
 }
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
