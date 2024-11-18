@@ -1,0 +1,364 @@
+.content_in
+{
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #000000, $alpha: 0.5);
+    background-image: url("./../../assets/bio-guera.jpg");
+    // padding-left: 10%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    // padding-right: 10%;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+}
+
+
+.card-in
+{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    // height: 400px;
+    background: white;
+    border: solid 1px #764929;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+h1 {
+    text-align: center;
+    font-size: 30px;
+    color:  black;
+    width: 90%;
+    font-family: 'Source Serif 4';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 68px;
+}
+
+.inputs
+{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+input
+{
+   width: 90%;
+   margin-bottom: 30px;
+   height: 52px;
+   padding-left: 10px;
+   background: #FFFFFF;
+   border: 1px solid #D9D9D9;
+   border-radius: 8px;
+   margin-left: 9px;
+
+}
+
+.petit_texte
+{
+    width: 90%;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #52526F;
+}
+
+input .error {
+    border: solid 1px #c93b2d;
+  }
+
+input ::placeholder
+{
+    color: black;
+    font-size: 15px;
+    font-weight: bold;
+
+}
+
+
+#mdp_oublier
+{
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 22px;
+text-align: center;
+color: #764929;
+position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    margin-bottom: 20px;
+    cursor: pointer;
+     display: block;
+}
+
+.les_boutons
+{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.boutton
+{
+    width: 40%;
+    height: 33px;
+    text-align: center;
+    border-radius: 500px;
+    color:  white;
+    background: #764929;
+   border: 1px solid #764929;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+
+margin-bottom: 30px;
+   
+}
+
+#botton_bas
+{
+    width: 30%;
+    // height: 33px;
+    text-align: center;
+    color:  #764929;
+    font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+text-decoration: none;
+cursor: pointer;
+
+}  
+
+
+
+
+.loader
+{
+    position: absolute;
+    top: 32%;
+    left: 50%;
+    width: 250px;
+    height: 200px;
+    padding-top: 100px;
+    padding-left: 100px;
+    background: #DEDEDE;
+    border-radius: 10px;
+    transform: translateX(-50%);
+}
+
+
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 45px;
+    height: 45px;
+  }
+  .lds-ring div {
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    border: 30px solid #fff;
+    border-radius: 50%;
+    animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+    border-color: #764929 transparent transparent transparent;
+  }
+  .lds-ring div:nth-child(1) {
+    animation-delay: -0.45s;
+  }
+  .lds-ring div:nth-child(2) {
+    animation-delay: -0.3s;
+  }
+  .lds-ring div:nth-child(3) {
+    animation-delay: -0.15s;
+  }
+  @keyframes lds-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+.iferreur 
+{
+    position: absolute;
+    top: 32%;
+    left: 10%;
+    width: 70%;
+    height: 150px;
+    padding-top: 50px;
+    padding-left: 8%;
+    background: #DEDEDE;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.iferreur span
+{
+    width: 90%;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+}
+
+.iferreur button
+{
+    height: 40px;
+    color: white;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #764929;
+    width: 40%;
+    margin-left: 25%;
+}
+
+.content_connect
+{
+     width: 60%;
+     position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+
+}
+
+.smsError{
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 24px;
+}
+
+.groupError {
+  display: flex;
+  flex-direction: column;
+  margin-left: -15%;
+}
+
+.groupError > button 
+{
+  color: white;
+  background: #764929;
+  border-radius: 10px;
+  padding: 5px;
+  width: 40px;
+  height: 40px;
+  margin-left: 30%;
+}
+
+
+
+
+
+
+@media (max-width: 1000px ) {
+
+  .content_in
+{
+    width: 100%;
+    height: 100%;
+    padding-top: 10%;
+    padding-bottom: 10%;
+    position: absolute;
+
+}
+
+.card-in {
+ top: 10%;
+ width: 95%;
+}
+  
+}
+
+
+@media (max-width: 800px ) {
+
+  .content_in
+  {
+    background: none; 
+    padding-top: 0%;
+  }
+  .card-in
+  {
+    top: 0%;
+    border: none;
+    width: 95%;
+    background-image: url("./../../assets/motifafro.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 100%;
+    padding-top: 20%;
+  }
+
+ 
+
+  #mdp_oublier
+  {
+     display: none;
+  }
+
+  .les_boutons
+  {
+    display: none;
+  }
+ 
+  .petit_texte {
+   
+    font-size: 18px;
+  
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin-left: 0%;
+}
+
+}
+
+@media (max-width: 380px ) {
+
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    width: 95%;
+    margin-left: 2%;
+  }
+
+}
+
+

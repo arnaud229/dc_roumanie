@@ -6741,3 +6741,10 @@ export const countries = [
     'ZADO-GAGBE',
     'ZOGBODOMEY',
   ];
+
+  export const religion = [
+    'Cathilique',
+    'Musulmane',
+    'Laîque', 
+  ];
+  

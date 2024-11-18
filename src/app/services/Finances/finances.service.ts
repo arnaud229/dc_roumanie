@@ -166,6 +166,54 @@ import { map } from "rxjs";
   }
 
 
+ async updatedette(data: any, index: string) {
+    await this.firestore.doc(`dettes/${index}`).update(
+      {
+          //les nouvelles valeur
+
+          
+          montantDu: data.montantDu,
+          dateDette: data.dateDette ,
+          libele: data.libele,
+          nom: data.nom,
+          prenoms: data.prenoms,
+          user_id: data.user_id,
+      }
+    ).then(() => {
+      console.log('Document mis à jour avec succès');
+    })
+    .catch(error => {
+      console.error('Erreur lors de la mise à jour du document:', error);
+      // Afficher un message à l'utilisateur si nécessaire
+    });
+  }
+
+
+async updateRemboursement(data: any, index: string) {
+
+  await this.firestore.doc(`remboursement/${index}`).update(
+    {
+        //les nouvelles valeur
+
+        
+        montantRembourse: data.montantRembourse,
+        dateRemboursement: data.dateRemboursement ,
+        libele: data.libele,
+        nom: data.nom,
+        prenoms: data.prenoms,
+        user_id: data.user_id,
+    }
+  ).then(() => {
+    console.log('Document mis à jour avec succès');
+  })
+  .catch(error => {
+    console.error('Erreur lors de la mise à jour du document:', error);
+    // Afficher un message à l'utilisateur si nécessaire
+  });
+
+}
+
+
 
 
    

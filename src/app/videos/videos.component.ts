@@ -70,7 +70,10 @@ export class VideosComponent {
 
   
   getfils() {
-    this.fileInput.nativeElement.click();
+    console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput.nativeElement.click();
+    }, 500);
   }
 
  async onFilesSelected(event : any) {
@@ -92,27 +95,33 @@ export class VideosComponent {
         this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
         return;
       }
-      
-    
-      const url = await this.firebaseStorageService.uploadFile({
-        folder: 'filsVideoPresentation',
-        filename:
-          'filsVideoPresentation-file-' +
-          new Date().getTime() +
-          this.userId +
-          '_' +
-          filess.format,
-        file: filess.video,
+
+
+      const uploadPromises = files.map(async (image) => {
+
+        const url = await this.firebaseStorageService.uploadFile({
+          folder: 'filsVideoPresentation',
+          filename:
+            'Video-Presentation-file-' +
+            new Date().getTime() +
+            this.userId +
+            '.' +
+            image.format,
+          file: image.video,
+         
+        });
+          console.log('tete1');
+          
+          image.downloadUrl = url;
+  
+          return url;
+  
       });
-
-    
-      this.filVideo = url;
-
-    
-    setTimeout(() => {
-      this.isUploading = false;
-    }, 5000);
-   
+  
+      const uploadedUrls = await Promise.all(uploadPromises);
+      // Filtrer les URLs null (échecs de téléchargement)
+      const successfulUrls = uploadedUrls.filter(url => url !== null);    
+      this.filVideo = successfulUrls[0]; 
 
   }
 
@@ -138,7 +147,6 @@ export class VideosComponent {
       
 
       };
-
 
       this.videoService.CreateVideo(updateData)
       .then((res) => {

@@ -64,6 +64,8 @@ export interface dette {
     montantDu: number,
     dateDette: Date,
     libele: string,
+    nom: string,
+    prenoms: string,
     createdAt?: any,
     user_id: any,
 }
@@ -73,6 +75,8 @@ export interface remboursement {
     montantRembourse: number,
     dateRemboursement: Date,
     libele: string,
+    nom: string,
+    prenoms: string,
     createdAt?: any,
     user_id: any,
 }

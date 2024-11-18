@@ -10,9 +10,6 @@
             <span  [ngClass]="{'titleSelect': telVisible ==2}" > Les documents </span>
 
          </div>
-        
-  <!-- <p class="petit_texte"> veuillez entrer vos informations pour la préselectform </p> -->
-        
 
         <div class="inputs" >
 
@@ -21,7 +18,13 @@
             <h2>  Ajouter vos informations personnelles</h2>
 
             <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
-            <input  type="text"  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!=''}"  formControlName="paysNaissance" placeholder="Pays de naissance" >
+            <select  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!='Votre pays de naissance'}"  formControlName="paysNaissance" >
+               
+                <option  value=""> Votre pays de naissance</option>
+                <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
+
+               </select>
+
             <label for="">Date de naissance</label>
             <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['nPasseport'].invalid && selectform.controls['nPasseport'].value!=''}"  formControlName="nPasseport" placeholder="Num de votre passeport">
@@ -58,15 +61,22 @@
 
          </div>
            
+            <select  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!='Votre dernière Résidence (Pays)'}"  formControlName="derniereResidencePays" >
+               
+                <option  value=""> Votre dernière Résidence (Pays)</option>
+                <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
 
-            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!=''}"  formControlName="derniereResidencePays" placeholder="Votre Pays de résidence" >
+               </select>
+           
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" placeholder="ville/village de résidence" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidenceVillage'].invalid && selectform.controls['derniereResidenceVillage'].value!=''}"  formControlName="derniereResidenceVillage" placeholder="Quartier de résidence" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['qualiProfession'].invalid && selectform.controls['qualiProfession'].value!=''}"  formControlName="qualiProfession" placeholder="Qualification professionnelle" >
             <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" placeholder="Profession Principale" >
            
             <select  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  formControlName="langueParler" >
-                <option *ngFor="let item of listLangue" value="">  {{item}} </option>
+               
+                <option  value=""> Langue étrangère parler </option>
+                <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
 
                </select>
 

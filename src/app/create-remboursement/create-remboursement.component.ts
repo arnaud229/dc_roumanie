@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { remboursement, User } from 'src/models/variables';
 import { FinancesService } from '../services/Finances/finances.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { UsersService } from '../services/firebase/user.service';
 
 @Component({
   selector: 'app-create-remboursement',
@@ -22,12 +23,13 @@ export class CreateRemboursementComponent {
   iserrorlog = false;
   currentUser! : User;
   userId = "";
+  listUser: any[] = [];
 
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
     private financeServices: FinancesService,
-    public localstorageService: LocalstorageService,
+    public userService: UsersService,
  
   ) {
 
@@ -36,11 +38,39 @@ export class CreateRemboursementComponent {
 
   ngOnInit() {
     this.init_form();
-    this.currentUser = this.localstorageService.getCurrentUser();
-    this.userId = this.currentUser.uid
   }
 
 
+  getAllUsers() {
+    
+    const  data = {
+        pagination: {
+          startAt: 0,
+          limit: 2,
+        },
+        filters: {
+          orderByQueries: ['createdAt'],
+          whereQueries: [
+            {
+              fieldPath: 'name' ,
+              opStr: '==',
+              value: 'admin',
+            },
+            {
+              fieldPath: 'name' ,
+              opStr: '==',
+              value: 'partenaire',
+            }
+          ],
+        },
+      };
+  
+     this.userService.getUsers(data).subscribe(
+      (res) => {
+        this.listUser = res.data;
+      }
+     )
+    }
  
 
 
@@ -48,6 +78,7 @@ export class CreateRemboursementComponent {
     this.remboursementform = this.formbuilder.group({
       //  telephone: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
       libele: ['', [Validators.required]],
+      user: ['', [Validators.required]],
       montantRembourse: ['', [Validators.required, Validators.min(0)]],
       dateRemboursement: ['', [Validators.required,Validators.pattern(/^[0-9] {4}$/), Validators.max(2026) ]],
   
@@ -73,10 +104,12 @@ export class CreateRemboursementComponent {
     console.log('tete0');
 
     const remboursementInfo: remboursement = {
-      montantRembourse: this.remboursementform.value.montantDu ,
+      montantRembourse: this.remboursementform.value.montantDu,
       dateRemboursement: this.remboursementform.value.date,
       libele: this.remboursementform.value.libele,
-      user_id: this.userId
+      user_id: this.remboursementform.value.uid,
+      nom: this.remboursementform.value.user.nom,
+      prenoms: this.remboursementform.value.user.prenom
     }
 
 

@@ -1,9 +1,10 @@
-import { Component, ElementRef, EventEmitter, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecuFile, User } from 'src/models/variables';
 import { UsersService } from '../services/firebase/user.service';
 import { StorageService } from '../services/storage/storage.service';
+import { LocalstorageService } from '../services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-edit-select',
@@ -159,8 +160,14 @@ export class EditSelectComponent {
   multiple3: boolean = false;
   change: EventEmitter<any[]> = new EventEmitter();
 
-  filPhotoDiplomes! : any[];
+  filPhotoDiplomes: any[] = [];
+  itemToEditImages: any[] = []; // new Array(20)
+  removedImages: any[] = [];
+  les_url: any[] = [];
   ChoixImg : boolean = false;
+  oldFilPhoto: any = "";
+  oldFilPasseport: any = "";
+  oldFilCassierJudiciere: any = "";
 
 
   
@@ -169,26 +176,57 @@ export class EditSelectComponent {
     private router: Router,
     private userServ : UsersService,
     private firebaseStorageService: StorageService,
+    public localstorageService: LocalstorageService,
   ) {
 
     this.init_form();
   }
 
   ngOnInit() {
+
+    this.currentUser = this.localstorageService.getCurrentUser();
+    this.userId = this.currentUser.uid
     this.init_form();
   }
 
+  async ngOnChanges(changes: SimpleChanges) {
+    if (changes['initialValues']) {
+      // Perform actions when the inputValue changes
+      const initialValues = changes['initialValues'].currentValue;
+      this.itemToEditImages = initialValues
+      console.log('initialValues :>> ', initialValues)
+
+   }
+
+   this.init_form();
+
+  }
+
   init_form(){
+
+    console.log('the currentUser', this.currentUser);
+     
+    const arayImg = [this.currentUser.fils_recus];
+
+    this.itemToEditImages = (arayImg || []).map((e: any) => {
+      return { previewUrl: e, type: 'image', url: e }
+    })
+
+    console.log('les anciennes img', this.itemToEditImages);
+    
+
     this.selectform = this.formbuilder.group({
       LieuNaissance: this.currentUser.LieuNaissance,
-      dateNaissance:  new Date(),
+      dateNaissance:  this.currentUser.dateNaissance,
       paysNaissance: this.currentUser.paysNaissance,
-      Pere: '',
-      Mere: '',
+      pereName: this.currentUser.Pere.nom,
+      perePrenoms: this.currentUser.Pere.prenoms,
+      mereName: this.currentUser.Mere.nom ,
+      merePrenoms: this.currentUser.Mere.prenoms ,
       nPasseport: this.currentUser.nPasseport,
       lieuPasseport: this.currentUser.lieuPasseport,
-      dateEmiPasseport: new Date(),
-      dateExpPasseport: new Date(),
+      dateEmiPasseport: this.currentUser.dateEmiPasseport,
+      dateExpPasseport: this.currentUser.dateExpPasseport,
       derniereResidence: this.currentUser.derniereResidence,
       derniereResidencePays: this.currentUser.derniereResidencePays,
       derniereResidenceVillage: this.currentUser.derniereResidenceVillage,
@@ -201,22 +239,31 @@ export class EditSelectComponent {
       fils_diplome: "",    
       fil_photo: '',    
       fil_passportPhoto: "",    
-      fil_casierJudiciere: "",    
-        
+      fil_casierJudiciere: "",          
     });
 
-    this.pereName = this.currentUser.Pere.nom;
-    this.perePrenoms = this.currentUser.Pere.prenoms;
-    this.mereName = this.currentUser.Mere.nom;
-    this.merePrenoms = this.currentUser.Mere.prenoms;
+   this.oldFilPhoto = { previewUrl: this.currentUser.fil_photo, type: 'image', url: this.currentUser.fil_photo } ;
+   this.oldFilPasseport = { previewUrl: this.currentUser.fil_passportPhoto, type: 'image', url: this.currentUser.fil_passportPhoto };
+   this.oldFilCassierJudiciere = { previewUrl: this.currentUser.fil_casierJudiciere, type: 'image', url: this.currentUser.fil_casierJudiciere };
 
     this.expTable = this.currentUser.expProfesionnel;
     
     if (this.expTable.length > 0) {
 
       this.isValExperience = true;
+      this.valAjout = true;
       
     }
+
+}
+
+delete(index : number) {
+  console.log('111');
+
+  this.removedImages.push(this.itemToEditImages[index])
+  this.itemToEditImages.splice(index, 1);
+  this.emitChangeEvent();
+  // this.onRemovePicture.emit(this.removedImages)
 
 }
 
@@ -248,33 +295,53 @@ suivant(index: number) {
     }
 
     console.log('val telvisible', this.telVisible);
+    console.log('val experience', this.expTable.length);
+
+      
+    if (this.expTable.length > 0) {
+
+      this.isValExperience = true;
+      this.valAjout = true;
+    }
+
+    console.log('isValExperience', this.isValExperience);
     
- 
+    
 
 }
 getfils() {
-  this.fileInput.nativeElement.click();
+  console.log('has click', this.fileInput);
+  setTimeout(() => {
+    this.fileInput.nativeElement.click();
+  }, 500);
 }
 
 getfils1() {
-  this.fileInput1.nativeElement.click();
+  console.log('has click', this.fileInput);
+  setTimeout(() => {
+    this.fileInput1.nativeElement.click();
+  }, 500);
 }
 
 getfils2() {
-  this.fileInput2.nativeElement.click();
+ 
+  console.log('has click', this.fileInput);
+    setTimeout(() => {
+      this.fileInput2.nativeElement.click();
+    }, 500); 
 }
 
 getfils3() {
-  this.fileInput3.nativeElement.click();
+  console.log('has click', this.fileInput);
+  setTimeout(() => {
+    this.fileInput3.nativeElement.click();
+  }, 500);
 }
 
   async onFilesSelected1(event : any) {
-
-  
-
   const filess = event.target.files;
 
-  console.log('event', event);
+  console.log('event', event);    
   let files = [...event.target.files];
   event.target.value = null;
   const invalidFile = files.find(
@@ -285,25 +352,55 @@ getfils3() {
     this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
     return;
   }
+      console.log('this.oldFilPhoto', this.oldFilPhoto); 
+      
+      const table = [...this.oldFilPhoto ]
+      console.log('table', table); 
+      
+      const tableOld = (table || []).map((e: any) => {
+        return { previewUrl: e, type: 'image', url: e }
+      })
 
-  const url = await this.firebaseStorageService.uploadFile({
-    folder: 'filsPhoto',
-    filename:
-      'filsPhoto-file-' +
-      new Date().getTime() +
-      this.userId +
-      '.' +
-      filess.format,
-    file: filess.file,
-  });
+       await Promise.all(tableOld.map(async (image: any) => {
+       
+        const  { url } = image
+        return await this.firebaseStorageService.deleteFileFromUrl({
+           url 
+        });
+      })).catch(e => {
+        // this.isLoading = false
+        console.log('lerreur', e);
+        
+        // this.,
+      })
 
-  this.filPhoto = url;
- 
+
+     let imagePhoto: any = files.map(async (asset: any) => {
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsPhoto',
+        filename:
+          'filsPhoto-file-' +
+          new Date().getTime() +
+          this.userId +
+          '.' +
+          asset.format,
+        file: asset.file,
+      });
+    
+      asset.downloadUrl = url;   
+      return url;
+    });
   
-  setTimeout(() => {
-    this.isUploading1 = false;
-  }, 5000);
- 
+  
+    const uploadedUrls = await Promise.all(imagePhoto);
+  
+     
+    // Filtrer les URLs null (échecs de téléchargement)
+    const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+    this.filPhoto = successfulUrls[0];
+
+    console.log('le url', this.filPhoto);
 
 }
 
@@ -328,24 +425,41 @@ if (invalidFile) {
   return;
 }
 
- const url = await this.firebaseStorageService.uploadFile({
+const {urlOld} = this.oldFilPasseport;
+
+if (this.oldFilPasseport !='' || this.oldFilPasseport != undefined ) {
+      await this.firebaseStorageService.deleteFileFromUrl(urlOld);
+
+}
+
+
+let imagePhotoPasseport: any = files.map(async (asset: any) => {
+const url = await this.firebaseStorageService.uploadFile({
   folder: 'filsPhotoPasseport',
   filename:
     'filsPhotoPasseport-file-' +
     new Date().getTime() +
     this.userId +
     '.' +
-    filess.format,
-  file: filess.file,
+    asset.format,
+  file: asset.file,
+});
+
+asset.downloadUrl = url;   
+return url;
 });
 
 
-  this.filPhotoPassport = url;
+const uploadedUrls = await Promise.all(imagePhotoPasseport);
 
-  
-  setTimeout(() => {
-    this.isUploading2 = false;
-  }, 5000);
+
+// Filtrer les URLs null (échecs de téléchargement)
+const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+this.filPhotoPassport = successfulUrls[0];
+
+console.log('le url', this.filPhotoPassport);
+
 
 }
 
@@ -369,27 +483,45 @@ const invalidFile = files.find(
     this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
     return;
   }
+
+
   
-
-  const url = await this.firebaseStorageService.uploadFile({
-    folder: 'filsPhotoCXasier',
-    filename:
-      'filsPhotoCassier-file-' +
-      new Date().getTime() +
-      this.userId +
-      '.' +
-      filess.format,
-    file: filess.file,
-  });
+const {urlOld} = this.oldFilCassierJudiciere;
 
 
-  this.filPhotoCasier = url;
+
+if (this.oldFilCassierJudiciere !='' || this.oldFilCassierJudiciere != undefined ) {
+  await this.firebaseStorageService.deleteFileFromUrl(urlOld);
+
+}
 
 
-  setTimeout(() => {
-    this.isUploading3 = false;
-  }, 5000);
+let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
+const url = await this.firebaseStorageService.uploadFile({
+folder: 'filsPhotoCasier',
+filename:
+'filsPhotoCassier-file-' +
+new Date().getTime() +
+this.userId +
+'.' +
+asset.format,
+file: asset.file,
+});
 
+asset.downloadUrl = url;   
+return url;
+});
+
+
+const uploadedUrls = await Promise.all(imagePhotoCassierJudiciaire);
+
+
+// Filtrer les URLs null (échecs de téléchargement)
+const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+this.filPhotoCasier = successfulUrls[0];
+
+console.log('le url', this.filPhotoCasier);
 
 
 }
@@ -425,16 +557,11 @@ async onFilesSelected(event : any) {
   this.liste_fils = this.multiple
     ? [...this.liste_fils, ...files]
     : [...files];
-  this.emitChangeEvent();
+  this.emitChangeEventLog();
   // this.les_url = new Array(10).fill({}).map(e=>files[0])
   console.log('this.les_url', this.currentUser.fils_diplome);
   this.ChoixImg = true;
   
-
-  
-  setTimeout(() => {
-    this.isUploading = false;
-  }, 5000);
 
 }
 
@@ -451,18 +578,31 @@ async emitChangeEvent() {
   // const isMobile = this.platform.is('mobile');
 
   if (this.multiple) {
-    this.change.emit(this.currentUser.fils_diplome);
+    this.change.emit(this.itemToEditImages);
   }
 
   if (!this.multiple) {
-    // this.change.emit(this.currentUser.fils_diplome[0]  );
+    this.change.emit(this.itemToEditImages[0]);
   }
 }
+
+  async emitChangeEventLog() {
+
+    
+    if (this.multiple) {
+      this.change.emit(this.les_url);
+    }
+
+    if (!this.multiple) {
+      this.change.emit(this.les_url[0]);
+    }
+
+  }
 
 activeAjoutExperience() {
 
   this.isValExperience = false;
-
+  this.valAjout = true;
 }
 
 
@@ -497,90 +637,122 @@ clearDate() {
   this.dateInput.nativeElement.value = '';
 }
 
-async select() {
 
-  console.log(" edith select",this.selectform.value);
-    
-if (this.selectform.invalid) return
-
-if (this.selectform.invalid) return
-
-let imagesDiplomes: any = this.liste_fils.map(async (asset: any) => {
-  const url = await this.firebaseStorageService.uploadFile({
-    folder: 'filsDiplomes',
-    filename:
-      'filsDiplomes-file-' +
-      new Date().getTime() +
-      this.userId +
-      '.' +
-      asset.format,
-    file: asset.file,
+async editSelect() {
+  
+  console.log(" select",this.selectform.value); 
+  console.log(" experience ",this.expTable); 
+  
+  if (this.selectform.invalid) return
+  
+  let imagesDiplomes: any = this.liste_fils.map(async (asset: any) => {
+    const url = await this.firebaseStorageService.uploadFile({
+      folder: 'filsDiplomes',
+      filename:
+        'filsDiplomes-file-' +
+        new Date().getTime() +
+        this.userId +
+        '.' +
+        asset.format,
+      file: asset.file,
+    });
+  
+    asset.downloadUrl = url;   
+    return url;
   });
 
-  asset.downloadUrl = url;
 
-  return url;
-});
+  const uploadedUrls = await Promise.all(imagesDiplomes);
 
-imagesDiplomes = await Promise.all(imagesDiplomes);
+   
+  // Filtrer les URLs null (échecs de téléchargement)
+  const successfulUrls = uploadedUrls.filter(url => url !== null);
 
-const infoPreselect = 
-{
+      //delete removed files from firebase
+      await Promise.all(this.removedImages.map(async (image: any) => {
+       
+        const  { url } = image
+        return await this.firebaseStorageService.deleteFileFromUrl({
+           url 
+        });
+      })).catch(e => {
+        // this.isLoading = false
+        console.log('lerreur', e);
+        
+        // this.,
+      })
   
-  LieuNaissance: this.selectform.value.LieuNaissance,
-  dateNaissance: this.selectform.value.dateNaissance,
-  paysNaissance: this.selectform.value.paysNaissance,
-  Pere: {
-           nom: this.pereName,
-           prenoms: this.perePrenoms
-
-        },
-  Mere: {
-    nom: this.mereName,
-    prenoms: this.merePrenoms
-
-       },
-  nPasseport: this.selectform.value.nPasseport,
-  lieuPasseport: this.selectform.value.lieuPasseport,
-  dateEmiPasseport: this.selectform.value.dateEmiPasseport,
-  dateExpPasseport: this.selectform.value.dateExpPasseport,
-  derniereResidence: this.selectform.value.derniereResidence,
-  derniereResidencePays: this.selectform.value.derniereResidencePays,
-  derniereResidenceVillage: this.selectform.value.derniereResidenceVillage,
-  qualiProfession: this.selectform.value.qualiProfession,
-  principalProfession: this.selectform.value.principalProfession,
-  langueParler: this.selectform.value.langueParler,
-  expProfesionnel: this.selectform.value.expProfesionnel,
-  nbrEnfants: this.selectform.value.nbrEnfants,
-  dHonneur: this.selectform.value.dHonneur,   
-  fils_diplome: imagesDiplomes ,    
-  fil_photo: this.filPhoto ,    
-  fil_passportPhoto: this.filPhotoPassport,    
-  fil_casierJudiciere: this.filPhotoCasier,    
+      const remainingImagesAfterDeletion = this.itemToEditImages.filter(initial => {
+        return !this.removedImages.some(removed => removed.url === initial.url)
+      }).map(e => e.url)
+      // console.log('this.sel :>> ', this.selectedImages, this.removedImages, this.itemToEditImages);
+      // console.log('this.remainingImagesAfterDeletion :>> ', addedFiles, remainingImagesAfterDeletion);
+      const avantupdateImages = [...remainingImagesAfterDeletion, ...successfulUrls];
   
-
-}
-
-try {
-            
-  this.userServ.select(infoPreselect, this.userId)
-  this.router.navigate(["dashboardUser", {index: 1}])
- }    
-
-catch  {
-
-  (error: { code: any; message: any }) => {
-    var errorCode = error.code;
-    var errorMessage = error.message;
-    console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
-  };
-
-}
+      const updatedImages = avantupdateImages.flat();
 
 
 
+  console.log('uploadedUrls',updatedImages);
+ 
 
+   
+      const infoSelect = 
+    {
+      
+      LieuNaissance: this.selectform.value.LieuNaissance,
+      dateNaissance: this.selectform.value.dateNaissance,
+      paysNaissance: this.selectform.value.paysNaissance,
+      Pere: {
+               nom: this.selectform.value.pereName,
+               prenoms: this.selectform.value.perePrenoms
 
+            },
+      Mere: {
+        nom: this.selectform.value.mereName,
+        prenoms: this.selectform.value.merePrenoms
+
+           },
+      nPasseport: this.selectform.value.nPasseport,
+      lieuPasseport: this.selectform.value.lieuPasseport,
+      dateEmiPasseport: this.selectform.value.dateEmiPasseport,
+      dateExpPasseport: this.selectform.value.dateExpPasseport,
+      derniereResidence: this.selectform.value.derniereResidence,
+      derniereResidencePays: this.selectform.value.derniereResidencePays,
+      derniereResidenceVillage: this.selectform.value.derniereResidenceVillage,
+      qualiProfession: this.selectform.value.qualiProfession,
+      principalProfession: this.selectform.value.pricipalProfession,
+      langueParler: this.selectform.value.langueParler,
+      expProfesionnel: this.expTable,
+      nbrEnfants: this.selectform.value.nbrEnfants,
+      dHonneur: this.selectform.value.dHonneur,   
+      fils_diplome:updatedImages,    
+      fil_photo: this.filPhoto ,    
+      fil_passportPhoto: this.filPhotoPassport,    
+      fil_casierJudiciere: this.filPhotoCasier,    
+      
+
+    }
+    console.log('toto36');
+    console.log('infos pour selecteur', infoSelect); 
+        
+    this.userServ.select(infoSelect, this.userId)
+    .then(
+      () => 
+      {
+        this.router.navigate(["dashboardUser", {index: 1}]);
+
+      }
+    )   
+    .catch(
+      
+      (error: { code: any; message: any }) => {
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
+      }
+
+    )       
 }
 
 

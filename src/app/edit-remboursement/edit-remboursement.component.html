@@ -1,1 +1,50 @@
-<p>edit-remboursement works!</p>
+<div class="content_in">
+
+    <div class="card-in" >
+
+        <h1>Se connecter</h1>
+
+        
+  <p class="petit_texte"> veuillez remplir les champ pour enregistrer un nouveau remboursement pour un voyageur </p>
+        
+
+        <div class="inputs"  [formGroup]="remboursementform" >
+            
+            <input type="text" [ngClass]="{'error': remboursementform.controls['libele'].invalid && remboursementform.controls['libele'].value!=''}"  formControlName="libele" placeholder="Libéle de la dette" >
+           
+             
+            <select  [ngClass]="{'error': remboursementform.controls['user'].invalid && remboursementform.controls['user'].value!='choisir le profil'}"  formControlName="user" >
+              <option value=""> choisir le profil </option>
+              <option *ngFor="let item of listUser" [value]="item">  {{item.nom}}    {{item.prenom}}  </option>
+
+             </select> 
+           
+            <input type="number" [ngClass]="{'error': remboursementform.controls['montantRembourse'].invalid && remboursementform.controls['montantRembourse'].value!=''}"  formControlName="montantRembourse" placeholder="Montant" >
+            <input  type="number"  [ngClass]="{'error': remboursementform.controls['dateRemboursement'].invalid }"  formControlName="dateRemboursement" placeholder="Date de la dette" >
+       
+ 
+                <button  class="boutton"  (click)="editRemboursement()">Ajouter</button>               
+
+            </div>
+
+        </div>
+
+    </div>
+
+   
+
+  
+
+<div  *ngIf="loading" class="loader">
+
+  <div *ngIf="!iserrorlog" class="lds-ring"><div></div><div></div><div></div></div>
+
+  <div class="groupError"  *ngIf="iserrorlog" >
+    <p class="smsError"  >  {{erreur_message}} </p>
+    <button  (click)="closeError() " >ok</button>
+  </div>
+
+  
+
+</div>
+

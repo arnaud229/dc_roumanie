@@ -92,6 +92,12 @@ export class SingninComponent {
      .then(async (res) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
          if (res.user) {
+
+          // if (res.user) {
+            
+          // } else {
+            
+          // }
         
       this.loading = false;
       console.log('succès sucès');

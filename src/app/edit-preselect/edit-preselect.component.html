@@ -13,8 +13,11 @@
             <input  type="number"  [ngClass]="{'error': editPreselectform.controls['age'].invalid || editPreselectform.controls['age'].value>120}"  formControlName="age" placeholder="Age" >
           
             <label for="">Situation Matriminiale</label>
-            <select   formControlName="sMatrimoniale"  [ngClass]="{'error': editPreselectform.controls['sMatrimoniale'].invalid && editPreselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
-                <option *ngFor="let item of listMatrimonial" value="currentUser.sMatrimoniale">  {{item}} </option>
+            <select   [ngClass]="{'error': editPreselectform.controls['sMatrimoniale'].invalid && editPreselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
+               
+                <option value=""> {{currentUser.sMatrimoniale}} </option>
+
+                <option *ngFor="let item of listMatrimonial" [value]="item">  {{item}} </option>
 
                </select>
 
@@ -112,15 +115,18 @@
                 <img src="./../../assets/download_icon.png " alt="">
             </span>
 
-          
-       
-            <ul *ngIf="!ChoixImg" >
-                <li  *ngFor="let to of les_url , let i = index">
+          <div  *ngIf="!ChoixImg">
+
+            <ul *ngFor="let to of itemToEditImages " >
+                <li  *ngFor="let url of to.previewUrl  , let i = index">
                 
                   <img class="delect" (click)="delete(i) " src="./../../assets/croixDelete.png" alt="Delete">
-                  <img class="imgCard" [src]="to" alt="Image" >
+                  <img class="imgCard" [src]="" alt="Image" >
                 </li>
               </ul>
+
+          </div>
+       
 
              
         

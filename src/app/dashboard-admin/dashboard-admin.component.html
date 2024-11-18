@@ -1,1 +1,93 @@
-<p>dashboard-admin works!</p>
+<div class="card_dash">
+
+    
+    <div class="nav_dash">
+
+        <ul>    
+
+            <div class="card_user" >
+                <img src="./../../assets/1077114.png" alt="">
+                <p>
+                    <span> {{ currentUser.nom }} </span>
+                    <span> {{currentUser.prenom}} </span>
+                </p>
+
+            </div>
+
+            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
+            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
+            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Les vidéos </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Etat Finacière </li>
+            <li (click)="logOut()"  [ngClass]="{'selctIn': selecter == 4}" >Déconxion</li>
+
+        </ul>
+
+    </div>
+
+        <!-- header mobile select -->
+
+        <div  class="cardHeadMobile" >
+            <div class="groupe1Mobile" >
+
+                <img (click)="openMenu()" src="./../../assets/menuHamberger.png" alt="">
+
+                <h1> {{ titleHeadMobile}} </h1>
+                <img (click)="editMobile()" src="./../../assets/edit2.png" alt="">
+            </div>
+
+
+           
+
+           </div>
+
+
+           <div class="navBarMobile" *ngIf="isOpenMenu" >
+
+            <ul>    
+                <img id="iconFerme" (click)="openMenu()" src="./../../assets/croixDelete.png" alt="">
+
+                <div class="card_user" >
+                    <img src="./../../assets/1077114.png" alt="">
+                    <p>
+                        <span> {{ currentUser.nom }} </span>
+                        <span> {{currentUser.prenom}} </span>
+                    </p>
+    
+                </div>
+    
+                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>
+                <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
+                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Dettes</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Remboursements</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
+                <li (click)="logOut()"  >Déconxion</li>
+    
+            </ul>
+
+
+
+           </div>
+
+
+           <!-- fin  -->
+
+
+
+           <div class="card_rest">
+
+            <div class="" *ngIf="selecter==0">  Preselection  </div>
+            <div class="" *ngIf="selecter==1">  Selection  </div>
+            <div class="" *ngIf="selecter==2">   Dette  </div>
+            <div class="" *ngIf="selecter==3">   Remboursement  </div>
+            <div class="" *ngIf="selecter==4">  Les Videos   </div>
+            <div class="" *ngIf="selecter==5">  Etat financière  </div>
+
+            <div>    </div>
+
+
+           </div>
+
+</div>

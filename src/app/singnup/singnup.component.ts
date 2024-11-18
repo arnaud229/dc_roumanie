@@ -218,6 +218,7 @@ export class SingnupComponent {
   
   closeError()  {
     this.iserrorlog = false;
+    this.loading = false;
   }
 
 }

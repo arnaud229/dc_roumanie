@@ -423,6 +423,9 @@ getTotalsRemboursements() {
 
       if (this.liste_Dette.length > 0) {
         this.isFinance = true;          
+} else
+{
+  this.isFinance = false;
 }
 
       

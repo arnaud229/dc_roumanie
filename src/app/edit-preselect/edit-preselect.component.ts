@@ -21,7 +21,7 @@ export class EditPreselectComponent {
   isUploading = false;
   pre = "";
   edite = "";
-  switch = true;
+  switch = false;
   listMatrimonial = ["Situation Matrimoniale","Célibataire", "Marié(e)", "Veuf(ve) "];
   liste_fils: RecuFile[] = [];
   @ViewChild('fileInput')
@@ -134,11 +134,9 @@ export class EditPreselectComponent {
   message = '';
   ChoixImg : boolean = false;
 
-
-
-  // les_url = ["./../../assets/bio-guera.jpg", "./../../assets/bio-guera.jpg", "./../../assets/bio-guera.jpg"];
   les_url: any[] = [];
   progressValue  = 0;
+  itemToEditImages: any[] = []; // new Array(20)
 
   
   constructor(
@@ -156,10 +154,6 @@ export class EditPreselectComponent {
   ngOnInit() {
     this.currentUser = this.localstorageService.getCurrentUser();
     this.userId = this.currentUser.uid
-  this.les_url = this.currentUser.fils_recus;
-
-  // this.les_url = ["./../../assets/bio-guera.jpg", "./../../assets/bio-guera.jpg", "./../../assets/bio-guera.jpg"];
-
    
   
    this.init_form();
@@ -169,26 +163,23 @@ export class EditPreselectComponent {
     if (changes['initialValues']) {
       // Perform actions when the inputValue changes
       const initialValues = changes['initialValues'].currentValue;
-      this.les_url = initialValues
-      console.log('initialValues :>> ', initialValues);
+      this.itemToEditImages = initialValues
+      console.log('initialValues :>> ', initialValues)
 
-    }
+   }
+
   }
  
 
-  getFilsRecus() {
- //a verrifier
-  }
 
 
   delete(index : number) {
     console.log('111');
-    
-
-    this.removedImages.push(this.les_url[index])
-    this.les_url.splice(index, 1);
+  
+    this.removedImages.push(this.itemToEditImages[index])
+    this.itemToEditImages.splice(index, 1);
     this.emitChangeEvent();
-    this.onRemovePicture.emit(this.removedImages)
+    // this.onRemovePicture.emit(this.removedImages)
 
   }
 
@@ -196,12 +187,25 @@ export class EditPreselectComponent {
     // const isMobile = this.platform.is('mobile');
 
     if (this.multiple) {
+      this.change.emit(this.itemToEditImages);
+    }
+
+    if (!this.multiple) {
+      this.change.emit(this.itemToEditImages[0]);
+    }
+  }
+
+  async emitChangeEventLog() {
+
+    
+    if (this.multiple) {
       this.change.emit(this.les_url);
     }
 
     if (!this.multiple) {
       this.change.emit(this.les_url[0]);
     }
+
   }
 
 
@@ -213,6 +217,15 @@ export class EditPreselectComponent {
    // preselection edit
 
    init_form(){
+
+     console.log('the currentUser', this.currentUser);
+     
+     const arayImg = [this.currentUser.fils_recus];
+
+     this.itemToEditImages = (arayImg || []).map((e: any) => {
+       return { previewUrl: e, type: 'image', url: e }
+     })
+
     this.editPreselectform = this.formbuilder.group({
       age: this.currentUser.age,
       sMatrimoniale: this.currentUser.sMatrimoniale,
@@ -228,7 +241,7 @@ export class EditPreselectComponent {
       parrain: this.currentUser.parrain,
       religion: this.currentUser.religion, 
       ldtep2: this.currentUser.ldtep2, 
-      // fils_recus: this.currentUser.fils_recus, 
+      // fils_recus: [ this.itemToEditImages?.[0]], 
       fils_recus: "", 
       
      
@@ -239,14 +252,17 @@ export class EditPreselectComponent {
 
     console.log("pre", this.pre);
     console.log("numéro", this.edite);
-    console.log("les_url", this.les_url );
-    console.log("les_url", this.currentUser.fils_diplome );
-    
-    
+    console.log("les_url", this.itemToEditImages );   
   } 
 
   suivantPreselect() {
     this.switch = !this.switch;
+      
+    const arayImg = [this.currentUser.fils_recus];
+
+    this.itemToEditImages = (arayImg || []).map((e: any) => {
+      return { previewUrl: e, type: 'image', url: e }
+    })
 
   }
 
@@ -268,15 +284,7 @@ async   onFilesSelectedPreselect(evt : any) {
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
     if (invalidFile) {
-      // this.utilsService.presentAlert({
-      //   header: 'Fichier volumineux !',
-      //   message:
-      //     'La taille du fichier ' +
-      //     invalidFile.name +
-      //     ' excede la taille maximale autorisee',
-      
-      // });
-
+    
       this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
 
 
@@ -291,7 +299,7 @@ async   onFilesSelectedPreselect(evt : any) {
     this.les_url = this.multiple
       ? [...this.les_url, ...files]
       : [...files];
-    this.emitChangeEvent();
+    this.emitChangeEventLog();
     // this.les_url = new Array(10).fill({}).map(e=>files[0])
     console.log('this.les_url', this.les_url);
     this.ChoixImg = true;
@@ -316,9 +324,9 @@ async   onFilesSelectedPreselect(evt : any) {
 
     let images: any = this.les_url.map(async (asset: any) => {
       const url = await this.firebaseStorageService.uploadFile({
-        folder: 'articles',
+        folder: 'filsRecus',
         filename:
-          'articles-file-' +
+          'Recus-preinscription-' +
           new Date().getTime() +
           this.userId +
           '.' +
@@ -331,7 +339,37 @@ async   onFilesSelectedPreselect(evt : any) {
       return url;
     });
 
-    images = await Promise.all(images);
+    const uploadedUrls = await Promise.all(images);
+    // Filtrer les URLs null (échecs de téléchargement)
+    const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+
+      //delete removed files from firebase  
+        await Promise.all(this.removedImages.map(async (image: any) => {
+          const { url } = image
+          return await this.firebaseStorageService.deleteFileFromUrl({
+            url,
+          });
+        })).catch(e => {
+          // this.isLoading = false
+          console.log('lerreur', e);
+          
+          // this.,
+        })
+      
+     
+  
+      const remainingImagesAfterDeletion = this.itemToEditImages.filter(initial => {
+        return !this.removedImages.some(removed => removed.url === initial.url)
+      }).map(e => e.url)
+      // console.log('this.sel :>> ', this.selectedImages, this.removedImages, this.itemToEditImages);
+      // console.log('this.remainingImagesAfterDeletion :>> ', addedFiles, remainingImagesAfterDeletion);
+      const avantupdateImages = [...remainingImagesAfterDeletion, ...successfulUrls];
+  
+      const updatedImages = avantupdateImages.flat();
+      
+
+
    
 
     const infoPreselect = 
@@ -354,11 +392,15 @@ async   onFilesSelectedPreselect(evt : any) {
       },
        
        parrain: this.editPreselectform.value.parrain,
-      region: this.editPreselectform.value.region, 
+       religion: this.editPreselectform.value.religion, 
       ldtep2: this.editPreselectform.value.ldtep2, 
-      fils_recus: images, 
+      fils_recus: updatedImages, 
 
     }
+
+
+    console.log("infoPreselect: ",infoPreselect); 
+    
 
 
     await this.userServ.preselect(infoPreselect, this.userId).then(
@@ -378,6 +420,7 @@ async   onFilesSelectedPreselect(evt : any) {
 
   }
 
+  // https://web.telegram.org/a/#-1001909533311
 
 
 }

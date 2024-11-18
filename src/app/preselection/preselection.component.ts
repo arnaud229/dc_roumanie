@@ -7,6 +7,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { StorageService } from '../services/storage/storage.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 
 
@@ -39,6 +40,7 @@ export class PreselectionComponent {
   multiple: boolean = false;
   change: EventEmitter<any[]> = new EventEmitter();
   iserrorlog : boolean =  false;
+  listReligion: any[] = [];
 
   constructor(
     private formbuilder: FormBuilder,
@@ -47,8 +49,10 @@ export class PreselectionComponent {
     private afs: AngularFirestore,
     private firebaseStorageService: StorageService,
     public localstorageService: LocalstorageService,
+    public utilsService: UtilsService,
   ) {
 
+    this.listReligion = this.utilsService.getListReligion();
     this.init_form();
   }
 

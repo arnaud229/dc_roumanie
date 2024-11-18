@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { arrondissements, communes, countries, departements, quartiers } from "./constants";
+import { arrondissements, communes, countries, departements, quartiers, religion } from "./constants";
 
 @Injectable({
     providedIn: 'root',
@@ -24,7 +24,22 @@ import { arrondissements, communes, countries, departements, quartiers } from ".
       return a.localeCompare(b);
     });
   
+     religion = religion
     quartiers = quartiers;
+
+
+    constructor() {
+
+    }
+
+    getListCountries() {
+      return countries;
+    }
+
+    getListReligion() {
+      return religion;
+
+    }
    
 
 

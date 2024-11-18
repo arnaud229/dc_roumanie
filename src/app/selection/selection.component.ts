@@ -5,6 +5,7 @@ import { UsersService } from '../services/firebase/user.service';
 import { RecuFile, User } from 'src/models/variables';
 import { StorageService } from '../services/storage/storage.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 
 @Component({
@@ -74,6 +75,8 @@ export class SelectionComponent {
   progressValue3  = 0;
 
   currentUser!: User 
+  listReligion: any[] = [];
+  listCountries: any[] = [];
 
 
 
@@ -87,8 +90,10 @@ export class SelectionComponent {
     private firebaseStorageService: StorageService,
     private cdr: ChangeDetectorRef,
     public localstorageService: LocalstorageService,
+    public utilsService: UtilsService,
   ) {
-
+    this.listReligion = this.utilsService.getListReligion();
+    this.listCountries = this.utilsService.getListCountries();
     this.init_form();
   }
 
@@ -213,23 +218,33 @@ export class SelectionComponent {
       return;
     }
   
-    const url = await this.firebaseStorageService.uploadFile({
-      folder: 'filsPhoto',
-      filename:
-        'filsPhoto-file-' +
-        new Date().getTime() +
-        this.userId +
-        '.' +
-        filess.format,
-      file: filess.file,
+    let imagePhoto: any = files.map(async (asset: any) => {
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsPhoto',
+        filename:
+          'filsPhoto-file-' +
+          new Date().getTime() +
+          this.userId +
+          '.' +
+          asset.format,
+        file: asset.file,
+      });
+    
+      asset.downloadUrl = url;   
+      return url;
     });
   
-    this.filPhoto = url;
   
-    
-    // setTimeout(() => {
-    //   this.isUploading1 = false;
-    // }, 5000);
+    const uploadedUrls = await Promise.all(imagePhoto);
+  
+     
+    // Filtrer les URLs null (échecs de téléchargement)
+    const successfulUrls = uploadedUrls.filter(url => url !== null);
+
+    this.filPhoto = successfulUrls[0];
+
+    console.log('le url', this.filPhoto);
+  
    
 
   }
@@ -255,24 +270,32 @@ export class SelectionComponent {
       return;
     }
     
-     const url = await this.firebaseStorageService.uploadFile({
-      folder: 'filsPhotoPasseport',
-      filename:
-        'filsPhotoPasseport-file-' +
-        new Date().getTime() +
-        this.userId +
-        '.' +
-        filess.format,
-      file: filess.file,
-    });
-    
-    
-      this.filPhotoPassport = url;
-    
-    // setTimeout(() => {
-    //   this.isUploading2 = false;
-    // }, 5000);
-
+    let imagePhotoPasseport: any = files.map(async (asset: any) => {
+      const url = await this.firebaseStorageService.uploadFile({
+        folder: 'filsPhotoPasseport',
+        filename:
+          'filsPhotoPasseport-file-' +
+          new Date().getTime() +
+          this.userId +
+          '.' +
+          asset.format,
+        file: asset.file,
+      });
+      
+      asset.downloadUrl = url;   
+      return url;
+      });
+      
+      
+      const uploadedUrls = await Promise.all(imagePhotoPasseport);
+      
+      
+      // Filtrer les URLs null (échecs de téléchargement)
+      const successfulUrls = uploadedUrls.filter(url => url !== null);
+      
+      this.filPhotoPassport = successfulUrls[0];
+      
+      console.log('le url', this.filPhotoPassport);
   }
 
   async onFilesSelected3(event : any) {
@@ -298,26 +321,32 @@ export class SelectionComponent {
       }
       
     
-      const url = await this.firebaseStorageService.uploadFile({
-        folder: 'filsPhotoCasier',
-        filename:
-          'filsPhotoCassier-file-' +
-          new Date().getTime() +
-          this.userId +
-          '.' +
-          filess.format,
-        file: filess.file,
-      });
-    
-    
-      this.filPhotoCasier = url;
-    
-
-    // setTimeout(() => {
-    //   this.isUploading3 = false;
-    // }, 5000);
-
+let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
+  const url = await this.firebaseStorageService.uploadFile({
+  folder: 'filsPhotoCasier',
+  filename:
+  'filsPhotoCassier-file-' +
+  new Date().getTime() +
+  this.userId +
+  '.' +
+  asset.format,
+  file: asset.file,
+  });
   
+  asset.downloadUrl = url;   
+  return url;
+  });
+  
+  
+  const uploadedUrls = await Promise.all(imagePhotoCassierJudiciaire);
+  
+  
+  // Filtrer les URLs null (échecs de téléchargement)
+  const successfulUrls = uploadedUrls.filter(url => url !== null);
+  
+  this.filPhotoCasier = successfulUrls[0];
+  
+  console.log('le url', this.filPhotoCasier);
 
   }
 

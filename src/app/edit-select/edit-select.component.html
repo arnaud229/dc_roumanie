@@ -22,20 +22,23 @@
            <div class="groupInfos"  [formGroup]="selectform"  >
 
             <h2>  Ajouter vos informations personnelles</h2>
-             
+            <label for="">Lieu de naissance</label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
+          
+            <label for=""> Pays de naissance</label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!=''}"  formControlName="paysNaissance" placeholder="Pays de naissance" >
+          
+            <label for=""> Date de naissance</label>
             <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
           
-        </div>
+        
             <div class="groupe_Parent">
 
                 <label for="">Père</label>
 
                 <div class="groupeNomsPrenoms">
-                     
-                    <input class='theNom' type="text" [(ngModel)]="pereName"   placeholder="Nom de votre Père" >
-                    <input class='theNom' type="text"  [(ngModel)]="perePrenoms" placeholder="Prénoms de votre père" >
+                    <input class='theNom' type="text" [ngClass]="{'error': selectform.controls['pereName'].invalid && selectform.controls['pereName'].value!=''}"  formControlName="pereName"   placeholder="Nom de votre Père" >
+                    <input class='theNom' type="text"  [ngClass]="{'error': selectform.controls['perePrenoms'].invalid && selectform.controls['perePrenoms'].value!=''}" formControlName="perePrenoms"  placeholder="Prénoms de votre père" >
                
                 </div>
                 
@@ -49,14 +52,14 @@
     
                     <div class="groupeNomsPrenoms">
                          
-                        <input class='theNom' type="text" [(ngModel)]="mereName"   placeholder="Nom de votre mère" >
-                        <input class='theNom' type="text"  [(ngModel)]="merePrenoms" placeholder="Prénoms de votre mère" >
+                        <input class='theNom' type="text"  [ngClass]="{'error': selectform.controls['mereName'].invalid && selectform.controls['mereName'].value!=''}"  formControlName="mereName"  placeholder="Nom de votre mère" >
+                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['merePrenoms'].invalid && selectform.controls['merePrenoms'].value!=''}"  formControlName="merePrenoms" placeholder="Prénoms de votre mère" >
                    
                     </div>
                     
             
                     </div>
-         <div [formGroup]="selectform" >
+         <div >
 
             <label for="">Votre Pays de résidence</label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!=''}"  formControlName="derniereResidencePays" placeholder="Votre Pays de résidence" >
@@ -74,8 +77,10 @@
             <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" placeholder="Profession Principale" >
            
            
-            <select   formControlName="langueParler"  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  formControlName="sMatrimoniale" >
-                <option *ngFor="let item of listLangue" value="">  {{item}} </option>
+            <select   formControlName="langueParler"  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  >
+               
+                <option [value]="currentUser.langueParler"> {{currentUser.langueParler}} </option> 
+                <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
 
                </select>
 
@@ -100,7 +105,9 @@
            </div>
 
 
-        </div>
+          </div>
+
+       </div>
 
            <div class="groupInfos" *ngIf="telVisible==1" >
 
@@ -118,7 +125,7 @@
                         <input  type="text"  [(ngModel)]="item.posteOccupe" placeholder="Poste occupé" >
   
                         <label for="">La date de début</label>
-                        <input  type="date" #dateInput [(ngModel)]="item.dateDebut" placeholder="La date de début" >
+                        <input  type="date" [(ngModel)]="item.dateDebut" placeholder="La date de début" >
   
                         <label for="">La date fin</label>
                         <input  type="date"  [(ngModel)]=" item.datefin" placeholder="La date fin" >
@@ -129,7 +136,7 @@
   
                     </div>
 
-                    <button  class="boutton"  (click)="activeAjoutExperience()"> nouvel Experience </button> 
+                    <button  class="boutton"  (click)="activeAjoutExperience()"> nouvel Ajout </button> 
 
                   </div>
 
@@ -137,15 +144,11 @@
                      
                 <input  type="text"  [(ngModel)]="Lentreprise" placeholder="L'entrerise" >
                 <input  type="text"  [(ngModel)]="posteOccupe" placeholder="Poste occupé" >
-                <input  type="date" #dateInput [(ngModel)]="dateDebut" placeholder="La date de début" >
+                <input  type="date"  [(ngModel)]="dateDebut" placeholder="La date de début" >
                 <input  type="date"  [(ngModel)]="datefin" placeholder="La date fin" >
 
-                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> Ajouter </button> 
-
-
+                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> Ajouter </button>
                   </div>
-
-                
 
                   <div class="lesboutonSP">
 
@@ -176,6 +179,23 @@
                  </span>
              </div>
 
+             
+             <div   *ngIf="!ChoixImg"  >
+
+                <ul    *ngFor="let to of itemToEditImages"   >
+                    <li  *ngFor="let url of  to.previewUrl, let i = index">
+                    
+                      <img class="delect" (click)="delete(i) " src="./../../assets/croixDelete.png" alt="Delete">
+                      <img class="imgCard" [src]="url" alt="Image" >
+                    </li>
+                  </ul>
+
+             </div>
+
+            
+
+
+
              <div class="cardFils">
                  <p>une photo de complete</p>
                  <mat-progress-bar id="laBarDownload1" mode="indeterminate" *ngIf="isUploading1"></mat-progress-bar>
@@ -184,6 +204,10 @@
                      <img src="./../../assets/download_icon.png " alt="">
                  </span>
              </div>
+
+                  <img class="imgCardR" [src]="currentUser.fil_photo" alt="Image" >
+
+
 
              <div class="cardFils">
                  <p>une photo de vote passeport</p>
@@ -194,6 +218,9 @@
                  </span>
              </div>
 
+             <img class="imgCardR" [src]="currentUser.fil_passportPhoto" alt="Image" >
+
+
              <div class="cardFils">
                  <p>une photo de vote cassier judicière</p>
                    
@@ -203,6 +230,9 @@
                      <img src="./../../assets/download_icon.png " alt="">
                  </span>
              </div>
+
+             <img class="imgCardR" [src]="currentUser.fil_casierJudiciere" alt="Image" >
+
 
          </div>        
   
@@ -217,7 +247,7 @@
         
              <button  class="boutton1"  (click)="precedent(1)"> Précédent </button> 
             
-             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="select()">Soumettre</button> 
+             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="editSelect()">Soumettre</button> 
         
          </div>
            
