@@ -132,7 +132,7 @@ export class DashboardUserComponent {
   isFinance = true;
   statutPreselect = 'En cours'
   statutFinance = 'En cours'
-  liste_videos!: any [];
+  liste_videos: any [] = [];
 
   colorValidPreselect = false;
   colorValidSelect = true;
@@ -210,7 +210,8 @@ public pieChart: GoogleChartInterface = {
     console.log('user honneur:', user.dHonneur);
     
     this.currentUser  = user;
-    this.getVideoUser();
+    this.userId = user.uid;
+    this.getVideoByUser();
 
     console.log('selecter11', this.selecter);
 
@@ -247,20 +248,12 @@ public pieChart: GoogleChartInterface = {
    
     this.getEtat()
 
-    this.getVideoByUser();
+    // this.getVideoByUser();
 
 
 }
 
-getVideoUser() {
 
-  this.videoService.getVideoByUserId(this.userId).forEach(
-    (res) => {
-      this.liste_videos = res.data;
-    }
-  )
-
-}
 getTotalsDettes() {
 
   let totals: number = 0;
@@ -435,7 +428,15 @@ getTotalsRemboursements() {
       this.selecter = 3 ;
       this.selecterMobile = 3 ;
       this.titleHeadMobile = "Videos de présentation"
-      this.isOpenMenu = false;
+      this.isOpenMenu = false; 
+
+        if (this.liste_videos.length >0) {
+    
+          this.isVideo = true;
+          
+        }
+        
+      
     }
 
   }
@@ -552,6 +553,18 @@ getTotalsRemboursements() {
                  this.isFinance = true;          
          }
     
+  } else if (this.selecter ==3 ) {
+
+    this.selecter = 3 ;
+    this.selecterMobile = 3 ;
+    this.titleHeadMobile = "Videos de présentation"
+   
+    if (this.liste_videos.length >0) {
+
+      this.isVideo = true;
+      
+    }
+    
   }
 
  }
@@ -598,8 +611,12 @@ getTotalsRemboursements() {
  getVideoByUser() {
 
  
-   this.videoService.getVideoByUserId(this.userId).subscribe(
+   this.videoService.getVideoByUserId(this.userId).subscribe
+   (
     (res) => {
+
+      console.log('res', res);
+      
 
       this.liste_videos = res.data;
       console.log("les videos", this.liste_videos);

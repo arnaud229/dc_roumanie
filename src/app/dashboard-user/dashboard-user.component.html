@@ -16,7 +16,7 @@
             <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
             <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
             <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Etat Finacière</li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Vos vidéo </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Mos vidéos </li>
             <li (click)="logOut()"  [ngClass]="{'selctIn': selecter == 4}" >Déconxion</li>
 
         </ul>
@@ -73,7 +73,7 @@
                 <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>
                 <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
                 <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Etat Finacière</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Ajouter une vidéo</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Mes vidéos</li>
                 <li (click)="logOut()"  >Déconxion</li>
     
             </ul>
@@ -531,8 +531,6 @@
 
             <div *ngIf="isVideo">
 
-
-                <h1> vos vidéos de presentation </h1>
 
                 <div class="cardVideos" *ngFor="let item of liste_videos">
 

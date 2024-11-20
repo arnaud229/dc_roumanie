@@ -6,6 +6,7 @@ import { FinancesService } from '../services/Finances/finances.service';
 import { VideosService } from '../services/videos/videos.service';
 import { User } from 'src/models/variables';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
+import { UsersService } from '../services/firebase/user.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -122,6 +123,738 @@ export class DashboardAdminComponent {
     isvalidSelect: false
    
   };
+  
+  list_users = [
+
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: false,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: false,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: false,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: false,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: false,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: false,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+    {
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+      isvalidSelect: false
+     
+    },
+
+  ]
+
+
+
+
+
+
   isPreselect = false;
   isSelect = true;
   isVideo = false;
@@ -150,12 +883,13 @@ export class DashboardAdminComponent {
   les_url = [""];
   progressValue  = 0;
 
-  TotalsDettes!: number;
-  TotalsRemboursements!: number;
+  TotalsDettes: number =0;
+  TotalsRemboursements: number =0;
 
 
 
 liste_Dette: any [] = [];
+liste_Remboursement: any [] = [];
 
 public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,
@@ -189,6 +923,7 @@ public pieChart: GoogleChartInterface = {
     private Aroute: ActivatedRoute,
     private financeServices: FinancesService,
     private videoService: VideosService,
+    private userServ : UsersService,
   ) {}
 
 
@@ -395,6 +1130,135 @@ logOut() {
 
   this.localstorageService.logout()
 
+}
+
+
+getusers() {
+
+  if (this.selecter == 0) {
+    const data = {
+      pagination: {
+        startAt: 0,
+        limit: 20,
+      },
+      filters: {
+        orderByQueries: ['createdAt'],
+        whereQueries: [
+          {
+            fieldPath: 'ldtep2',
+            opStr: '==',
+            value: true,
+          },
+        ],
+      },
+    };
+
+    this.userServ.getUsers(data).subscribe(
+      (res) => {
+
+        this.list_users = res.data;
+         
+      },
+      (error) => {
+        console.log('error :>> ', error);
+      
+      }
+    )
+
+    
+  } else if (this.selecter == 1) {
+
+    const data = {
+      pagination: {
+        startAt: 0,
+        limit: 20,
+      },
+      filters: {
+        orderByQueries: ['createdAt'],
+        whereQueries: [
+          {
+            fieldPath: 'dHonneur',
+            opStr: '==',
+            value: true,
+          },
+        ],
+      },
+    };
+
+    this.userServ.getUsers(data).subscribe(
+      (res) => {
+
+        this.list_users = res.data;
+         
+      },
+      (error) => {
+        console.log('error :>> ', error);
+      
+      }
+    )
+
+  }
+  
+  
+
+ 
+  
+
+
+}
+
+getVideos() {
+
+  this.videoService.getVideos().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_videos = res.data
+      
+    }
+  )
+
+}
+
+getDettes() {
+
+  this.financeServices.getDettes().subscribe(
+     (res) => {
+      console.log('res', res);
+
+      this.liste_Dette = res.data;
+
+      this.liste_Dette.forEach(
+        (res) => {
+          this.TotalsDettes += res.montantDu
+        }
+      )
+
+      console.log('montant du', this.TotalsDettes);
+        
+     }
+  )
+
+}
+
+
+gitRemboursement() {
+  this.financeServices.getRemboursements().subscribe(
+    (res) => {
+      console.log('res', res);
+      
+    this.liste_Remboursement = res.data;
+
+    this.liste_Remboursement.forEach(
+      (el) => {
+        this.TotalsRemboursements += el.montantRembourse
+      }
+    )
+
+    console.log('les remboursement', this.TotalsRemboursements);
+      
+    }
+  )
 }
 
 

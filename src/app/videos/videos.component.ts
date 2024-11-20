@@ -94,7 +94,7 @@ export class VideosComponent {
     
         this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
         return;
-      }
+      } 
 
 
       const uploadPromises = files.map(async (image) => {
@@ -138,6 +138,9 @@ export class VideosComponent {
 
     if (this.videoform.invalid) { } 
 
+    console.log('le form:', this.videoform.value);
+    
+
       const updateData = {
         
         secteur : this.videoform.value.secteur ,
@@ -146,13 +149,16 @@ export class VideosComponent {
         user_id: this.currentUser.uid
       
 
-      };
+      };  
+
+      console.log('update :', updateData);
+      
 
       this.videoService.CreateVideo(updateData)
       .then((res) => {
         console.log('res :>> ', res);
     
-        this.router.navigate(["dashboardUser", {index: 2}]);
+        this.router.navigate(["dashboardUser", {index: 3}]);
       })
       .catch((err) => {
         console.log('err :>> ', err);

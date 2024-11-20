@@ -81,7 +81,7 @@ export class VideosService {
         return { data, lastVisible };
       })
     );
-    // console.log('store$ :>> ', stores$);
+    console.log('store$ :>> ', items$);
     return items$;
   }
 

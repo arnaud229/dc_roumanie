@@ -18,9 +18,9 @@
             <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
             <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
             <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Les vidéos </li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Etat Finacière </li>
-            <li (click)="logOut()"  [ngClass]="{'selctIn': selecter == 4}" >Déconxion</li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
+            <li (click)="logOut()" >Déconxion</li>
 
         </ul>
 
@@ -78,7 +78,14 @@
 
            <div class="card_rest">
 
-            <div class="" *ngIf="selecter==0">  Preselection  </div>
+            <div class="groupe_preselect" *ngIf="selecter==0"> 
+
+              
+            
+            </div>
+
+
+
             <div class="" *ngIf="selecter==1">  Selection  </div>
             <div class="" *ngIf="selecter==2">   Dette  </div>
             <div class="" *ngIf="selecter==3">   Remboursement  </div>
