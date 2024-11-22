@@ -117,7 +117,7 @@ export class PreselectionComponent {
           new Date().getTime() +
           this.userId +
           '.' +
-          image.format,
+          image.name?.split('.')?.[1],
         file: image.file,
        
       });

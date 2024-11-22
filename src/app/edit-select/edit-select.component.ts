@@ -383,8 +383,8 @@ getfils3() {
           new Date().getTime() +
           this.userId +
           '.' +
-          asset.format,
-        file: asset.file,
+          asset.name?.split('.')?.[1],
+        file: asset,
       });
     
       asset.downloadUrl = url;   
@@ -441,8 +441,8 @@ const url = await this.firebaseStorageService.uploadFile({
     new Date().getTime() +
     this.userId +
     '.' +
-    asset.format,
-  file: asset.file,
+    asset.name?.split('.')?.[1],
+  file: asset,
 });
 
 asset.downloadUrl = url;   
@@ -504,8 +504,8 @@ filename:
 new Date().getTime() +
 this.userId +
 '.' +
-asset.format,
-file: asset.file,
+asset.name?.split('.')?.[1],
+file: asset,
 });
 
 asset.downloadUrl = url;   
@@ -653,7 +653,7 @@ async editSelect() {
         new Date().getTime() +
         this.userId +
         '.' +
-        asset.format,
+        asset.name?.split('.')?.[1],
       file: asset.file,
     });
   

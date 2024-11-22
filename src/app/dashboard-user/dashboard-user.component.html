@@ -532,15 +532,18 @@
             <div *ngIf="isVideo">
 
 
-                <div class="cardVideos" *ngFor="let item of liste_videos">
+                <div class="cardVideos" >
 
-                    <div class="oneVideo" >
+                    <div class="oneVideo" *ngFor="let item of liste_videos" >
 
-                        <img (click)="editVideo(item.id)" src="./../../assets/edit2.png" alt="">
+                        <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt="">
 
-                        <video [src]="item.url">
 
-                        </video>
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
 
                     </div>
 

@@ -2,6 +2,7 @@ import { Component} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { LocalstorageService } from '../services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-singnin',
@@ -22,8 +23,8 @@ export class SingninComponent {
     private formbuilder: FormBuilder,
     private router: Router,
     public authService: AuthService,
-    // private utilsService: UtilsService,
-    // private alertController: AbortController,
+    public localstorageService: LocalstorageService,
+   
   ) {
 
     this.init_form();
@@ -92,16 +93,24 @@ export class SingninComponent {
      .then(async (res) => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
          if (res.user) {
-
-          // if (res.user) {
-            
-          // } else {
-            
-          // }
         
       this.loading = false;
       console.log('succès sucès');
-      this.router.navigate(['dashboardUser']);
+
+     let  user = this.localstorageService.getCurrentUser()
+
+      if (user.nom === 'admin') {
+
+        this.router.navigate(['dashboardAdmin']);
+        
+      } else if (user.nom === 'partenaire') {
+
+        this.router.navigate(['dashboardPartenaire']);
+        
+      } else {
+        this.router.navigate(['dashboardUser']);
+      }
+     
           
          }
 

@@ -80,6 +80,33 @@
 
             <div class="groupe_preselect" *ngIf="selecter==0"> 
 
+                <div class="cardHead_Preselect">
+
+                    <div class="group_header1" >
+
+                        <input type="text">
+
+                        <div>
+                            <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                            <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                        </div>
+
+                    </div>
+
+                    <div class="group_header2">
+                        <span class="theFiltre"  (click)="getFiltreByValue(0)"  [ngClass]="{'filtreIn': filter == 0}" > nom </span>
+                        <span  class="theFiltre" (click)="getFiltreByValue(1)"  [ngClass]="{'filtreIn': filter == 1}"  > prenom </span>
+                        <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
+                        <span  class="theFiltre"  (click)="getFiltreByValue(3)"  [ngClass]="{'filtreIn': filter == 3}"> nom </span>
+                    </div>
+
+                   
+                </div>
+
+                <div class="corpsPpreselct">
+
+                </div>
+
               
             
             </div>

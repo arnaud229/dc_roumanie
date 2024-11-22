@@ -226,8 +226,8 @@ export class SelectionComponent {
           new Date().getTime() +
           this.userId +
           '.' +
-          asset.format,
-        file: asset.file,
+          asset.name?.split('.')?.[1],
+        file: asset,
       });
     
       asset.downloadUrl = url;   
@@ -271,6 +271,9 @@ export class SelectionComponent {
     }
     
     let imagePhotoPasseport: any = files.map(async (asset: any) => {
+
+      console.log('asset:', asset); 
+      
       const url = await this.firebaseStorageService.uploadFile({
         folder: 'filsPhotoPasseport',
         filename:
@@ -278,8 +281,8 @@ export class SelectionComponent {
           new Date().getTime() +
           this.userId +
           '.' +
-          asset.format,
-        file: asset.file,
+          asset.name?.split('.')?.[1],
+        file: asset,
       });
       
       asset.downloadUrl = url;   
@@ -329,8 +332,8 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
   new Date().getTime() +
   this.userId +
   '.' +
-  asset.format,
-  file: asset.file,
+  asset.name?.split('.')?.[1],
+  file: asset,
   });
   
   asset.downloadUrl = url;   
@@ -446,7 +449,7 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
     
     if (this.selectform.invalid) return
     
-    let imagesDiplomes: any = this.liste_fils.map(async (asset: any) => {
+    let imagesDiplomes: any = this.les_url.map(async (asset: any) => {
       const url = await this.firebaseStorageService.uploadFile({
         folder: 'filsDiplomes',
         filename:
@@ -454,7 +457,7 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
           new Date().getTime() +
           this.userId +
           '.' +
-          asset.format,
+          asset.name?.split('.')?.[1],
         file: asset.file,
       });
     

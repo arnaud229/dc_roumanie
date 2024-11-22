@@ -121,7 +121,7 @@
                 <li  *ngFor="let url of to.previewUrl  , let i = index">
                 
                   <img class="delect" (click)="delete(i) " src="./../../assets/croixDelete.png" alt="Delete">
-                  <img class="imgCard" [src]="" alt="Image" >
+                  <img class="imgCard" [src]="url" alt="Image" >
                 </li>
               </ul>
 

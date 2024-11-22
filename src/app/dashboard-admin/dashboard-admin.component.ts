@@ -850,11 +850,7 @@ export class DashboardAdminComponent {
 
   ]
 
-
-
-
-
-
+  isFiltre = false;
   isPreselect = false;
   isSelect = true;
   isVideo = false;
@@ -914,6 +910,8 @@ public pieChart: GoogleChartInterface = {
  
   
 };
+
+filter =0;
   
 
   constructor(
@@ -968,6 +966,14 @@ public pieChart: GoogleChartInterface = {
 
   })
    
+}
+
+getFiltre() {
+  this.isFiltre = !this.isFiltre;
+}
+
+getFiltreByValue(inde: number) {
+
 }
 
 

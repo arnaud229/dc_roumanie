@@ -106,8 +106,8 @@ export class VideosComponent {
             new Date().getTime() +
             this.userId +
             '.' +
-            image.format,
-          file: image.video,
+            image.name?.split('.')?.[1],
+          file: image,
          
         });
           console.log('tete1');

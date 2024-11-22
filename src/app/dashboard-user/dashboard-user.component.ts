@@ -233,6 +233,7 @@ public pieChart: GoogleChartInterface = {
         this.selecterMobile = params['index']; 
 
             console.log('selector:', this.selecter);
+
             
     
          } else {
@@ -244,13 +245,13 @@ public pieChart: GoogleChartInterface = {
            
          }
 
+           setTimeout(() => {
+            this.getEtat()
+            
+           }, 100);   
+
   })
    
-    this.getEtat()
-
-    // this.getVideoByUser();
-
-
 }
 
 
@@ -430,7 +431,12 @@ getTotalsRemboursements() {
       this.titleHeadMobile = "Videos de présentation"
       this.isOpenMenu = false; 
 
+      console.log('taille tableau avant', this.liste_videos.length );
+      
+
         if (this.liste_videos.length >0) {
+
+          console.log('taille tableau dedans', this.liste_videos.length );
     
           this.isVideo = true;
           
@@ -558,12 +564,23 @@ getTotalsRemboursements() {
     this.selecter = 3 ;
     this.selecterMobile = 3 ;
     this.titleHeadMobile = "Videos de présentation"
+
+    console.log('toto avant');
+    console.log('taille avant',this.liste_videos.length );
+
+
+    
    
     if (this.liste_videos.length >0) {
+
+      console.log('dedans');
+      
 
       this.isVideo = true;
       
     }
+
+    
     
   }
 
@@ -620,6 +637,8 @@ getTotalsRemboursements() {
 
       this.liste_videos = res.data;
       console.log("les videos", this.liste_videos);
+
+      this.getEtat()
       
     },
 
@@ -630,7 +649,7 @@ getTotalsRemboursements() {
 
  }
 
- editVideo(index: any) {
+ delectVideo(index: any) {
 
  }
 
