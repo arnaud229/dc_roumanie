@@ -80,7 +80,9 @@ import { User } from "src/models/variables";
       }
 
       getUser(uid: string) {
-        const that = this;
+        if (!uid) {
+          throw new Error('L\'ID utilisateur (uid) est manquant ou invalide.');
+        }
         return this.firestore
           .collection('utilisateurs')
           .doc(uid)
@@ -90,6 +92,48 @@ import { User } from "src/models/variables";
               return data.data() as User;
             })
           );
+      }
+
+      async validPreselect(val: boolean, index: string) {
+        await this.firestore.doc(`utilisateurs/${index}`).update({
+          isvalidePreselect: val,
+        }
+      ).then(() => {
+        console.log('Document mis à jour avec succès');
+      })
+      .catch(error => {
+        console.error('Erreur lors de la mise à jour du document:', error);
+        // Afficher un message à l'utilisateur si nécessaire
+      });
+      }
+
+      async validSelect(val: boolean, index: string) {
+
+        await this.firestore.doc(`utilisateurs/${index}`).update({
+          isvalidSelect: val,
+        }
+      ).then(() => {
+        console.log('Document mis à jour avec succès');
+      })
+      .catch(error => {
+        console.error('Erreur lors de la mise à jour du document:', error);
+        // Afficher un message à l'utilisateur si nécessaire
+      });
+
+      }
+      async validProcess(val: boolean, index: string) {
+
+        await this.firestore.doc(`utilisateurs/${index}`).update({
+          isProcessSucceful: val,
+        }
+      ).then(() => {
+        console.log('Document mis à jour avec succès');
+      })
+      .catch(error => {
+        console.error('Erreur lors de la mise à jour du document:', error);
+        // Afficher un message à l'utilisateur si nécessaire
+      });
+
       }
 
     async  preselect(data: any, index: string) {

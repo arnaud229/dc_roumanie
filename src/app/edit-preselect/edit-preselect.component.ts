@@ -53,8 +53,7 @@ export class EditPreselectComponent {
     ePrecedent: 'fold Food',
     passport: false,
     nationalite: 'Béninoise',
-    cWhatapp: 
-    {
+    cWhatapp: {
       code: '+229',
       numero: '69741258'
     },
@@ -64,7 +63,6 @@ export class EditPreselectComponent {
     fils_recus: [
       './../../assets/croixDelete.png',
       './../../assets/croixDelete.png',
-     
     ],
     admin: false,
     partenaire: false,
@@ -125,11 +123,12 @@ export class EditPreselectComponent {
     nbrEnfants: 0,
     dHonneur: false,
     fils_diplome: [],
-    fil_photo:"./../../assets/roumanie-visiter.jpg",
-    fil_passportPhoto:  "./../../assets/roumanie-visiter.jpg",
-    fil_casierJudiciere:"./../../assets/roumanie-visiter.jpg",
+    fil_photo: "./../../assets/roumanie-visiter.jpg",
+    fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+    fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-    isvalidSelect: false
+    isvalidSelect: false,
+    isProcessSucceful: false
   };
   message = '';
   ChoixImg : boolean = false;

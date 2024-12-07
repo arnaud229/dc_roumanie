@@ -18,8 +18,8 @@
             <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
             <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
             <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
+            <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
+            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
             <li (click)="logOut()" >Déconxion</li>
 
         </ul>
@@ -77,49 +77,525 @@
 
 
            <div class="card_rest">
+           
 
-            <div class="groupe_preselect" *ngIf="selecter==0"> 
+            <div class="groupe_preselect" *ngIf="selecter==0">
+                
+                <div *ngIf="list_users.length > 0">
 
-                <div class="cardHead_Preselect">
+                    
+                    <div class="cardHead_Preselect">
 
-                    <div class="group_header1" >
-
-                        <input type="text">
-
-                        <div>
-                            <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
-                            <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                        <div class="group_header1" >
+    
+                            <input type="text" (click)="applyFilter($event)" >
+    
+                            <div>
+                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                            </div>
+    
                         </div>
+    
+                        <div class="group_header2"    *ngIf="isFiltre" >
+                          <p>ca viendra après</p>
+                           <!-- <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
+                          -->
+                        </div>
+    
+                       
+                    </div>
+    
+                                      
+                                         
+                            <div class="content">
+                               
+                    
+                              <table mat-table [dataSource]="liste_preselect" class="mat-elevation-z8">
+                                <ng-container matColumnDef="nom">
+                                  <th mat-header-cell *matHeaderCellDef>Nom</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="prenom">
+                                  <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="telephone">
+                                  <th mat-header-cell *matHeaderCellDef>Télephone</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.telephone.code }}  {{fichier.telephone.numero }}</td>
+                                </ng-container>
 
+                                
+                                <ng-container matColumnDef="Netude">
+                                    <th mat-header-cell *matHeaderCellDef>Niveau d'étude</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.NEtude }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="metier">
+                                    <th mat-header-cell *matHeaderCellDef>Métier</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.metier }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="nationalite">
+                                    <th mat-header-cell *matHeaderCellDef>Nationalité</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.nationalite }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="passport">
+                                    <th mat-header-cell *matHeaderCellDef>disponibilité de passeport</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.passport }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="parrain">
+                                    <th mat-header-cell *matHeaderCellDef>Parrain</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.parrain }}  </td>
+                                  </ng-container>
+                              
+                                <ng-container matColumnDef="actions">
+                                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                  <td mat-cell *matCellDef="let fichier">
+                                    <button mat-icon-button (click)="beginValid(fichier.uid)">
+                                      <img src="./../../assets/valider.png" alt="" >
+                                      </button>
+                    
+                                    <button mat-icon-button  >
+                                        <img src="./../../assets/voirPlus.jpg" (click)="goToviewUser(fichier.uid)"  alt="" >
+                                    </button>
+
+                                    <div class="corpsPpreselct"   >
+    
+                                        <div class="cardCorps"  >
+                    
+                    
+                                            <div class="viewVaidPreselct"  *ngIf="theId === fichier.uid" >
+                                                <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+                    
+                                                <div  >  
+                    
+                                                    <img *ngFor="let res of fichier.fils_recus" [src]="res" alt="">                               
+                    
+                                                </div>
+                    
+                                                <button id="boutton1"  (click)="validPreselect(fichier.uid)" >valider</button>
+                                                
+                                            </div>
+                    
+                                        </div>
+                                    </div>
+                                   
+                                  </td>
+                                </ng-container>
+                    
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                               
+                        </table>  
+
+
+                            
+                        
+    
                     </div>
 
-                    <div class="group_header2">
-                        <span class="theFiltre"  (click)="getFiltreByValue(0)"  [ngClass]="{'filtreIn': filter == 0}" > nom </span>
-                        <span  class="theFiltre" (click)="getFiltreByValue(1)"  [ngClass]="{'filtreIn': filter == 1}"  > prenom </span>
-                        <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
-                        <span  class="theFiltre"  (click)="getFiltreByValue(3)"  [ngClass]="{'filtreIn': filter == 3}"> nom </span>
-                    </div>
-
-                   
                 </div>
 
-                <div class="corpsPpreselct">
 
+    
+                <div class="notvalide" *ngIf="liste_preselect.length == 0">
+                    <p>
+                        Aucun utilisateur n'est enregister pour l'instant
+                    </p>
+    
                 </div>
 
-              
+
+
+               
             
             </div>
 
 
 
-            <div class="" *ngIf="selecter==1">  Selection  </div>
-            <div class="" *ngIf="selecter==2">   Dette  </div>
-            <div class="" *ngIf="selecter==3">   Remboursement  </div>
-            <div class="" *ngIf="selecter==4">  Les Videos   </div>
-            <div class="" *ngIf="selecter==5">  Etat financière  </div>
+            <div class="groupe_preselect" *ngIf="selecter==1">  
 
-            <div>    </div>
+
+                <div *ngIf="list_users.length > 0" >
+                  
+                    <div class="cardHead_Preselect">
+
+                        <div class="group_header1" >
+    
+                            <input [type]="typeInput"  (input)="applyFilterSelect($event)" >
+    
+                            <div>
+                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                            </div>
+    
+                        </div>
+    
+                        <div class="group_header2"    *ngIf="isFiltre" >
+                           <p>ca viendra après</p>
+
+                            <!-- <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
+                            <span  class="theFiltre"  (click)="getFiltreByValue(3)"  [ngClass]="{'filtreIn': filter == 3}"> nom </span>
+                       -->
+                          </div>
+    
+                       
+                    </div>
+    
+                                      
+                                         
+                            <div class="content">
+                               
+                    
+                              <table mat-table [dataSource]="liste_select" class="mat-elevation-z8">
+                                <ng-container matColumnDef="nom">
+                                  <th mat-header-cell *matHeaderCellDef>Nom</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="prenom">
+                                  <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="sMatrimoniale">
+                                  <th mat-header-cell *matHeaderCellDef>Situation Matrimonial</th>
+                                  <td mat-cell *matCellDef="let fichier">
+                                    <span *ngIf="fichier.nbrEnfants == 0"> sans enfant </span>
+                                    <span *ngIf="fichier.nbrEnfants > 0"> avec {{fichier.nbrEnfants}} enfant </span>
+                                  </td>
+                                </ng-container>
+
+                                
+                                <ng-container matColumnDef="qualiProfession">
+                                    <th mat-header-cell *matHeaderCellDef>Qualification professionnelle</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.qualiProfession }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="principalProfession">
+                                    <th mat-header-cell *matHeaderCellDef>Qualification principale</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.principalProfession }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="nationalite">
+                                    <th mat-header-cell *matHeaderCellDef>Nationalité</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.nationalite }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="langueParler">
+                                    <th mat-header-cell *matHeaderCellDef>Langue parlées</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.langueParler }}  </td>
+                                  </ng-container>
+                              
+                                <ng-container matColumnDef="actions">
+                                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                  <td mat-cell *matCellDef="let fichier">
+                                    <button mat-icon-button (click)="validSelct(fichier.uid)">
+                                      <img src="./../../assets/valider.png" alt="" >
+                                      </button>
+                    
+                                    <button mat-icon-button >
+                                        <img src="./../../assets/voirPlus.jpg" (click)="goToviewUser(fichier.uid)" alt="" >
+                                    </button>
+
+                                                                     
+                                  </td>
+                                </ng-container>
+                    
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns1"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns1;"></tr>
+
+                               
+                        </table>  
+
+
+                            
+                        
+    
+                    </div>
+    
+                  
+
+                </div>
+
+
+                <div class="notvalide" *ngIf="liste_select.length == 0">
+                    <p>
+                        Aucun utilisateur n'est enregister pour l'instant
+                    </p>
+    
+                </div>
+
+
+
+
+
+                  </div>
+
+
+
+
+
+
+
+
+            <div class="groupe_preselect" *ngIf="selecter==2">  
+
+                
+                <div *ngIf="liste_Dette.length > 0" >
+
+                    <div class="cardHead_Preselect">
+
+                        <div class="group_header11" >
+
+                            <div>
+                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                            </div>
+    
+                            <input type="text" (input)="applyFilteDette($event)">
+
+                            <button class="btn-ajout" (click)="goTocreateDette() " >Ajouter une Dette</button>
+    
+                          
+    
+                        </div>
+    
+                        <div class="group_header2"    *ngIf="isFiltre" >
+                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > montant Du </span>
+                            <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span>
+                           </div>
+    
+                       
+                    </div>
+    
+                    <div class="content">
+                               
+                    
+                        <table mat-table [dataSource]="liste_Dette" class="mat-elevation-z8">
+                          <ng-container matColumnDef="nom">
+                            <th mat-header-cell *matHeaderCellDef>Nom</th>
+                            <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
+                          </ng-container>
+              
+                          <ng-container matColumnDef="prenom">
+                            <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                            <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                          </ng-container>
+                                       
+                          <ng-container matColumnDef="libele">
+                              <th mat-header-cell *matHeaderCellDef>Libelé</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.libele }}  </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="montantDu">
+                              <th mat-header-cell *matHeaderCellDef>Montant du</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.montantDu }}  </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="dateDette">
+                              <th mat-header-cell *matHeaderCellDef>Date de la dette</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.dateDette.toLocaleString() }}  </td>
+                            </ng-container>  
+
+                            <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                <td mat-cell *matCellDef="let fichier">
+                                  <button mat-icon-button (click)="goToEditDette(fichier.id)">
+                                    <img src="./../../assets/edit2.png" alt="" >
+                                    </button>
+                                                
+                                </td>
+                              </ng-container>
+                                      
+                          <tr mat-header-row *matHeaderRowDef="displayedColumnsDette"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumnsDette;"></tr>
+        
+                  </table>  
+
+
+                      
+                  
+
+              </div>
+    
+                </div>
+
+
+                <div class="notvalide" *ngIf="liste_Dette.length == 0">
+                    <p>
+                        Aucun utilisateur n'est enregister pour l'instant
+                    </p>
+    
+                </div>
+                
+                
+                
+                </div>
+
+
+
+            <div class="groupe_preselect" *ngIf="selecter==3"> 
+                 
+                
+                 
+                <div *ngIf="liste_Remboursement.length > 0" >
+
+                    <div class="cardHead_Preselect">
+
+                        <div class="group_header11" >
+                            <div>
+                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                            </div>
+    
+                            <input type="text" (input)="applyFilteRembourse($event)">
+    
+                          
+
+                            <button class="btn-ajout" (click)="goTocreateRemboursement() " >Ajouter un Remboursement</button>
+    
+                        </div>
+    
+                        <div class="group_header2"    *ngIf="isFiltre" >
+                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > montant Rembourser </span>
+                            <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span>
+                            <span  class="theFiltre" (click)="getFiltreByValue(6)"  [ngClass]="{'filtreIn': filter == 6}"> libele </span>
+                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 7}"> nom </span>
+                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 8}"> prenoms </span>
+                        </div>
+    
+                       
+                    </div>
+
+                    <div class="content">
+                               
+                    
+                        <table mat-table [dataSource]="liste_Remboursement" class="mat-elevation-z8">
+                          <ng-container matColumnDef="nom">
+                            <th mat-header-cell *matHeaderCellDef>Nom</th>
+                            <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
+                          </ng-container>
+              
+                          <ng-container matColumnDef="prenom">
+                            <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                            <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                          </ng-container>
+                                       
+                          <ng-container matColumnDef="libele">
+                              <th mat-header-cell *matHeaderCellDef>Libelé</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.libele }}  </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="montantRembourse">
+                              <th mat-header-cell *matHeaderCellDef>Montant rembourser</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.montantRembourse }}  </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="dateRemboursement">
+                              <th mat-header-cell *matHeaderCellDef>Date du remboursement</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.dateRemboursement.toLocaleString() }}  </td>
+                            </ng-container> 
+                            
+                            <ng-container matColumnDef="actions">
+                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                <td mat-cell *matCellDef="let fichier">
+                                  <button mat-icon-button (click)="goToEditRemboursement(fichier.id)">
+                                    <img src="./../../assets/edit2.png" alt="" >
+                                    </button>                               
+                                </td>
+                              </ng-container>
+                                      
+                          <tr mat-header-row *matHeaderRowDef="displayedColumnsRemboursement"></tr>
+                          <tr mat-row *matRowDef="let row; columns: displayedColumnsRemboursement;"></tr>
+        
+                  </table>  
+
+
+                      
+                  
+
+              </div>
+    
+                </div>
+
+
+                <div class="notvalide" *ngIf="liste_Remboursement.length == 0">
+                    <p>
+                        Aucun utilisateur n'est enregister pour l'instant
+                    </p>
+    
+                </div>
+                
+                
+                </div>
+
+            <div class="" *ngIf="selecter==4">  
+
+              <div  *ngIf=" liste_videos.length > 0 ">
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_videos" >
+
+                        <img (click)="validVideo(item.id)" src="./../../assets/valider.png" alt="">
+                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
+
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+
+                    </div>
+
+                   
+
+                </div>
+              </div>
+
+
+                
+                <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
+                    <p>
+                        Il n'y a aucune video de presetation d'activité
+                    </p>
+    
+                </div>               
+               
+            </div>
+
+            <div  *ngIf="selecter==5"> 
+                
+                
+                <div class="legooglechart" *ngIf="TotalsDettes > 0 && TotalsRemboursements > 0">
+                    <google-chart [data]="pieChart">
+                        
+                    </google-chart>
+                 
+    
+                </div>
+    
+    
+    
+                
+                <div class="notvalide" *ngIf="TotalsDettes == 0 && TotalsRemboursements == 0">
+    
+                    <p>
+                        Aucun statistique pour l'instant
+                    </p>
+    
+    
+                </div>
+                
+                </div>
 
 
            </div>

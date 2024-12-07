@@ -88,7 +88,7 @@ export class SingnupComponent {
     ePrecedent: '',
     passport: false,
     nationalite: '',
-    cWhatapp:{
+    cWhatapp: {
       code: "",
       numero: ""
     },
@@ -123,11 +123,12 @@ export class SingnupComponent {
     nbrEnfants: 0,
     dHonneur: false,
     fils_diplome: [],
-    fil_photo:"",
-    fil_passportPhoto:"",
-    fil_casierJudiciere:"",
+    fil_photo: "",
+    fil_passportPhoto: "",
+    fil_casierJudiciere: "",
     isvalidePreselect: false,
-    isvalidSelect: false
+    isvalidSelect: false,
+    isProcessSucceful: false
   }
   
   console.log('valeur de user dans signup', user);

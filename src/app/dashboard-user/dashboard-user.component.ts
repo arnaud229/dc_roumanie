@@ -123,7 +123,8 @@ export class DashboardUserComponent {
     fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-    isvalidSelect: false
+      isvalidSelect: false,
+    isProcessSucceful: false
    
   };
   isPreselect = false;
@@ -162,21 +163,18 @@ export class DashboardUserComponent {
   les_url = [""];
   progressValue  = 0;
 
-  TotalsDettes!: number;
-  TotalsRemboursements!: number;
-
-
 
 liste_Dette: any [] = [];
+liste_Remboursement: any [] = [];
 
 public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,
   dataTable: [
     ['Etat financière', 'Etat financière'],
-    ['Dette',     7 ],
-    ['Rembourssement',    11],
-    // ['Dette',     this.getTotalsDettes() ],
-    // ['Rembourssement',      this.getTotalsRemboursements()],
+    // ['Dette',     7 ],
+    // ['Rembourssement',    11],
+    ['Dette',     this.getTotalsDettes() ],
+    ['Rembourssement',      this.getTotalsRemboursements()],
    
   ],
   //firstRowIsData: true,
@@ -205,7 +203,8 @@ public pieChart: GoogleChartInterface = {
 
 
   ngOnInit() {
-
+  this.getTotalsRemboursements();
+  this.getTotalsDettes();
    let user = this.localstorageService.getCurrentUser()
     console.log('user honneur:', user.dHonneur);
     
@@ -258,24 +257,25 @@ public pieChart: GoogleChartInterface = {
 getTotalsDettes() {
 
   let totals: number = 0;
-  
 
-  const tableDette = this.financeServices.getDetteByUserId(this.userId)
+  this.financeServices.getDetteByUserId(this.userId).subscribe(
+     (res) => {
 
-  tableDette.forEach(
-    (res) => {
-      res.data.find(
-        (r) => {
-          totals += r.montantDu;
+      const tableDette = res.data;
+      this.liste_Dette = tableDette;
+
+      tableDette.forEach(
+        (res) => {
+              totals += res.montantDu;
+          console.log('valtoto', totals);
+         
         }
       )
-       
-      console.log('valtoto', totals);
-     
-    }
+     const  valTotal = totals;
+      return valTotal
+
+     }
   )
- const  valTotal = totals;
-  return valTotal
 
 }
 
@@ -283,23 +283,25 @@ getTotalsRemboursements() {
 
   let totals: number = 0;
   
+  this.financeServices.getRemboursementByUserId(this.userId).subscribe(
+     (res) => {
 
-  const tableDette = this.financeServices.getRemboursementByUserId(this.userId)
+      const tableDette = res.data;
+      this.liste_Remboursement = tableDette;
 
-  tableDette.forEach(
-    (res) => {
-      res.data.find(
-        (r) => {
-          totals += r.montantRembourse;
+      tableDette.forEach(
+        (res) => {
+              totals += res.montantRembourse;          
+          console.log('valtoto', totals);
+         
         }
       )
-       
-      console.log('valtoto', totals);
-     
-    }
+     const  valTotal = totals;
+      return valTotal
+     }
   )
- const  valTotal = totals;
-  return valTotal
+
+ 
 }
 
 
@@ -334,10 +336,12 @@ getTotalsRemboursements() {
       if (this.currentUser.isvalidePreselect ) {
         this.colorValidPreselect = true;
 
-        this.statutPreselect = 'Validé'
+        this.statutPreselect = 'Preselect'
         
-      } else {
-        this.statutPreselect = 'En cours'
+      } else if (this.currentUser.isProcessSucceful) {
+        this.colorValidSelect = true;
+
+        this.statutFinance = 'Validé'
       }
       
     } else {
@@ -356,10 +360,12 @@ getTotalsRemboursements() {
         if (this.currentUser.isvalidePreselect ) {
           this.colorValidPreselect = true;
   
-          this.statutPreselect = 'Validé'
+          this.statutPreselect = 'Preselect'
           
-        } else {
-          this.statutPreselect = 'En cours'
+        } else if (this.currentUser.isProcessSucceful) {
+          this.colorValidSelect = true;
+  
+          this.statutFinance = 'Validé'
         }
         
       } else {
@@ -395,11 +401,9 @@ getTotalsRemboursements() {
         if (this.currentUser.isvalidSelect) {
           this.colorValidSelect = true;
   
-          this.statutFinance = 'Validé'
+          this.statutFinance = 'Select'
           
-        } else {
-          this.statutFinance = 'En cours'
-        }
+        } 
         
       } else {
         console.log(3);
@@ -415,7 +419,7 @@ getTotalsRemboursements() {
       this.titleHeadMobile = "Etat Finacière"
       this.isOpenMenu = false;
 
-      if (this.liste_Dette.length > 0) {
+      if (this.liste_Dette.length > 0  ) {
         this.isFinance = true;          
 } else
 {
@@ -434,12 +438,14 @@ getTotalsRemboursements() {
       console.log('taille tableau avant', this.liste_videos.length );
       
 
-        if (this.liste_videos.length >0) {
+        if (this.liste_videos.length >0 || this.liste_Remboursement.length >0) {
 
           console.log('taille tableau dedans', this.liste_videos.length );
     
           this.isVideo = true;
           
+        } else {
+          this.isVideo = false;
         }
         
       
@@ -503,12 +509,14 @@ getTotalsRemboursements() {
       if (this.currentUser.isvalidePreselect ) {
         this.colorValidPreselect = true;
 
-        this.statutPreselect = 'Validé'
+        this.statutPreselect = 'Preselect'
         
-      } else {
-        this.statutPreselect = 'En cours'
+      }else if (this.currentUser.isProcessSucceful) {
+        this.colorValidSelect = true;
+
+        this.statutFinance = 'Validé'
       }
-      
+
     } else {
       console.log(3);
       this.isPreselect = false;
@@ -533,10 +541,12 @@ getTotalsRemboursements() {
       if (this.currentUser.isvalidSelect) {
         this.colorValidSelect = true;
 
-        this.statutFinance = 'Validé'
+        this.statutFinance = 'Select'
         
-      } else {
-        this.statutFinance = 'En cours'
+      } else if (this.currentUser.isProcessSucceful) {
+        this.colorValidSelect = true;
+
+        this.statutFinance = 'Validé'
       }
       
     } else {

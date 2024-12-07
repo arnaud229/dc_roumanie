@@ -14,13 +14,9 @@
 
             </div>
 
-            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
-            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
-            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
-            <li (click)="logOut()"  >Déconxion</li>
+            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>        
+            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Les vidéos </li>
+            <li (click)="logOut()" >Déconxion</li>
 
         </ul>
 
@@ -57,12 +53,8 @@
     
                 </div>
     
-                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>
-                <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
-                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Dettes</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Remboursements</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
+                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>            
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 1}"    >Les vidéos</li>
                 <li (click)="logOut()"  >Déconxion</li>
     
             </ul>
@@ -77,17 +69,166 @@
 
 
            <div class="card_rest">
+           
 
-            <div class="" *ngIf="selecter==0">  Preselection  </div>
-            <div class="" *ngIf="selecter==1">  Selection  </div>
-            <div class="" *ngIf="selecter==2">   Dette  </div>
-            <div class="" *ngIf="selecter==3">   Remboursement  </div>
-            <div class="" *ngIf="selecter==4">  Les Videos   </div>
-            <div class="" *ngIf="selecter==5">  Etat financière  </div>
+            <div class="groupe_preselect" *ngIf="selecter==0">
+                
+                <div *ngIf="list_users.length > 0">
 
-            <div>    </div>
+                    
+                    <div class="cardHead_Preselect">
+
+                        <div class="group_header1" >
+    
+                            <input type="text" (click)="applyFilter($event)" >
+    
+                            <div>
+                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                            </div>
+    
+                        </div>
+    
+                        <div class="group_header2"    *ngIf="isFiltre" >
+                          <p>ca viendra après</p>
+                           <!-- <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
+                          -->
+                        </div>
+    
+                       
+                    </div>
+    
+                                      
+                                         
+                            <div class="content">
+                               
+                    
+                              <table mat-table [dataSource]="list_users" class="mat-elevation-z8">
+                                <ng-container matColumnDef="nom">
+                                  <th mat-header-cell *matHeaderCellDef>Nom</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="prenom">
+                                  <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                                </ng-container>
+                    
+                                <ng-container matColumnDef="telephone">
+                                  <th mat-header-cell *matHeaderCellDef>Télephone</th>
+                                  <td mat-cell *matCellDef="let fichier">{{fichier.telephone.code }}  {{fichier.telephone.numero }}</td>
+                                </ng-container>
+
+                                
+                                <ng-container matColumnDef="Netude">
+                                    <th mat-header-cell *matHeaderCellDef>Niveau d'étude</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.NEtude }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="nationalite">
+                                    <th mat-header-cell *matHeaderCellDef>Nationalité</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.nationalite }}  </td>
+                                  </ng-container>
 
 
-           </div>
+                                  <ng-container matColumnDef="qualiProfession">
+                                    <th mat-header-cell *matHeaderCellDef>Qualification professionnelle</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.qualiProfession }}  </td>
+                                  </ng-container>
+
+                                  <ng-container matColumnDef="principalProfession">
+                                    <th mat-header-cell *matHeaderCellDef>Qualification principale</th>
+                                    <td mat-cell *matCellDef="let fichier">{{fichier.principalProfession }}  </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="sMatrimoniale">
+                                    <th mat-header-cell *matHeaderCellDef>Situation Matrimonial</th>
+                                    <td mat-cell *matCellDef="let fichier">
+                                      <span *ngIf="fichier.nbrEnfants == 0"> sans enfant </span>
+                                      <span *ngIf="fichier.nbrEnfants > 0"> avec {{fichier.nbrEnfants}} enfant </span>
+                                    </td>
+                                  </ng-container>
+  
+                                    <ng-container matColumnDef="langueParler">
+                                      <th mat-header-cell *matHeaderCellDef>Langue parlées</th>
+                                      <td mat-cell *matCellDef="let fichier">{{fichier.langueParler }}  </td>
+                                    </ng-container>
+                              
+                                <ng-container matColumnDef="actions">
+                                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                  <td mat-cell *matCellDef="let fichier">
+                                    <button mat-icon-button (click)="validProcess(fichier.uid)">
+                                      <img src="./../../assets/valider.png" alt="" >
+                                      </button>
+                    
+                                    <button mat-icon-button  >
+                                        <img src="./../../assets/voirPlus.jpg" (click)="goToviewUser(fichier.uid)"  alt="" >
+                                    </button>
+                                   
+                                  </td>
+                                </ng-container>
+                    
+                                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+                               
+                        </table>  
+
+
+                            
+                        
+    
+                    </div>
+
+                </div>
+
+
+    
+                <div class="notvalide" *ngIf="list_users.length == 0">
+                    <p>
+                        Aucun utilisateur n'est enregister pour l'instant
+                    </p>
+    
+                </div>               
+            
+            </div>
+
+            <div class="" *ngIf="selecter==1">  
+
+                <div  *ngIf=" liste_videos.length > 0 ">
+  
+                  <div class="cardVideos" >
+  
+                      <div class="oneVideo" *ngFor="let item of liste_videos" >
+  
+                          <img (click)="ValidByVideo(item.user_id)" src="./../../assets/suprime.png" alt="">
+  
+  
+                          <video controls>
+                              <source [src]="item.fileVideo" type="video/mp4">
+                              Your browser does not support the video tag.
+                            </video>
+  
+  
+                      </div>
+  
+                     
+  
+                  </div>
+                </div>
+  
+  
+                  
+                  <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
+                      <p>
+                          Il n'y a aucune video de presetation d'activité
+                      </p>
+      
+                  </div>               
+                 
+              </div>
+
+              
+
+        </div>
 
 </div>

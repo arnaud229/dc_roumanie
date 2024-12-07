@@ -15,8 +15,10 @@ import { CreateDetteComponent } from './create-dette/create-dette.component';
 import { EditDetteComponent } from './edit-dette/edit-dette.component';
 import { CreateRemboursementComponent } from './create-remboursement/create-remboursement.component';
 import { EditRemboursementComponent } from './edit-remboursement/edit-remboursement.component';
+import { ViewUserComponent } from './view-user/view-user.component';
 const routes: Routes = [
   { path: '', component: SingninComponent },
+  { path: '*', component: SingninComponent },
 
   { path: 'signin', component: SingninComponent },
   { path: 'signup', component: SingnupComponent },
@@ -32,6 +34,7 @@ const routes: Routes = [
   { path: 'createRemboursement', component: CreateRemboursementComponent },
   { path: 'editdette', component: EditDetteComponent },
   { path: 'editremboursement', component: EditRemboursementComponent },
+  { path: 'viewUser', component: ViewUserComponent },
 ];
 
 

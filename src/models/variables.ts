@@ -46,6 +46,7 @@ export interface User {
     fil_casierJudiciere: string,
     isvalidePreselect : boolean,
     isvalidSelect: boolean,
+    isProcessSucceful: boolean,
 
 }
 
@@ -56,6 +57,7 @@ export interface videoPresentation  {
     fileVideo: string,
     user_id: string,
     createdAt?: any,
+    isvalidVideo: boolean;
 
 }
 

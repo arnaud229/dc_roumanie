@@ -19,11 +19,6 @@ import { UsersService } from "../firebase/user.service";
 
 
     userTempService: any;
-
-  
-  
-
-
     
     constructor(
         private fbauth: AngularFireAuth,
@@ -114,8 +109,7 @@ import { UsersService } from "../firebase/user.service";
       ePrecedent: "",
       passport: false,
       nationalite: "",
-      cWhatapp:
-      {
+      cWhatapp: {
         code: "",
         numero: ""
       },
@@ -150,11 +144,12 @@ import { UsersService } from "../firebase/user.service";
       nbrEnfants: 0,
       dHonneur: false,
       fils_diplome: [],
-      fil_photo:"",
+      fil_photo: "",
       fil_passportPhoto: "",
       fil_casierJudiciere: "",
       isvalidePreselect: false,
-      isvalidSelect: false
+      isvalidSelect: false,
+      isProcessSucceful: false
     };
     await this.firestore
       .collection('utilisateurs')

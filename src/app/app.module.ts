@@ -29,6 +29,19 @@ import { EditDetteComponent } from './edit-dette/edit-dette.component';
 
 import { CreateRemboursementComponent } from './create-remboursement/create-remboursement.component';
 import { EditRemboursementComponent } from './edit-remboursement/edit-remboursement.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { ViewUserComponent } from './view-user/view-user.component';
+
+
 
 @NgModule({
   declarations: [
@@ -48,6 +61,7 @@ import { EditRemboursementComponent } from './edit-remboursement/edit-remboursem
     EditDetteComponent,
     CreateRemboursementComponent,
     EditRemboursementComponent,
+    ViewUserComponent,
     
     
   ],
@@ -64,6 +78,17 @@ import { EditRemboursementComponent } from './edit-remboursement/edit-remboursem
     HttpClientModule,
     Ng2GoogleChartsModule,
     BrowserAnimationsModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatSelectModule,
+  
     
   ],
 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
@@ -21,6 +21,7 @@ export class DashboardAdminComponent {
   selecterMobile: number = 0;
   userId = ""; 
   currentUser : User = {
+    uid: 'qgshydsergfgjuyjhhghh',
     nom: 'toto',
     prenom: 'jojo',
     telephone: {
@@ -120,13 +121,121 @@ export class DashboardAdminComponent {
     fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-    isvalidSelect: false
+      isvalidSelect: false,
+    isProcessSucceful: false
    
   };
   
   list_users = [
 
     {
+      uid: 'qgshydsergfgjuyjhhghhlk',
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: false,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg",
+        "./../../assets/roumanie-visiter.jpg",
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: false,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: false,
+        isvalidSelect: false,
+    isProcessSucceful: false
+     
+    },
+    {
+      uid: 'qgshydsergfgjuyjhhghhrds',
       nom: 'toto',
       prenom: 'jojo',
       telephone: {
@@ -226,10 +335,12 @@ export class DashboardAdminComponent {
       fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
       fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
       isvalidePreselect: false,
-      isvalidSelect: false
+        isvalidSelect: false,
+    isProcessSucceful: false
      
     },
     {
+      uid: 'qgshydsergfgjuyjhhghfgdfh',
       nom: 'toto',
       prenom: 'jojo',
       telephone: {
@@ -329,10 +440,12 @@ export class DashboardAdminComponent {
       fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
       fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
       isvalidePreselect: false,
-      isvalidSelect: false
+        isvalidSelect: false,
+    isProcessSucceful: false
      
     },
     {
+      uid: 'qgshydsergfgjuyjhhgtrrhh',
       nom: 'toto',
       prenom: 'jojo',
       telephone: {
@@ -432,113 +545,12 @@ export class DashboardAdminComponent {
       fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
       fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
       isvalidePreselect: false,
-      isvalidSelect: false
+        isvalidSelect: false,
+    isProcessSucceful: false
      
     },
     {
-      nom: 'toto',
-      prenom: 'jojo',
-      telephone: {
-        code: '+229',
-        numero: '69741258'
-      },
-      mail: 'jojo@gmail.com',
-      mdp: 'Moi@1234',
-      age: 30,
-      sMatrimoniale: 'Célibataire',
-      NEtude: 'BAC C',
-      metier: 'cuisinier',
-      aDiplome: 2010,
-      dApprentissage: 2,
-      aExperience: 3,
-      ePrecedent: 'fold Food',
-      passport: false,
-      nationalite: 'Béninoise',
-      cWhatapp: 
-      {
-        code: '+229',
-        numero: '69741258'
-      },
-      parrain: 'lolo tolo',
-      religion: 'musulman',
-      ldtep2: true,
-      fils_recus: [
-        "./../../assets/roumanie-visiter.jpg"
-      ],
-      admin: false,
-      partenaire: false,
-      LieuNaissance: 'alladas',
-      dateNaissance: new Date(),
-      paysNaissance: '',
-      Pere: {
-        nom: 'toto',
-        prenoms: 'fodo'
-      },
-      Mere: {
-        nom: 'vovo',
-        prenoms: 'vovo'
-      },
-      nPasseport: '894f1ethbfdr87574',
-      lieuPasseport: 'cotonou',
-      dateEmiPasseport: new Date(),
-      dateExpPasseport: new Date(),
-      derniereResidence: 'cotonou',
-      derniereResidencePays: 'benin',
-      derniereResidenceVillage: 'fifadji',
-      qualiProfession: 'cuisine',
-      principalProfession: 'informaticien',
-      langueParler: 'francais',
-      expProfesionnel: [
-        {
-          entreprise: 'string',
-          posteOccupe: 'cuisine',
-          dateDebut: new Date(),
-          datefin: new Date()
-        },
-  
-        {
-          entreprise: 'string',
-          posteOccupe: 'cuisine',
-          dateDebut: new Date(),
-          datefin: new Date()
-        },
-        {
-          entreprise: 'string',
-          posteOccupe: 'cuisine',
-          dateDebut: new Date(),
-          datefin: new Date()
-        },
-        {
-          entreprise: 'string',
-          posteOccupe: 'cuisine',
-          dateDebut: new Date(),
-          datefin: new Date()
-        },
-        {
-          entreprise: 'string',
-          posteOccupe: 'cuisine',
-          dateDebut: new Date(),
-          datefin: new Date()
-        }
-      ],
-      nbrEnfants: 0,
-      dHonneur: false,
-      fils_diplome: [
-        
-    "./../../assets/roumanie-visiter.jpg",
-    "./../../assets/roumanie-visiter.jpg",
-    "./../../assets/roumanie-visiter.jpg",
-       
-      ],
-      fil_photo: "./../../assets/roumanie-visiter.jpg"
-      ,
-      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
-      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
-      isvalidePreselect: false,
-      isvalidSelect: false
-     
-    },
-    {
+      uid: 'qgshydsergfgjuyjhdfkhghh',
       nom: 'toto',
       prenom: 'jojo',
       telephone: {
@@ -638,10 +650,12 @@ export class DashboardAdminComponent {
       fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
       fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
       isvalidePreselect: false,
-      isvalidSelect: false
+        isvalidSelect: false,
+    isProcessSucceful: false
      
     },
     {
+      uid: 'qgshydsereyyergfgjuyjhhghh',
       nom: 'toto',
       prenom: 'jojo',
       telephone: {
@@ -741,10 +755,12 @@ export class DashboardAdminComponent {
       fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
       fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
       isvalidePreselect: false,
-      isvalidSelect: false
+        isvalidSelect: false,
+    isProcessSucceful: false
      
     },
     {
+      uid: 'qgshydsergfgjuydfsjhhghh',
       nom: 'toto',
       prenom: 'jojo',
       telephone: {
@@ -844,7 +860,533 @@ export class DashboardAdminComponent {
       fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
       fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
       isvalidePreselect: false,
-      isvalidSelect: false
+        isvalidSelect: false,
+    isProcessSucceful: false
+     
+    },
+    {
+      uid: 'qgshydsergfgjuygfdfsjhhghh',
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: true,
+        isvalidSelect: false,
+    isProcessSucceful: false
+     
+    },
+    {
+      uid: 'qgshydsergfgjuydfsjhhghhhh',
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: true,
+        isvalidSelect: false,
+    isProcessSucceful: false
+     
+    },
+    {
+      uid: 'qgshydsergfgjuydfsjjkjhhghh',
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: true,
+        isvalidSelect: false,
+    isProcessSucceful: false
+     
+    },
+    {
+      uid: 'qgshydserggggfgjuydfsjhhghh',
+      nom: 'toto',
+      prenom: 'jolo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: true,
+        isvalidSelect: false,
+    isProcessSucceful: false
+     
+    },
+    {
+      uid: 'qgshydsergfgjuydjhjkjkfsjhhghh',
+      nom: 'toto',
+      prenom: 'jojo',
+      telephone: {
+        code: '+229',
+        numero: '69741258'
+      },
+      mail: 'jojo@gmail.com',
+      mdp: 'Moi@1234',
+      age: 30,
+      sMatrimoniale: 'Célibataire',
+      NEtude: 'BAC C',
+      metier: 'cuisinier',
+      aDiplome: 2010,
+      dApprentissage: 2,
+      aExperience: 3,
+      ePrecedent: 'fold Food',
+      passport: true,
+      nationalite: 'Béninoise',
+      cWhatapp: 
+      {
+        code: '+229',
+        numero: '69741258'
+      },
+      parrain: 'lolo tolo',
+      religion: 'musulman',
+      ldtep2: true,
+      fils_recus: [
+        "./../../assets/roumanie-visiter.jpg"
+      ],
+      admin: false,
+      partenaire: false,
+      LieuNaissance: 'alladas',
+      dateNaissance: new Date(),
+      paysNaissance: '',
+      Pere: {
+        nom: 'toto',
+        prenoms: 'fodo'
+      },
+      Mere: {
+        nom: 'vovo',
+        prenoms: 'vovo'
+      },
+      nPasseport: '894f1ethbfdr87574',
+      lieuPasseport: 'cotonou',
+      dateEmiPasseport: new Date(),
+      dateExpPasseport: new Date(),
+      derniereResidence: 'cotonou',
+      derniereResidencePays: 'benin',
+      derniereResidenceVillage: 'fifadji',
+      qualiProfession: 'cuisine',
+      principalProfession: 'informaticien',
+      langueParler: 'francais',
+      expProfesionnel: [
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+  
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        },
+        {
+          entreprise: 'string',
+          posteOccupe: 'cuisine',
+          dateDebut: new Date(),
+          datefin: new Date()
+        }
+      ],
+      nbrEnfants: 0,
+      dHonneur: true,
+      fils_diplome: [
+        
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+    "./../../assets/roumanie-visiter.jpg",
+       
+      ],
+      fil_photo: "./../../assets/roumanie-visiter.jpg"
+      ,
+      fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
+      fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
+      isvalidePreselect: true,
+        isvalidSelect: false,
+    isProcessSucceful: false
      
     },
 
@@ -879,20 +1421,204 @@ export class DashboardAdminComponent {
   les_url = [""];
   progressValue  = 0;
 
-  TotalsDettes: number =0;
-  TotalsRemboursements: number =0;
+  TotalsDettes: number =1;
+  TotalsRemboursements: number =1;
+  theId: any 
 
 
 
-liste_Dette: any [] = [];
-liste_Remboursement: any [] = [];
+
+liste_Dette = [
+  {
+    id: 'edtzergsdfgkmryumlfgklm',
+    montantDu: 2500000,
+    dateDette: new Date(),
+    libele: 'voyage abuja',
+    nom: 'holo',
+    prenoms: 'folo',
+    createdAt: new Date(),
+    user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkhrftgmryumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsddfgrfdffgkmryumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkfghjfgyumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkuiouyumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkhftgmlfgklm',
+  montantDu: 4000000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdikikkkkmryumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergolpmlyuiyumryumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdpoklklkmryumlfgklm',
+  montantDu: 2500000,
+  dateDette: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+];
+liste_Remboursement= [
+  {
+    id: 'edtzergsdfgkmryumlfgklm',
+    montantRembourse: 2500000,
+    dateRemboursement: new Date(),
+    libele: 'voyage abuja',
+    nom: 'holo',
+    prenoms: 'folo',
+    createdAt: new Date(),
+    user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkhrftgmryumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsddfgrfdffgkmryumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkfghjfgyumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkuiouyumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdfgkhftgmlfgklm',
+  montantRembourse: 4000000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdikikkkkmryumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergolpmlyuiyumryumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+{
+  id: 'edtzergsdpoklklkmryumlfgklm',
+  montantRembourse: 2500000,
+  dateRemboursement: new Date(),
+  libele: 'voyage abuja',
+  nom: 'holo',
+  prenoms: 'folo',
+  createdAt: new Date(),
+  user_id: 'ertgfrgferkjgjktktedrzesey',
+},
+];
 
 public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,
   dataTable: [
     ['Etat financière', 'Etat financière'],
-    ['Dette',     7 ],
-    ['Rembourssement',    11],
+    ['Dette',     this.TotalsDettes ],
+    ['Rembourssement',    this.TotalsRemboursements],
     // ['Dette',     this.getTotalsDettes() ],
     // ['Rembourssement',      this.getTotalsRemboursements()],
    
@@ -911,8 +1637,15 @@ public pieChart: GoogleChartInterface = {
   
 };
 
+liste_preselect : any[] = [];
+liste_select: any[] = [];
+
 filter =0;
-  
+displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', 'parrain','actions'];  
+displayedColumnsDette: string[] = ['nom', 'prenom', 'libele', 'montantDu', 'dateDette','actions'];  
+displayedColumnsRemboursement: string[] = ['nom', 'prenom', 'libele', 'montantRembourse', 'dateRemboursement', 'actions'];  
+displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfession', 'principalProfession', 'langueParler','actions'];  
+  typeInput = 'text'
 
   constructor(
     private router: Router,
@@ -922,50 +1655,56 @@ filter =0;
     private financeServices: FinancesService,
     private videoService: VideosService,
     private userServ : UsersService,
+    private cdr: ChangeDetectorRef
   ) {}
 
 
   ngOnInit() {
 
-   let user = this.localstorageService.getCurrentUser()
-    console.log('user honneur:', user.dHonneur);
-    
-    this.currentUser  = user;
-  
+  setTimeout(() => {
+   
+    console.log('list_users:', this.list_users);
+    this.cdr.detectChanges(); // Force la détection des changements
 
+    this.liste_preselect = this.list_users.filter(
+
+      (res) =>
+        //  {
+        res.isvalidePreselect=== false
+         &&
+        res.ldtep2 === true
+      // }
+  
+    );
+  
+    this.liste_select =  this.list_users.filter(
+  
+      (res) => 
+        // {
+        res.isvalidePreselect=== false &&
+        res.dHonneur === true
+      // }
+  
+    );
+  
+    console.log('preselect', this.liste_preselect);
+    console.log('Select', this.liste_select);
+  }, 1000);
+
+   
     console.log('selecter11', this.selecter);
 
-    this.authService.getUser(this.userId).then(
-      (res) => {
-        console.log('user Data', res);
-        
-      }
-    ) 
+    this.getVideos();
+    this.gitRemboursement();
+    this.getDettes();
     
-
-    console.log('vrai userData',this.currentUser);
  
-         this.Aroute.params.subscribe(params => {
-          const indexParams = params['index'];
-
-          if (indexParams !== undefined) {
-         this.selecter = params['index']; 
-        this.selecterMobile = params['index']; 
-
-            console.log('selector:', this.selecter);
-            
-    
-         } else {
-           console.log('oooo');
-           
-           this.selecter = 0;
-           this.selecterMobile = 0;
-           console.log('selecter', this.selecter);
-           
-         }
-
-  })
+  
    
+}
+
+beginValid(val: any) {
+  this.theId = val
 }
 
 getFiltre() {
@@ -973,6 +1712,17 @@ getFiltre() {
 }
 
 getFiltreByValue(inde: number) {
+  this.filter = inde;
+  console.log('(val filtre', this.filter);
+
+  if (this.filter == 2) {
+    this.typeInput = 'date'
+
+    console.log("input type", this.typeInput);
+    
+    
+  }
+  
 
 }
 
@@ -1002,6 +1752,10 @@ openMenu() {
 
  }
 
+ close_valid() {
+  this.theId ='rter';
+ }
+
  selected(index: number) {
   if (index == 0) {
 
@@ -1010,64 +1764,6 @@ openMenu() {
     this.isOpenMenu = false;
     this.isEditPreselect = false;
     this.titleHeadMobile = "Préselection";
-
-    console.log('tittle0', this.titleHeadMobile);
-
-  if (this.currentUser.ldtep2) {
-
-    this.viewDisponibilite = 'oui';
-
-    if (this.currentUser.passport) {
-
-      this.viewPasseportDisponible = 'oui'
-      
-    } else 
-    {
-      this.viewPasseportDisponible = 'non'
-    }
-
-    this.isPreselect = true;
-
-    if (this.currentUser.isvalidePreselect ) {
-      this.colorValidPreselect = true;
-
-      this.statutPreselect = 'Validé'
-      
-    } else {
-      this.statutPreselect = 'En cours'
-    }
-    
-  } else {
-
-    this.isPreselect = false;
-    this.viewDisponibilite = 'non';
-
-  }
-
-    if (this.currentUser.ldtep2) {
-
-      this.viewDisponibilite = 'oui';
-
-      this.isPreselect = true;
-
-      if (this.currentUser.isvalidePreselect ) {
-        this.colorValidPreselect = true;
-
-        this.statutPreselect = 'Validé'
-        
-      } else {
-        this.statutPreselect = 'En cours'
-      }
-      
-    } else {
-    
-      this.isPreselect = false;
-      this.viewDisponibilite = 'non';
-
-
-    }
-
-
     
   } else if (index == 1) {
 
@@ -1077,60 +1773,112 @@ openMenu() {
      this.isEditSelect = false;
      this.titleHeadMobile = "Selection"
 
-     console.log('tittle1', this.titleHeadMobile);
-     
-
-     if (this.currentUser.dHonneur ) {
-    
-      
-
-      this.viewHonneur = 'oui'
-      this.titleHeadMobile ='Seléction'
-
-      this.isSelect = true;
-
-      if (this.currentUser.isvalidSelect) {
-        this.colorValidSelect = true;
-
-        this.statutFinance = 'Validé'
-        
-      } else {
-        this.statutFinance = 'En cours'
-      }
-      
-    } else {
-      console.log(3);
-      this.isSelect = false;
-      this.viewHonneur = 'non'
-
-    }
-
   } else if (index == 2) {
 
     this.selecter = 2 ;
     this.selecterMobile = 2 ;
-    this.titleHeadMobile = "Etat Finacière"
-    this.isOpenMenu = false;
-
-    if (this.liste_Dette.length > 0) {
-      this.isFinance = true;          
-} else
-{
-this.isFinance = false;
-}
-
-    
+    this.titleHeadMobile = "Dettes"
+    this.isOpenMenu = false;   
     
   } else if(index == 3) {
 
     this.selecter = 3 ;
     this.selecterMobile = 3 ;
+    this.titleHeadMobile = "Remboursements"
+    this.isOpenMenu = false;
+  }
+  else if(index == 4) {
+
+    this.selecter = 4 ;
+    this.selecterMobile = 4 ;
     this.titleHeadMobile = "Videos de présentation"
     this.isOpenMenu = false;
   }
 
+  else if(index == 5) {
+
+    this.selecter = 5 ;
+    this.selecterMobile = 5 ;
+    this.titleHeadMobile = "Etat financières"
+    this.isOpenMenu = false;
+  }
+
+
+  
+
 }
 
+applyFilter(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', filterValue);
+  console.log('origine liste', this.liste_preselect);
+  
+  
+  this.liste_preselect = this.liste_preselect.filter(fichier => 
+    fichier.nom.toLowerCase().includes(filterValue) ||
+    fichier.prenom.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_preselect);
+
+  // if (this.filter == 2) {
+
+  //      this.liste_preselect = this.liste_preselect.filter(fichier => 
+  //     fichier.date.includes(filterValue)
+
+  //   );
+    
+  // }
+  
+}
+
+applyFilterSelect(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', filterValue);
+  console.log('origine liste', this.liste_select);
+  
+  
+  this.liste_select = this.liste_select.filter(fichier => 
+    fichier.nom.toLowerCase().includes(filterValue) ||
+    fichier.prenom.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_select);
+  
+}
+
+applyFilteDette(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', filterValue);
+  console.log('origine liste', this.liste_Dette); 
+  
+  this.liste_Dette = this.liste_Dette.filter(fichier => 
+    fichier.nom.toLowerCase().includes(filterValue) ||
+    fichier.prenoms.toLowerCase().includes(filterValue) ||
+    fichier.libele.toLowerCase().includes(filterValue) 
+  );
+
+  console.log('liste filtre', this.liste_select);
+}
+
+applyFilteRembourse(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', filterValue);
+  console.log('origine liste', this.liste_Dette); 
+  
+  this.liste_Dette = this.liste_Dette.filter(fichier => 
+    fichier.nom.toLowerCase().includes(filterValue) ||
+    fichier.prenoms.toLowerCase().includes(filterValue) ||
+    fichier.libele.toLowerCase().includes(filterValue) 
+  );
+
+  console.log('liste filtre', this.liste_select);
+}
 
 logOut() {
 
@@ -1139,9 +1887,9 @@ logOut() {
 }
 
 
+
 getusers() {
 
-  if (this.selecter == 0) {
     const data = {
       pagination: {
         startAt: 0,
@@ -1151,11 +1899,16 @@ getusers() {
         orderByQueries: ['createdAt'],
         whereQueries: [
           {
-            fieldPath: 'ldtep2',
+            fieldPath: 'nom',
             opStr: '==',
-            value: true,
+            value: 'admin',
           },
-        ],
+          {
+            fieldPath: 'nom',
+            opStr: '==',
+            value: 'partenaire',
+          },
+         ],
       },
     };
 
@@ -1170,45 +1923,6 @@ getusers() {
       
       }
     )
-
-    
-  } else if (this.selecter == 1) {
-
-    const data = {
-      pagination: {
-        startAt: 0,
-        limit: 20,
-      },
-      filters: {
-        orderByQueries: ['createdAt'],
-        whereQueries: [
-          {
-            fieldPath: 'dHonneur',
-            opStr: '==',
-            value: true,
-          },
-        ],
-      },
-    };
-
-    this.userServ.getUsers(data).subscribe(
-      (res) => {
-
-        this.list_users = res.data;
-         
-      },
-      (error) => {
-        console.log('error :>> ', error);
-      
-      }
-    )
-
-  }
-  
-  
-
- 
-  
 
 
 }
@@ -1266,6 +1980,95 @@ gitRemboursement() {
     }
   )
 }
+
+goToEditDette(id: any){
+
+  this.router.navigate(["editdette", {index: id}]);
+
+}
+goToviewUser(id: any)
+{
+  this.router.navigate(["viewUser", {index: id}]);
+}
+goTocreateDette() {
+  this.router.navigate(["createdette"])
+}
+
+goTocreateRemboursement() {
+  this.router.navigate(["createRemboursement"])
+}
+
+goToEditRemboursement(id: any) {
+
+  
+  this.router.navigate(["editremboursement", {index: id}])
+
+
+}
+
+delectVideo(tu: any) {
+
+}
+
+validPreselect(ind: string){
+  let vak = true;
+  this.userServ.validPreselect( vak, ind).then(
+    () => {
+      console.log(' validation reussi pour preselect');
+    }
+  )
+  .catch(
+    (er) => {
+
+      console.log('erreur', er);
+      
+
+    }
+  )
+}
+
+validSelct(ind: string) {
+  let vak = true;
+  this.userServ.validSelect(vak, ind)
+  .then(
+    (res) => {
+      console.log('validation reussi pour select');
+      
+    }
+  )
+
+  .catch(
+    (er) => {
+
+      console.log('erreur', er);
+      
+
+    }
+  )
+}
+
+validVideo(index: string) {
+
+  let vak = true;
+  this.videoService.validVideo(vak, index)
+  .then(
+    (res) => {
+      console.log('validation reussi pour video');
+      
+    }
+  )
+
+  .catch(
+    (er) => {
+
+      console.log('erreur', er);
+      
+
+    }
+  )
+  
+}
+
 
 
 

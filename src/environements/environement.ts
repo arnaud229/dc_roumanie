@@ -11,7 +11,5 @@ export const environement = {
         appId: "1:506707895234:web:8ad74d9a2182d368d2ec5b"
     },
 
-    adminServerConfig: {
-        baseUrl: 'http://localhost:5000'
-      }
+
 }
