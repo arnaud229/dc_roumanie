@@ -56,13 +56,15 @@ import { User } from "src/models/variables";
         console.log('filters', filters);
         const { startAt, limit } = pagination || {};
         const { whereQueries, orderByQueries, like } = filters || {};
-        const collection = this.firestore.collection<any>('utilisateurs', (ref) => {
+        const collection = this.firestore.collection<any>('utilisateurs'
+        //   , (ref) => {
         
-          return applyPagination(
-            orderByQuery(whereQuery(ref, whereQueries), orderByQueries),
-            pagination
-          );
-        });
+        //   return applyPagination(
+        //     orderByQuery(whereQuery(ref, whereQueries), orderByQueries),
+        //     pagination
+        //   );
+        // }
+      );
     
         const result$ = collection.snapshotChanges().pipe(
           map((snapshots: any[]) => {

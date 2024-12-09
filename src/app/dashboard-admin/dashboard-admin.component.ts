@@ -1659,37 +1659,24 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
   ) {}
 
 
-  ngOnInit() {
+  async ngOnInit() {
+    this.currentUser = this.localstorageService.getCurrentUser();
+    // this.userId = this.currentUser.uid
+    
+  await  this.getusers();
 
   setTimeout(() => {
+
    
     console.log('list_users:', this.list_users);
+
     this.cdr.detectChanges(); // Force la détection des changements
 
-    this.liste_preselect = this.list_users.filter(
-
-      (res) =>
-        //  {
-        res.isvalidePreselect=== false
-         &&
-        res.ldtep2 === true
-      // }
   
-    );
-  
-    this.liste_select =  this.list_users.filter(
-  
-      (res) => 
-        // {
-        res.isvalidePreselect=== false &&
-        res.dHonneur === true
-      // }
-  
-    );
   
     console.log('preselect', this.liste_preselect);
     console.log('Select', this.liste_select);
-  }, 1000);
+  }, 2000);
 
    
     console.log('selecter11', this.selecter);
@@ -1912,10 +1899,35 @@ getusers() {
       },
     };
 
-    this.userServ.getUsers(data).subscribe(
+    this.userServ.getUsers(data).subscribe
+    (
       (res) => {
 
+        console.log('users', res.data);
+        
+
         this.list_users = res.data;
+
+        this.liste_preselect = this.list_users.filter(
+
+          (res) =>
+            //  {
+            res.isvalidePreselect=== false
+             &&
+            res.ldtep2 === true
+          // }
+      
+        );
+      
+        this.liste_select =  this.list_users.filter(
+      
+          (res) => 
+            // {
+            res.isvalidePreselect=== false &&
+            res.dHonneur === true
+          // }
+      
+        );
          
       },
       (error) => {
