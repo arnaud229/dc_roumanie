@@ -127,6 +127,12 @@ export class SingninComponent {
 
   }
 
+  goToSign()
+  {
+    
+    this.router.navigate(["signup"]);
+  }
+
 
   closeError()  {
     this.iserrorlog = false;

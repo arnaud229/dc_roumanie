@@ -16,7 +16,7 @@
                 <div class="les_boutons">
      
                     <button  class="boutton"  (click)="connected()">Me connecter</button> 
-                    <a id="botton_bas" routerLink="./signup" > je suis nouveau ici </a>
+                    <a id="botton_bas" (click)="goToSign()" > je suis nouveau ici </a>
 
                 </div>
 
@@ -29,7 +29,7 @@
                     <div>
                         <a id="mdp_oublierM" (click)="change_password()" >Mot de passe oublié ?</a>
 
-                        <a id="botton_basM" routerLink="./signup" > je suis nouveau ici </a>
+                        <a id="botton_basM" (click)="goToSign()" > je suis nouveau ici </a>
 
                     </div>
 
