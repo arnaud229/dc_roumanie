@@ -6743,7 +6743,7 @@ export const countries = [
   ];
 
   export const religion = [
-    'Cathilique',
+    'Catholique',
     'Musulmane',
     'Laîque', 
   ];
