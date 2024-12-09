@@ -455,7 +455,9 @@ getTotalsRemboursements() {
 
   logOut() {
 
-    this.localstorageService.logout()
+    this.localstorageService.logout();
+    this.router.navigate(["signin"]);
+
 
   }
 
