@@ -5,6 +5,7 @@ import { RecuFile, User } from 'src/models/variables';
 import { UsersService } from '../services/firebase/user.service';
 import { StorageService } from '../services/storage/storage.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 @Component({
   selector: 'app-edit-select',
@@ -165,6 +166,8 @@ export class EditSelectComponent {
   oldFilPhoto: any = "";
   oldFilPasseport: any = "";
   oldFilCassierJudiciere: any = "";
+  listReligion: any[] = [];
+  listCountries: any[] = [];
 
 
   
@@ -174,8 +177,10 @@ export class EditSelectComponent {
     private userServ : UsersService,
     private firebaseStorageService: StorageService,
     public localstorageService: LocalstorageService,
+    public utilsService: UtilsService,
   ) {
-
+    this.listReligion = this.utilsService.getListReligion();
+    this.listCountries = this.utilsService.getListCountries();
     this.init_form();
   }
 

@@ -21,8 +21,14 @@
 
                 <div class="groupe_prefixe">
                      
-                    <input id='code_pays' type="text"   [ngClass]="{'error': userform.controls['code'].invalid && userform.controls['code'].value!=''}"  formControlName="code"   placeholder="+229" >
-
+                     
+                    <select  id='code_pays'   formControlName="code"  [ngClass]="{'error': userform.controls['code'].invalid && userform.controls['code'].value!='Langue étrangère parler'}"  >
+               
+                      <option value=""> votre  prefixe </option> 
+                      <option *ngFor="let item of listPrefixe" [value]="item.prefix"> {{item.name}} ({{item.prefix}}) </option>
+      
+                     </select>
+                   
                     <!-- <svg  width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="black" fill-opacity="0.6"/>
                       </svg> -->

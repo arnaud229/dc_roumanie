@@ -26,8 +26,12 @@
             <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
           
             <label for=""> Pays de naissance</label>
-            <input  type="text"  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!=''}"  formControlName="paysNaissance" placeholder="Pays de naissance" >
-          
+             <select  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!='Votre pays de naissance'}"  formControlName="paysNaissance" >
+               
+                <option  value=""> {{currentUser.paysNaissance}} </option>
+                <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
+
+               </select>
             <label for=""> Date de naissance</label>
             <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
           
@@ -62,8 +66,13 @@
          <div >
 
             <label for="">Votre Pays de résidence</label>
-            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!=''}"  formControlName="derniereResidencePays" placeholder="Votre Pays de résidence" >
-           
+        
+            <select  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!='Votre dernière Résidence (Pays)'}"  formControlName="derniereResidencePays" >
+               
+                <option  value=""> {{currentUser.derniereResidencePays}} </option>
+                <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
+
+               </select> 
             <label for="">ville/village de résidence</label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" placeholder="ville/village de résidence" >
            

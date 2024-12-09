@@ -41,6 +41,7 @@ export class PreselectionComponent {
   change: EventEmitter<any[]> = new EventEmitter();
   iserrorlog : boolean =  false;
   listReligion: any[] = [];
+  listPrefixe: any[] = [];
 
   constructor(
     private formbuilder: FormBuilder,
@@ -51,7 +52,7 @@ export class PreselectionComponent {
     public localstorageService: LocalstorageService,
     public utilsService: UtilsService,
   ) {
-
+    this.listPrefixe =  this.utilsService.getListPrefixe()
     this.listReligion = this.utilsService.getListReligion();
     this.init_form();
   }

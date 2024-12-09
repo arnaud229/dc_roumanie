@@ -31,7 +31,13 @@
 
                 <div class="groupe_prefixe">
                      
-                    <input id='code_pays' type="text" [(ngModel)]="pre"   placeholder="+229" >
+                    <!-- <input id='code_pays' type="text" [(ngModel)]="pre"   placeholder="+229" > -->
+                    <select  id='code_pays'   [(ngModel)]="pre"    >
+               
+                        <option value=""> votre  prefixe </option> 
+                        <option *ngFor="let item of listPrefixe" [value]="item.prefix"> {{item.name}} ({{item.prefix}}) </option>
+        
+                       </select>
                
                 </div>
                   <input id= 'input_number' type="text"  [(ngModel)]="edite" placeholder="Numéro Whatsapp" >

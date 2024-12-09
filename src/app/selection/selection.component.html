@@ -21,7 +21,7 @@
             <select  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!='Votre pays de naissance'}"  formControlName="paysNaissance" >
                
                 <option  value=""> Votre pays de naissance</option>
-                <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
+                <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
 
                </select>
 
@@ -64,7 +64,7 @@
             <select  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!='Votre dernière Résidence (Pays)'}"  formControlName="derniereResidencePays" >
                
                 <option  value=""> Votre dernière Résidence (Pays)</option>
-                <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
+                <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
 
                </select>
            

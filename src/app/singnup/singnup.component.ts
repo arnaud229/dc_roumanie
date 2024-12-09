@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { User } from 'src/models/variables';
+import { UtilsService } from '../services/utils/utilis.service';
 
 @Component({
   selector: 'app-singnup',
@@ -22,7 +23,8 @@ export class SingnupComponent {
     le_type = "password";
   le_type1 = "text" ;
   condition_accept = false;
-  iserrorlog: boolean = false
+  iserrorlog: boolean = false;
+  listPrefixe: any[] = [];
  
 
   // verification_otp = true;
@@ -34,8 +36,11 @@ export class SingnupComponent {
     public authService: AuthService,
     // private utilsService: UtilsService,
     // private alertController: AbortController,
+    public utilsService: UtilsService,
   ) {
 
+    this.listPrefixe =  this.utilsService.getListPrefixe()
+     
   }
 
   ngOnInit() {

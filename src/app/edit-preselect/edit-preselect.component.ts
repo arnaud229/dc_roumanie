@@ -6,6 +6,7 @@ import { UsersService } from '../services/firebase/user.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { StorageService } from '../services/storage/storage.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 @Component({
   selector: 'app-edit-preselect',
@@ -136,6 +137,8 @@ export class EditPreselectComponent {
   les_url: any[] = [];
   progressValue  = 0;
   itemToEditImages: any[] = []; // new Array(20)
+  listPrefixe: any[] = [];
+  listReligion: any[] = [];
 
   
   constructor(
@@ -145,8 +148,10 @@ export class EditPreselectComponent {
     private afs: AngularFirestore,
     private firebaseStorageService: StorageService,
     public localstorageService: LocalstorageService,
+    public utilsService: UtilsService,
   ) {
-
+    this.listPrefixe =  this.utilsService.getListPrefixe();
+    this.listReligion = this.utilsService.getListReligion();
     this.init_form();
   }
 
