@@ -39,7 +39,7 @@ export class CreateDetteComponent {
 
   ngOnInit() {
     this.init_form();
-  
+    this.getAllUsers();
   }
 
   getAllUsers() {

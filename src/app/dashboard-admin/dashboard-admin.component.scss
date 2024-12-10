@@ -352,9 +352,10 @@ tbody td
 }
 
 .oneVideo {
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     position: relative;
+    border: solid 1px #764929;
 
 }
 
@@ -373,6 +374,24 @@ tbody td
 {
     width: 100%;
     height: 100%;
+}
+
+.oneVideo > h1
+{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 14px;
+    // padding-left: 10px;
+}
+
+.oneVideo > span
+{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 24px;
+    padding-left: 10px;
 }
 
 .legooglechart

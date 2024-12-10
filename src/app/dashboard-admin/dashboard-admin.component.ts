@@ -7,6 +7,7 @@ import { VideosService } from '../services/videos/videos.service';
 import { User } from 'src/models/variables';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { UsersService } from '../services/firebase/user.service';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -2101,6 +2102,40 @@ validVideo(index: string) {
   )
   
 }
+
+
+ getUserNameById(index: string) {
+
+   return this.userServ.getUser(index).pipe(
+    map(
+      (data) => {
+
+        return data.nom
+
+      }
+    )
+
+   
+  )
+}
+
+ getUserLastNameById(index: string) {
+
+ return this.userServ.getUser(index).pipe(
+    map(
+      (data) => {
+
+        return data.prenom
+
+      }
+    )
+
+   
+  )
+
+}
+
+
 
 
 

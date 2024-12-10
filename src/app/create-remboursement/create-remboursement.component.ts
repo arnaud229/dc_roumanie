@@ -34,10 +34,12 @@ export class CreateRemboursementComponent {
   ) {
 
     this.init_form();
+    this.getAllUsers()
   }
 
   ngOnInit() {
     this.init_form();
+    this.getAllUsers()
   }
 
 
@@ -107,7 +109,7 @@ export class CreateRemboursementComponent {
       montantRembourse: this.remboursementform.value.montantDu,
       dateRemboursement: this.remboursementform.value.date,
       libele: this.remboursementform.value.libele,
-      user_id: this.remboursementform.value.uid,
+      user_id: this.remboursementform.value.user.uid,
       nom: this.remboursementform.value.user.nom,
       prenoms: this.remboursementform.value.user.prenom
     }
