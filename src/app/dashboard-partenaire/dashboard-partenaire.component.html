@@ -16,7 +16,7 @@
 
             <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>        
             <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Les vidéos </li>
-            <li (click)="logOut()" >Déconxion</li>
+            <li (click)="logOut()" >Déconnexion</li>
 
         </ul>
 
@@ -55,7 +55,7 @@
     
                 <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>            
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 1}"    >Les vidéos</li>
-                <li (click)="logOut()"  >Déconxion</li>
+                <li (click)="logOut()"  >Déconnexion</li>
     
             </ul>
 
@@ -160,8 +160,8 @@
                                       <img src="./../../assets/valider.png" alt="" >
                                       </button>
                     
-                                    <button mat-icon-button  >
-                                        <img src="./../../assets/voirPlus.jpg" (click)="goToviewUser(fichier.uid)"  alt="" >
+                                    <button mat-icon-button (click)="goToviewUser(fichier.uid)" >
+                                        <img src="./../../assets/voirPlus.jpg"   alt="" >
                                     </button>
                                    
                                   </td>

@@ -20,7 +20,7 @@
             <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
             <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
             <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
-            <li (click)="logOut()" >Déconxion</li>
+            <li (click)="logOut()" >Déconnexion</li>
 
         </ul>
 
@@ -63,7 +63,7 @@
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Remboursements</li>
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos</li>
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
-                <li (click)="logOut()"  >Déconxion</li>
+                <li (click)="logOut()"  >Déconnexion</li>
     
             </ul>
 
@@ -160,8 +160,8 @@
                                       <img src="./../../assets/valider.png" alt="" >
                                       </button>
                     
-                                    <button mat-icon-button  >
-                                        <img src="./../../assets/voirPlus.jpg" (click)="goToviewUser(fichier.uid)"  alt="" >
+                                    <button mat-icon-button  (click)="goToviewUser(fichier.uid)" >
+                                        <img src="./../../assets/voirPlus.jpg"  alt="" >
                                     </button>
 
                                     <div class="corpsPpreselct"   >
@@ -300,8 +300,8 @@
                                       <img src="./../../assets/valider.png" alt="" >
                                       </button>
                     
-                                    <button mat-icon-button >
-                                        <img src="./../../assets/voirPlus.jpg" (click)="goToviewUser(fichier.uid)" alt="" >
+                                    <button mat-icon-button  (click)="goToviewUser(fichier.uid)" >
+                                        <img src="./../../assets/voirPlus.jpg"  alt="" >
                                     </button>
 
                                                                      
@@ -432,6 +432,8 @@
                     <p>
                         Aucun utilisateur n'est enregister pour l'instant
                     </p>
+
+                    <button (click)="goTocreateDette()">Ajouter une Dette</button>
     
                 </div>
                 
@@ -530,6 +532,8 @@
                     <p>
                         Aucun utilisateur n'est enregister pour l'instant
                     </p>
+
+                    <button id="btn-remboursement" (click)="goTocreateRemboursement()">Ajouter un Remboursement</button>
     
                 </div>
                 

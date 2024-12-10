@@ -1658,26 +1658,38 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     private cdr: ChangeDetectorRef
   ) {}
 
+//  async ngDoCheck() {
+//   await  this.getusers();
+
+  
+   
+//   console.log('list_users:', this.list_users);
+
+//   this.cdr.detectChanges(); // Force la détection des changements
+
+
+
+//   console.log('preselect', this.liste_preselect);
+//   console.log('Select', this.liste_select);
+
+
+ 
+//   console.log('selecter11', this.selecter);
+
+//   this.getVideos();
+//   this.gitRemboursement();
+//   this.getDettes();
+//   }
+
 
   async ngOnInit() {
     this.currentUser = this.localstorageService.getCurrentUser();
     // this.userId = this.currentUser.uid
     
-  await  this.getusers();
-
-  setTimeout(() => {
-
-   
+  await  this.getusers();   
     console.log('list_users:', this.list_users);
 
     this.cdr.detectChanges(); // Force la détection des changements
-
-  
-  
-    console.log('preselect', this.liste_preselect);
-    console.log('Select', this.liste_select);
-  }, 2000);
-
    
     console.log('selecter11', this.selecter);
 
@@ -1902,12 +1914,13 @@ getusers() {
 
     this.userServ.getUsers(data).subscribe
     (
-      (res) => {
+      (res) => {       
 
-        console.log('users', res.data);
-        
+        this.list_users = res.data.filter(
+          (res) => res.name!== 'admin' && res.name!== 'partenaire'
+        ) ;
 
-        this.list_users = res.data;
+        console.log('users', this.list_users);
 
         this.liste_preselect = this.list_users.filter(
 
@@ -1924,11 +1937,16 @@ getusers() {
       
           (res) => 
             // {
-            res.isvalidePreselect=== false &&
-            res.dHonneur === true
+            res.isvalidePreselect=== true &&
+            res.dHonneur === true &&
+            res.isvalidSelect === false
+            
           // }
       
         );
+   
+    console.log('preselect', this.liste_preselect);
+    console.log('Select', this.liste_select);
          
       },
       (error) => {
@@ -2001,6 +2019,8 @@ goToEditDette(id: any){
 }
 goToviewUser(id: any)
 {
+  console.log('ca a commencé');
+  
   this.router.navigate(["viewUser", {index: id}]);
 }
 goTocreateDette() {
