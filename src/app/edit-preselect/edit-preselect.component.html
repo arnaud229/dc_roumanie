@@ -76,9 +76,10 @@
             </div>
 
             <div  [formGroup]="editPreselectform" >
+                <label for="">Votre réligion</label>
 
                 <select  [ngClass]="{'error': editPreselectform.controls['religion'].invalid && editPreselectform.controls['religion'].value!='votre réligion'}"  formControlName="religion" >
-                    <option value=""> votre réligion </option>
+                    <option value=""> {{currentUser.religion}} </option>
                     <option *ngFor="let item of listReligion" [value]="item">  {{item}} </option>
     
                    </select>

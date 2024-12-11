@@ -603,12 +603,14 @@ getTotalsRemboursements() {
  editPreselect() {
 
   this.isEditPreselect = true;
+  this.router.navigate(['editpreselect']);
 
  }
 
  editSelect() {
 
   this.isEditSelect = true;
+  this.router.navigate(['editselect']);
 
  }
 
@@ -624,12 +626,12 @@ getTotalsRemboursements() {
 
   if (this.selecter == 0) {
 
-    this.router.navigate(['editpreselect'])   ;
+    this.router.navigate(['editpreselect']);
 
     
   } else if (this.selecter == 1) {
 
-    this.router.navigate(['editselect'])   ;
+    this.router.navigate(['editselect']);
     
   }else if(this.selecter == 3) {
 
