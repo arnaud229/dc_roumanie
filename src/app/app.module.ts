@@ -40,6 +40,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { ViewUserComponent } from './view-user/view-user.component';
+import { CoursCoachingComponent } from './cours-coaching/cours-coaching.component';
 
 
 
@@ -62,6 +63,7 @@ import { ViewUserComponent } from './view-user/view-user.component';
     CreateRemboursementComponent,
     EditRemboursementComponent,
     ViewUserComponent,
+    CoursCoachingComponent,
     
     
   ],

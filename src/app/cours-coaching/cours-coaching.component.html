@@ -1,0 +1,40 @@
+<div class="content_pre" >    
+    
+    
+    <div class="card-in"  [formGroup]="videoform">
+
+        <h1>Cours de coaching </h1>
+    
+        <input  type="text"  [ngClass]="{'error': videoform.controls['tittre'].invalid && videoform.controls['tittre'].value!=''}"  formControlName="tittre" placeholder="Tittre du coching" >
+      
+        <textarea  [ngClass]="{'error': videoform.controls['description'].invalid && videoform.controls['description'].value!=''}"  formControlName="description" placeholder="Description" rows="10" cols="10"></textarea>
+     
+     
+
+        
+        <div class="card-inputFils" (click)="getfils()">
+            +
+        </div>
+
+       
+          <mat-progress-bar id="laBarDownload33" mode="determinate" [value]="progressValue"  *ngIf="isUploading"></mat-progress-bar>
+
+          <span (click)="getfils()"> 
+              <img src="./../../assets/download_icon.png " alt="">
+          </span>
+     
+              
+      
+      <input id="fileInput"  type="file" multiple #fileInput [ngClass]="{'error': videoform.controls['filVideo'].invalid && videoform.controls['filVideo'].value!=''}"  formControlName="filVideo" placeholder="" (change)="onFilesSelected($event)" >
+         
+
+
+          <button  id="boutton1"  (click)="ajoutCoaching()">Soumettre</button> 
+     
+    </div>
+
+</div>
+
+
+
+

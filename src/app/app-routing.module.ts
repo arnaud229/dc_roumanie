@@ -16,6 +16,7 @@ import { EditDetteComponent } from './edit-dette/edit-dette.component';
 import { CreateRemboursementComponent } from './create-remboursement/create-remboursement.component';
 import { EditRemboursementComponent } from './edit-remboursement/edit-remboursement.component';
 import { ViewUserComponent } from './view-user/view-user.component';
+import { CoursCoachingComponent } from './cours-coaching/cours-coaching.component';
 const routes: Routes = [
   { path: '', component: SingninComponent },
   { path: '*', component: SingninComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
   { path: 'editdette', component: EditDetteComponent },
   { path: 'editremboursement', component: EditRemboursementComponent },
   { path: 'viewUser', component: ViewUserComponent },
+  { path: 'coursCoaching', component: CoursCoachingComponent },
 ];
 
 

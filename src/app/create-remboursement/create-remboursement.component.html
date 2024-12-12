@@ -13,14 +13,14 @@
             <input type="text" [ngClass]="{'error': remboursementform.controls['libele'].invalid && remboursementform.controls['libele'].value!=''}"  formControlName="libele" placeholder="Libéle de la dette" >
            
              
-            <select  [ngClass]="{'error': remboursementform.controls['user'].invalid && remboursementform.controls['user'].value!='choisir le profil'}"  formControlName="user" >
-              <option value=""> choisir le profil </option>
-              <option *ngFor="let item of listUser" [value]="item">  {{item.nom}}    {{item.prenom}}  </option>
+            <select  [ngClass]="{'error': remboursementform.controls['user'].invalid && remboursementform.controls['user'].touched}"  formControlName="user" >
+              <option [ngValue]="null"> choisir le profil </option>
+              <option *ngFor="let item of listUser" [ngValue]="item">  {{item.nom}}    {{item.prenom}}  </option>
 
              </select> 
            
             <input type="number" [ngClass]="{'error': remboursementform.controls['montantRembourse'].invalid && remboursementform.controls['montantRembourse'].value!=''}"  formControlName="montantRembourse" placeholder="Montant" >
-            <input  type="number"  [ngClass]="{'error': remboursementform.controls['dateRemboursement'].invalid }"  formControlName="dateRemboursement" placeholder="Date de la dette" >
+            <input  type="date"  [ngClass]="{'error': remboursementform.controls['dateRemboursement'].invalid }"  formControlName="dateRemboursement" placeholder="Date de la dette" >
        
  
                 <button  class="boutton"  (click)="ajoutRemboursement()">Ajouter</button>               

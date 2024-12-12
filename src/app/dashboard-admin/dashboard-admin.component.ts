@@ -8,6 +8,7 @@ import { User } from 'src/models/variables';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { UsersService } from '../services/firebase/user.service';
 import { map } from 'rxjs';
+import { coachingService } from '../services/coaching/coaching.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -1640,6 +1641,7 @@ public pieChart: GoogleChartInterface = {
 
 liste_preselect : any[] = [];
 liste_select: any[] = [];
+liste_coaching: any[] = [];
 
 filter =0;
 displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', 'parrain','actions'];  
@@ -1656,7 +1658,8 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     private financeServices: FinancesService,
     private videoService: VideosService,
     private userServ : UsersService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private coachService: coachingService,
   ) {}
 
 //  async ngDoCheck() {
@@ -1695,7 +1698,8 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     console.log('selecter11', this.selecter);
 
     this.getVideos();
-    this.gitRemboursement();
+    this.getCoaching();
+    this.getRemboursement();
     this.getDettes();
     
  
@@ -1800,6 +1804,14 @@ openMenu() {
     this.selecter = 5 ;
     this.selecterMobile = 5 ;
     this.titleHeadMobile = "Etat financières"
+    this.isOpenMenu = false;
+  }
+
+  else if(index == 6) {
+
+    this.selecter = 6 ;
+    this.selecterMobile = 6 ;
+    this.titleHeadMobile = "Cours de coaching"
     this.isOpenMenu = false;
   }
 
@@ -1972,6 +1984,18 @@ getVideos() {
 
 }
 
+getCoaching() {
+  this.coachService.getCoaching().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_coaching = res.data
+      
+    }
+  )
+
+}
+
 getDettes() {
 
   this.financeServices.getDettes().subscribe(
@@ -1994,7 +2018,7 @@ getDettes() {
 }
 
 
-gitRemboursement() {
+getRemboursement() {
   this.financeServices.getRemboursements().subscribe(
     (res) => {
       console.log('res', res);
@@ -2026,6 +2050,10 @@ goToviewUser(id: any)
 }
 goTocreateDette() {
   this.router.navigate(["createdette"])
+}
+
+goTocreateCoaching() {
+  this.router.navigate(["coursCoaching"])
 }
 
 goTocreateRemboursement() {

@@ -63,6 +63,20 @@ export class VideosService {
   });
   }
 
+  async rejectObservation(val: string ,index: string) {
+  
+    await this.firestore.doc(`videos/${index}`).update({
+      observation: val,
+    }
+  ).then(() => {
+    console.log('Document mis à jour avec succès');
+  })
+  .catch(error => {
+    console.error('Erreur lors de la mise à jour du document:', error);
+    // Afficher un message à l'utilisateur si nécessaire
+  });
+  }
+
   getVideoById(id: string) {
     return this.firestore
       .collection<videoPresentation>(`/${this.collectionName}/`)

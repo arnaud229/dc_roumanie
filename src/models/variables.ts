@@ -58,6 +58,16 @@ export interface videoPresentation  {
     user_id: string,
     createdAt?: any,
     isvalidVideo: boolean;
+    observation: string;
+
+}
+
+export interface coaching  {
+    id?: any,
+    tittre : string,
+    description: string,
+    fileVideo: string,
+     createdAt?: any,
 
 }
 

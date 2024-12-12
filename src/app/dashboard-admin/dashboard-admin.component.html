@@ -19,6 +19,7 @@
             <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
             <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
             <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
+            <li (click)="selected(6)"  [ngClass]="{'selctIn': selecter == 6}" >Le Coaching </li>
             <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
             <li (click)="logOut()" >Déconnexion</li>
 
@@ -61,8 +62,9 @@
                 <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
                 <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Dettes</li>
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Remboursements</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
+                <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos</li>
+                <li (click)="selected(6)"  [ngClass]="{'selctIn': selecterMobile === 6}"    >Le Coaching</li>
+                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
                 <li (click)="logOut()"  >Déconnexion</li>
     
             </ul>
@@ -605,7 +607,78 @@
     
                 </div>
                 
+            </div>
+
+
+            <div class="groupe_preselect" *ngIf="selecter==6">  
+
+                
+              <div *ngIf="liste_coaching.length > 0" >
+
+                  <div class="cardHead_Preselect">
+
+                      <div class="group_header11" >
+
+                          <div>
+                              <!-- <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                              <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                          </div>
+  
+                          <input type="text" (input)="applyFilteDette($event)"> -->
+
+                          <button class="btn-ajout" (click)="goTocreateCoaching() " >Ajouter un cours</button>
+  
+                        
+  
+                      </div>
+  
+                   
+  
+                     
+                  </div>
+  
+                  <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_coaching" >
+
+                        <img (click)="validVideo(item.id)" src="./../../assets/valider.png" alt="">
+                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
+
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+                          <h1> {{item.secteur}} </h1>
+                          <span>
+                                 <!-- {{ getUserNameById(item.user_id)}} -->
+                                  <!-- {{getUserLastNameById(item.user_id)}} -->
+                          </span>
+
+
+                    </div>
+
+                   
+
                 </div>
+  
+              </div>
+
+
+              <div class="notvalide" *ngIf="liste_coaching.length == 0">
+                  <p>
+                      Aucun cours de coaching enregistrer pour l'instant
+                  </p>
+
+                  <button (click)="goTocreateCoaching()">Ajouter un cours</button>
+  
+              </div>
+              
+              
+              
+              </div>
+
 
 
            </div>

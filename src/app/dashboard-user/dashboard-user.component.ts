@@ -8,6 +8,7 @@ import { VideosService } from '../services/videos/videos.service';
 import { ListKeyManager } from '@angular/cdk/a11y';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { FinancesService } from '../services/Finances/finances.service';
+import { coachingService } from '../services/coaching/coaching.service';
 // import { Ng2GoogleChartsModule, ChartType } from 'ng2-google-charts';
 
 
@@ -130,11 +131,12 @@ export class DashboardUserComponent {
   isPreselect = false;
   isSelect = true;
   isVideo = false;
+  isCoaching = false;
   isFinance = true;
   statutPreselect = 'En cours'
   statutFinance = 'En cours'
   liste_videos: any [] = [];
-
+  liste_coaching: any [] = [];
   colorValidPreselect = false;
   colorValidSelect = true;
   colorValidFinance = false;
@@ -199,6 +201,7 @@ public pieChart: GoogleChartInterface = {
     private Aroute: ActivatedRoute,
     private financeServices: FinancesService,
     private videoService: VideosService,
+    private coachService: coachingService,
   ) {}
 
 
@@ -211,6 +214,7 @@ public pieChart: GoogleChartInterface = {
     this.currentUser  = user;
     this.userId = user.uid;
     this.getVideoByUser();
+    this.getCaoching();
 
     console.log('selecter11', this.selecter);
 
@@ -438,7 +442,7 @@ getTotalsRemboursements() {
       console.log('taille tableau avant', this.liste_videos.length );
       
 
-        if (this.liste_videos.length >0 || this.liste_Remboursement.length >0) {
+        if (this.liste_videos.length >0) {
 
           console.log('taille tableau dedans', this.liste_videos.length );
     
@@ -446,6 +450,28 @@ getTotalsRemboursements() {
           
         } else {
           this.isVideo = false;
+        }
+        
+      
+    }
+    else if(index == 4) {
+
+      this.selecter = 4 ;
+      this.selecterMobile = 4 ;
+      this.titleHeadMobile = "Cours de coaching"
+      this.isOpenMenu = false; 
+
+      console.log('taille tableau avant', this.liste_coaching.length );
+      
+
+        if (this.liste_coaching.length >0 ) {
+
+          console.log('taille tableau dedans', this.liste_coaching.length );
+    
+          this.isCoaching = true;
+          
+        } else {
+          this.isCoaching = false;
         }
         
       
@@ -567,7 +593,7 @@ getTotalsRemboursements() {
     this.titleHeadMobile ='Etat Finacière'
 
 
-         if (this.liste_Dette.length > 0) {
+         if (this.liste_Dette.length > 0 && this.liste_Remboursement.length >0  ) {
                  this.isFinance = true;          
          }
     
@@ -593,6 +619,29 @@ getTotalsRemboursements() {
     }
 
     
+    
+  }
+
+  else if(this.selecter == 4) {
+
+    this.selecter = 4 ;
+    this.selecterMobile = 4 ;
+    this.titleHeadMobile = "Cours de coaching"
+    this.isOpenMenu = false; 
+
+    console.log('taille tableau avant', this.liste_coaching.length );
+    
+
+      if (this.liste_coaching.length >0 ) {
+
+        console.log('taille tableau dedans', this.liste_coaching.length );
+  
+        this.isCoaching = true;
+        
+      } else {
+        this.isCoaching = false;
+      }
+      
     
   }
 
@@ -640,8 +689,6 @@ getTotalsRemboursements() {
  }
 
  getVideoByUser() {
-
- 
    this.videoService.getVideoByUserId(this.userId).subscribe
    (
     (res) => {
@@ -660,6 +707,28 @@ getTotalsRemboursements() {
       console.log('err :>> ', err);
     }
    )
+
+ }
+
+ getCaoching() {
+  this.coachService.getCoaching().subscribe(
+
+    (res)=> {
+      console.log('res', res);
+      
+
+      this.liste_coaching = res.data;
+      console.log("les videos", this.liste_coaching);
+
+      this.getEtat()
+
+    },
+    
+    (err: any) => {
+      console.log('err :>> ', err);
+    }
+
+  )
 
  }
 

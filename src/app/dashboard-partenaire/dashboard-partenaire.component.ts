@@ -1398,6 +1398,8 @@ export class DashboardPartenaireComponent {
 
   theId: any 
   isFiltre = false;
+  isReject = false;
+  theObservation = '';
 
   liste_videos: any[] = [];
 
@@ -1478,6 +1480,14 @@ openMenu() {
 
 }
 
+beginReject() {
+  this.isReject = true;
+}
+close_valid()
+{
+  this.isReject = false;
+}
+
 
 logOut() {
 
@@ -1501,6 +1511,23 @@ validProcess(index: string) {
 
     }
   )
+}
+
+setReject(val: string, index: string) {
+
+  this.videoService.rejectObservation(val, index).then(
+    () => {
+      console.log('reussi');
+      
+    }
+  )
+  .catch(
+    (er) => {
+      console.log("reject", er);
+      
+    }
+  )
+
 }
 
 getFiltre() {

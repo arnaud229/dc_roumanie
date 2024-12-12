@@ -43,6 +43,7 @@ export class CreateRemboursementComponent {
   }
 
 
+
   getAllUsers() {
     
     const  data = {
@@ -80,7 +81,7 @@ export class CreateRemboursementComponent {
     this.remboursementform = this.formbuilder.group({
       //  telephone: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
       libele: ['', [Validators.required]],
-      user: ['', [Validators.required]],
+      user: [null, [Validators.required]],
       montantRembourse: ['', [Validators.required, Validators.min(0)]],
       dateRemboursement: ['', [Validators.required,Validators.pattern(/^[0-9] {4}$/), Validators.max(2026) ]],
   
@@ -105,15 +106,19 @@ export class CreateRemboursementComponent {
     if (this.remboursementform.invalid) {  } 
     console.log('tete0');
 
+    // this.getUserByid(this.remboursementform.value.user.uid)
+
     const remboursementInfo: remboursement = {
-      montantRembourse: this.remboursementform.value.montantDu,
-      dateRemboursement: this.remboursementform.value.date,
+      montantRembourse: this.remboursementform.value.montantRembourse,
+      dateRemboursement: this.remboursementform.value.dateRemboursement,
       libele: this.remboursementform.value.libele,
       user_id: this.remboursementform.value.user.uid,
       nom: this.remboursementform.value.user.nom,
       prenoms: this.remboursementform.value.user.prenom
     }
-
+  
+    console.log('dataremb', remboursementInfo); 
+    
 
     this.financeServices.CreateRemboursement(remboursementInfo)
     .then(

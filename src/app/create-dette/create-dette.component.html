@@ -13,14 +13,14 @@
             <input type="text" [ngClass]="{'error': detteform.controls['libele'].invalid && detteform.controls['libele'].value!=''}"  formControlName="libele" placeholder="Libéle de la dette" >
            
             
-            <select  [ngClass]="{'error': detteform.controls['user'].invalid && detteform.controls['user'].value!='choisir le profil'}"  formControlName="user" >
-              <option value=""> choisir le profil </option>
-              <option *ngFor="let item of listUser" [value]="item">  {{item.nom}}    {{item.prenom}}  </option>
+            <select  [ngClass]="{'error': detteform.controls['user'].invalid   && detteform.controls['user'].touched }   "   formControlName="user" >
+              <option [ngValue]="null"> choisir le profil </option>
+              <option *ngFor="let item of listUser" [ngValue]="item">  {{item.nom}}    {{item.prenom}}  </option>
 
              </select> 
            
             <input type="number" [ngClass]="{'error': detteform.controls['montantDu'].invalid && detteform.controls['montantDu'].value!=''}"  formControlName="montantDu" placeholder="Montant" >
-            <input  type="number"  [ngClass]="{'error': detteform.controls['dateDette'].invalid }"  formControlName="dateDette" placeholder="Date de la dette" >
+            <input  type="date"  [ngClass]="{'error': detteform.controls['dateDette'].invalid }"  formControlName="dateDette" placeholder="Date de la dette" >
        
  
                 <button  class="boutton"  (click)="ajoutDette()">Ajouter</button>               

@@ -81,7 +81,7 @@ export class CreateDetteComponent {
     this.detteform = this.formbuilder.group({
       //  telephone: ['',[Validators.required,Validators.pattern(/[0-9]+/)]],
       libele: ['', [Validators.required]],
-      user: ['', [Validators.required]],
+      user: [null, [Validators.required]],
       montantDu: ['', [Validators.required, Validators.min(0)]],
       dateDette: ['', [Validators.required,Validators.pattern(/^[0-9] {4}$/), Validators.max(2026) ]],
   
@@ -108,12 +108,16 @@ export class CreateDetteComponent {
 
       const detteInfo: dette = {
         montantDu: this.detteform.value.montantDu,
-        dateDette: this.detteform.value.date,
+        dateDette: this.detteform.value.dateDette,
         libele: this.detteform.value.libele,
-        user_id: this.detteform.value.user.uid,
-        nom: this.detteform.value.user.nom,
-        prenoms: this.detteform.value.user.prenom
+        user_id: this.detteform.value.user?.uid || null,
+        nom: this.detteform.value.user?.nom, 
+        prenoms: this.detteform.value.user?.prenom || null
       }
+      console.log('data user', this.detteform.value);
+      
+      console.log('data', detteInfo); 
+      
 
       this.financeServices.CreateDette(detteInfo)
       .then(

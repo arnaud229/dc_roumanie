@@ -1,20 +1,17 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
-import { RecuFile, User, videoPresentation } from 'src/models/variables';
-import { StorageService } from '../services/storage/storage.service';
-import { VideosService } from '../services/videos/videos.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { coachingService } from '../services/coaching/coaching.service';
+import { StorageService } from '../services/storage/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-videos',
-  templateUrl: './videos.component.html',
-  styleUrls: ['./videos.component.scss']
+  selector: 'app-cours-coaching',
+  templateUrl: './cours-coaching.component.html',
+  styleUrls: ['./cours-coaching.component.scss']
 })
-export class VideosComponent {
+export class CoursCoachingComponent {
 
- 
   les_url = ["./../../assets/croixDelete.png", "./../../assets/croixDelete.png", "./../../assets/bio-guera.jpg"];
 
   videoform!: FormGroup;
@@ -26,20 +23,14 @@ export class VideosComponent {
   filVideo = "";
   message = "";
   userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
- 
-  currentUser! : User;
   maxFileSize = 10;
+
  
-
-
-
-
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
-    public authService: AuthService,
     private firebaseStorageService: StorageService,
-    private videoService: VideosService,
+    private coachService: coachingService,
     public localstorageService: LocalstorageService,
    
   ) {
@@ -47,11 +38,8 @@ export class VideosComponent {
     this.init_form();
   }
 
-
-
   ngOnInit() {
-    this.currentUser = this.localstorageService.getCurrentUser();
-    this.userId = this.currentUser.uid
+    
     this.init_form();
   }
 
@@ -60,7 +48,7 @@ export class VideosComponent {
   init_form(){
     this.videoform = this.formbuilder.group({
       
-      secteur:  ['',Validators.required],
+      tittre:  ['',Validators.required],
       description:  ['',Validators.required],
       filVideo:  [,Validators.required],
       
@@ -68,7 +56,7 @@ export class VideosComponent {
     });
   } 
 
-  
+
   getfils() {
     console.log('has click', this.fileInput);
     setTimeout(() => {
@@ -76,7 +64,8 @@ export class VideosComponent {
     }, 500);
   }
 
- async onFilesSelected(event : any) {
+
+  async onFilesSelected(event : any) {
 
     const filess = event.target.files;
     console.log("files de input",filess);
@@ -100,9 +89,9 @@ export class VideosComponent {
       const uploadPromises = files.map(async (image) => {
 
         const url = await this.firebaseStorageService.uploadFile({
-          folder: 'filsVideoPresentation',
+          folder: 'filsVideoCoaching',
           filename:
-            'Video-Presentation-file-' +
+            'Video-Coaching-file-' +
             new Date().getTime() +
             this.userId +
             '.' +
@@ -134,7 +123,7 @@ export class VideosComponent {
     });
   }
 
-  ajoutVideo() {
+  ajoutCoaching() {
 
     if (this.videoform.invalid) { } 
 
@@ -143,19 +132,16 @@ export class VideosComponent {
 
       const updateData = {
         
-        secteur : this.videoform.value.secteur ,
+        tittre : this.videoform.value.tittre ,
         description: this.videoform.value.description ,
-        fileVideo: this.filVideo,
-        user_id: this.currentUser.uid,
-        isvalidVideo: false,
-        observation: '',
-      
+        fileVideo: this.filVideo,     
+
       };  
 
       console.log('update :', updateData);
       
 
-      this.videoService.CreateVideo(updateData)
+      this.coachService.CreateCoaching(updateData)
       .then((res) => {
         console.log('res :>> ', res);
     
@@ -165,6 +151,13 @@ export class VideosComponent {
         console.log('err :>> ', err);
       });
   }
+
+
+
+
+
+
+
 
 
 }
