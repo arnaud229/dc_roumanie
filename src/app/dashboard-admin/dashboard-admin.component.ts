@@ -1402,6 +1402,8 @@ export class DashboardAdminComponent {
   statutPreselect = 'En cours'
   statutFinance = 'En cours'
   liste_videos!: any [];
+  liste_videosValid!: any [];
+  liste_videosReject!: any [];
 
   colorValidPreselect = false;
   colorValidSelect = true;
@@ -1615,29 +1617,7 @@ liste_Remboursement= [
 },
 ];
 
-public pieChart: GoogleChartInterface = {
-  chartType: GoogleChartType.PieChart,
-  dataTable: [
-    ['Etat financière', 'Etat financière'],
-    ['Dette',     this.TotalsDettes ],
-    ['Rembourssement',    this.TotalsRemboursements],
-    // ['Dette',     this.getTotalsDettes() ],
-    // ['Rembourssement',      this.getTotalsRemboursements()],
-   
-  ],
-  //firstRowIsData: true,
-  options: {
-    title: 'Etat financière',
-    width: '500px',
-    height: '400px',
-    legend: { position: 'bottom' }, // Position de la légende
-    colors: ['#FF0000', '#0dff00', '#3F51B5'],
-    pieHole: 0.4 ,// Crée un trou au milieu du camembert
-  
-  },
- 
-  
-};
+  public pieChart!: GoogleChartInterface; 
 
 liste_preselect : any[] = [];
 liste_select: any[] = [];
@@ -1649,6 +1629,7 @@ displayedColumnsDette: string[] = ['nom', 'prenom', 'libele', 'montantDu', 'date
 displayedColumnsRemboursement: string[] = ['nom', 'prenom', 'libele', 'montantRembourse', 'dateRemboursement', 'actions'];  
 displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfession', 'principalProfession', 'langueParler','actions'];  
   typeInput = 'text'
+  isViewVideo = false;
 
   constructor(
     private router: Router,
@@ -1687,8 +1668,7 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
 
 
   async ngOnInit() {
-    this.currentUser = this.localstorageService.getCurrentUser();
-    // this.userId = this.currentUser.uid
+    this.currentUser = this.localstorageService.getCurrentUser();  
     
   await  this.getusers();   
     console.log('list_users:', this.list_users);
@@ -1701,10 +1681,46 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     this.getCoachings();
     this.getRemboursement();
     this.getDettes();
+    this.getVideoValid();
+    this.getVideoReject();
+
+     // Simulez une mise à jour des données après un chargement
+     setTimeout(() => {
+      this.TotalsDettes = 200;
+      this.TotalsRemboursements = 300;
+
+      // Appelez la méthode pour rafraîchir le graphique
+      this.updateChart();
+    }, 2000);
     
  
   
    
+}
+
+updateChart() 
+{
+
+  this.pieChart =  {
+    chartType: GoogleChartType.PieChart,
+    dataTable: [
+      ['Etat financière', 'Etat financière'],
+      ['Dette',     this.TotalsDettes ],
+      ['Rembourssement',    this.TotalsRemboursements],  
+    ],
+    //firstRowIsData: true,
+    options: {
+      title: 'Etat financière',
+      width: '500px',
+      height: '400px',
+      legend: { position: 'bottom' }, // Position de la légende
+      colors: ['#FF0000', '#0dff00', '#3F51B5'],
+      pieHole: 0.4 ,// Crée un trou au milieu du camembert
+    
+    },
+     
+  };
+
 }
 
 beginValid(val: any) {
@@ -1760,6 +1776,10 @@ openMenu() {
   this.theId ='rter';
  }
 
+ viewGroupVideo() {
+  this.isViewVideo = !this.isViewVideo;
+ }
+
  selected(index: number) {
   if (index == 0) {
 
@@ -1812,6 +1832,22 @@ openMenu() {
     this.selecter = 6 ;
     this.selecterMobile = 6 ;
     this.titleHeadMobile = "Cours de coaching"
+    this.isOpenMenu = false;
+  }
+
+  else if(index == 7) {
+
+    this.selecter = 7 ;
+    this.selecterMobile = 7 ;
+    this.titleHeadMobile = "Vidéos rejetées"
+    this.isOpenMenu = false;
+  }
+
+  else if(index == 8) {
+
+    this.selecter = 8 ;
+    this.selecterMobile = 8 ;
+    this.titleHeadMobile = "Vidéos validées"
     this.isOpenMenu = false;
   }
 
@@ -1975,10 +2011,45 @@ getVideos() {
 
   this.videoService.getVideos().subscribe(
     (res) => {
+     
+
+      this.liste_videos = res.data.filter(
+        (res)=> res.isvalidVideo === false   && res.isvalideProcess === false
+      )
+      console.log('liste de video no valid', this.liste_videos);
+    }
+
+    
+  )
+
+}
+
+getVideoValid()
+{
+  this.videoService.getVideos().subscribe(
+    (res) => {
       console.log('res', res);
 
-      this.liste_videos = res.data
+      this.liste_videosValid = res.data.filter(
+        (res)=> res.isvalidVideo === true   && res.isvalideProcess === true
+      )
+
+      console.log('liste de video valid', this.liste_videosValid);
       
+    }
+  )
+
+}
+getVideoReject()
+{
+  this.videoService.getVideos().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_videosReject = res.data.filter(
+        (res)=> res.isvalidVideo === true   && res.observation !== ''
+      )
+      console.log('liste de video rehject', this.liste_videosReject);
     }
   )
 
@@ -2111,10 +2182,10 @@ validSelct(ind: string) {
   )
 }
 
-validVideo(index: string) {
+validVideo(index: string, idUser: string) {
 
   let vak = true;
-  this.videoService.validVideo(vak, index)
+  this.videoService.validVideo(vak, index, idUser)
   .then(
     (res) => {
       console.log('validation reussi pour video');

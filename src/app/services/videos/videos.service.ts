@@ -3,6 +3,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { videoPresentation } from 'src/models/variables';
 import { serverTimestamp } from 'firebase/firestore';
 import { map } from 'rxjs';
+import { UsersService } from '../firebase/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { map } from 'rxjs';
 export class VideosService {
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+    private userServ : UsersService,
   ) { }
 
   collectionName = 'videos';
@@ -49,13 +51,32 @@ export class VideosService {
 
   }
 
- async validVideo(val: boolean ,index: string) {
+ async validVideo(val: boolean ,index: string, idUser: string) {
   
     await this.firestore.doc(`videos/${index}`).update({
       isvalidePreselect: val,
     }
   ).then(() => {
     console.log('Document mis à jour avec succès');
+
+    this.userServ.validSelect(val, idUser)
+
+
+  })
+  .catch(error => {
+    console.error('Erreur lors de la mise à jour du document:', error);
+    // Afficher un message à l'utilisateur si nécessaire
+  });
+  }
+
+  async validProcessByPartenaireInVideo(val: boolean ,index: string, idUser: string) {
+  
+    await this.firestore.doc(`videos/${index}`).update({
+      isvalideProcess: val,
+    }
+  ).then(() => {
+    console.log('Document mis à jour avec succès');
+    this.userServ.validProcess(val, idUser)
   })
   .catch(error => {
     console.error('Erreur lors de la mise à jour du document:', error);

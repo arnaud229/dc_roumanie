@@ -1402,6 +1402,8 @@ export class DashboardPartenaireComponent {
   theObservation = '';
 
   liste_videos: any[] = [];
+  liste_videosValid: any[] = [];
+  liste_videosReject: any[] = [];
 
   displayedColumns: string[] = ['nom', 'prenom', 'Netude','principalProfession', 'qualiProfession', 'sMatrimoniale', 'langueParler','actions'];  
 
@@ -1420,8 +1422,10 @@ export class DashboardPartenaireComponent {
 
    let user = this.localstorageService.getCurrentUser();   
     this.currentUser  = user;
-    this.getVideos()
-    this.getusers()
+    this.getVideos();
+    this.getusers();
+    this.getViodeosValid();
+    this.getVideoReject()
 
 
    
@@ -1461,11 +1465,7 @@ openMenu() {
     this.titleHeadMobile = "Préselection";
 
     console.log('tittle0', this.titleHeadMobile);
-
-
-
-
-    
+ 
   } else if (index == 1) {
 
      this.selecter = 1;
@@ -1511,8 +1511,26 @@ validProcess(index: string) {
 
     }
   )
-}
+} 
 
+valiProcessusBydVideo(index: string, iduser: string)
+{
+  let vak = true;
+  this.videoService.validProcessByPartenaireInVideo(vak,index, iduser).then(
+    () => {
+      console.log("reussi");
+      
+    }
+  ) 
+  .catch(
+    (er) => 
+    {
+      console.log("erreur", er.message);
+      
+    }
+  )
+
+}
 setReject(val: string, index: string) {
 
   this.videoService.rejectObservation(val, index).then(
@@ -1624,7 +1642,36 @@ getVideos() {
       console.log('res', res);
 
       this.liste_videos = res.data.filter(
-        (res)=> res.isvalidVideo === true
+        (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
+      )
+      
+    }
+  )
+
+}
+
+getViodeosValid() 
+{
+  this.videoService.getVideos().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_videosValid = res.data.filter(
+        (res)=> res.isvalidVideo === true   && res.isvalideProcess === true
+      )
+      
+    }
+  )
+}
+
+getVideoReject()
+{
+  this.videoService.getVideos().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_videosReject = res.data.filter(
+        (res)=> res.isvalidVideo === true   && res.observation !== ''
       )
       
     }

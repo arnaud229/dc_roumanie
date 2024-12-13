@@ -15,7 +15,9 @@
             </div>
 
             <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>        
-            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Les vidéos </li>
+            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Vidéos non validées </li>
+            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Vidéos validées </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Vidéos validées </li>
             <li (click)="logOut()" >Déconnexion</li>
 
         </ul>
@@ -54,7 +56,9 @@
                 </div>
     
                 <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>            
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 1}"    >Les vidéos</li>
+                <li (click)="selected(1)"  [ngClass]="{'selctIn': selecterMobile === 1}"    > Vidéos non validées</li>
+                <li (click)="selected(2)"  [ngClass]="{'selctIn': selecterMobile === 2}"    > Vidéos validées</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    > Vidéos  réjetées</li>
                 <li (click)="logOut()"  >Déconnexion</li>
     
             </ul>
@@ -200,7 +204,7 @@
   
                       <div class="oneVideo" *ngFor="let item of liste_videos" >
   
-                          <img (click)="ValidByVideo(item.user_id)" src="./../../assets/suprime.png" alt="">
+                          <img (click)="valiProcessusBydVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt="">
   
   
                           <video controls>
@@ -233,12 +237,78 @@
                   
                   <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
                       <p>
-                          Il n'y a aucune video de presetation d'activité
+                          Il n'y a aucune video de presetation d'activité validée 
                       </p>
       
                   </div>               
                  
               </div>
+
+
+              
+            <div class="" *ngIf="selecter==2">  
+
+              <div  *ngIf=" liste_videosValid.length > 0 ">
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_videosValid" >
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+                         
+
+                    </div>
+
+
+                </div>
+              </div>
+
+
+                
+                <div class="notvalide" *ngIf=" liste_videosValid.length == 0 ">
+                    <p>
+                        Il n'y a aucune video de presetation d'activité
+                    </p>
+    
+                </div>               
+               
+            </div>
+
+            <div class="" *ngIf="selecter==3">  
+
+              <div  *ngIf=" liste_videosReject.length > 0 ">
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_videosReject" >
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+                         
+
+                    </div>
+
+
+                </div>
+              </div>
+
+
+                
+                <div class="notvalide" *ngIf=" liste_videosReject.length == 0 ">
+                    <p>
+                        Il n'y a aucune video de presetation d'activité rejetée
+                    </p>
+    
+                </div>               
+               
+            </div>
 
               
 

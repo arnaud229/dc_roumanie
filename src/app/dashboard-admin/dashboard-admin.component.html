@@ -18,7 +18,13 @@
             <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
             <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
             <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
-            <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les vidéos </li>
+            <li (click)="viewGroupVideo()"  [ngClass]="{'selctIn': isViewVideo}" >Les vidéos </li>
+
+            <div class="ul_menu" *ngIf=" isViewVideo"  >
+              <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos non validées</li>
+              <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >Les vidéos validées</li>
+              <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    >Les vidéos Rejetées</li>
+            </div>
             <li (click)="selected(6)"  [ngClass]="{'selctIn': selecter == 6}" >Le Coaching </li>
             <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
             <li (click)="logOut()" >Déconnexion</li>
@@ -62,7 +68,13 @@
                 <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
                 <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Dettes</li>
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Remboursements</li>
-                <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos</li>
+                <li (click)="viewGroupVideo()"  [ngClass]="{'selctIn': isViewVideo}"    >Les vidéos</li>
+
+                <div class="ul_menu" *ngIf=" isViewVideo"  >
+                  <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos non validées</li>
+                  <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >Les vidéos validées</li>
+                  <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    >Les vidéos Rejetées</li>
+                </div>
                 <li (click)="selected(6)"  [ngClass]="{'selctIn': selecterMobile === 6}"    >Le Coaching</li>
                 <li (click)="selected(5)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
                 <li (click)="logOut()"  >Déconnexion</li>
@@ -542,7 +554,7 @@
 
                     <div class="oneVideo" *ngFor="let item of liste_videos" >
 
-                        <img (click)="validVideo(item.id)" src="./../../assets/valider.png" alt="">
+                        <img (click)="validVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt="">
                         <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
 
 
@@ -553,9 +565,12 @@
 
                           <h1> {{item.secteur}} </h1>
                           <span>
-                                 <!-- {{ getUserNameById(item.user_id)}} -->
-                                  <!-- {{getUserLastNameById(item.user_id)}} -->
+                              {{ item.nom }}  {{ item.prenoms }}
                           </span>
+
+                         <span *ngIf="item.observation !== '' ">
+                          {{ item.observation }}
+                         </span>
 
 
                     </div>
@@ -564,12 +579,92 @@
 
                 </div>
               </div>
-
-
-                
+               
                 <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
                     <p>
                         Il n'y a aucune video de presetation d'activité
+                    </p>
+    
+                </div>               
+               
+            </div>
+
+            <div class="" *ngIf="selecter==8">  
+
+              <div  *ngIf=" liste_videosValid.length > 0 ">
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_videosValid" >
+
+                        <!-- <img (click)="validVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt=""> -->
+                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
+
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+                          <h1> {{item.secteur}} </h1>
+                          <span>
+                              {{ item.nom }}  {{ item.prenoms }}
+                          </span>
+
+                         <span *ngIf="item.observation !== '' " >
+                          {{ item.observation }}
+                         </span>
+
+
+                    </div>
+
+                   
+
+                </div>
+              </div>
+               
+                <div class="notvalide" *ngIf=" liste_videosValid.length == 0 ">
+                    <p>
+                        Il n'y a aucune video de presetation d'activité validée
+                    </p>
+    
+                </div>               
+               
+            </div>
+
+            <div class="" *ngIf="selecter==7">  
+
+              <div  *ngIf=" liste_videosReject.length > 0 ">
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_videosReject" >
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+                          <h1> {{item.secteur}} </h1>
+                          <span>
+                              {{ item.nom }}  {{ item.prenoms }}
+                          </span>
+
+                         <span *ngIf="item.observation !== '' " >
+                          {{ item.observation }}
+                         </span>
+
+
+                    </div>
+
+                   
+
+                </div>
+              </div>
+               
+                <div class="notvalide" *ngIf=" liste_videosReject.length == 0 ">
+                    <p>
+                        Il n'y a aucune video de presetation d'activité rejetée
                     </p>
     
                 </div>               
@@ -601,7 +696,6 @@
                 
             </div>
 
-
             <div class="groupe_preselect" *ngIf="selecter==6">  
 
               <div *ngIf="liste_coaching.length > 0" >
@@ -609,22 +703,6 @@
                   <div class="cardHead_Preselect">
 
                       <div class="group_header11" >
-
-                          <div>
-                              <!-- <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
-                              <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
-                          </div>
-  
-                          <input type="text" (input)="applyFilteDette($event)"> -->
-
-                          <button class="btn-ajout" (click)="goTocreateCoaching() " >Ajouter un cours</button>
-  
-                        
-  
-                      </div>
-  
-                   
-  
                      
                   </div>
   
@@ -632,19 +710,15 @@
 
                     <div class="oneVideo" *ngFor="let item of liste_coaching" >
 
-                        <img (click)="validVideo(item.id)" src="./../../assets/valider.png" alt="">
-                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
-
-
                         <video controls>
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
                           </video>
 
-                          <h1> {{item.secteur}} </h1>
+                          <h1> {{item.tittre}} </h1>
                           <span>
-                                 <!-- {{ getUserNameById(item.user_id)}} -->
-                                  <!-- {{getUserLastNameById(item.user_id)}} -->
+                                 {{ item.description}} 
+                                  
                           </span>
 
 

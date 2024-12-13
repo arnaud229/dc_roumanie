@@ -141,15 +141,16 @@ export class VideosComponent {
     console.log('le form:', this.videoform.value);
     
 
-      const updateData = {
-        
-        secteur : this.videoform.value.secteur ,
-        description: this.videoform.value.description ,
+      const updateData: videoPresentation = {
+        secteur: this.videoform.value.secteur,
+        description: this.videoform.value.description,
         fileVideo: this.filVideo,
         user_id: this.currentUser.uid,
+        nom: this.currentUser.nom,
+        prenoms: this.currentUser.prenom,
         isvalidVideo: false,
         observation: '',
-      
+        isvalideProcess: false
       };  
 
       console.log('update :', updateData);

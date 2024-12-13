@@ -56,8 +56,11 @@ export interface videoPresentation  {
     description: string,
     fileVideo: string,
     user_id: string,
+    nom: string,
+    prenoms: string
     createdAt?: any,
     isvalidVideo: boolean;
+    isvalideProcess: boolean,
     observation: string;
 
 }
