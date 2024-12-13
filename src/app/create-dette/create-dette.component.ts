@@ -123,7 +123,7 @@ export class CreateDetteComponent {
       .then(
         () => {
           this.loading = false;
-          this.router.navigate(["dashboardAdmin", {index: 0}])
+          this.router.navigate(["dashboardAdmin", {index: 2}])
 
         } 
       )

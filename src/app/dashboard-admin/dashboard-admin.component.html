@@ -341,12 +341,6 @@
                   </div>
 
 
-
-
-
-
-
-
             <div class="groupe_preselect" *ngIf="selecter==2">  
 
                 
@@ -438,9 +432,7 @@
                     <button (click)="goTocreateDette()">Ajouter une Dette</button>
     
                 </div>
-                
-                
-                
+                  
                 </div>
 
 
@@ -612,7 +604,6 @@
 
             <div class="groupe_preselect" *ngIf="selecter==6">  
 
-                
               <div *ngIf="liste_coaching.length > 0" >
 
                   <div class="cardHead_Preselect">
@@ -664,21 +655,18 @@
                 </div>
   
               </div>
+            
+          
+             </div>
 
+             <div class="notvalide" *ngIf="liste_coaching.length == 0">
+              <p>
+                  Aucun cours de coaching enregistrer pour l'instant
+              </p>
 
-              <div class="notvalide" *ngIf="liste_coaching.length == 0">
-                  <p>
-                      Aucun cours de coaching enregistrer pour l'instant
-                  </p>
+              <button (click)="goTocreateCoaching()">Ajouter un cours</button>
 
-                  <button (click)="goTocreateCoaching()">Ajouter un cours</button>
-  
-              </div>
-              
-              
-              
-              </div>
-
+          </div>
 
 
            </div>

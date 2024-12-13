@@ -13,7 +13,7 @@
             <input type="text" [ngClass]="{'error': remboursementform.controls['libele'].invalid && remboursementform.controls['libele'].value!=''}"  formControlName="libele" placeholder="Libéle de la dette" >
            
              
-            <select  [ngClass]="{'error': remboursementform.controls['user'].invalid && remboursementform.controls['user'].touched}"  formControlName="user" >
+            <select id="cvSelect"  [ngClass]="{'error': remboursementform.controls['user'].invalid && remboursementform.controls['user'].touched}"  formControlName="user" >
               <option [ngValue]="null"> choisir le profil </option>
               <option *ngFor="let item of listUser" [ngValue]="item">  {{item.nom}}    {{item.prenom}}  </option>
 

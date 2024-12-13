@@ -1698,7 +1698,7 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     console.log('selecter11', this.selecter);
 
     this.getVideos();
-    this.getCoaching();
+    this.getCoachings();
     this.getRemboursement();
     this.getDettes();
     
@@ -1984,7 +1984,9 @@ getVideos() {
 
 }
 
-getCoaching() {
+getCoachings() {
+  console.log('voir si');
+  
   this.coachService.getCoaching().subscribe(
     (res) => {
       console.log('res', res);

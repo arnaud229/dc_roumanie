@@ -17,7 +17,7 @@ import { map } from "rxjs";
 
 
     collectionName = 'dettes';
-    collectionName1 = 'renboursements';
+    collectionName1 = 'remboursements';
 
     constructor(
         private firestore: AngularFirestore
@@ -36,7 +36,7 @@ import { map } from "rxjs";
 
       
     CreateRemboursement(newItem: remboursement) {
-        const collection = this.firestore.collection<remboursement>(`/renboursements/`);
+        const collection = this.firestore.collection<remboursement>(`/remboursements/`);
         return collection.add({
           createdAt: serverTimestamp(),
           ...newItem,
