@@ -1642,6 +1642,14 @@ getusers() {
     (res) => {
 
       this.list_users = res.data;
+      console.log("avant filtre", this.list_users);
+
+
+    this.list_users = this.list_users.filter(fichier => 
+        fichier?.isvalidSelect === true && fichier?.isProcessSucceful === false
+      )
+     
+      console.log('users apres filtre', this.list_users);    
        
     },
     (error) => {
@@ -1649,12 +1657,6 @@ getusers() {
     
     }
   )
-
-
-  this.list_users.filter(fichier => 
-    fichier.isvalidSelect === true && fichier.isProcessSucceful === false
-  )
-
 
 }
 
