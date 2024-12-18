@@ -744,6 +744,29 @@ line-height: 24px;
         width: 40%;
     }
 
+    .card_rest {
+        width: 94%;
+        padding-left: 3%;
+        padding-right: 3%;
+        margin-left: 0px;
+    
+       }
+    
+       .content
+       {
+        overflow-x: auto;
+        width: 100%;
+        white-space: nowrap;
+       }
+    
+       .group_header11 > div > img{
+         margin-right: 10px;
+       }
+       .group_header1
+       {
+        width: 100%;
+        margin-left: 0%;
+       }
 
     
     .cardHeadMobile

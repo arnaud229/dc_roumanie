@@ -141,28 +141,6 @@ export class ViewUserComponent {
     let user = this.localstorageService.getCurrentUser();
 
     this.theUser = user;
-   
-    this.Aroute.params.subscribe(params => {
-      const indexParams = params['index'];
-
-      if (indexParams !== undefined) {
-     this.userId = params['index']; 
-        console.log('selector:', this.userId);
-        this.list_users.forEach(
-          (user) => {
-            if(user.uid  === this.userId) {
-              this.currentUser = user;
-            }
-          }
-        )
-     } 
-
-       setTimeout(() => {
-        
-        
-       }, 100);   
-
-})
     this.getVideoByUser();
 
     if (this.currentUser.ldtep2) {
@@ -243,7 +221,32 @@ export class ViewUserComponent {
     this.userServ.getUsers(data).subscribe(
       (res) => {
 
+        console.log('res', res);
         this.list_users = res.data;
+
+        this.Aroute.params.subscribe(params => {
+          const indexParams = params['index'];
+            console.log('recuperation index',indexParams);
+            
+          if (indexParams !== undefined) {
+            console.log('dans le if ');
+            
+         this.userId = params['index']; 
+            console.log('selector:', this.userId);
+            this.list_users.forEach(
+              (user) => {
+                console.log('dans le forEche',user);
+                
+                if(user.uid  === this.userId) {
+                  this.currentUser = user;
+                  console.log("userData", user);
+                  
+                }
+              }
+            )
+         } 
+    
+    })
          
       },
       (error) => {
@@ -251,6 +254,9 @@ export class ViewUserComponent {
       
       }
     )
+
+
+
 
 
   }

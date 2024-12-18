@@ -21,7 +21,6 @@
     display: flex;
     flex-direction: column;
     width: 400px;
-    // height: 400px;
     background: white;
     border: solid 1px #764929;
     position: relative;
@@ -39,7 +38,7 @@ h1 {
     font-family: 'Source Serif 4';
     font-style: normal;
     font-weight: 600;
-    font-size: 48px;
+   
     line-height: 68px;
 }
 
@@ -308,6 +307,11 @@ cursor: pointer;
  top: 10%;
  width: 95%;
 }
+
+.boutton{
+  margin-left: 25%;
+
+}
   
 }
 
@@ -353,7 +357,7 @@ cursor: pointer;
 .inputs {
   display: flex;
   flex-direction: column;
-  width: 95%;
+  width: 100%;
   margin-left: 0%;
 }
 
@@ -364,7 +368,7 @@ cursor: pointer;
   .inputs {
     display: flex;
     flex-direction: column;
-    width: 95%;
+    width: 100%;
     margin-left: 2%;
   }
 

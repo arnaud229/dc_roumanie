@@ -119,9 +119,22 @@ export class SingninComponent {
       (error) =>  {
 
         this.iserrorlog = true;
-        console.log('le error', error);
+        var errorCode = error.code;
+        var errorMessage = error.message
+        this.erreur_message = errorMessage;
+
+        if (errorCode = "auth/network-request-failed") {
+
+          this.erreur_message = ' Verifiez votre connexion internet'
+          
+        } else {
+
+          console.log('le error', error);
           this.erreur_message = " Votre mot de passe ou email est mal renseigné"
-              
+          
+
+        }
+          
       }
     )
 
