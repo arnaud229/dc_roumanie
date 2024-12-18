@@ -450,6 +450,8 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
     if (this.selectform.invalid) return
     
     let imagesDiplomes: any = this.les_url.map(async (asset: any) => {
+      
+     try { 
       const url = await this.firebaseStorageService.uploadFile({
         folder: 'filsDiplomes',
         filename:
@@ -463,7 +465,16 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
     
       asset.downloadUrl = url;   
       return url;
+
+    } catch (error) {
+      console.error('Erreur lors du téléchargement de l\'image:', error);
+      return null; // Retourne null si l'upload échoue
+    }
+
     });
+
+    console.log("imagesDiplomes", imagesDiplomes);
+    
 
 
     const uploadedUrls = await Promise.all(imagesDiplomes);
@@ -473,7 +484,7 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
     // Filtrer les URLs null (échecs de téléchargement)
     const successfulUrls = uploadedUrls.filter(url => url !== null);
 
-    console.log('succesfulUrls', successfulUrls);
+    console.log('succesfulUrls', successfulUrls); 
     
 
   
@@ -511,7 +522,7 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
         expProfesionnel: this.expTable,
         nbrEnfants: this.selectform.value.nbrEnfants,
         dHonneur: this.selectform.value.dHonneur,   
-        fils_diplome:imagesDiplomes,    
+        fils_diplome:this.les_url,    
         fil_photo: this.filPhoto ,    
         fil_passportPhoto: this.filPhotoPassport,    
         fil_casierJudiciere: this.filPhotoCasier,    

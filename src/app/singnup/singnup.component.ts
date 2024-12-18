@@ -166,6 +166,8 @@ export class SingnupComponent {
       } else if(errorCode = "auth/email-already-in-use") {
         this.erreur_message = ' Un compte existe déjà avec ce email.'
         
+      } else if(errorCode = "auth/invalid-email") {
+         this.erreur_message = 'Votre email esd incorrect.'
       }
     }
   )

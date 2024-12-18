@@ -1472,11 +1472,34 @@ openMenu() {
      this.selecterMobile = 1;
      this.isOpenMenu = false;
    
-     this.titleHeadMobile = "Vidéos"
+     this.titleHeadMobile = "Vidéos non validées"
 
      console.log('tittle1', this.titleHeadMobile);
     
   } 
+  else if (index == 1) {
+
+    this.selecter = 2;
+    this.selecterMobile = 2;
+    this.isOpenMenu = false;
+  
+    this.titleHeadMobile = "Vidéos validées"
+
+    console.log('tittle1', this.titleHeadMobile);
+   
+ }
+
+ else if (index == 3) {
+
+  this.selecter = 3;
+  this.selecterMobile = 3;
+  this.isOpenMenu = false;
+
+  this.titleHeadMobile = "Vidéos rejetées"
+
+  console.log('tittle1', this.titleHeadMobile);
+ 
+}
 
 }
 

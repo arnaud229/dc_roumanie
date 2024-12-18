@@ -54,7 +54,7 @@ export class VideosService {
  async validVideo(val: boolean ,index: string, idUser: string) {
   
     await this.firestore.doc(`videos/${index}`).update({
-      isvalidePreselect: val,
+      isvalidVideo: val,
     }
   ).then(() => {
     console.log('Document mis à jour avec succès');
@@ -70,6 +70,7 @@ export class VideosService {
   }
 
   async validProcessByPartenaireInVideo(val: boolean ,index: string, idUser: string) {
+    
   
     await this.firestore.doc(`videos/${index}`).update({
       isvalideProcess: val,

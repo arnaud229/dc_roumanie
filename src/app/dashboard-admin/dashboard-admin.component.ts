@@ -1910,7 +1910,7 @@ applyFilteDette(event: Event) {
     fichier.libele.toLowerCase().includes(filterValue) 
   );
 
-  console.log('liste filtre', this.liste_select);
+  console.log('liste filtre', this.liste_Dette);
 }
 
 applyFilteRembourse(event: Event) {
@@ -1919,13 +1919,13 @@ applyFilteRembourse(event: Event) {
   console.log('filtervalue', filterValue);
   console.log('origine liste', this.liste_Dette); 
   
-  this.liste_Dette = this.liste_Dette.filter(fichier => 
+  this.liste_Remboursement = this.liste_Remboursement.filter(fichier => 
     fichier.nom.toLowerCase().includes(filterValue) ||
     fichier.prenoms.toLowerCase().includes(filterValue) ||
     fichier.libele.toLowerCase().includes(filterValue) 
   );
 
-  console.log('liste filtre', this.liste_select);
+  console.log('liste filtre', this.liste_Remboursement);
 }
 
 logOut() {

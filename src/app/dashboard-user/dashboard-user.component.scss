@@ -298,6 +298,8 @@ tr, td, th
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    width: calc(100vw - 220px);
+    padding-left: 220px;
 }
 
 .oneVideo {
@@ -335,6 +337,26 @@ tr, td, th
 .navBarMobile
 {
     display: none;
+}
+
+.cardHead > button
+{
+    width: 125px;
+    height: 33px;
+    text-align: center;
+    color:  white;
+    background: #764929;
+   border: 1px solid #764929;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+// margin-bottom: 30px;
+// margin-left: 30%;
+
 }
 
 @media (max-width: 1000px ) {

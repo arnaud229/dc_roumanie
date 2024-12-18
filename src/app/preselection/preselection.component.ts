@@ -107,7 +107,7 @@ export class PreselectionComponent {
   async preselect(){
     console.log("Preselect",this.preselectform.value)
     
-    if (this.preselectform.invalid) {  } 
+    if (this.preselectform.invalid) return
       console.log('tete0');
       const uploadPromises = this.les_url.map(async (image) => {
 

@@ -554,8 +554,7 @@
 
                     <div class="oneVideo" *ngFor="let item of liste_videos" >
 
-                        <img (click)="validVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt="">
-                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
+                       <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
 
 
                         <video controls>
@@ -571,6 +570,9 @@
                          <span *ngIf="item.observation !== '' ">
                           {{ item.observation }}
                          </span>
+                        
+                         <button (click)="validVideo(item.id, item.user_id)" >Valider</button>
+                       
 
 
                     </div>

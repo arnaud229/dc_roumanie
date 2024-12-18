@@ -515,7 +515,7 @@
 
         <div  *ngIf="selecter==3"> 
             
-            <div class="notvalide" *ngIf="!isVideo">
+            <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
                 <p>
                     vous n'aviez aucune video de presetation d'activité
                 </p>
@@ -525,7 +525,27 @@
             </div>
 
 
-            <div *ngIf="isVideo">
+            <div *ngIf="liste_videos.length >= 0">
+
+                <div class="cardHead"> 
+                    <div class="cardStatut">
+                       <div class="statut">
+                           <span> Statut</span>
+                           <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
+                       </div>
+
+                       <div class="statut">
+                           <span> Statut Finacière</span>
+                           <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}} </span>
+                       </div>
+
+                    </div>
+
+                   <h1>Préselection</h1>
+
+                   <button (click)="goToVideos()" >Ajouter une vidéo</button>
+
+               </div>
 
 
                 <div class="cardVideos" >
@@ -539,6 +559,15 @@
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
                           </video>
+
+                          <h1> {{item.secteur}} </h1>
+                          <span>
+                              {{ item.nom }}  {{ item.prenoms }}
+                          </span>
+
+                         <span *ngIf="item.observation !== '' " >
+                          {{ item.observation }}
+                         </span>
 
 
                     </div>

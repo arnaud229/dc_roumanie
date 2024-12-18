@@ -432,6 +432,33 @@ margin-bottom: 30px;
         padding-right: 15%;
 }
 
+.loader 
+{
+  top: 15%;
+  left: 50%;
+  width: 180px;
+  height: 180px;
+  padding-top: 80px;
+  padding-left: 80px;
+
+}
+
+.lds-ring {
+
+  width: 35px;
+  height: 35px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin: 5px;
+  border: 20px solid #fff;
+ 
+}
+
 
     
   }
