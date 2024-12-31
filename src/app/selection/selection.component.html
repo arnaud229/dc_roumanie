@@ -190,15 +190,15 @@
 
 </div>
 
-<div>
+<div  *ngIf="loading" class="loader">
 
-        
-  <div  *ngIf="iserrorlog" class="loader">
-    <div class="groupError"  >
-      <p class="smsError"  >  {{message}} </p>
+    <div *ngIf="!iserrorlog" class="lds-ring"><div></div><div></div><div></div></div>
+  
+    <div class="groupError"  *ngIf="iserrorlog" >
+      <p class="smsError" >  {{message}} </p>
       <button  (click)="closeError() " >ok</button>
-    </div> 
-
-</div>
+    </div>
+  
+  </div>
   
 

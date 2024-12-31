@@ -42,6 +42,7 @@ export class PreselectionComponent {
   iserrorlog : boolean =  false;
   listReligion: any[] = [];
   listPrefixe: any[] = [];
+  loading = false;
 
   constructor(
     private formbuilder: FormBuilder,
@@ -86,7 +87,7 @@ export class PreselectionComponent {
   } 
 
   closeError() {
-   this.iserrorlog = false;
+   this.loading = false;
    this.isUploading = false;
   }
 
@@ -108,6 +109,8 @@ export class PreselectionComponent {
     console.log("Preselect",this.preselectform.value)
     
     if (this.preselectform.invalid) return
+    this.loading = true;
+    this.iserrorlog = false;
       console.log('tete0');
       const uploadPromises = this.les_url.map(async (image) => {
 
@@ -171,6 +174,8 @@ export class PreselectionComponent {
        this.userServ.preselect(infoPreselect, this.userId)
        .then(
            (e) => {
+            this.loading = false;
+          //  this.iserrorlog = false;
             this.router.navigate(["dashboardUser", {index: 0}])
            }
         
@@ -178,8 +183,11 @@ export class PreselectionComponent {
        
       .catch(
         (error: { code: any; message: any }) => {
+          this.loading = true;
+          this.iserrorlog = true;
           var errorCode = error.code;
           var errorMessage = error.message;
+          this.message = errorMessage;
           console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
         }
  )
@@ -198,6 +206,8 @@ async  onFilesSelected(event : any) {
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
     if (invalidFile) {
+      
+      this.loading = true;
       this.iserrorlog = true;
   
       this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"

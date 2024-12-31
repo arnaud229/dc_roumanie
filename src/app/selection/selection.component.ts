@@ -73,6 +73,7 @@ export class SelectionComponent {
   progressValue1  = 0;
   progressValue2  = 0;
   progressValue3  = 0;
+  loading = false;
 
   currentUser!: User 
   listReligion: any[] = [];
@@ -213,6 +214,9 @@ export class SelectionComponent {
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
     if (invalidFile) {
+
+      this.loading = true;
+      this.iserrorlog = true;
     
       this.message = "La taille de votre fichier lié au photo complet depasse 10MB, veuillez choisi un fichier moins de  10MB"
       return;
@@ -265,6 +269,9 @@ export class SelectionComponent {
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
     if (invalidFile) {
+
+      this.loading = true;
+      this.iserrorlog = true;
     
       this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
       return;
@@ -318,7 +325,10 @@ export class SelectionComponent {
     );
     
       if (invalidFile) {
-    
+      
+        this.loading = true;
+        this.iserrorlog = true;
+
         this.message = "La taille de votre fichier au cassier juduciaire depasse 10MB, veuillez choisi un fichier moins de  10MB"
         return;
       }
@@ -354,7 +364,7 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
   }
 
   closeError() {
-    this.iserrorlog = false;
+    this.loading = false;
     this.isUploading = false;
     this.isUploading1 = false;
     this.isUploading2 = false;
@@ -448,6 +458,9 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
     console.log(" experience ",this.expTable); 
     
     if (this.selectform.invalid) return
+
+    this.loading = true;
+    this.iserrorlog = false;
     
     let imagesDiplomes: any = this.les_url.map(async (asset: any) => {
       
@@ -536,6 +549,7 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
       .then(
         () => 
         {
+          this.loading = false;
           this.router.navigate(["dashboardUser", {index: 1}]);
 
         }
@@ -543,8 +557,11 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
       .catch(
         
         (error: { code: any; message: any }) => {
+          this.loading = true;
+          this.iserrorlog = true;
           var errorCode = error.code;
           var errorMessage = error.message;
+          this.message = errorMessage;
           console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
         }
 

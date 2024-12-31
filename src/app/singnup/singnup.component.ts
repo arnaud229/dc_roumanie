@@ -68,9 +68,7 @@ export class SingnupComponent {
     });
   } 
 
- async sign_up() {
-  
-  
+ async sign_up() { 
 
   console.log('le vormulaire',this.userform.value);
 
@@ -139,7 +137,7 @@ export class SingnupComponent {
   console.log('valeur de user dans signup', user);
   
 
-  this.loading = true;
+  this.loading = true; 
 
   this.authService.createFirebaseUser(user).then(
 
