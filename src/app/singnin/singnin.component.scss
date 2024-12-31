@@ -160,9 +160,9 @@ cursor: pointer;
     position: absolute;
     top: 32%;
     left: 50%;
-    width: 250px;
-    height: 200px;
-    padding-top: 100px;
+    width: 150px;
+    height: 100px;
+    padding-top: 50px;
     padding-left: 100px;
     background: #DEDEDE;
     border-radius: 10px;
@@ -180,9 +180,9 @@ cursor: pointer;
     box-sizing: border-box;
     display: block;
     position: absolute;
-    width: 100px;
-    height: 100px;
-    margin: 5px;
+    width: 50px;
+    height: 50px;
+    margin: 2px;
     border: 30px solid #764929;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
@@ -264,7 +264,8 @@ cursor: pointer;
 .groupError {
   display: flex;
   flex-direction: column;
-  margin-left: -15%;
+    margin-left: -33%;
+    margin-top: -15%;
 }
 
 .groupError > button 
@@ -329,16 +330,7 @@ cursor: pointer;
   width: 35px;
   height: 35px;
 }
-.lds-ring div {
-  box-sizing: border-box;
-  display: block;
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  margin: 5px;
-  border: 20px solid #764929;
- 
-}
+
   
 }
 

@@ -507,6 +507,23 @@ label {
       transform: rotate(360deg);
     }
   }
+  .groupError {
+    display: flex;
+    flex-direction: column;
+    margin-left: -33%;
+    margin-top: -15%;
+  }
+  
+  .groupError > button 
+  {
+    color: white;
+    background: #764929;
+    border-radius: 10px;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    margin-left: 30%;
+  }
 
 
 

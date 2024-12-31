@@ -448,7 +448,8 @@ cursor: pointer;
   .groupError {
     display: flex;
     flex-direction: column;
-    margin-left: -15%;
+    margin-left: -33%;
+    margin-top: -15%;
   }
 
   .groupError > button 
@@ -485,8 +486,8 @@ cursor: pointer;
   {
     top: 15%;
     left: 50%;
-    width: 180px;
-    height: 180px;
+    width: 150px;
+    height: 150px;
     padding-top: 80px;
     padding-left: 80px;
 
