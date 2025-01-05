@@ -2141,10 +2141,6 @@ goToEditRemboursement(id: any) {
 
 }
 
-delectVideo(tu: any) {
-
-}
-
 validPreselect(ind: string){
   let vak = true;
   this.userServ.validPreselect( vak, ind).then(
@@ -2235,6 +2231,31 @@ validVideo(index: string, idUser: string) {
   )
 
 }
+
+delectVideo(item: any) {
+
+  const le_url = item.fileVideo
+  const index = item.id
+   
+  const options: {
+    folder?: string; // Littéral de chaîne
+    url: string; // Utilisez string comme type explicite
+  } = {
+    folder: 'filsVideoPresentation',
+    url: le_url, // Assignation de la valeur
+  };
+  
+
+  this.videoService.deleteVideo(options, index).then(
+    () => {
+      console.log('reussi');
+      
+    }
+  )
+
+ 
+
+ }
 
 
 

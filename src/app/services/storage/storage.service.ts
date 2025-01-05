@@ -106,6 +106,11 @@ import { AuthService } from "../auth/auth.service";
           const { folder, url } = options;
           const storage = getStorage();
           const imagePath = getFilePathFromUrl(url);
+
+          if (!imagePath) {
+            console.error('Chemin du fichier invalide ou non trouvé');
+            return;
+          }
     
           console.log('options', options);
     
@@ -186,18 +191,9 @@ import { AuthService } from "../auth/auth.service";
 
 
   function getFilePathFromUrl(url: string) {
-    const { storageBucket } = environement.firebaseConfig;
-    const baseUrl = `https://firebasestorage.googleapis.com/v0/b/${storageBucket}/o/`;
+    const imagePath = url.match(/\/o\/(.*?)\?/);
   
-    let imagePath: string = url.replace(baseUrl, '');
+    return imagePath ? decodeURIComponent(imagePath[1]) : null;
   
-    const indexOfEndPath = imagePath.indexOf('?');
-  
-    imagePath = imagePath.substring(0, indexOfEndPath);
-  
-    imagePath = imagePath.replace(/%2F/g, '/');
-  
-    imagePath = imagePath.replace(/%20/g, ' ');
-  
-    return imagePath;
+
   }

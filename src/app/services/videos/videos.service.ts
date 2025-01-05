@@ -4,6 +4,7 @@ import { videoPresentation } from 'src/models/variables';
 import { serverTimestamp } from 'firebase/firestore';
 import { map } from 'rxjs';
 import { UsersService } from '../firebase/user.service';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,7 @@ export class VideosService {
   constructor(
     private firestore: AngularFirestore,
     private userServ : UsersService,
+    private storageService:  StorageService,
   ) { }
 
   collectionName = 'videos';
@@ -111,7 +113,26 @@ export class VideosService {
       );
   }
 
-  deleteVideo() { }
+async  deleteVideo(
+    options: {
+      folder?: string;
+      url: string;
+    }, index: string
+  ) { 
+
+  await  this.storageService.deleteFileFromUrl(options).then(
+      (res) => {
+        console.log( 'super');
+        // Étape 2 : Supprimer le champ dans le document Firestore
+        this.firestore.doc(`videos/${index}`).delete();
+
+         console.log(` document supprimé de Firestore avec succès.`);
+        
+
+      }
+    )
+
+  }
 
   getVideoByUserId(userId: any) {
     console.log('userId :>> ', userId);

@@ -358,6 +358,7 @@ tbody td
     border: solid 1px #764929;
     display: flex;
     flex-direction: column;
+    margin-bottom: 100px;
 
 }
 
@@ -640,6 +641,7 @@ margin-bottom: 30px;
     height: 150px;
     position: relative;
     margin-right: 20px;
+    margin-bottom: 100px;
 
 }
 
@@ -758,6 +760,26 @@ line-height: 24px;
     padding-top: 5px;
     padding-bottom: 5px;
     list-style-type: none;
+}
+
+.addVideoCSS
+{
+    position: absolute;
+    bottom: 50px;
+    right: 50px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    color:  white;
+    background: #764929;
+   border: 1px solid #764929;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 50%;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 35px;
+line-height: 24px;
 }
 
 

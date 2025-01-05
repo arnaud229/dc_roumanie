@@ -4,6 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { serverTimestamp } from 'firebase/firestore';
 import { map } from 'rxjs';
 import { coaching } from 'src/models/variables';
+import { StorageService } from '../storage/storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ import { coaching } from 'src/models/variables';
 export class coachingService {
 
   constructor(
-    private firestore: AngularFirestore
+    private firestore: AngularFirestore,
+       private storageService:  StorageService,
   ) { }
 
   collectionName = 'caoching';
@@ -65,10 +67,26 @@ export class coachingService {
   }
   
 
-  deleteVideo() { }
+  async  deleteVideo(
+    options: {
+      folder?: string;
+      url: string;
+    }, index: string
+  ) { 
 
+  await  this.storageService.deleteFileFromUrl(options).then(
+      (res) => {
+        console.log( 'super');
+        // Étape 2 : Supprimer le champ dans le document Firestore
+        this.firestore.doc(`videos/${index}`).delete();
 
+         console.log(` document supprimé de Firestore avec succès.`);
+        
 
+      }
+    )
+
+  }
 
 
 

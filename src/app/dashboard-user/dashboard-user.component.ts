@@ -468,6 +468,22 @@ getTotalsRemboursements() {
           console.log('taille tableau dedans', this.liste_videos.length );
     
           this.isVideo = true;
+          if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Preselect'
+            
+          } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Select'
+          }
+              
+          else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Validé'
+          }
           
         } else {
           this.isVideo = false;
@@ -490,6 +506,22 @@ getTotalsRemboursements() {
           console.log('taille tableau dedans', this.liste_coaching.length );
     
           this.isCoaching = true;
+          if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Preselect'
+            
+          } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Select'
+          }
+              
+          else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Validé'
+          }
           
         } else {
           this.isCoaching = false;
@@ -641,16 +673,28 @@ getTotalsRemboursements() {
 
     console.log('toto avant');
     console.log('taille avant',this.liste_videos.length );
-
-
-    
-   
-    if (this.liste_videos.length >0) {
+     
+       if (this.liste_videos.length >0) {
 
       console.log('dedans');
-      
-
+  
       this.isVideo = true;
+      if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Preselect'
+        
+      } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Select'
+      }
+          
+      else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Validé'
+      }
       
     }
 
@@ -666,6 +710,8 @@ getTotalsRemboursements() {
     this.isOpenMenu = false; 
 
     console.log('taille tableau avant', this.liste_coaching.length );
+
+
     
 
       if (this.liste_coaching.length >0 ) {
@@ -673,6 +719,23 @@ getTotalsRemboursements() {
         console.log('taille tableau dedans', this.liste_coaching.length );
   
         this.isCoaching = true;
+
+        if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Preselect'
+          
+        } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Select'
+        }
+            
+        else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Validé'
+        }
         
       } else {
         this.isCoaching = false;
@@ -719,7 +782,7 @@ getTotalsRemboursements() {
     this.router.navigate(['editselect']);
     
   }else if(this.selecter == 3) {
-
+    this.router.navigate(['videos']);
   }
 
  }
@@ -768,7 +831,28 @@ getTotalsRemboursements() {
 
  }
 
- delectVideo(index: any) {
+ delectVideo(item: any) {
+
+  const le_url = item.fileVideo
+  const index = item.id
+   
+  const options: {
+    folder?: string; // Littéral de chaîne
+    url: string; // Utilisez string comme type explicite
+  } = {
+    folder: 'filsVideoPresentation',
+    url: le_url, // Assignation de la valeur
+  };
+  
+
+  this.videoService.deleteVideo(options, index).then(
+    () => {
+      console.log('reussi');
+      
+    }
+  )
+
+ 
 
  }
 
