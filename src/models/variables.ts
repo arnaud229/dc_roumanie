@@ -20,6 +20,7 @@ export interface User {
     religion: string,
     ldtep2: boolean,
     fils_recus: string[],
+    noFilRecu?: boolean,
     admin: boolean,
     partenaire: boolean,
     LieuNaissance:string,

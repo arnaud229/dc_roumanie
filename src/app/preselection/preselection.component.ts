@@ -23,7 +23,7 @@ export class PreselectionComponent {
   pre = "";
   edite = "";
   switch = false;
-  listMatrimonial = ["Situation Matrimoniale","Célibataire", "Marié(e)", "Veuf(ve) "];
+  listMatrimonial = ["Célibataire", "Marié(e)", "Veuf(ve) "];
   liste_fils: RecuFile[] = [];
   @ViewChild('fileInput')
   fileInput!: ElementRef; 
@@ -81,6 +81,7 @@ export class PreselectionComponent {
     parrain: ['',Validators.required],
       religion: ['',Validators.required], 
       ldtep2: [false,Validators.required], 
+      noFilRecu: [false,Validators.required], 
       fils_recus: ['',Validators.required], 
          
     });
@@ -92,7 +93,19 @@ export class PreselectionComponent {
   }
 
   suivant() {
-    this.switch = !this.switch;
+
+    console.log('valeur:', this.preselectform.value.noFilRecu );
+    console.log('valeur:', this.preselectform.value.ldtep2 );
+  
+  
+    
+    if (this.preselectform.value.noFilRecu ) {
+      this.switch = !this.switch;
+    } else
+    {
+       this.preselect();
+    }
+   
   }
 
   precedent() {

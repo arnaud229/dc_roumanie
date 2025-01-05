@@ -24,8 +24,8 @@ export class SelectionComponent {
   isUploading2= false;
   isUploading3 = false;
   switch = false;
-  listMatrimonial = ["Situation Matrimoniale","Célibataire", "Marié(e)", "Veuf(ve) "];
-  listLangue = ["Langue étrangère parler","Anglais","Français", "Roumain", "Espagnol"];
+  listMatrimonial = ["Célibataire", "Marié(e)", "Veuf(ve) "];
+  listLangue = ["Anglais","Français", "Roumain", "Espagnol"];
   liste_fils: RecuFile[] = [];
   @ViewChild('fileInput')
   fileInput!: ElementRef; 

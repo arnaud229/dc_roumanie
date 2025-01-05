@@ -320,7 +320,7 @@ getTotalsRemboursements() {
       this.isEditPreselect = false;
       this.titleHeadMobile = "Préselection";
 
-      console.log('tittle0', this.titleHeadMobile);
+      console.log('tittle', this.titleHeadMobile);
 
     if (this.currentUser.ldtep2) {
 
@@ -337,15 +337,22 @@ getTotalsRemboursements() {
 
       this.isPreselect = true;
 
-      if (this.currentUser.isvalidePreselect ) {
+ 
+      if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
         this.colorValidPreselect = true;
 
         this.statutPreselect = 'Preselect'
         
-      } else if (this.currentUser.isProcessSucceful) {
-        this.colorValidSelect = true;
+      } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+        this.colorValidPreselect = true;
 
-        this.statutFinance = 'Validé'
+        this.statutPreselect = 'Select'
+      }
+          
+      else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Validé'
       }
       
     } else {
@@ -361,15 +368,22 @@ getTotalsRemboursements() {
   
         this.isPreselect = true;
   
-        if (this.currentUser.isvalidePreselect ) {
+      
+        if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
           this.colorValidPreselect = true;
   
           this.statutPreselect = 'Preselect'
           
-        } else if (this.currentUser.isProcessSucceful) {
-          this.colorValidSelect = true;
+        } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+          this.colorValidPreselect = true;
   
-          this.statutFinance = 'Validé'
+          this.statutPreselect = 'Select'
+        }
+            
+        else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Validé'
         }
         
       } else {
@@ -394,20 +408,27 @@ getTotalsRemboursements() {
        
 
        if (this.currentUser.dHonneur ) {
-      
-        
-  
+              
         this.viewHonneur = 'oui'
-        this.titleHeadMobile ='Seléction'
-  
+        this.titleHeadMobile ='Seléction' 
         this.isSelect = true;
   
-        if (this.currentUser.isvalidSelect) {
-          this.colorValidSelect = true;
+       if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+          this.colorValidPreselect = true;
   
-          this.statutFinance = 'Select'
+          this.statutPreselect = 'Preselect'
           
-        } 
+        } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Select'
+        }
+            
+        else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Validé'
+        }
         
       } else {
         console.log(3);
@@ -534,15 +555,21 @@ getTotalsRemboursements() {
 
       this.isPreselect = true;
 
-      if (this.currentUser.isvalidePreselect ) {
+      if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
         this.colorValidPreselect = true;
 
         this.statutPreselect = 'Preselect'
         
-      }else if (this.currentUser.isProcessSucceful) {
-        this.colorValidSelect = true;
+      } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+        this.colorValidPreselect = true;
 
-        this.statutFinance = 'Validé'
+        this.statutPreselect = 'Select'
+      }
+          
+      else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Validé'
       }
 
     } else {
@@ -565,16 +592,22 @@ getTotalsRemboursements() {
       this.titleHeadMobile ='Seléction'
 
       this.isSelect = true;
+    
+      if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+        this.colorValidPreselect = true;
 
-      if (this.currentUser.isvalidSelect) {
-        this.colorValidSelect = true;
-
-        this.statutFinance = 'Select'
+        this.statutPreselect = 'Preselect'
         
-      } else if (this.currentUser.isProcessSucceful) {
-        this.colorValidSelect = true;
+      } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+        this.colorValidPreselect = true;
 
-        this.statutFinance = 'Validé'
+        this.statutPreselect = 'Select'
+      }
+          
+      else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+        this.colorValidPreselect = true;
+
+        this.statutPreselect = 'Validé'
       }
       
     } else {

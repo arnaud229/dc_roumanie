@@ -61,13 +61,19 @@
                     <div  class="lecheck">
                
                         <input id="lecheck_input1" type="checkbox"  [ngClass]="{'checked': preselectform.controls['passport'].value}"  formControlName="passport" placeholder="Passeport" >
-                       Aviez vous un Passeport en cours de validité ?
+                       Aviez-vous un Passeport en cours de validité ?
                       
                        </div>
         
                    <div  class="lecheck">
-                    <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': preselectform.controls['ldtep2'].invalid && preselectform.controls['ldtep2'].value!='', 'checked':  preselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
-                    êtes vous immediatement disponible ?
+                    <input id="lecheck_input" type="checkbox"  [ngClass]="{ 'checked':  preselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
+                    êtes-vous immediatement disponible ?
+                  
+                   </div>
+
+                   <div  class="lecheck">
+                    <input id="lecheck_input" type="checkbox"  [ngClass]="{ 'checked':  preselectform.controls['noFilRecu'].value} "  formControlName="noFilRecu">
+                    aviez-vous vos reçus de préselection ?
                   
                    </div>
                   

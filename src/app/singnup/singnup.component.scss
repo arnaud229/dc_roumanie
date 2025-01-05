@@ -463,6 +463,12 @@ cursor: pointer;
     margin-left: 30%;
   }
 
+  :disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    // color: #888;
+}
+
 
 
 
