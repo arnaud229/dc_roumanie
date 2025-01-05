@@ -134,7 +134,7 @@ export class DashboardUserComponent {
   isCoaching = false;
   isFinance = true;
   statutPreselect = 'En cours'
-  statutFinance = 'En cours'
+  statutFinance = 'Aucun'
   liste_videos: any [] = [];
   liste_coaching: any [] = [];
   colorValidPreselect = false;
@@ -529,6 +529,11 @@ getTotalsRemboursements() {
  getEtat() {
 
    console.log('selecter is',this.selecter);
+   if (this.liste_Dette.length > 0) {
+    this.statutFinance = "Dette"
+    console.log("taille dette", this.liste_Dette.length);
+     
+  }
    
   if (this.selecter ==0  ) {
 
@@ -548,9 +553,7 @@ getTotalsRemboursements() {
       {
         this.viewPasseportDisponible = 'non'
       }
-
-
-
+      
       console.log(2);
 
       this.isPreselect = true;

@@ -24,6 +24,9 @@ export class CoursCoachingComponent {
   message = "";
   userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
   maxFileSize = 10;
+  loading = false;
+  iserrorlog= false;
+  erreur_message = "";
 
  
   constructor(
@@ -80,6 +83,9 @@ export class CoursCoachingComponent {
     );
     
       if (invalidFile) {
+
+           this.loading = true;
+      this.iserrorlog = true;
     
         this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
         return;
@@ -129,6 +135,8 @@ export class CoursCoachingComponent {
 
     console.log('le form:', this.videoform.value);
     
+    this.loading = true;
+    this.iserrorlog = false;
 
       const updateData = {
         
@@ -143,13 +151,24 @@ export class CoursCoachingComponent {
 
       this.coachService.CreateCoaching(updateData)
       .then((res) => {
+        this.loading = false;
+       
         console.log('res :>> ', res);
     
         this.router.navigate(["dashboardUser", {index: 6}]);
       })
       .catch((err) => {
+        this.loading = true;
+        this.iserrorlog = true;
         console.log('err :>> ', err);
+        this.message = err.message
+
       });
+  }
+
+  closeError()  {
+    this.iserrorlog = false;
+    this.loading = false;
   }
 
 

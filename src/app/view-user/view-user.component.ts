@@ -279,6 +279,7 @@ export class ViewUserComponent {
     this.userServ.validPreselect( vak, ind).then(
       () => {
         console.log(' validation reussi pour preselect');
+        this.router.navigate(['dashboardAdmin']);
       }
     )
     .catch(
@@ -298,6 +299,7 @@ export class ViewUserComponent {
     .then(
       (res) => {
         console.log('validation reussi pour select');
+        this.router.navigate(['dashboardAdmin']);
         
       }
     )
@@ -319,6 +321,8 @@ export class ViewUserComponent {
     this.userServ.validProcess( vak, index).then(
       () => {
         console.log(' validation reussi pour preselect');
+        this.router.navigate(['dashboardPartenaire']);
+
       }
     )
     .catch(

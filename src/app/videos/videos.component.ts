@@ -29,6 +29,9 @@ export class VideosComponent {
  
   currentUser! : User;
   maxFileSize = 10;
+  loading = false;
+  iserrorlog= false;
+  erreur_message = "";
  
 
 
@@ -81,6 +84,8 @@ export class VideosComponent {
     const filess = event.target.files;
     console.log("files de input",filess);
     console.log("files de tyoe ",typeof filess);
+    this.loading = true;
+    this.iserrorlog = false;
 
 
     console.log('event', event);
@@ -91,6 +96,8 @@ export class VideosComponent {
     );
     
       if (invalidFile) {
+        this.loading = true;
+        this.iserrorlog = true;
     
         this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
         return;
@@ -123,6 +130,9 @@ export class VideosComponent {
       const successfulUrls = uploadedUrls.filter(url => url !== null);    
       this.filVideo = successfulUrls[0]; 
 
+      this.loading = false;
+    
+
   }
 
   fileToBase64(file: File) {
@@ -137,6 +147,8 @@ export class VideosComponent {
   ajoutVideo() {
 
     if (this.videoform.invalid) { } 
+    this.loading = true;
+    this.iserrorlog = false;
 
     console.log('le form:', this.videoform.value);
     
@@ -158,13 +170,23 @@ export class VideosComponent {
 
       this.videoService.CreateVideo(updateData)
       .then((res) => {
+        this.loading = false;
+      
         console.log('res :>> ', res);
     
         this.router.navigate(["dashboardUser", {index: 3}]);
       })
       .catch((err) => {
+        this.loading = true;
+        this.iserrorlog = true;
+        this.message = err.message;
         console.log('err :>> ', err);
       });
+  }
+
+  closeError()  {
+    this.iserrorlog = false;
+    this.loading = false;
   }
 
 

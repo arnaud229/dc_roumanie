@@ -1477,7 +1477,7 @@ openMenu() {
      console.log('tittle1', this.titleHeadMobile);
     
   } 
-  else if (index == 1) {
+  else if (index == 2) {
 
     this.selecter = 2;
     this.selecterMobile = 2;
