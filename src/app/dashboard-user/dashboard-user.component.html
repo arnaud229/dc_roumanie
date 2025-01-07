@@ -221,6 +221,13 @@
 
                     </div>
 
+                    <div class="groupViewPreselect">
+
+                        <p> Aviez vos reçus de préinscription:</p>
+                        <span class="viewValue"> {{ viewFilsRecu }}  </span>
+
+                    </div>
+
 
 
                 </div>
@@ -514,17 +521,7 @@
 
 
         <div  *ngIf="selecter==3"> 
-            
-            <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
-                <p>
-                    vous n'aviez aucune video de presetation d'activité
-                </p>
-
-                <button (click)="goToVideos()">Ajouter une video</button>
-
-            </div>
-
-
+          
             <div *ngIf="liste_videos.length >= 0">
 
                 <div class="cardHead"> 
@@ -541,7 +538,7 @@
 
                     </div>
 
-                   <h1>Préselection</h1>
+                   <h1>Mes Vidéos</h1>
 
                    <button (click)="goToVideos()" >Ajouter une vidéo</button>
 
@@ -576,6 +573,16 @@
 
                 </div>
 
+
+            </div>
+
+              
+            <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
+                <p>
+                    vous n'aviez aucune video de presetation d'activité
+                </p>
+
+                <button (click)="goToVideos()">Ajouter une video</button>
 
             </div>
 

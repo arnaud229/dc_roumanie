@@ -1400,6 +1400,7 @@ export class DashboardPartenaireComponent {
   isFiltre = false;
   isReject = false;
   theObservation = '';
+  idOfItem = '';
 
   liste_videos: any[] = [];
   liste_videosValid: any[] = [];
@@ -1503,8 +1504,9 @@ openMenu() {
 
 }
 
-beginReject() {
+beginReject(index: string) {
   this.isReject = true;
+  this.idOfItem = index;
 }
 close_valid()
 {

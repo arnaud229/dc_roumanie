@@ -1723,8 +1723,21 @@ updateChart()
 
 }
 
-beginValid(val: any) {
-  this.theId = val
+beginValid(val: any, noval: boolean) {
+  console.log('le booleen',noval);
+  if (noval === false) {
+
+    console.log('ca a commencé');
+  
+    this.router.navigate(["viewUser", {index: val}]);
+    
+    
+  } else {
+
+    this.theId = val
+    
+  }
+
 }
 
 getFiltre() {

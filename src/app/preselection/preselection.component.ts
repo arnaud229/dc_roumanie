@@ -99,7 +99,7 @@ export class PreselectionComponent {
   
   
     
-    if (this.preselectform.value.noFilRecu ) {
+    if (this.preselectform.value.noFilRecu === true ) {
       this.switch = !this.switch;
     } else
     {
@@ -125,62 +125,97 @@ export class PreselectionComponent {
     this.loading = true;
     this.iserrorlog = false;
       console.log('tete0');
-      const uploadPromises = this.les_url.map(async (image) => {
+      if (this.preselectform.value.noFilRecu === false) {
 
-      const url = await this.firebaseStorageService.uploadFile({
-        folder: 'filsRecus',
-        filename:
-          'Recus-preinscription-' +
-          new Date().getTime() +
-          this.userId +
-          '.' +
-          image.name?.split('.')?.[1],
-        file: image.file,
-       
-      });
-        console.log('tete1');
-        
-        image.downloadUrl = url;
-
-        return url;
-
-    });
-
-    const uploadedUrls = await Promise.all(uploadPromises);
-    // Filtrer les URLs null (échecs de téléchargement)
-    const successfulUrls = uploadedUrls.filter(url => url !== null);
-
-  
-       this.les_url = [...successfulUrls]
-         console.log('tete11');
-
-    console.log('tete2');
+        var infoPreselect = 
+        {
+          
+          age: this.preselectform.value.age,
+          sMatrimoniale: this.preselectform.value.sMatrimoniale,
+          NEtude: this.preselectform.value.NEtude,
+          metier: this.preselectform.value.metier,
+          aDiplome: this.preselectform.value.aDiplome,
+          dApprentissage: this.preselectform.value.dApprentissage,
+          aExperience: this.preselectform.value.aExperience,
+          ePrecedent: this.preselectform.value.ePrecedent,
+          passport: this.preselectform.value.passport,
+          nationalite: this.preselectform.value.nationalite,
+          cWhatapp:
+          {
+            code: this.pre,
+            numero: this.edite
+          },
+           
+           parrain: this.preselectform.value.parrain,
+           religion: this.preselectform.value.religion, 
+          ldtep2: this.preselectform.value.ldtep2, 
+          fils_recus: [], 
+          noFilRecu: false,
     
-    const infoPreselect = 
-    {
-      
-      age: this.preselectform.value.age,
-      sMatrimoniale: this.preselectform.value.sMatrimoniale,
-      NEtude: this.preselectform.value.NEtude,
-      metier: this.preselectform.value.metier,
-      aDiplome: this.preselectform.value.aDiplome,
-      dApprentissage: this.preselectform.value.dApprentissage,
-      aExperience: this.preselectform.value.aExperience,
-      ePrecedent: this.preselectform.value.ePrecedent,
-      passport: this.preselectform.value.passport,
-      nationalite: this.preselectform.value.nationalite,
-      cWhatapp:
-      {
-        code: this.pre,
-        numero: this.edite
-      },
-       
-       parrain: this.preselectform.value.parrain,
-       religion: this.preselectform.value.religion, 
-      ldtep2: this.preselectform.value.ldtep2, 
-      fils_recus: this.les_url, 
+        }
 
-    }
+        
+      } else {
+        const uploadPromises = this.les_url.map(async (image) => {
+
+          const url = await this.firebaseStorageService.uploadFile({
+            folder: 'filsRecus',
+            filename:
+              'Recus-preinscription-' +
+              new Date().getTime() +
+              this.userId +
+              '.' +
+              image.name?.split('.')?.[1],
+            file: image.file,
+           
+          });
+            console.log('tete1');
+            
+            image.downloadUrl = url;
+    
+            return url;
+    
+        });
+    
+        const uploadedUrls = await Promise.all(uploadPromises);
+        // Filtrer les URLs null (échecs de téléchargement)
+        const successfulUrls = uploadedUrls.filter(url => url !== null);
+    
+      
+           this.les_url = [...successfulUrls]
+             console.log('tete11');
+    
+        console.log('tete2');
+        
+        var infoPreselect = 
+        {
+          
+          age: this.preselectform.value.age,
+          sMatrimoniale: this.preselectform.value.sMatrimoniale,
+          NEtude: this.preselectform.value.NEtude,
+          metier: this.preselectform.value.metier,
+          aDiplome: this.preselectform.value.aDiplome,
+          dApprentissage: this.preselectform.value.dApprentissage,
+          aExperience: this.preselectform.value.aExperience,
+          ePrecedent: this.preselectform.value.ePrecedent,
+          passport: this.preselectform.value.passport,
+          nationalite: this.preselectform.value.nationalite,
+          cWhatapp:
+          {
+            code: this.pre,
+            numero: this.edite
+          },
+           
+           parrain: this.preselectform.value.parrain,
+           religion: this.preselectform.value.religion, 
+          ldtep2: this.preselectform.value.ldtep2, 
+          fils_recus: this.les_url, 
+          noFilRecu: true,
+    
+        }
+        
+      }
+
      console.log('user id: ', this.userId);
      console.log('preselection: ', infoPreselect);
     

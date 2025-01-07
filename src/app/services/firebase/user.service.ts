@@ -156,7 +156,8 @@ import { User } from "src/models/variables";
        parrain: data.parrain,
        religion: data.religion, 
       ldtep2: data.ldtep2, 
-      fils_recus: data.fils_recus, 
+      fils_recus: data.fils_recus,
+      noFilRecu: data.noFilRecu,
 
         }
 

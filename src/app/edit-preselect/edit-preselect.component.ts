@@ -133,6 +133,8 @@ export class EditPreselectComponent {
   };
   message = '';
   ChoixImg : boolean = false;
+  loading = false;
+  iserrorlog : boolean =  false;
 
   les_url: any[] = [];
   progressValue  = 0;
@@ -247,6 +249,7 @@ export class EditPreselectComponent {
       ldtep2: this.currentUser.ldtep2, 
       // fils_recus: [ this.itemToEditImages?.[0]], 
       fils_recus: "", 
+      noFilRecu: false,
       
      
     });
@@ -260,13 +263,19 @@ export class EditPreselectComponent {
   } 
 
   suivantPreselect() {
-    this.switch = !this.switch;
-      
-    const arayImg = [this.currentUser.fils_recus];
+ 
 
-    this.itemToEditImages = (arayImg || []).map((e: any) => {
-      return { previewUrl: e, type: 'image', url: e }
-    })
+    if (this.editPreselectform.value.noFilRecu === true ) {
+      this.switch = !this.switch;
+      const arayImg = [this.currentUser.fils_recus];
+
+      this.itemToEditImages = (arayImg || []).map((e: any) => {
+        return { previewUrl: e, type: 'image', url: e }
+      })
+    } else
+    {
+       this.editPreselect();
+    }
 
   }
 
@@ -288,6 +297,8 @@ async   onFilesSelectedPreselect(evt : any) {
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
     if (invalidFile) {
+      this.loading = true;
+      this.iserrorlog = true;
     
       this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
 
@@ -325,7 +336,41 @@ async   onFilesSelectedPreselect(evt : any) {
 
     
     if (this.editPreselectform.invalid) return
+    this.loading = true;
+    this.iserrorlog = false;
 
+    if (this.editPreselectform.value.noFilRecu === false) {
+
+      var infoPreselect = 
+      {
+        
+        age: this.editPreselectform.value.age,
+        sMatrimoniale: this.editPreselectform.value.sMatrimoniale,
+        NEtude: this.editPreselectform.value.NEtude,
+        metier: this.editPreselectform.value.metier,
+        aDiplome: this.editPreselectform.value.aDiplome,
+        dApprentissage: this.editPreselectform.value.dApprentissage,
+        aExperience: this.editPreselectform.value.aExperience,
+        ePrecedent: this.editPreselectform.value.ePrecedent,
+        passport: this.editPreselectform.value.passport,
+        nationalite: this.editPreselectform.value.nationalite,
+        cWhatapp:
+        {
+          code: this.pre,
+          numero: this.edite
+        },
+         
+         parrain: this.editPreselectform.value.parrain,
+         religion: this.editPreselectform.value.religion, 
+        ldtep2: this.editPreselectform.value.ldtep2, 
+        fils_recus: [],
+        noFilRecu: false,
+         
+  
+      }
+      
+    } else {
+      
     let images: any = this.les_url.map(async (asset: any) => {
       const url = await this.firebaseStorageService.uploadFile({
         folder: 'filsRecus',
@@ -376,7 +421,7 @@ async   onFilesSelectedPreselect(evt : any) {
 
    
 
-    const infoPreselect = 
+    var infoPreselect =
     {
       
       age: this.editPreselectform.value.age,
@@ -399,8 +444,13 @@ async   onFilesSelectedPreselect(evt : any) {
        religion: this.editPreselectform.value.religion, 
       ldtep2: this.editPreselectform.value.ldtep2, 
       fils_recus: updatedImages, 
+      noFilRecu: true,
 
     }
+      
+    }
+
+
 
 
     console.log("infoPreselect: ",infoPreselect); 
@@ -410,6 +460,7 @@ async   onFilesSelectedPreselect(evt : any) {
     await this.userServ.preselect(infoPreselect, this.userId).then(
       (res) => {
 
+        this.loading = false;
         console.log('res', res);
         this.router.navigate(["dashboardUser", {index: 0}])
 
@@ -417,12 +468,22 @@ async   onFilesSelectedPreselect(evt : any) {
       }
     )
     .catch((e) => {
-      console.log('error', e)
+      this.loading = true;
+      this.iserrorlog = true;
+      var errorCode = e.code;
+      var errorMessage = e.message;
+      this.message = errorMessage;
+      console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
      
     });
    
 
   }
+
+  closeError() {
+    this.loading = false;
+    this.isUploading = false;
+   }
 
   // https://web.telegram.org/a/#-1001909533311
 

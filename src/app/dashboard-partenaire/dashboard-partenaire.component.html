@@ -202,32 +202,27 @@
   
                   <div class="cardVideos" >
   
-                      <div class="oneVideo" *ngFor="let item of liste_videos" >
-  
-                          <img (click)="valiProcessusBydVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt="">
-  
-  
+                      <div class="oneVideo" *ngFor="let item of liste_videos" >  
                           <video controls>
                               <source [src]="item.fileVideo" type="video/mp4">
                               Your browser does not support the video tag.
                             </video>
 
-                            <button class="btn1"  (click)="beginReject()">Ajouter observation</button>
-
-                            <div class="viewVaidPreselct"   *ngIf="isReject"  >
-
-                             
-                                <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
-    
-                           
-
-                              <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
-
-                              <button  class="btn2" (click)="setReject(theObservation, item.id)" > Rejeter</button>
-
-                            </div>
+                            <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)">Valider</button>
+                            <button class="btn3"  (click)="beginReject(item.id)">observation</button>
 
                       </div>
+
+                      <div class="viewVaidPreselct"   *ngIf="isReject"  >
+
+                             
+                        <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+
+                      <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
+
+                      <button  class="btn2" (click)="setReject(theObservation, idOfItem)" > Rejeter</button>
+
+                    </div>
   
   
                   </div>

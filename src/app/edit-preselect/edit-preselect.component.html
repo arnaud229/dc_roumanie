@@ -93,8 +93,14 @@
                </div>
 
            <div  class="lecheck">
-            <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': editPreselectform.controls['ldtep2'].invalid && editPreselectform.controls['ldtep2'].value!='', 'checked':  editPreselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
+            <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': editPreselectform.controls['ldtep2'].value!='', 'checked':  editPreselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
             êtes vous immediatement disponible ?
+          
+           </div>
+
+           <div  class="lecheck">
+            <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': editPreselectform.controls['noFilRecu'].value!='', 'checked':  editPreselectform.controls['noFilRecu'].value} "  formControlName="noFilRecu">
+            aviez-vous vos reçus de préselection ?
           
            </div>
 
@@ -155,6 +161,19 @@
                 <button  id="boutton1"  (click)="editPreselect()">Soumettre</button> 
 
             </div>
+
+
+
+            <div  *ngIf="loading" class="loader">
+
+                <div *ngIf="!iserrorlog" class="lds-ring"><div></div><div></div><div></div></div>
+              
+                <div class="groupError"  *ngIf="iserrorlog" >
+                  <p class="smsError" >  {{message}} </p>
+                  <button  (click)="closeError() " >ok</button>
+                </div>
+              
+              </div>
 
           
           

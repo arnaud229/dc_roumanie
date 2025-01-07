@@ -169,6 +169,8 @@ export class DashboardUserComponent {
 liste_Dette: any [] = [];
 liste_Remboursement: any [] = [];
 
+  viewFilsRecu = ""
+
 public pieChart: GoogleChartInterface = {
   chartType: GoogleChartType.PieChart,
   dataTable: [
@@ -321,6 +323,18 @@ getTotalsRemboursements() {
       this.titleHeadMobile = "Préselection";
 
       console.log('tittle', this.titleHeadMobile);
+      console.log( 'la valeur de noFilRecu',this.currentUser.noFilRecu);
+    
+      if (!this.currentUser.noFilRecu) {
+        this.viewFilsRecu = "non"
+        console.log(1);
+        
+        
+      } else if (this.currentUser.noFilRecu) {
+        this.viewFilsRecu = "oui"
+        console.log(2);
+        
+      }
 
     if (this.currentUser.ldtep2) {
 
@@ -571,6 +585,15 @@ getTotalsRemboursements() {
 
     console.log(1);
     this.titleHeadMobile = 'Préseléction'
+
+    console.log( 'la valeur de noFilRecu',this.currentUser.noFilRecu);
+    
+    if (!this.currentUser.noFilRecu) {
+      this.viewFilsRecu = "non"
+      
+    } else  if (this.currentUser.noFilRecu)  {
+      this.viewFilsRecu = "oui"
+    }
     
 
     if (this.currentUser.ldtep2) {

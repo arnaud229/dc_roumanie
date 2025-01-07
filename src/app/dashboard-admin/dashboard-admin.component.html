@@ -43,11 +43,7 @@
                 <h1> {{ titleHeadMobile}} </h1>
                 <img (click)="editMobile()" src="./../../assets/edit2.png" alt="">
             </div>
-
-
-           
-
-           </div>
+       </div>
 
 
            <div class="navBarMobile" *ngIf="isOpenMenu" >
@@ -170,7 +166,7 @@
                                 <ng-container matColumnDef="actions">
                                   <th mat-header-cell *matHeaderCellDef>Actions</th>
                                   <td mat-cell *matCellDef="let fichier">
-                                    <button mat-icon-button (click)="beginValid(fichier.uid)">
+                                    <button mat-icon-button (click)="beginValid(fichier.uid, fichier?.noFilRecu)">
                                       <img src="./../../assets/valider.png" alt="" >
                                       </button>
                     
