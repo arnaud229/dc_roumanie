@@ -1561,6 +1561,10 @@ setReject(val: string, index: string) {
   this.videoService.rejectObservation(val, index).then(
     () => {
       console.log('reussi');
+      this.selecter =0;
+      this.selecterMobile = 0;
+      this.isReject = false;
+
       
     }
   )
