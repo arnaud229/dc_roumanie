@@ -88,9 +88,9 @@ export class SingninComponent {
       this.loading = true;
       this.iserrorlog = true;
 
-      
+
       this.erreur_message =
-        'Veuillez entrer votre email avant d’appuyer sur `’’ Mot de passe oublier ‘’';
+        'Veuillez entrer votre email ';
 
        
 
