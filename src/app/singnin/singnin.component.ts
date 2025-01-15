@@ -57,15 +57,38 @@ export class SingninComponent {
 
   async change_password() {
 
+    this.loading = true;
+    this.iserrorlog = false;
+
     console.log("toto");
     console.log("userform", this.userform.value);
     
     if (this.userform.controls['mail'].value !== '') {
       
-      this.authService.resetPassword(this.userform.controls['mail'].value);
-      this.erreur_message = 'connexion avec succès';
+      this.authService.resetPassword(this.userform.controls['mail'].value).then(
+        (res)=> {
+          this.loading = true;
+          this.iserrorlog = true;
+
+          this.erreur_message = 'Un mail a été envoyer dans votre adresse mail. Vérifiez votre mail';
+
+        }
+      ) 
+      .catch(
+        (er) => {
+          this.loading = true;
+          this.iserrorlog = true;
+
+          this.erreur_message = 'Vérifiez votre connexion';
+
+        }
+      )
 
     } else {
+      this.loading = true;
+      this.iserrorlog = true;
+
+      
       this.erreur_message =
         'Veuillez entrer votre email avant d’appuyer sur `’’ Mot de passe oublier ‘’';
 
