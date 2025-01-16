@@ -155,7 +155,7 @@ export class CoursCoachingComponent {
        
         console.log('res :>> ', res);
     
-        this.router.navigate(["dashboardUser", {index: 6}]);
+        this.router.navigate(["dashboardAdmin", {index: 6}]);
       })
       .catch((err) => {
         this.loading = true;
