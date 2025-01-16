@@ -71,7 +71,8 @@ export class SingnupComponent {
  async sign_up() { 
 
   console.log('le vormulaire',this.userform.value);
-
+  
+  if (this.userform.invalid) return
   const user : User =  {
     nom: this.userform.value.nom,
     prenom: this.userform.value.prenom,

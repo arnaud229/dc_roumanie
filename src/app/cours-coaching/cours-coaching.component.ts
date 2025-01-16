@@ -78,6 +78,9 @@ export class CoursCoachingComponent {
     console.log('event', event);
     let files = [...event.target.files];
     event.target.value = null;
+    this.loading = true;
+    this.iserrorlog = false;
+
     const invalidFile = files.find(
       (e) => e.size / 1024 / 1024 > this.maxFileSize
     );
@@ -117,6 +120,9 @@ export class CoursCoachingComponent {
       // Filtrer les URLs null (échecs de téléchargement)
       const successfulUrls = uploadedUrls.filter(url => url !== null);    
       this.filVideo = successfulUrls[0]; 
+
+      this.loading = false;
+     
 
   }
 
