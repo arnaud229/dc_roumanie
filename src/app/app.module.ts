@@ -41,6 +41,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { CoursCoachingComponent } from './cours-coaching/cours-coaching.component';
+import { CoursAnglaireComponent } from './cours-anglaire/cours-anglaire.component';
+
 
 
 
@@ -64,6 +66,8 @@ import { CoursCoachingComponent } from './cours-coaching/cours-coaching.componen
     EditRemboursementComponent,
     ViewUserComponent,
     CoursCoachingComponent,
+    CoursAnglaireComponent,
+  
     
     
   ],
