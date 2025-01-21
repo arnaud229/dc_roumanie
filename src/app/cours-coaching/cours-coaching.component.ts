@@ -137,7 +137,7 @@ export class CoursCoachingComponent {
 
   ajoutCoaching() {
 
-    if (this.videoform.invalid) { } 
+    if (this.videoform.invalid) { return } 
 
     console.log('le form:', this.videoform.value);
     
@@ -176,6 +176,8 @@ export class CoursCoachingComponent {
     this.iserrorlog = false;
     this.loading = false;
   }
+
+
 
 
 

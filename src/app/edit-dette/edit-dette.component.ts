@@ -22,6 +22,7 @@ export class EditDetteComponent {
   DetteId = "";
   listUser: any[] = [];
    theUser!: User;
+   currentUser! : User;
   
 
 
@@ -31,6 +32,7 @@ export class EditDetteComponent {
     private financeServices: FinancesService,
     public userService: UsersService,
     private Aroute: ActivatedRoute,
+    public localstorageService: LocalstorageService,
    
  
   ) {
@@ -42,7 +44,8 @@ export class EditDetteComponent {
   ngOnInit() {
 
     this.init_form();
-
+    this.getAllUsers();
+    this.currentUser = this.localstorageService.getCurrentUser();
   }
 
   
@@ -139,7 +142,8 @@ closeError()  {
       libele: this.detteform.value.libele,
       user_id: this.detteform.value.user.uid,
       nom: this.detteform.value.user.nom,
-      prenoms: this.detteform.value.user.prenom
+      prenoms: this.detteform.value.user.prenom,
+      adminNom: ''
     }
 
 

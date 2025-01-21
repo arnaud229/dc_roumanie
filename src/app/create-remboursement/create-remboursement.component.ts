@@ -30,6 +30,7 @@ export class CreateRemboursementComponent {
     private router: Router,
     private financeServices: FinancesService,
     public userService: UsersService,
+    public localstorageService: LocalstorageService,
  
   ) {
 
@@ -39,7 +40,8 @@ export class CreateRemboursementComponent {
 
   ngOnInit() {
     this.init_form();
-    this.getAllUsers()
+    this.getAllUsers();
+    this.currentUser = this.localstorageService.getCurrentUser();
   }
 
 
@@ -114,7 +116,8 @@ export class CreateRemboursementComponent {
       libele: this.remboursementform.value.libele,
       user_id: this.remboursementform.value.user.uid,
       nom: this.remboursementform.value.user.nom,
-      prenoms: this.remboursementform.value.user.prenom
+      prenoms: this.remboursementform.value.user.prenom,
+      adminNom: this.currentUser.prenom,
     }
   
     console.log('dataremb', remboursementInfo); 

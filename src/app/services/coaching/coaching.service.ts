@@ -78,7 +78,7 @@ export class coachingService {
       (res) => {
         console.log( 'super');
         // Étape 2 : Supprimer le champ dans le document Firestore
-        this.firestore.doc(`videos/${index}`).delete();
+        this.firestore.doc(`caoching/${index}`).delete();
 
          console.log(` document supprimé de Firestore avec succès.`);
         

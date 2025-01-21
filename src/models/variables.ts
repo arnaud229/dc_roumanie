@@ -75,6 +75,15 @@ export interface coaching  {
 
 }
 
+export interface coursAnglaire  {
+    id?: any,
+    tittre : string,
+    description: string,
+    fileVideo: string,
+     createdAt?: any,
+
+}
+
 export interface dette {
     id?: any,
     montantDu: number,
@@ -84,6 +93,7 @@ export interface dette {
     prenoms: string,
     createdAt?: any,
     user_id: any,
+    adminNom: string,
 }
 
 export interface remboursement {
@@ -95,6 +105,7 @@ export interface remboursement {
     prenoms: string,
     createdAt?: any,
     user_id: any,
+    adminNom: string,
 }
 
 export type experience = {

@@ -21,6 +21,7 @@ export class CreateDetteComponent {
   iserrorlog = false;
   userId = "";
   listUser: any[] = [];
+  currentUser! : User;
 
  
 
@@ -29,12 +30,14 @@ export class CreateDetteComponent {
     private router: Router,
     private financeServices: FinancesService,
     public userService: UsersService,
+    public localstorageService: LocalstorageService,
  
   ) {
 
   this.getAllUsers();
 
     this.init_form();
+    this.currentUser = this.localstorageService.getCurrentUser();
   }
 
   ngOnInit() {
@@ -103,7 +106,7 @@ export class CreateDetteComponent {
     this.loading = true;
 
     
-    if (this.detteform.invalid) {  } 
+    if (this.detteform.invalid) { return } 
       console.log('tete0');
 
       const detteInfo: dette = {
@@ -111,8 +114,9 @@ export class CreateDetteComponent {
         dateDette: this.detteform.value.dateDette,
         libele: this.detteform.value.libele,
         user_id: this.detteform.value.user?.uid || null,
-        nom: this.detteform.value.user?.nom, 
-        prenoms: this.detteform.value.user?.prenom || null
+        nom: this.detteform.value.user?.nom,
+        prenoms: this.detteform.value.user?.prenom || null,
+        adminNom: this.currentUser.prenom,
       }
       console.log('data user', this.detteform.value);
       
@@ -131,11 +135,6 @@ export class CreateDetteComponent {
         this.loading = false;
       });
 
-
-
   }
-
-
-
 
 }

@@ -296,13 +296,26 @@
 
         </div>
 
-
         <div class="groupViewPreselect">
 
             <p>  Declaration d'honneur:</p>
             <span class="viewValue"> {{ viewHonneur }}  </span>
 
         </div>
+
+        <div class="groupViewFils">
+
+            <h1> Les reçus de préinscription :</h1>
+
+            <div class="groupViewImages"  *ngFor="let item of currentUser.fils_recus " >
+
+                <img [src]="item" alt="">
+
+            </div>
+
+        </div>
+
+
         <div class="groupViewPreselect" *ngIf="theUser.nom === 'admin'" >
             <button  class="botton_bas"   (click)="goBack()">Retour</button> 
             <button  class="boutton" *ngIf="currentUser.isvalidePreselect === false"  (click)="validPreselect(currentUser.uid)">Preselection</button> 

@@ -22,11 +22,13 @@
 
             <div class="ul_menu" *ngIf=" isViewVideo"  >
               <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos non validées</li>
+              <li (click)="selected(9)"  [ngClass]="{'selctIn': selecterMobile === 9}"    >Les vidéos agrées</li>
               <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >Les vidéos validées</li>
               <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    >Les vidéos Rejetées</li>
             </div>
             <li (click)="selected(6)"  [ngClass]="{'selctIn': selecter == 6}" >Le Coaching </li>
-            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Finacière </li>
+            <li (click)="selected(10)"  [ngClass]="{'selctIn': selecterMobile === 10}" >Cours Anglaire</li>
+            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Financier </li>
             <li (click)="logOut()" >Déconnexion</li>
 
         </ul>
@@ -68,11 +70,13 @@
 
                 <div class="ul_menu" *ngIf=" isViewVideo"  >
                   <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos non validées</li>
+                  <li (click)="selected(9)"  [ngClass]="{'selctIn': selecterMobile === 9}"    >Les vidéos agrées</li>
                   <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >Les vidéos validées</li>
                   <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    >Les vidéos Rejetées</li>
                 </div>
                 <li (click)="selected(6)"  [ngClass]="{'selctIn': selecterMobile === 6}"    >Le Coaching</li>
-                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financière </li>
+                <li (click)="selected(10)"  [ngClass]="{'selctIn': selecterMobile === 10}"    >Cours Anglaire</li>
+                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financier </li>
                 <li (click)="logOut()"  >Déconnexion</li>
     
             </ul>
@@ -373,7 +377,7 @@
     
                         <div class="group_header2"    *ngIf="isFiltre" >
                             <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > montant Du </span>
-                            <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span>
+                            <!-- <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span> -->
                            </div>
     
                        
@@ -407,6 +411,11 @@
                               <th mat-header-cell *matHeaderCellDef>Date de la dette</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.dateDette.toLocaleString() }}  </td>
                             </ng-container>  
+
+                            <ng-container matColumnDef="admin">
+                              <th mat-header-cell *matHeaderCellDef>Admin</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.adminNom }}  </td>
+                            </ng-container>
 
                             <ng-container matColumnDef="actions">
                                 <th mat-header-cell *matHeaderCellDef>Actions</th>
@@ -447,8 +456,7 @@
 
             <div class="groupe_preselect" *ngIf="selecter==3"> 
                  
-                
-                 
+                              
                 <div *ngIf="liste_Remboursement.length > 0" >
 
                     <div class="cardHead_Preselect">
@@ -506,6 +514,11 @@
                               <th mat-header-cell *matHeaderCellDef>Date du remboursement</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.dateRemboursement.toLocaleString() }}  </td>
                             </ng-container> 
+
+                            <ng-container matColumnDef="admin">
+                              <th mat-header-cell *matHeaderCellDef>Admin</th>
+                              <td mat-cell *matCellDef="let fichier">{{fichier.adminNom }}  </td>
+                            </ng-container>
                             
                             <ng-container matColumnDef="actions">
                                 <th mat-header-cell *matHeaderCellDef>Actions</th>
@@ -630,6 +643,51 @@
                
             </div>
 
+
+
+            <div class="" *ngIf="selecter==9">  
+
+              <div  *ngIf=" liste_videosAgrees.length > 0 ">
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_videosAgrees" >
+
+                        <!-- <img (click)="validVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt=""> -->
+                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
+
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+                          <h1> {{item.secteur}} </h1>
+                          <span>
+                              {{ item.nom }}  {{ item.prenoms }}
+                          </span>
+
+                         <span *ngIf="item.observation !== '' " >
+                          {{ item.observation }}
+                         </span>
+
+
+                    </div>
+
+                   
+
+                </div>
+              </div>
+               
+                <div class="notvalide" *ngIf=" liste_videosAgrees.length == 0 ">
+                    <p>
+                        Il n'y a aucune video de presetation d'activité à proposer a un partenaire
+                    </p>
+    
+                </div>               
+               
+            </div>
+
             <div class="" *ngIf="selecter==7">  
 
               <div  *ngIf=" liste_videosReject.length > 0 ">
@@ -720,7 +778,7 @@
                           </span>
 
 
-                          <button (click)="delectVideo(item)" >Supprimer</button>
+                          <button (click)="delectVideoCoaching(item)" >Supprimer</button>
                     </div>
                     
                     <button  class="addVideoCSS" (click)="goTocreateCoaching()" >+</button>
@@ -745,5 +803,58 @@
 
 
            </div>
+
+           
+           <div class="groupe_preselect" *ngIf="selecter==10">  
+
+            <div *ngIf="liste_coursAnglaire.length > 0" >
+
+                <div class="cardHead_Preselect">
+
+                    <div class="group_header11" >
+                   
+                </div>
+
+                <div class="cardVideos" >
+
+                  <div class="oneVideo" *ngFor="let item of liste_coursAnglaire" >
+
+                      <video controls>
+                          <source [src]="item.fileVideo" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+
+                        <h1> {{item.tittre}} </h1>
+                        <span>
+                               {{ item.description}} 
+                                
+                        </span>
+
+
+                        <button (click)="delectVideoCoursAnglaire(item)" >Supprimer</button>
+                  </div>
+                  
+                  <button  class="addVideoCSS" (click)="goTocreateCoursAnglaire()" >+</button>
+
+                 
+
+              </div>
+
+            </div>
+          
+        
+           </div>
+
+           <div class="notvalide" *ngIf="liste_coaching.length == 0">
+            <p>
+                Aucun cours de coaching enregistrer pour l'instant
+            </p>
+
+            <button (click)="goTocreateCoaching()">Ajouter un cours</button>
+
+        </div>
+
+
+         </div>
 
 </div>

@@ -17,6 +17,7 @@ import { CreateRemboursementComponent } from './create-remboursement/create-remb
 import { EditRemboursementComponent } from './edit-remboursement/edit-remboursement.component';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { CoursCoachingComponent } from './cours-coaching/cours-coaching.component';
+import { CoursAnglaireComponent } from './cours-anglaire/cours-anglaire.component';
 const routes: Routes = [
   { path: '', component: SingninComponent },
   { path: '*', component: SingninComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'editremboursement', component: EditRemboursementComponent },
   { path: 'viewUser', component: ViewUserComponent },
   { path: 'coursCoaching', component: CoursCoachingComponent },
+  { path: 'coursAnglaire', component: CoursAnglaireComponent },
 ];
 
 

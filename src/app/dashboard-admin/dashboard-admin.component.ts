@@ -9,6 +9,7 @@ import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { UsersService } from '../services/firebase/user.service';
 import { map } from 'rxjs';
 import { coachingService } from '../services/coaching/coaching.service';
+import { anglaireService } from '../services/anglaire/anglaire.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -1404,6 +1405,7 @@ export class DashboardAdminComponent {
   liste_videos!: any [];
   liste_videosValid!: any [];
   liste_videosReject!: any [];
+  liste_videosAgrees!: any[];
 
   colorValidPreselect = false;
   colorValidSelect = true;
@@ -1622,11 +1624,12 @@ liste_Remboursement= [
 liste_preselect : any[] = [];
 liste_select: any[] = [];
 liste_coaching: any[] = [];
+liste_coursAnglaire: any[] = [];
 
 filter =0;
 displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', 'parrain','actions'];  
-displayedColumnsDette: string[] = ['nom', 'prenom', 'libele', 'montantDu', 'dateDette','actions'];  
-displayedColumnsRemboursement: string[] = ['nom', 'prenom', 'libele', 'montantRembourse', 'dateRemboursement', 'actions'];  
+displayedColumnsDette: string[] = ['nom', 'prenom', 'libele', 'montantDu', 'dateDette','admin','actions'];  
+displayedColumnsRemboursement: string[] = ['nom', 'prenom', 'libele', 'montantRembourse', 'dateRemboursement','admin', 'actions'];  
 displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfession', 'principalProfession', 'langueParler','actions'];  
   typeInput = 'text'
   isViewVideo = false;
@@ -1641,6 +1644,7 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     private userServ : UsersService,
     private cdr: ChangeDetectorRef,
     private coachService: coachingService,
+    private anglaireService: anglaireService,
   ) {}
 
 //  async ngDoCheck() {
@@ -1679,8 +1683,10 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
 
     this.getVideos();
     this.getCoachings();
+    this.getCoursAnglaire();
     this.getRemboursement();
     this.getDettes();
+    this.getvideoAgree();
     this.getVideoValid();
     this.getVideoReject();
 
@@ -1864,6 +1870,21 @@ openMenu() {
     this.isOpenMenu = false;
   }
 
+  else if(index == 9) {
+
+    this.selecter = 9 ;
+    this.selecterMobile = 9 ;
+    this.titleHeadMobile = "Vidéos agrées"
+    this.isOpenMenu = false;
+  }
+
+  else if(index == 10) {
+
+    this.selecter = 10 ;
+    this.selecterMobile = 10 ;
+    this.titleHeadMobile = "Cours Anglaire"
+    this.isOpenMenu = false;
+  }
 
   
 
@@ -2024,15 +2045,32 @@ getVideos() {
 
   this.videoService.getVideos().subscribe(
     (res) => {
-     
+   
 
       this.liste_videos = res.data.filter(
         (res)=> res.isvalidVideo === false   && res.isvalideProcess === false
       )
-      console.log('liste de video no valid', this.liste_videos);
+      console.log('liste de video no valid ajouter par user', this.liste_videos);
     }
 
     
+  )
+
+}
+
+getvideoAgree() {
+
+  this.videoService.getVideos().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_videosValid = res.data.filter(
+        (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
+      )
+
+      console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
+      
+    }
   )
 
 }
@@ -2043,11 +2081,11 @@ getVideoValid()
     (res) => {
       console.log('res', res);
 
-      this.liste_videosValid = res.data.filter(
+      this.liste_videosAgrees = res.data.filter(
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === true
       )
 
-      console.log('liste de video valid', this.liste_videosValid);
+      console.log('liste de video valid par partenaire', this.liste_videosValid);
       
     }
   )
@@ -2080,6 +2118,20 @@ getCoachings() {
     }
   )
 
+}
+
+getCoursAnglaire() {
+  console.log('voir get cours anglaire');
+
+  this.anglaireService.getCoursAnhglaire().subscribe(
+    (res) => {
+      console.log('res', res);
+
+      this.liste_coursAnglaire = res.data;
+      
+    }
+  )
+  
 }
 
 getDettes() {
@@ -2147,11 +2199,13 @@ goTocreateRemboursement() {
 }
 
 goToEditRemboursement(id: any) {
-
-  
   this.router.navigate(["editremboursement", {index: id}])
 
+}
 
+goTocreateCoursAnglaire() 
+{
+  this.router.navigate(["coursAnglaire"])
 }
 
 validPreselect(ind: string){
@@ -2245,7 +2299,7 @@ validVideo(index: string, idUser: string) {
 
 }
 
-delectVideo(item: any) {
+delectVideoCoaching(item: any) {
 
   const le_url = item.fileVideo
   const index = item.id
@@ -2254,19 +2308,41 @@ delectVideo(item: any) {
     folder?: string; // Littéral de chaîne
     url: string; // Utilisez string comme type explicite
   } = {
-    folder: 'filsVideoPresentation',
+    folder: 'filsVideoCoaching',
     url: le_url, // Assignation de la valeur
   };
   
 
-  this.videoService.deleteVideo(options, index).then(
+  this.coachService.deleteVideo(options, index).then(
     () => {
       console.log('reussi');
       
     }
   )
 
- 
+ }
+
+
+ delectVideoCoursAnglaire(item: any) {
+
+  const le_url = item.fileVideo
+  const index = item.id
+   
+  const options: {
+    folder?: string; // Littéral de chaîne
+    url: string; // Utilisez string comme type explicite
+  } = {
+    folder: 'filsVideoAnglaire',
+    url: le_url, // Assignation de la valeur
+  };
+  
+
+  this.anglaireService.deleteVideo(options, index).then(
+    () => {
+      console.log('reussi');
+      
+    }
+  )
 
  }
 

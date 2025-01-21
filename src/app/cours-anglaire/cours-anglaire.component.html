@@ -1,1 +1,52 @@
-<p>cours-anglaire works!</p>
+<div class="content_pre" >    
+    
+    
+    <div class="card-in"  [formGroup]="videoform">
+
+        <h1>Cours d'anglaire </h1>
+    
+        <input  type="text"  [ngClass]="{'error': videoform.controls['tittre'].invalid && videoform.controls['tittre'].value!=''}"  formControlName="tittre" placeholder="Tittre du cours" >
+      
+        <textarea  [ngClass]="{'error': videoform.controls['description'].invalid && videoform.controls['description'].value!=''}"  formControlName="description" placeholder="Description" rows="10" cols="10"></textarea>
+     
+     
+
+        
+        <div class="card-inputFils" (click)="getfils()">
+            +
+        </div>
+
+       
+          <mat-progress-bar id="laBarDownload33" mode="determinate" [value]="progressValue"  *ngIf="isUploading"></mat-progress-bar>
+
+          <span (click)="getfils()"> 
+              <img src="./../../assets/download_icon.png " alt="">
+          </span>
+     
+              
+      
+      <input id="fileInput"  type="file" multiple #fileInput [ngClass]="{'error': videoform.controls['filVideo'].invalid && videoform.controls['filVideo'].value!=''}"  formControlName="filVideo" placeholder="" (change)="onFilesSelected($event)" >
+         
+
+
+          <button  id="boutton1"  (click)="ajoutCoursAnglaire()">Soumettre</button> 
+     
+    </div>
+
+
+    <div  *ngIf="loading" class="loader">
+
+        <div *ngIf="!iserrorlog" class="lds-ring"><div></div><div></div><div></div></div>
+      
+        <div class="groupError"  *ngIf="iserrorlog" >
+          <p class="smsError" >  {{message}} </p>
+          <button  (click)="closeError() " >ok</button>
+        </div>
+      
+      </div>
+
+</div>
+
+
+
+

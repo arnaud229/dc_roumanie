@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { remboursement, User } from 'src/models/variables';
 import { FinancesService } from '../services/Finances/finances.service';
 import { UsersService } from '../services/firebase/user.service';
+import { LocalstorageService } from '../services/localStorage/localStorage.service';
 
 @Component({
   selector: 'app-edit-remboursement',
@@ -21,6 +22,7 @@ export class EditRemboursementComponent {
   renboursementId = "";
   listUser: any[] = [];
    theUser!: User;
+   currentUser! : User;
   
 
 
@@ -30,6 +32,7 @@ export class EditRemboursementComponent {
     private financeServices: FinancesService,
     public userService: UsersService,
     private Aroute: ActivatedRoute,
+     public localstorageService: LocalstorageService,
    
  
   ) {
@@ -39,8 +42,9 @@ export class EditRemboursementComponent {
   }
 
   ngOnInit() {
-
+    this.getAllUsers();
     this.init_form();
+    this.currentUser = this.localstorageService.getCurrentUser();
 
   }
 
@@ -138,7 +142,8 @@ async editRemboursement() {
     libele: this.remboursementform.value.libele,
     user_id: this.remboursementform.value.uid,
     nom: this.remboursementform.value.user.nom,
-    prenoms: this.remboursementform.value.user.prenom
+    prenoms: this.remboursementform.value.user.prenom,
+    adminNom: this.currentUser.prenom
   }
 
 
