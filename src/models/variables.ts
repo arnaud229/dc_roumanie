@@ -65,6 +65,8 @@ export interface videoPresentation  {
     isvalidVideo: boolean;
     isvalideProcess: boolean,
     observation: string;
+    partenairePrenom: string,
+    partenaireId: any,
 
 }
 

@@ -22,6 +22,7 @@ export class DashboardAdminComponent {
   
   selecter: number = 0;
   selecterMobile: number = 0;
+  filterP = 0;
   userId = ""; 
   currentUser : User = {
     uid: 'qgshydsergfgjuyjhhghh',
@@ -1888,15 +1889,6 @@ applyFilter(event: Event) {
   );
 
   console.log('liste filtre', this.liste_preselect);
-
-  // if (this.filter == 2) {
-
-  //      this.liste_preselect = this.liste_preselect.filter(fichier => 
-  //     fichier.date.includes(filterValue)
-
-  //   );
-    
-  // }
   
 }
 
@@ -1945,6 +1937,19 @@ applyFilteRembourse(event: Event) {
   );
 
   console.log('liste filtre', this.liste_Remboursement);
+}
+
+getVideoByPart(index: number, name: string) {
+
+  this.filterP = index;
+
+  this.liste_videosAgrees = this.liste_videosAgrees.filter(fichier => 
+    fichier.prenom.toLowerCase().includes(name)
+  );
+
+
+
+
 }
 
 logOut() {
@@ -2261,7 +2266,7 @@ validPreselect(ind: string){
 }
 
 validSelct(index: any, ind: any) {
-  console.log('value', ind);
+  console.log('value', ind); 
   
   let vak = true;
   this.userServ.validSelect(vak, index, ind.uid, ind.prenom)
@@ -2282,10 +2287,10 @@ validSelct(index: any, ind: any) {
   )
 }
 
-validVideo(index: string, idUser: string) {
+validVideo(index: string, idUser: string, data: any ) {
 
   let vak = true;
-  this.videoService.validVideo(vak, index, idUser)
+  this.videoService.validVideo(vak, index, idUser, data.uid , data.prenom )
   .then(
     (res) => {
       console.log('validation reussi pour video');

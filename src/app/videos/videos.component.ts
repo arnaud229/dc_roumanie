@@ -162,7 +162,9 @@ export class VideosComponent {
         prenoms: this.currentUser.prenom,
         isvalidVideo: false,
         observation: '',
-        isvalideProcess: false
+        isvalideProcess: false,
+        partenairePrenom: '',
+        partenaireId: '',
       };  
 
       console.log('update :', updateData);

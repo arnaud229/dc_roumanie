@@ -29,6 +29,27 @@ export class VideosService {
 
   }
 
+  getVideosByPartId(index: any)
+  {
+    const collection = this.firestore.collection<any>('dettes', (ref) =>
+          ref.where('partenaireId', '==', index)
+        );
+
+        const result$ = collection.snapshotChanges().pipe(
+          map((snapshots: any[]) => {
+            const data = snapshots.map((snap) => {
+              const data = snap.payload.doc.data();
+              const id = snap.payload.doc.id;
+              return { id, ...data };
+            });
+            var lastVisible = snapshots[snapshots.length - 1]?.payload?.doc;
+            return { data, lastVisible };
+          })
+        );
+        console.log('result$ :>> ', result$);
+        return result$;
+  }
+
 
   getVideos() {
 
@@ -53,15 +74,17 @@ export class VideosService {
 
   }
 
- async validVideo(val: boolean ,index: string, idUser: string) {
+ async validVideo(val: boolean ,index: string, idUser: string, indP: any, prenP: string) {
   
     await this.firestore.doc(`videos/${index}`).update({
       isvalidVideo: val,
+      partenairePrenom: prenP,
+      partenaireId: indP,
     }
   ).then(() => {
     console.log('Document mis à jour avec succès');
 
-    // this.userServ.validSelect(val, idUser)
+     this.userServ.validSelect(val, idUser, indP, prenP);
 
 
   })

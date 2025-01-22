@@ -527,6 +527,11 @@ margin-bottom: 30px;
 
 }
 
+.group_header2 > div
+{
+    margin-top: 8px;
+}
+
 
 
 .group_header2
@@ -577,6 +582,16 @@ margin-bottom: 30px;
     padding: 10px;
 }
 
+.corpsSelectV
+{
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
 
 .cardCorps 
 {
@@ -619,6 +634,19 @@ select > option
 
 }
 
+.viewVaidPreselctV
+{
+   
+    width: 85%;
+    padding: 20px;
+  
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border: solid 1px #764929;
+    z-index: 2;
+}
+
 .viewVaidPreselct
 {
     position: absolute;
@@ -641,6 +669,16 @@ select > option
     background: white;
     width: 20px;
     height: 20px;
+}
+
+.imgdelectV
+{
+    background: white;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 286px;
+    margin-bottom: 19px;
 }
 
 .viewVaidPreselct > div

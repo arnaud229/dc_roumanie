@@ -602,7 +602,30 @@
                           {{ item.observation }}
                          </span>
                         
-                         <button (click)="validVideo(item.id, item.user_id)" >Valider</button>
+                         <button (click)="beginCValidSelectByPartenaire(item.id)" >Valider</button>
+
+
+
+                         <div class="corpsSelectV"   >
+    
+                          <div class="viewVaidPreselctV"  *ngIf="theId === item.id" >
+                              <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+  
+                              <div >  
+  
+                                <select [(ngModel)]="selectedPartner">
+                                  <option [ngValue]="null"> choix du partenaire </option>
+                                  <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
+                  
+                                 </select>
+                              </div>
+  
+                              <button id="boutton1"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
+                              
+                          </div>
+  
+                      
+                  </div>
                        
 
 
@@ -670,6 +693,16 @@
             <div class="" *ngIf="selecter==9">  
 
               <div  *ngIf=" liste_videosAgrees.length > 0 ">
+
+                <div class="group_header2"     >
+
+                  <span class="theFiltre"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'filtreIn': filterP == 11}" > Tous </span>
+                  <div *ngFor="let item of listePartemaire; let i = index ">
+                    <span class="theFiltre"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'filtreIn': filterP == i}" > {{item.prenom}} </span>
+
+                  </div>
+              
+                 </div>
 
                 <div class="cardVideos" >
 

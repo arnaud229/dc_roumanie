@@ -1670,7 +1670,7 @@ getusers() {
 
 getVideos() {
 
-  this.videoService.getVideos().subscribe(
+  this.videoService.getVideosByPartId(this.currentUser.uid).subscribe(
     (res) => {
       console.log('res', res);
 
@@ -1685,7 +1685,7 @@ getVideos() {
 
 getViodeosValid() 
 {
-  this.videoService.getVideos().subscribe(
+  this.videoService.getVideosByPartId(this.currentUser.uid).subscribe(
     (res) => {
       console.log('res', res);
 
@@ -1699,7 +1699,7 @@ getViodeosValid()
 
 getVideoReject()
 {
-  this.videoService.getVideos().subscribe(
+  this.videoService.getVideosByPartId(this.currentUser.uid).subscribe(
     (res) => {
       console.log('res', res);
 
