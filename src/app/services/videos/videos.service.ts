@@ -61,7 +61,7 @@ export class VideosService {
   ).then(() => {
     console.log('Document mis à jour avec succès');
 
-    this.userServ.validSelect(val, idUser)
+    // this.userServ.validSelect(val, idUser)
 
 
   })

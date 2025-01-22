@@ -149,7 +149,9 @@ import { UsersService } from "../firebase/user.service";
       fil_casierJudiciere: "",
       isvalidePreselect: false,
       isvalidSelect: false,
-      isProcessSucceful: false
+      isProcessSucceful: false,
+      adminId: "",
+      adminPrenoms: ""
     };
     await this.firestore
       .collection('utilisateurs')

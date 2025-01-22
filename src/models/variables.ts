@@ -48,6 +48,8 @@ export interface User {
     isvalidePreselect : boolean,
     isvalidSelect: boolean,
     isProcessSucceful: boolean,
+    adminId: any,
+    adminPrenoms: string,
 
 }
 

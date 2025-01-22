@@ -43,8 +43,7 @@ export class DashboardAdminComponent {
     ePrecedent: 'fold Food',
     passport: false,
     nationalite: 'Béninoise',
-    cWhatapp: 
-    {
+    cWhatapp: {
       code: '+229',
       numero: '69741258'
     },
@@ -113,20 +112,19 @@ export class DashboardAdminComponent {
     nbrEnfants: 0,
     dHonneur: false,
     fils_diplome: [
-      
-  "./../../assets/roumanie-visiter.jpg",
-  "./../../assets/roumanie-visiter.jpg",
-  "./../../assets/roumanie-visiter.jpg",
-     
+      "./../../assets/roumanie-visiter.jpg",
+      "./../../assets/roumanie-visiter.jpg",
+      "./../../assets/roumanie-visiter.jpg",
     ],
-    fil_photo: "./../../assets/roumanie-visiter.jpg"
-    ,
+    fil_photo: "./../../assets/roumanie-visiter.jpg",
+
     fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-      isvalidSelect: false,
-    isProcessSucceful: false
-   
+    isvalidSelect: false,
+    isProcessSucceful: false,
+    adminId: undefined,
+    adminPrenoms: ''
   };
   
   list_users = [
@@ -1625,6 +1623,7 @@ liste_preselect : any[] = [];
 liste_select: any[] = [];
 liste_coaching: any[] = [];
 liste_coursAnglaire: any[] = [];
+listePartemaire: any[] = [];
 
 filter =0;
 displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', 'parrain','actions'];  
@@ -1633,6 +1632,7 @@ displayedColumnsRemboursement: string[] = ['nom', 'prenom', 'libele', 'montantRe
 displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfession', 'principalProfession', 'langueParler','actions'];  
   typeInput = 'text'
   isViewVideo = false;
+  selectedPartner : any = null;
 
   constructor(
     private router: Router,
@@ -1647,29 +1647,6 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     private anglaireService: anglaireService,
   ) {}
 
-//  async ngDoCheck() {
-//   await  this.getusers();
-
-  
-   
-//   console.log('list_users:', this.list_users);
-
-//   this.cdr.detectChanges(); // Force la détection des changements
-
-
-
-//   console.log('preselect', this.liste_preselect);
-//   console.log('Select', this.liste_select);
-
-
- 
-//   console.log('selecter11', this.selecter);
-
-//   this.getVideos();
-//   this.gitRemboursement();
-//   this.getDettes();
-//   }
-
 
   async ngOnInit() {
     this.currentUser = this.localstorageService.getCurrentUser();  
@@ -1678,6 +1655,10 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     console.log('list_users:', this.list_users);
 
     this.cdr.detectChanges(); // Force la détection des changements
+
+    await this.getPartenaire();
+    console.log('liste partenaire :', this.listePartemaire);
+    
    
     console.log('selecter11', this.selecter);
 
@@ -1727,6 +1708,10 @@ updateChart()
      
   };
 
+}
+beginCValidSelectByPartenaire(val: any)
+{
+  this.theId = val
 }
 
 beginValid(val: any, noval: boolean) {
@@ -1969,6 +1954,56 @@ logOut() {
 
 }
 
+getPartenaire()
+{
+
+  const data = {
+    pagination: {
+      startAt: 0,
+      limit: 20,
+    },
+    filters: {
+      orderByQueries: ['createdAt'],
+      whereQueries: [
+        {
+          fieldPath: 'nom',
+          opStr: '==',
+          value: 'admin',
+        },
+        {
+          fieldPath: 'nom',
+          opStr: '==',
+          value: 'partenaire',
+        },
+       ],
+    },
+  };
+
+  console.log('voir dans le partn');
+  
+
+
+  this.userServ.getUsers(data).subscribe
+  (
+    (res) => {        
+
+      this.listePartemaire = res.data.filter(
+        (res) =>  res.nom === 'partenaire'
+      ) ;
+
+      console.log('partenaire', this.listePartemaire);
+
+       
+    },
+    (error) => {
+      console.log('error :>> ', error);
+    
+    }
+  )
+
+
+}
+
 
 
 getusers() {
@@ -2000,7 +2035,7 @@ getusers() {
       (res) => {       
 
         this.list_users = res.data.filter(
-          (res) => res.name!== 'admin' && res.name!== 'partenaire'
+          (res) => res.nom!== 'admin' && res.nom!== 'partenaire'
         ) ;
 
         console.log('users', this.list_users);
@@ -2225,9 +2260,11 @@ validPreselect(ind: string){
   )
 }
 
-validSelct(ind: string) {
+validSelct(index: any, ind: any) {
+  console.log('value', ind);
+  
   let vak = true;
-  this.userServ.validSelect(vak, ind)
+  this.userServ.validSelect(vak, index, ind.uid, ind.prenom)
   .then(
     (res) => {
       console.log('validation reussi pour select');

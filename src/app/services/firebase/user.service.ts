@@ -109,10 +109,13 @@ import { User } from "src/models/variables";
       });
       }
 
-      async validSelect(val: boolean, index: string) {
+      async validSelect(val: boolean, index: string, PId: any, prenomsP: string) {
 
         await this.firestore.doc(`utilisateurs/${index}`).update({
           isvalidSelect: val,
+          adminId: PId,
+          adminPrenoms: prenomsP,
+
         }
       ).then(() => {
         console.log('Document mis à jour avec succès');
@@ -168,11 +171,6 @@ import { User } from "src/models/variables";
           console.error('Erreur lors de la mise à jour du document:', error);
           // Afficher un message à l'utilisateur si nécessaire
         });
-
-      }
-
-
-      uploadVidoe(data: any, index: string) {
 
       }
 

@@ -129,7 +129,9 @@ export class EditPreselectComponent {
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
     isvalidSelect: false,
-    isProcessSucceful: false
+    isProcessSucceful: false,
+    adminId: undefined,
+    adminPrenoms: ''
   };
   message = '';
   ChoixImg : boolean = false;

@@ -116,8 +116,10 @@ export class DashboardPartenaireComponent {
     fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-      isvalidSelect: false,
-    isProcessSucceful: false
+    isvalidSelect: false,
+    isProcessSucceful: false,
+    adminId: undefined,
+    adminPrenoms: ''
   };
   
   list_users = [

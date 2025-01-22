@@ -9,6 +9,7 @@ import { ListKeyManager } from '@angular/cdk/a11y';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { FinancesService } from '../services/Finances/finances.service';
 import { coachingService } from '../services/coaching/coaching.service';
+import { anglaireService } from '../services/anglaire/anglaire.service';
 // import { Ng2GoogleChartsModule, ChartType } from 'ng2-google-charts';
 
 
@@ -43,8 +44,7 @@ export class DashboardUserComponent {
     ePrecedent: 'fold Food',
     passport: false,
     nationalite: 'Béninoise',
-    cWhatapp: 
-    {
+    cWhatapp: {
       code: '+229',
       numero: '69741258'
     },
@@ -113,30 +113,31 @@ export class DashboardUserComponent {
     nbrEnfants: 0,
     dHonneur: false,
     fils_diplome: [
-      
-  "./../../assets/roumanie-visiter.jpg",
-  "./../../assets/roumanie-visiter.jpg",
-  "./../../assets/roumanie-visiter.jpg",
-     
+      "./../../assets/roumanie-visiter.jpg",
+      "./../../assets/roumanie-visiter.jpg",
+      "./../../assets/roumanie-visiter.jpg",
     ],
-    fil_photo: "./../../assets/roumanie-visiter.jpg"
-    ,
+    fil_photo: "./../../assets/roumanie-visiter.jpg",
+
     fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-      isvalidSelect: false,
-    isProcessSucceful: false
-   
+    isvalidSelect: false,
+    isProcessSucceful: false,
+    adminId: "",
+    adminPrenoms: ''
   };
   isPreselect = false;
   isSelect = true;
   isVideo = false;
   isCoaching = false;
+  isCoursAnglaire = false;
   isFinance = true;
   statutPreselect = 'En cours'
   statutFinance = 'Aucun'
   liste_videos: any [] = [];
   liste_coaching: any [] = [];
+  liste_coursAnglaire: any [] = [];
   colorValidPreselect = false;
   colorValidSelect = true;
   colorValidFinance = false;
@@ -204,6 +205,7 @@ public pieChart: GoogleChartInterface = {
     private financeServices: FinancesService,
     private videoService: VideosService,
     private coachService: coachingService,
+    private anglaireService: anglaireService,
   ) {}
 
 
@@ -217,6 +219,7 @@ public pieChart: GoogleChartInterface = {
     this.userId = user.uid;
     this.getVideoByUser();
     this.getCaoching();
+    this.getCoursANglaire();
 
     console.log('selecter11', this.selecter);
 
@@ -543,6 +546,44 @@ getTotalsRemboursements() {
         
       
     }
+    else if(index == 5) {
+
+      this.selecter = 5 ;
+      this.selecterMobile = 5 ;
+      this.titleHeadMobile = "Cours d'anglaire"
+      this.isOpenMenu = false; 
+
+      console.log('taille tableau avant', this.liste_coursAnglaire.length );
+      
+
+        if (this.liste_coursAnglaire.length >0 ) {
+
+          console.log('taille tableau dedans', this.liste_coursAnglaire.length );
+    
+          this.isCoursAnglaire = true;
+          if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Preselect'
+            
+          } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Select'
+          }
+              
+          else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+            this.colorValidPreselect = true;
+    
+            this.statutPreselect = 'Validé'
+          }
+          
+        } else {
+          this.isCoursAnglaire = false;
+        }
+        
+      
+    }
 
   }
 
@@ -767,6 +808,48 @@ getTotalsRemboursements() {
     
   }
 
+  else if(this.selecter == 5) {
+
+    this.selecter = 5 ;
+    this.selecterMobile = 5 ;
+    this.titleHeadMobile = "Cours d'anglaire"
+    this.isOpenMenu = false; 
+
+    console.log('taille tableau avant', this.liste_coursAnglaire.length );
+
+
+    
+
+      if (this.liste_coursAnglaire.length >0 ) {
+
+        console.log('taille tableau dedans', this.liste_coursAnglaire.length );
+  
+        this.isCoursAnglaire = true;
+
+        if (this.currentUser.isvalidePreselect && !this.currentUser.isvalidSelect ) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Preselect'
+          
+        } else if (this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && !this.currentUser.isProcessSucceful ) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Select'
+        }
+            
+        else if ( this.currentUser.isvalidePreselect && this.currentUser.isvalidSelect && this.currentUser.isProcessSucceful) {
+          this.colorValidPreselect = true;
+  
+          this.statutPreselect = 'Validé'
+        }
+        
+      } else {
+        this.isCoursAnglaire = false;
+      }
+      
+    
+  }
+
  }
 
 
@@ -852,6 +935,24 @@ getTotalsRemboursements() {
 
   )
 
+ }
+
+ getCoursANglaire() {
+  this.anglaireService.getCoursAnhglaire().subscribe(
+    (res) => {
+      console.log("les vidéos de cours d'anglaire", res );
+
+      this.liste_coursAnglaire =res.data;
+      console.log('les videos', this.liste_coursAnglaire);
+      
+    },
+
+    (err: any) => {
+      console.log('err :>> ', err);
+    }
+
+  )
+  
  }
 
  delectVideo(item: any) {

@@ -310,13 +310,35 @@
                                 <ng-container matColumnDef="actions">
                                   <th mat-header-cell *matHeaderCellDef>Actions</th>
                                   <td mat-cell *matCellDef="let fichier">
-                                    <button mat-icon-button (click)="validSelct(fichier.uid)">
+                                    <button mat-icon-button (click)="beginCValidSelectByPartenaire(fichier.uid)">
                                       <img src="./../../assets/valider.png" alt="" >
                                       </button>
                     
                                     <button mat-icon-button  (click)="goToviewUser(fichier.uid)" >
                                         <img src="./../../assets/voirPlus.jpg"  alt="" >
                                     </button>
+
+
+                                    <div class="corpsSelect"   >
+    
+                                          <div class="viewVaidPreselct"  *ngIf="theId === fichier.uid" >
+                                              <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+                  
+                                              <div >  
+                  
+                                                <select [(ngModel)]="selectedPartner">
+                                                  <option [ngValue]="null"> choix du partenaire </option>
+                                                  <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
+                                  
+                                                 </select>
+                                              </div>
+                  
+                                              <button id="boutton1"  (click)="validSelct(fichier.uid, selectedPartner)" >valider</button>
+                                              
+                                          </div>
+                  
+                                      
+                                  </div>
 
                                                                      
                                   </td>
@@ -394,7 +416,7 @@
               
                           <ng-container matColumnDef="prenom">
                             <th mat-header-cell *matHeaderCellDef>Prenoms</th>
-                            <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                            <td mat-cell *matCellDef="let fichier">{{fichier.prenoms}}</td>
                           </ng-container>
                                        
                           <ng-container matColumnDef="libele">
@@ -497,7 +519,7 @@
               
                           <ng-container matColumnDef="prenom">
                             <th mat-header-cell *matHeaderCellDef>Prenoms</th>
-                            <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
+                            <td mat-cell *matCellDef="let fichier">{{fichier.prenoms}}</td>
                           </ng-container>
                                        
                           <ng-container matColumnDef="libele">

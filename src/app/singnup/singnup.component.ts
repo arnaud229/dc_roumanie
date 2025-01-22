@@ -132,7 +132,9 @@ export class SingnupComponent {
     fil_casierJudiciere: "",
     isvalidePreselect: false,
     isvalidSelect: false,
-    isProcessSucceful: false
+    isProcessSucceful: false,
+    adminId: undefined,
+    adminPrenoms: ''
   }
   
   console.log('valeur de user dans signup', user);

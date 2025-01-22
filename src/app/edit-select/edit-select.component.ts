@@ -147,7 +147,9 @@ export class EditSelectComponent {
 
     isvalidePreselect: false,
     isvalidSelect: false,
-    isProcessSucceful: false
+    isProcessSucceful: false,
+    adminId: undefined,
+    adminPrenoms: ''
   };
   message ='';
   maxFileSize = 10;

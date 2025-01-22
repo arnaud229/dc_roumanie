@@ -15,9 +15,10 @@
 
             <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
             <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
-            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Etat Finacière</li>
+            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Etat Finacier</li>
             <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Mes vidéos </li>
             <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les cours de coaching </li>
+            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Les cours d'anglaire </li>
             <li (click)="logOut()"  >Déconnexion</li>
 
         </ul>
@@ -73,9 +74,10 @@
     
                 <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>
                 <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
-                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Etat Finacière</li>
+                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Etat Finacier</li>
                 <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Mes vidéos</li>
                 <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les cours de coaching </li>
+                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Les cours d'anglaire </li>
                 <li (click)="logOut()"  >Déconnexion</li>
     
             </ul>
@@ -622,6 +624,42 @@
             </div>
 
         </div>
+
+
+        <div  *ngIf="selecter==5"> 
+            
+            <div class="notvalide" *ngIf="!isCoursAnglaire">
+                <p>
+                    Ancun cours de coachuing n'a été ajouter pour le moment
+                </p>
+
+            </div>
+
+
+            <div *ngIf="isCoursAnglaire">
+
+
+                <div class="cardVideos" >
+
+                    <div class="oneVideo" *ngFor="let item of liste_coursAnglaire" >
+
+                        <video controls>
+                            <source [src]="item.fileVideo" type="video/mp4">
+                            Your browser does not support the video tag.
+                          </video>
+
+
+                    </div>
+
+                   
+
+                </div>
+
+
+            </div>
+
+        </div>
+
 
 
 

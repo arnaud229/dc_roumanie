@@ -32,8 +32,7 @@ export class ViewUserComponent {
     ePrecedent: 'fold Food',
     passport: false,
     nationalite: 'Béninoise',
-    cWhatapp: 
-    {
+    cWhatapp: {
       code: '+229',
       numero: '69741258'
     },
@@ -102,20 +101,19 @@ export class ViewUserComponent {
     nbrEnfants: 0,
     dHonneur: false,
     fils_diplome: [
-      
-  "./../../assets/roumanie-visiter.jpg",
-  "./../../assets/roumanie-visiter.jpg",
-  "./../../assets/roumanie-visiter.jpg",
-     
+      "./../../assets/roumanie-visiter.jpg",
+      "./../../assets/roumanie-visiter.jpg",
+      "./../../assets/roumanie-visiter.jpg",
     ],
-    fil_photo: "./../../assets/roumanie-visiter.jpg"
-    ,
+    fil_photo: "./../../assets/roumanie-visiter.jpg",
+
     fil_passportPhoto: "./../../assets/roumanie-visiter.jpg",
     fil_casierJudiciere: "./../../assets/roumanie-visiter.jpg",
     isvalidePreselect: false,
-      isvalidSelect: false,
-    isProcessSucceful: false
-   
+    isvalidSelect: false,
+    isProcessSucceful: false,
+    adminId: undefined,
+    adminPrenoms: ''
   };
 
   theUser:any ;
@@ -295,7 +293,7 @@ export class ViewUserComponent {
 
   validSelect(ind: string) {
     let vak = true;
-    this.userServ.validSelect(vak, ind)
+    this.userServ.validSelect(vak, ind, this.currentUser.uid, this.currentUser.prenom)
     .then(
       (res) => {
         console.log('validation reussi pour select');
