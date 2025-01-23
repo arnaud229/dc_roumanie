@@ -29,7 +29,7 @@ body, html {
     flex-direction: column;
     width: 400px;
     background: white;
-    border: solid 1px #764929;
+    border: solid 1px #45d00f;
     padding-left: 2%;
     padding-right: 2%;
     padding-top: 10px;
@@ -100,7 +100,7 @@ font-weight: 400;
 font-size: 14px;
 line-height: 22px;
 text-align: center;
-color: #764929;
+color: #45d00f;
 position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -125,8 +125,8 @@ position: relative;
     text-align: center;
     border-radius: 500px;
     color:  white;
-    background: #764929;
-   border: 1px solid #764929;
+    background: #45d00f;
+   border: 1px solid #45d00f;
    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
    border-radius: 30px;
    font-family: 'Inter';
@@ -144,7 +144,7 @@ margin-left: 14px;
     width: 30%;
     // height: 33px;
     text-align: center;
-    color:  #764929;
+    color:  #45d00f;
     font-family: 'Inter';
 font-style: normal;
 font-weight: 600;
@@ -189,7 +189,7 @@ cursor: pointer;
     border: 30px solid #fff;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #764929 transparent transparent transparent;
+    border-color: #45d00f transparent transparent transparent;
   }
   .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;
@@ -240,7 +240,7 @@ cursor: pointer;
     border-radius: 10px;
     font-size: 18px;
     font-weight: bold;
-    background-color: #764929;
+    background-color: #45d00f;
     width: 40%;
     margin-left: 25%;
 }
@@ -273,7 +273,7 @@ cursor: pointer;
 .groupError > button 
 {
   color: white;
-  background: #764929;
+  background: #45d00f;
   border-radius: 10px;
   padding: 5px;
   width: 40px;

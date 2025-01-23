@@ -25,7 +25,7 @@
     width: 400px;
     // height: 400px;
     background: white;
-    border: solid 1px #764929;
+    border: solid 1px #45d00f;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -159,8 +159,8 @@ input ::placeholder
     text-align: center;
     border-radius: 500px;
     color:  white;
-    background: #764929;
-   border: 1px solid #764929;
+    background: #45d00f;
+   border: 1px solid #45d00f;
    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
    border-radius: 30px;
    font-family: 'Inter';
@@ -179,8 +179,8 @@ margin-bottom: 30px;
     text-align: center;
     border-radius: 500px;
     color:  white;
-    background: #764929;
-   border: 1px solid #764929;
+    background: #45d00f;
+   border: 1px solid #45d00f;
    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
    border-radius: 30px;
    font-family: 'Inter';
@@ -209,7 +209,7 @@ margin-bottom: 30px;
 
 .checked 
 {
-    background-color: #764929;
+    background-color: #45d00f;
 }
 
 #lecheck_input1
@@ -269,7 +269,7 @@ margin-bottom: 30px;
     flex-direction: column;
     width: 400px;
     background-color: white;
-    border: solid 1px #764929;
+    border: solid 1px #45d00f;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -363,7 +363,7 @@ span
     border: 30px solid #fff;
     border-radius: 50%;
     animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    border-color: #764929 transparent transparent transparent;
+    border-color: #45d00f transparent transparent transparent;
   }
   .lds-ring div:nth-child(1) {
     animation-delay: -0.45s;
@@ -393,7 +393,7 @@ span
   .groupError > button 
   {
     color: white;
-    background: #764929;
+    background: #45d00f;
     border-radius: 10px;
     padding: 5px;
     width: 40px;
@@ -407,8 +407,8 @@ span
     height: 33px;
     text-align: center;
     border-radius: 500px;
-    color:  #764929;
-    border: 1px solid #764929;
+    color:  #45d00f;
+    border: 1px solid #45d00f;
     background: white;
 //    box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
    border-radius: 30px;
