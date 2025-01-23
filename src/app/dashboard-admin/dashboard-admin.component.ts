@@ -2104,7 +2104,7 @@ getvideoAgree() {
     (res) => {
       console.log('res', res);
 
-      this.liste_videosValid = res.data.filter(
+      this.liste_videosAgrees  = res.data.filter(
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
       )
 
@@ -2121,7 +2121,7 @@ getVideoValid()
     (res) => {
       console.log('res', res);
 
-      this.liste_videosAgrees = res.data.filter(
+      this.liste_videosValid = res.data.filter(
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === true
       )
 

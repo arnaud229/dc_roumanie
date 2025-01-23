@@ -307,19 +307,97 @@
 
             <h1> Les reçus de préinscription :</h1>
 
-            <div class="groupViewImages"  *ngFor="let item of currentUser.fils_recus " >
+            <div class="groupViewImages"  >
 
-                <img [src]="item" alt="">
+                <img [src]="item" alt="" *ngFor="let item of currentUser.fils_recus " >
+
+            </div>
+
+        </div>
+
+        <div class="groupViewFils">
+
+            <h1> Les diplômes :</h1>
+
+            <div class="groupViewImages"  >
+
+                <img [src]="item" alt="" *ngFor="let item of currentUser.fils_diplome " >
+
+            </div>
+
+        </div>
+
+        
+        <div class="groupViewFils">
+
+            <h1> Photo complète :</h1>
+
+            <div class="groupViewImages"  >
+
+                <img [src]="currentUser.fil_photo " alt=""  >
 
             </div>
 
         </div>
 
 
+                
+        <div class="groupViewFils">
+
+            <h1> Photo du casier judicière :</h1>
+
+            <div class="groupViewImages"  >
+
+                <img [src]="currentUser.fil_casierJudiciere " alt=""  >
+
+            </div>
+
+        </div>
+
+        <div class="groupViewFils">
+
+            <h1> Photo du passeport :</h1>
+
+            <div class="groupViewImages"  >
+
+                <img [src]="currentUser.fil_passportPhoto " alt=""  >
+
+            </div>
+
+        </div>
+
+
+
+        <div class="corpsSelectV"   >
+    
+            <div class="viewVaidPreselctV"  *ngIf="theId === currentUser.uid" >
+                <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+
+                <div >  
+
+                  <select [(ngModel)]="selectedPartner">
+                    <option [ngValue]="null"> choix du partenaire </option>
+                    <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
+    
+                   </select>
+                </div>
+
+                <button id="boutton1"  (click)="validSelct(currentUser.uid, selectedPartner)" >valider</button>
+                
+            </div>
+
+        
+    </div>
+
+
+
+        
+
+
         <div class="groupViewPreselect" *ngIf="theUser.nom === 'admin'" >
             <button  class="botton_bas"   (click)="goBack()">Retour</button> 
             <button  class="boutton" *ngIf="currentUser.isvalidePreselect === false"  (click)="validPreselect(currentUser.uid)">Preselection</button> 
-            <button  class="boutton" *ngIf="currentUser.isvalidSelect === false"   (click)="validSelect(currentUser.uid)">Selection</button> 
+            <button  class="boutton" *ngIf="currentUser.isvalidSelect === false"   (click)="beginCValidSelectByPartenaire(currentUser.uid)">Selection</button> 
 
         </div>
 

@@ -6746,6 +6746,9 @@ export const countries = [
     'Catholique',
     'Musulmane',
     'Laîque', 
+    "Protestant",
+    "Orthodoxe"
+
   ];
 
   export const prefixe = [

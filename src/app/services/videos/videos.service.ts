@@ -31,7 +31,7 @@ export class VideosService {
 
   getVideosByPartId(index: any)
   {
-    const collection = this.firestore.collection<any>('dettes', (ref) =>
+    const collection = this.firestore.collection<any>('videos', (ref) =>
           ref.where('partenaireId', '==', index)
         );
 

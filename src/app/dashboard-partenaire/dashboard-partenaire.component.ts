@@ -1671,12 +1671,16 @@ getusers() {
 getVideos() {
 
   this.videoService.getVideosByPartId(this.currentUser.uid).subscribe(
+  // this.videoService.getVideos().subscribe(
     (res) => {
       console.log('res', res);
 
       this.liste_videos = res.data.filter(
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
       )
+
+      console.log('liste_video', this.liste_videos);
+      
       
     }
   )

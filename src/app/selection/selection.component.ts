@@ -200,6 +200,8 @@ export class SelectionComponent {
   }
 
  async  onFilesSelected1(event : any) {
+  this.loading = true;
+  this.iserrorlog = false;
 
     this.isUploading1 = true;
     const filess = event.target.files;
@@ -248,12 +250,17 @@ export class SelectionComponent {
     this.filPhoto = successfulUrls[0];
 
     console.log('le url', this.filPhoto);
-  
+   
+    this.loading = false;
+    this.iserrorlog = false;
    
 
   }
 
  async  onFilesSelected2(event : any) {
+
+  this.loading = true;
+  this.iserrorlog = false;
 
     this.isUploading2 = true;
 
@@ -306,9 +313,15 @@ export class SelectionComponent {
       this.filPhotoPassport = successfulUrls[0];
       
       console.log('le url', this.filPhotoPassport);
+
+      this.loading = false;
+      this.iserrorlog = false;
   }
 
   async onFilesSelected3(event : any) {
+
+    this.loading = true;
+    this.iserrorlog = false;
     
     this.isUploading3 = true;
 
@@ -360,6 +373,9 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
   this.filPhotoCasier = successfulUrls[0];
   
   console.log('le url', this.filPhotoCasier);
+
+  this.loading = false;
+  this.iserrorlog = false;
 
   }
 

@@ -124,6 +124,10 @@ export class ViewUserComponent {
   viewDisponibilite = 'non';
   viewPasseportDisponible = 'non';
 
+  theId = "";
+  selectedPartner : any = null;
+  listePartemaire: any[] = [];
+
   constructor(
     private router: Router,
     public authService: AuthService,
@@ -139,6 +143,9 @@ export class ViewUserComponent {
     let user = this.localstorageService.getCurrentUser();
 
     this.theUser = user;
+
+    console.log('info admin');
+    
     this.getVideoByUser();
 
     if (this.currentUser.ldtep2) {
@@ -170,6 +177,87 @@ export class ViewUserComponent {
     }
 
   }
+
+  validSelct(index: any, ind: any) {
+    console.log('value', ind); 
+    
+    let vak = true;
+    this.userServ.validSelect(vak, index, ind.uid, ind.prenom)
+    .then(
+      (res) => {
+        console.log('validation reussi pour select');
+        
+      }
+    )
+  
+    .catch(
+      (er) => {
+  
+        console.log('erreur', er);
+        
+  
+      }
+    )
+  }
+
+  beginCValidSelectByPartenaire(val: any)
+{
+  this.theId = val
+}
+
+  getPartenaire()
+{
+
+  const data = {
+    pagination: {
+      startAt: 0,
+      limit: 20,
+    },
+    filters: {
+      orderByQueries: ['createdAt'],
+      whereQueries: [
+        {
+          fieldPath: 'nom',
+          opStr: '==',
+          value: 'admin',
+        },
+        {
+          fieldPath: 'nom',
+          opStr: '==',
+          value: 'partenaire',
+        },
+       ],
+    },
+  };
+
+  console.log('voir dans le partn');
+  
+
+
+  this.userServ.getUsers(data).subscribe
+  (
+    (res) => {        
+
+      this.listePartemaire = res.data.filter(
+        (res) =>  res.nom === 'partenaire'
+      ) ;
+
+      console.log('partenaire', this.listePartemaire);
+
+       
+    },
+    (error) => {
+      console.log('error :>> ', error);
+    
+    }
+  )
+
+
+}
+
+  close_valid() {
+    this.theId ='rter';
+   }
 
   getVideoByUser() {
      
@@ -293,7 +381,7 @@ export class ViewUserComponent {
 
   validSelect(ind: string) {
     let vak = true;
-    this.userServ.validSelect(vak, ind, this.currentUser.uid, this.currentUser.prenom)
+    this.userServ.validSelect(vak, ind, this.theUser.uid, this.theUser.prenom)
     .then(
       (res) => {
         console.log('validation reussi pour select');
