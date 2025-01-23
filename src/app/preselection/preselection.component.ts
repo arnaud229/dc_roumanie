@@ -245,6 +245,9 @@ export class PreselectionComponent {
 
 async  onFilesSelected(event : any) {
 
+  this.loading = true;
+  this.iserrorlog = false;
+
     this.isUploading = true;
    
     console.log('event', event);
@@ -275,6 +278,9 @@ async  onFilesSelected(event : any) {
     // this.les_url = new Array(10).fill({}).map(e=>files[0])
     console.log('this.les_url', this.les_url);
     this.ChoixImg = true;
+
+    this.loading = false;
+    this.iserrorlog = false;
 
   }
 

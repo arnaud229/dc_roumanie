@@ -25,15 +25,26 @@
 
                </select>
 
-            <label for="">Date de naissance</label>
-            <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
-            <input  type="text"  [ngClass]="{'error': selectform.controls['nPasseport'].invalid && selectform.controls['nPasseport'].value!=''}"  formControlName="nPasseport" placeholder="Num de votre passeport">
+               <div class="groupeLabel">
+                <label for="">Date de naissance</label>
+                <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
+                
+               </div>
+
+        <input  type="text"  [ngClass]="{'error': selectform.controls['nPasseport'].invalid && selectform.controls['nPasseport'].value!=''}"  formControlName="nPasseport" placeholder="Num de votre passeport">
             <input  type="text"  [ngClass]="{'error': selectform.controls['lieuPasseport'].invalid && selectform.controls['lieuPasseport'].value!=''}"  formControlName="lieuPasseport" placeholder="Lieu d'établissement de votre passeport">
           
-            <label for="">Date emition du passeport</label>
-            <input  type="date"  [ngClass]="{'error': selectform.controls['dateEmiPasseport'].invalid && selectform.controls['dateEmiPasseport'].value!=null}"  formControlName="dateEmiPasseport" placeholder="Date emition du passeport" >
-            <label for="">Date d'expiration du passeport</label>
-            <input  type="date"  [ngClass]="{'error': selectform.controls['dateExpPasseport'].invalid && selectform.controls['dateExpPasseport'].value!=null}"  formControlName="dateExpPasseport" placeholder="Date d'expiration du passeport" >
+            <div class="groupeLabel">
+                <label for="">Date emition du passeport</label>
+                <input  type="date"  [ngClass]="{'error': selectform.controls['dateEmiPasseport'].invalid && selectform.controls['dateEmiPasseport'].value!=null}"  formControlName="dateEmiPasseport" placeholder="Date emition du passeport" >
+               
+            </div>
+
+            <div class="groupeLabel">
+                <label for="">Date d'expiration du passeport</label>
+                <input  type="date"  [ngClass]="{'error': selectform.controls['dateExpPasseport'].invalid && selectform.controls['dateExpPasseport'].value!=null}"  formControlName="dateExpPasseport" placeholder="Date d'expiration du passeport" >
+              
+            </div>
           
 
          <div >

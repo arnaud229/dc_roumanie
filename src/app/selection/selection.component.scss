@@ -435,6 +435,14 @@ h2 {
     height: 100%;
 }
 
+.groupeLabel
+{
+
+    display: flex;
+    flex-direction: column;
+}
+
+
 :disabled {
     background: #ccc;
     cursor: not-allowed;

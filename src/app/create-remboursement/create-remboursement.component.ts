@@ -72,7 +72,9 @@ export class CreateRemboursementComponent {
   
      this.userService.getUsers(data).subscribe(
       (res) => {
-        this.listUser = res.data;
+        this.listUser = res.data.filter(
+           (res) => res.nom != 'admin' && res.nom != 'partenaire'
+        )
       }
      )
     }

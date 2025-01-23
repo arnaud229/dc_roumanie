@@ -1870,6 +1870,8 @@ openMenu() {
     this.selecterMobile = 10 ;
     this.titleHeadMobile = "Cours Anglaire"
     this.isOpenMenu = false;
+    console.log('voir ce qui se passe:', this.selecter );
+    
   }
 
   
@@ -2161,13 +2163,16 @@ getCoachings() {
 }
 
 getCoursAnglaire() {
-  console.log('voir get cours anglaire');
+  console.log('voir cours anglaire');
 
-  this.anglaireService.getCoursAnhglaire().subscribe(
+  this.anglaireService.getCoursAnglaire().subscribe(
     (res) => {
-      console.log('res', res);
+      console.log('res anglaire', res);
 
       this.liste_coursAnglaire = res.data;
+
+      console.log('the table', this.liste_coursAnglaire);
+      
       
     }
   )

@@ -146,7 +146,7 @@ export class VideosComponent {
 
   ajoutVideo() {
 
-    if (this.videoform.invalid) { } 
+    if (this.videoform.invalid) return
     this.loading = true;
     this.iserrorlog = false;
 

@@ -29,7 +29,7 @@ export class anglaireService {
       }
 
 
-      getCoursAnhglaire() {
+      getCoursAnglaire() {
 
         const collection = this.firestore.collection<any>('coursAnglaire'
             // , (ref) => {

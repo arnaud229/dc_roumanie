@@ -938,7 +938,7 @@ getTotalsRemboursements() {
  }
 
  getCoursANglaire() {
-  this.anglaireService.getCoursAnhglaire().subscribe(
+  this.anglaireService.getCoursAnglaire().subscribe(
     (res) => {
       console.log("les vidéos de cours d'anglaire", res );
 
