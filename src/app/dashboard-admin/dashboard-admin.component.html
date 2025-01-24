@@ -319,7 +319,7 @@
                                     </button>
 
 
-                                    <div class="corpsSelect"   >
+                                    <div class="corpsSelect" >
     
                                           <div class="viewVaidPreselct"  *ngIf="theId === fichier.uid" >
                                               <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
@@ -331,6 +331,51 @@
                                                   <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
                                   
                                                  </select>
+
+                                                 <div > 
+          
+                                                  <div *ngIf="liste_videosByUser.length >= 0">                                    
+                                      
+                                                      <div class="cardVideos" >
+                                      
+                                                          <div class="oneVideo" *ngFor="let item of liste_videosByUser" >
+                                      
+                                                              <!-- <img (click)="delectVideo(item)" src="./../../assets/suprime.png" alt=""> -->
+                                      
+                                      
+                                                              <video controls>
+                                                                  <source [src]="item.fileVideo" type="video/mp4">
+                                                                  Your browser does not support the video tag.
+                                                                </video>
+                                      
+                                                                <h1> {{item.secteur}} </h1>
+                                                                <span>
+                                                                    {{ item.nom }}  {{ item.prenoms }}
+                                                                </span>
+                                      
+                                                              
+                              <button id="boutton1"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
+                              
+                                                        
+                                                          </div>
+                                      
+                                                         
+                                      
+                                                      </div>
+                                      
+                                      
+                                                  </div>
+                                      
+                                                    
+                                                  <div class="notvalide" *ngIf=" liste_videosByUser.length == 0 ">
+                                                      <p>
+                                                        Aucune video de presetation d'activité pour ce voyageur
+                                                      </p>
+                                                  </div>
+                                      
+                                              </div>
+
+
                                               </div>
                   
                                               <button id="boutton1"  (click)="validSelct(fichier.uid, selectedPartner)" >valider</button>

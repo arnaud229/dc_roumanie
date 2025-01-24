@@ -646,6 +646,12 @@ select > option
     z-index: 2;
 }
 
+.viewVaidPreselct > div
+{
+    display: flex;
+    flex-direction: column;
+}
+
 .viewVaidPreselct
 {
     position: absolute;

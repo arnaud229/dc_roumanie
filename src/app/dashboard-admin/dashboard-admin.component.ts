@@ -1625,6 +1625,7 @@ liste_select: any[] = [];
 liste_coaching: any[] = [];
 liste_coursAnglaire: any[] = [];
 listePartemaire: any[] = [];
+liste_videosByUser: any[] = [];
 
 filter =0;
 displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', 'parrain','actions'];  
@@ -1713,6 +1714,7 @@ updateChart()
 beginCValidSelectByPartenaire(val: any)
 {
   this.theId = val
+  this.getvideosByUser(val)
 }
 
 beginValid(val: any, noval: boolean) {
@@ -2113,6 +2115,28 @@ getvideoAgree() {
       console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
       
     }
+  )
+
+}
+
+getvideosByUser(uid: any)
+{
+  this.videoService.getVideoByUserId(uid).subscribe
+  (
+   (res) => {
+
+     console.log('res', res);  
+
+     this.liste_videosByUser = res.data;
+     console.log("les videos", this.liste_videosByUser);
+
+  
+     
+   },
+
+   (err: any) => {
+     console.log('err :>> ', err);
+   }
   )
 
 }
