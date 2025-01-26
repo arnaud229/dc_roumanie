@@ -42,15 +42,11 @@
                 <div class="statut">
                     <span> Statut</span>
                     <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
-                    <!-- <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> Préselection </span> -->
-                    <!-- <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> Selection </span> -->
                 </div>
 
                 <div class="statut">
                     <span> Statut Finacier</span>
-                    <span class="statutSimple" *ngIf=" getTotalsRemboursements() > getTotalsDettes() "  [ngClass]="{'colorSelect': colorValidSelect }"> Rembourser </span>
-                    <span class="statutSimple" *ngIf=" getTotalsDettes() > getTotalsRemboursements() " [ngClass]="{'colorNoSelect': colorValidSelect }"> Dette </span>
-                    <span class="statutSimple"  *ngIf=" liste_Remboursement.length == 0 &&  liste_Dette.length ==0 "  [ngClass]="{'colorAny': colorValidSelect }"> Aucune </span>
+                    <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}}  </span>
                 </div>
 
             </div>
