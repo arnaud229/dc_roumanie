@@ -48,9 +48,9 @@
 
                 <div class="statut">
                     <span> Statut Finacier</span>
-                    <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> Rembourser </span>
-                    <span class="statutSimple" *ngIf="" [ngClass]="{'colorNoSelect': colorValidSelect }"> Dette </span>
-                    <span class="statutSimple"  [ngClass]="{'colorAny': colorValidSelect }"> Aucune </span>
+                    <span class="statutSimple" *ngIf=" getTotalsRemboursements() > getTotalsDettes() "  [ngClass]="{'colorSelect': colorValidSelect }"> Rembourser </span>
+                    <span class="statutSimple" *ngIf=" getTotalsDettes() > getTotalsRemboursements() " [ngClass]="{'colorNoSelect': colorValidSelect }"> Dette </span>
+                    <span class="statutSimple"  *ngIf=" liste_Remboursement.length == 0 &&  liste_Dette.length ==0 "  [ngClass]="{'colorAny': colorValidSelect }"> Aucune </span>
                 </div>
 
             </div>
