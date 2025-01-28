@@ -458,6 +458,27 @@ line-height: 24px;
 margin-bottom: 30px;
 }
 
+#boutton2
+{
+    width: 150px;
+    height: 33px;
+    margin-left: 32%;
+    margin-top: 20px;
+    text-align: center;
+    color:  white;
+    background: #45d00f;
+   border: 1px solid #45d00f;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+margin-bottom: 30px;
+
+}
+
 
 #boutton1
 {    width: 150px;
@@ -573,30 +594,41 @@ margin-bottom: 30px;
 }
 
 .corpsSelect {
-  
-    width: 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    // padding: 10px;
-    // position: absolute;
-    // top: 30px;
-    // padding: 20px;
+
+}
+
+.viewVideoValidate
+{
+    position: absolute;
+    top: 30px;
+    width: 400px;
+    left: 240px;
+    z-index: 2;
+}
+
+.corpsSelectV > .imgdelectV
+{
+    background: white;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 153px;
+    margin-bottom: 19px;
+
 }
 
 .corpsSelectV
 {
-     width: 460px;
+     width: 85%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    //  padding: 10px;
-     position: absolute;
-     top: 30px;
+    //  position: absolute;
+    //  top: 30px;
      padding: 20px;
-    //  left: 210px;
+     border: solid 1px #45d00f;
+    //  z-index: 2;
 }
 
 
@@ -641,7 +673,7 @@ select > option
 
 }
 
-.viewVaidPreselctV
+.viewVaidSelect
 {
    
     width: 85%;
@@ -651,10 +683,13 @@ select > option
     background: white;
     border: solid 1px #45d00f;
     z-index: 2;
+    position: absolute;
+    left: 250px;
+    top: 30px;
    
 }
 
-.viewVaidPreselctV > div
+.viewVaidSelect > div
 {
     display: flex;
     flex-direction: column;

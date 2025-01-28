@@ -321,7 +321,7 @@
 
                                     <div class="corpsSelect" >
     
-                                          <div class="viewVaidPreselctV"  *ngIf="theId === fichier.uid" >
+                                          <div class="viewVaidSelect"  *ngIf="theId === fichier.uid" >
                                               <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
                   
                                               <div >  
@@ -651,9 +651,9 @@
 
 
 
-                         <div class="corpsSelectV"   >
+                         <div id="viewVideoValidate"   >
     
-                          <div class="viewVaidPreselctV"  *ngIf="theId === item.id" >
+                          <div class="corpsSelectV" *ngIf="theId === item.id"  >
                               <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
   
                               <div >  
@@ -665,7 +665,7 @@
                                  </select>
                               </div>
   
-                              <button id="boutton1"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
+                              <button id="boutton2"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
                               
                           </div>
   
