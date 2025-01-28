@@ -1951,6 +1951,23 @@ getVideoByPart(index: number, name: string) {
     fichier.partenairePrenom.toLowerCase().includes(name)
   );
 
+  if(name === 'tous') {
+    this.filterP = index;
+
+    this.videoService.getVideos().subscribe(
+      (res) => {
+        console.log('res', res);
+  
+        this.liste_videosAgrees  = res.data.filter(
+          (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
+        )
+  
+        console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
+        
+      }
+    )
+  }
+
 
 
 
