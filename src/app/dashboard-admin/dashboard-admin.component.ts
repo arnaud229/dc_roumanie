@@ -1948,7 +1948,7 @@ getVideoByPart(index: number, name: string) {
   this.filterP = index;
 
   this.liste_videosAgrees = this.liste_videosAgrees.filter(fichier => 
-    fichier.prenom.toLowerCase().includes(name)
+    fichier.partenairePrenom.toLowerCase().includes(name)
   );
 
 
