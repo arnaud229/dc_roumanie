@@ -442,6 +442,31 @@ margin-bottom: 30px;
     }
   }
 
+  
+.smsError{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 24px;
+  }
+  
+  .groupError {
+    display: flex;
+    flex-direction: column;
+    margin-left: -15%;
+  }
+  
+  .groupError > button 
+  {
+    color: white;
+    background: #45d00f;
+    border-radius: 10px;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+    margin-left: 30%;
+  }
+
 
 @media (max-width: 1000px ) {
 
