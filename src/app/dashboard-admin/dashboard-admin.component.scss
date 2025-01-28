@@ -644,9 +644,13 @@ select > option
     background: white;
     border: solid 1px #45d00f;
     z-index: 2;
+    position: absolute;
+    top: 30px;
+    padding: 20px;
+    left: 210px;
 }
 
-.viewVaidPreselct > div
+.viewVaidPreselctV > div
 {
     display: flex;
     flex-direction: column;

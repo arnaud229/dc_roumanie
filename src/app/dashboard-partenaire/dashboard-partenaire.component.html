@@ -207,6 +207,10 @@
                               <source [src]="item.fileVideo" type="video/mp4">
                               Your browser does not support the video tag.
                             </video>
+                            <h1> {{item.secteur}} </h1>
+                            <span>
+                                {{ item.nom }}  {{ item.prenoms }}
+                            </span>
 
                             <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)">Valider</button>
                             <button class="btn3"  (click)="beginReject(item.id)">observation</button>
@@ -253,7 +257,10 @@
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
                           </video>
-
+                          <h1> {{item.secteur}} </h1>
+                          <span>
+                              {{ item.nom }}  {{ item.prenoms }}
+                          </span>
                          
 
                     </div>
@@ -285,7 +292,10 @@
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
                           </video>
-
+                          <h1> {{item.secteur}} </h1>
+                       <span>
+                           {{ item.nom }}  {{ item.prenoms }}
+                       </span>
                          
 
                     </div>
