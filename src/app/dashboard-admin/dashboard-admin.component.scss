@@ -584,12 +584,16 @@ margin-bottom: 30px;
 
 .corpsSelectV
 {
-    width: 360px;
+     width: 460px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 10px;
+    //  padding: 10px;
+     position: absolute;
+     top: 30px;
+     padding: 20px;
+    //  left: 210px;
 }
 
 
@@ -644,10 +648,7 @@ select > option
     background: white;
     border: solid 1px #45d00f;
     z-index: 2;
-    position: absolute;
-    top: 30px;
-    padding: 20px;
-    left: 210px;
+   
 }
 
 .viewVaidPreselctV > div
@@ -655,6 +656,8 @@ select > option
     display: flex;
     flex-direction: column;
 }
+
+.viewVaidPreselctV >
 
 .viewVaidPreselct
 {
@@ -686,7 +689,7 @@ select > option
     width: 20px;
     height: 20px;
     position: relative;
-    left: 286px;
+    left: 370px;
     margin-bottom: 19px;
 }
 
