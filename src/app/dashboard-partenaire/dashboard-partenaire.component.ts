@@ -1407,7 +1407,7 @@ export class DashboardPartenaireComponent {
   liste_videos: any[] = [];
   liste_videosValid: any[] = [];
   liste_videosReject: any[] = [];
-
+  liste_Restants: any[] = [];
   displayedColumns: string[] = ['nom', 'prenom', 'Netude','principalProfession', 'qualiProfession', 'sMatrimoniale', 'langueParler','actions'];  
 
 
@@ -1546,6 +1546,8 @@ valiProcessusBydVideo(index: string, iduser: string)
   this.videoService.validProcessByPartenaireInVideo(vak,index, iduser).then(
     () => {
       console.log("reussi");
+
+      this.updateRestantVideos()
       
     }
   ) 
@@ -1668,6 +1670,21 @@ getusers() {
 
 }
 
+
+updateRestantVideos() {
+
+  this.liste_videos =  this.liste_videos.filter(video =>
+  {
+    !this.liste_videosValid.some(validVideo => validVideo.user_id === video.user_id)
+    
+  }
+ 
+  );
+
+  console.log('le reste', this.liste_videos);
+  
+}
+
 getVideos() {
 
   this.videoService.getVideosByPartId(this.currentUser.uid).subscribe(
@@ -1679,9 +1696,12 @@ getVideos() {
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
       )
 
+      this.updateRestantVideos()
+
       console.log('liste_video', this.liste_videos);
       
       
+
     }
   )
 
@@ -1696,9 +1716,17 @@ getViodeosValid()
       this.liste_videosValid = res.data.filter(
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === true
       )
+
+      console.log('liste validé', this.liste_videosValid);
+  
       
     }
   )
+
+
+
+   this.updateRestantVideos()
+
 }
 
 getVideoReject()
