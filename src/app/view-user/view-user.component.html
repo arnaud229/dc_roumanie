@@ -368,9 +368,9 @@
 
 
 
-        <div class="contentSelectVideo" >
+        <div class="contentSelectVideo" *ngIf="theIdAdmin === currentUser.uid">
     
-            <div class="group"  *ngIf="theIdAdmin === currentUser.uid" >
+            <div class="group"   >
                 <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
 
                 <div >  
