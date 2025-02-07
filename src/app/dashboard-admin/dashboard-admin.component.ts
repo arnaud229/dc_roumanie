@@ -2299,6 +2299,8 @@ validPreselect(ind: string){
   this.userServ.validPreselect( vak, ind).then(
     () => {
       console.log(' validation reussi pour preselect');
+
+      this.theId = '';
     }
   )
   .catch(
@@ -2331,6 +2333,11 @@ validSelct(index: any, ind: any) {
 
     }
   )
+}
+
+validVideoBySelect(index: string, idUser: string, data: any) {
+  
+
 }
 
 validVideo(index: string, idUser: string, data: any ) {

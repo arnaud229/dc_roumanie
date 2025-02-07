@@ -131,9 +131,9 @@ import { User } from "src/models/variables";
         await this.firestore.doc(`utilisateurs/${index}`).update({
           isProcessSucceful: val,
         }
-      ).then(() => {
+      ).then(() => { 
         console.log('Document mis à jour avec succès');
-        
+
       })
       .catch(error => {
         console.error('Erreur lors de la mise à jour du document:', error);

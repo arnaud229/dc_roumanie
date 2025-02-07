@@ -1408,6 +1408,8 @@ export class DashboardPartenaireComponent {
   liste_videosValid: any[] = [];
   liste_videosReject: any[] = [];
   liste_Restants: any[] = [];
+  liste_videosByUser: any[] = [];
+
   displayedColumns: string[] = ['nom', 'prenom', 'Netude','principalProfession', 'qualiProfession', 'sMatrimoniale', 'langueParler','actions'];  
 
 
@@ -1514,6 +1516,10 @@ close_valid()
 {
   this.isReject = false;
 }
+
+close_validBySelect() {
+  this.theId ='rter';
+ }
 
 
 logOut() {
@@ -1683,6 +1689,34 @@ updateRestantVideos() {
 
   console.log('le reste', this.liste_videos);
   
+}
+
+beginValid(val: any)
+{
+  this.theId = val
+  this.getvideosByUser(val)
+}
+
+getvideosByUser(uid: any)
+{
+  this.videoService.getVideoByUserId(uid).subscribe
+  (
+   (res) => {
+
+     console.log('res', res);  
+
+     this.liste_videosByUser = res.data;
+     console.log("les videos", this.liste_videosByUser);
+
+  
+     
+   },
+
+   (err: any) => {
+     console.log('err :>> ', err);
+   }
+  )
+
 }
 
 getVideos() {

@@ -462,7 +462,7 @@ margin-bottom: 30px;
 {
     width: 150px;
     height: 33px;
-    margin-left: 32%;
+    // margin-left: 32%;
     margin-top: 20px;
     text-align: center;
     color:  white;
@@ -595,11 +595,17 @@ margin-bottom: 30px;
 
 .viewVideoValidate
 {
-    position: absolute;
-    top: 30px;
+    position: fixed; /* Fixe l'élément par rapport à la fenêtre */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour être parfaitement centré */
     width: 400px;
-    left: 240px;
-    z-index: 2;
+    z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+    background-color: #FFFFFF;
+    
+    padding: 20px;
+  
+    
 }
 
 .corpsSelectV > .imgdelectV
@@ -672,7 +678,7 @@ select > option
 .viewVaidSelect
 {
    
-    width: 85%;
+    width: 67%;
     padding: 20px;
     display: flex;
     flex-direction: column;
@@ -681,7 +687,7 @@ select > option
     z-index: 2;
     position: absolute;
     left: 250px;
-    top: 30px;
+    top: 77px;
    
 }
 

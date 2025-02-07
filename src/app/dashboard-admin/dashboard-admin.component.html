@@ -339,10 +339,7 @@
                                                       <div class="cardVideos" >
                                       
                                                           <div class="oneVideo" *ngFor="let item of liste_videosByUser" >
-                                      
-                                                              <!-- <img (click)="delectVideo(item)" src="./../../assets/suprime.png" alt=""> -->
-                                      
-                                      
+                                                                            
                                                               <video controls>
                                                                   <source [src]="item.fileVideo" type="video/mp4">
                                                                   Your browser does not support the video tag.
@@ -354,7 +351,7 @@
                                                                 </span>
                                       
                                                               
-                              <button id="boutton1"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
+                                                 <button class="boutton1"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
                               
                                                         
                                                           </div>
@@ -377,9 +374,7 @@
 
 
                                               </div>
-                  
-                                              <button id="boutton1"  (click)="validSelct(fichier.uid, selectedPartner)" >valider</button>
-                                              
+
                                           </div>
                   
                                       
@@ -651,7 +646,7 @@
 
 
 
-                         <div id="viewVideoValidate"   >
+                         <div class="viewVideoValidate"   >
     
                           <div class="corpsSelectV" *ngIf="theId === item.id"  >
                               <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
