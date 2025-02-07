@@ -123,10 +123,15 @@ export class ViewUserComponent {
   viewHonneur = 'non';
   viewDisponibilite = 'non';
   viewPasseportDisponible = 'non';
-
+ 
   theId = "";
+  theIdAdmin = "";
   selectedPartner : any = null;
   listePartemaire: any[] = [];
+  liste_videosByUser: any[] = [];
+  isReject = false;
+  theObservation = '';
+  idOfItem = '';
 
   constructor(
     private router: Router,
@@ -138,11 +143,13 @@ export class ViewUserComponent {
   ) {}
 
 
-  ngOnInit() {
+async  ngOnInit() {
     this.getUsers();
     let user = this.localstorageService.getCurrentUser();
 
     this.theUser = user;
+
+    await this.getPartenaire();
 
     console.log('info admin');
     
@@ -256,7 +263,7 @@ export class ViewUserComponent {
 }
 
   close_valid() {
-    this.theId ='rter';
+    this.theIdAdmin ='rter';
    }
 
   getVideoByUser() {
@@ -422,4 +429,82 @@ export class ViewUserComponent {
 
   }
 
+  close_validBySelect() {
+    this.theId ='rter';
+   }
+
+   getvideosByUser(uid: any)
+{
+  this.videoService.getVideoByUserId(uid).subscribe
+  (
+   (res) => {
+
+     console.log('res', res);  
+
+     this.liste_videosByUser = res.data;
+     console.log("les videos", this.liste_videosByUser);
+
+  
+     
+   },
+
+   (err: any) => {
+     console.log('err :>> ', err);
+   }
+  )
+
 }
+
+valiProcessusBydVideo(index: string, iduser: string)
+{
+  let vak = true;
+  this.videoService.validProcessByPartenaireInVideo(vak,index, iduser).then(
+    () => {
+      console.log("reussi");
+    }
+  ) 
+  .catch(
+    (er) => 
+    {
+      console.log("erreur", er.message);
+      
+    }
+  )
+
+}
+setReject(val: string, index: string) {
+
+  this.videoService.rejectObservation(val, index).then(
+    () => {
+      console.log('reussi');
+      this.isReject = false;
+
+      
+    }
+  )
+  .catch(
+    (er) => {
+      console.log("reject", er);
+      
+    }
+  )
+
+}
+
+beginReject(index: string) {
+  this.isReject = true;
+  this.idOfItem = index;
+}
+
+beginValid(val: any)
+{
+  this.theId = val
+  this.getvideosByUser(val)
+}
+
+
+
+}
+
+
+

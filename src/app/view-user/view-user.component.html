@@ -368,10 +368,10 @@
 
 
 
-        <div class="corpsSelectV"   >
+        <div class="contentSelectVideo" >
     
-            <div class="viewVaidPreselctV"  *ngIf="theId === currentUser.uid" >
-                <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+            <div class="group"  *ngIf="theIdAdmin === currentUser.uid" >
+                <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
 
                 <div >  
 
@@ -390,6 +390,63 @@
     </div>
 
 
+    <!-- partenaire -->
+
+    <div class="contentSelectVideo" *ngIf="theId === currentUser.uid">
+
+        <div class="group">
+          <img class="imgdelect" (click)="close_validBySelect()" src="./../../assets/croixDelete.png" alt=""> 
+
+            <div  *ngIf=" liste_videosByUser.length > 0 ">
+
+              <div class="cardVideos" >
+
+                  <div class="oneVideo" *ngFor="let item of liste_videosByUser" >  
+                      <video controls>
+                          <source [src]="item.fileVideo" type="video/mp4">
+                          Your browser does not support the video tag.
+                        </video>
+                        <h1> {{item.secteur}} </h1>
+                        <span>
+                            {{ item.nom }}  {{ item.prenoms }}
+                        </span>
+
+                        <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)">Valider</button>
+                        <button class="btn3"  (click)="beginReject(item.id)">observation</button>
+
+                  </div>
+
+                  <div class="viewVaidPreselct"   *ngIf="isReject"  >
+
+                         
+                    <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+
+                  <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
+
+                  <button  class="btn2" (click)="setReject(theObservation, idOfItem)" > Rejeter</button>
+
+                </div>
+
+
+
+              </div>
+            </div>
+
+
+              
+              <div class="notvalide" *ngIf=" liste_videosByUser.length == 0 ">
+                  <p>
+                      Il n'y a aucune video de presetation d'activité validée 
+                  </p>
+  
+              </div>               
+            
+
+        </div>
+
+      </div>
+
+
 
         
 
@@ -403,7 +460,7 @@
 
         <div class="groupViewPreselect" *ngIf="theUser.nom === 'partenaire'">        
         <button  class="botton_bas"   (click)="goBack()">Retour</button> 
-        <button  class="boutton"   (click)="validProcessus(currentUser.uid)">Valider</button> 
+        <button  class="boutton"   (click)="beginValid(currentUser.uid)">Valider</button> 
 
         </div>
 

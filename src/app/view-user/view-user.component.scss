@@ -233,6 +233,115 @@ select > option
 }
 
 
+.contentSelectVideo
+{
+    position: fixed; /* Fixe l'élément par rapport à la fenêtre */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour être parfaitement centré */
+    width: 70%;
+    z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+    background-color: #FFFFFF;
+    border: solid 1px #45d00f;
+    padding: 20px;
+    margin-left: 100px;
+    padding-bottom: 49px;
+    // box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.group
+{
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    //  position: absolute;
+    //  top: 30px;
+     padding: 20px;
+    //  border: solid 1px #45d00f;
+}
+
+.group > .imgdelectV
+{
+    background: white;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 153px;
+    margin-bottom: 19px;
+
+}
+
+.btn1 {
+
+    width: 100px;
+    height: 33px;
+    text-align: center;
+    border-radius: 50px;
+    color:  white;
+    background: #45d00f;
+   border: 1px solid #45d00f;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+margin-bottom: 10px;
+
+  }
+
+  .btn3
+  {
+    width: 100px;
+    height: 33px;
+    text-align: center;
+    border-radius: 50px;
+    color:  #45d00f;
+    background: white;
+   border: 1px solid #45d00f;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+
+  }
+
+  .btn2 
+  {
+    width: 100px;
+    height: 33px;
+    text-align: center;
+    border-radius: 50px;
+    color:  white;
+    background: red;
+   border: 1px solid red;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+margin-top: 10px;
+  }
+
+  .rejectV
+  {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 30px;
+    width: 75%;
+    padding: 20px;
+    left: 210px;
+    background: white;
+    border: solid 1px #45d00f;
+    z-index: 2;
+  }
+
 @media (max-width: 1000px ) {
 
     .contentViewPreselect {
