@@ -23,7 +23,7 @@ export class PreselectionComponent {
   pre = "";
   edite = "";
   switch = false;
-  listMatrimonial = ["Célibataire", "Marié(e)", "Veuf(ve), concubine "];
+  listMatrimonial = ["Célibataire", "Marié(e)", "Veuf(ve)", "Concubine" ];
   liste_fils: RecuFile[] = [];
   @ViewChild('fileInput')
   fileInput!: ElementRef; 
