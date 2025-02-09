@@ -6747,7 +6747,8 @@ export const countries = [
     'Musulmane',
     'Laîque', 
     "Protestant",
-    "Orthodoxe"
+    "Orthodoxe",
+    "Christianisme Céleste"
 
   ];
 
