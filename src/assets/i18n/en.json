@@ -1,0 +1,9 @@
+{
+    "singnin": 
+    {
+        "tittle": "Log in",
+        "texte": "please enter your email below to start using the app",
+        "mdp": "Password",
+        "placeholder": "E-mail"
+    }
+}

@@ -1,0 +1,9 @@
+{
+    "singnin": 
+    {
+        "tittle": "Log in",
+        "texte": "vă rugăm să introduceți adresa de e-mail mai jos pentru a începe să utilizați aplicația",
+        "mdp": "Parolă",
+        "placeholder": "E-mail"
+    }
+}

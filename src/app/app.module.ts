@@ -17,7 +17,7 @@ import { SelectionComponent } from './selection/selection.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { VideosComponent } from './videos/videos.component';
 import { EditPreselectComponent } from './edit-preselect/edit-preselect.component';
 import { EditSelectComponent } from './edit-select/edit-select.component';
@@ -42,6 +42,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { ViewUserComponent } from './view-user/view-user.component';
 import { CoursCoachingComponent } from './cours-coaching/cours-coaching.component';
 import { CoursAnglaireComponent } from './cours-anglaire/cours-anglaire.component';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -94,6 +96,14 @@ import { CoursAnglaireComponent } from './cours-anglaire/cours-anglaire.componen
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   
     
   ],
@@ -101,4 +111,10 @@ import { CoursAnglaireComponent } from './cours-anglaire/cours-anglaire.componen
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { };
+
+// Créer le loader pour les fichiers de traduction
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
+
