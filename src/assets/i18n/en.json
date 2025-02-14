@@ -4,6 +4,28 @@
         "tittle": "Log in",
         "texte": "please enter your email below to start using the app",
         "mdp": "Password",
-        "placeholder": "E-mail"
+        "placeholder": "E-mail",
+        "boutton": "Log in",
+        "botton_bas": "Singn up",
+        "botton_basM": "Forgot your password?"
+    },
+
+    "singnup":
+    {
+        "tittle": "Sign up",
+        "texte": "Please fill in your information to register and start your pre-selection",
+        "placeholderNom": "",
+        "placeholderPrenom": "First name",
+        "placeholderEmail": "E-mail", 
+        "prefixe": "your prefix",
+        "placeholderNumero": "Phone number",
+        "mdp": "Password",
+        "mdpCara": "Password must be at least 8 characters long and contain at least one uppercase letter and one number.",
+        "placeholderConfirme": "Confirm password",
+        "condition": "I accept the",
+        "politique": "policy",
+        "terme": "terms",
+        "bouttonIscrire": "REGISTER",
+        "bouttonConnect": "Log in"
     }
 }

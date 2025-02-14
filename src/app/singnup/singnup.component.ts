@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { User } from 'src/models/variables';
 import { UtilsService } from '../services/utils/utilis.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-singnup',
@@ -37,6 +38,7 @@ export class SingnupComponent {
     // private utilsService: UtilsService,
     // private alertController: AbortController,
     public utilsService: UtilsService,
+     private languageChange: LanguageService, 
   ) {
 
     this.listPrefixe =  this.utilsService.getListPrefixe()
@@ -45,6 +47,7 @@ export class SingnupComponent {
 
   ngOnInit() {
     this.init_form();
+    this.languageChange.getLanguage()
   }
 
     

@@ -4,6 +4,29 @@
         "tittle": "Se connecter",
         "texte": "veuillez entrer votre email ci-dessous pour commencer à utiliser l'application",
         "mdp": "Mot de passe",
-        "placeholder": "Email"
+        "placeholder": "Email",
+        "boutton": "Me connecter",
+        "botton_bas": "je suis nouveau ici",
+        "botton_basM": "Mot de passe oublié ?"
+
+    },
+
+    "singnup":
+    {
+        "tittle": "Inscrivez-vous",
+        "texte": "Veuillez renseigner vos informations pour vous inscrire et commencez votre préselection",
+        "placeholderNom": "Nom",
+        "placeholderPrenom": "Prenom",
+        "placeholderEmail": "Email", 
+        "prefixe": "votre  prefixe",
+        "placeholderNumero": "Numéro de téléphone",
+        "mdp": "Mot de passe",
+        "mdpCara": "Le mot de passe doit faire au moins 8 caractères de long et contenir au moins une lettre majuscule et un chiffre.",
+        "placeholderConfirme": "Confirmer le mot  de passe",
+        "condition": "j'accepte la",
+        "politique": "politique",
+        "terme": "termes",
+        "bouttonIscrire": "S'INSCRIRE",
+        "bouttonConnect": "Se connecter"
     }
 }

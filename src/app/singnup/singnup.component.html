@@ -2,20 +2,20 @@
 
     <div class="card-in" >
 
-        <h1>Inscrivez-vous</h1>
+        <h1>{{ 'singnup.tittle' | translate }}</h1>
 
         
-  <p class="petit_texte"> Veuillez renseigner vos informations pour vous inscrire et commencez votre préselection </p>
+  <p class="petit_texte">{{ 'singnup.texte' | translate }} </p>
         
 
         <div class="inputs"  [formGroup]="userform" >
             
-            <input  type="text"  [ngClass]="{'error': userform.controls['nom'].invalid && userform.controls['nom'].value!=''}"  formControlName="nom" placeholder="Nom" >
+            <input  type="text"  [ngClass]="{'error': userform.controls['nom'].invalid && userform.controls['nom'].value!=''}"  formControlName="nom" [placeholder]="'singnup.placeholderNom' | translate" >
                 
-            <input  type="text"  [ngClass]="{'error': userform.controls['prenom'].invalid && userform.controls['prenom'].value!=''}"  formControlName="prenom" placeholder="Prenom" >
+            <input  type="text"  [ngClass]="{'error': userform.controls['prenom'].invalid && userform.controls['prenom'].value!=''}"  formControlName="prenom" [placeholder]="'singnup.placeholderPrenom' | translate" >
           
             
-            <input type="email" [ngClass]="{'error': userform.controls['mail'].invalid && userform.controls['mail'].value!=''}"  formControlName="mail" placeholder="Email" >
+            <input type="email" [ngClass]="{'error': userform.controls['mail'].invalid && userform.controls['mail'].value!=''}"  formControlName="mail" [placeholder]="'singnup.placeholderEmail' | translate" >
            
             <div class="groupe_number">
 
@@ -24,31 +24,27 @@
                      
                     <select  id='code_pays'   formControlName="code"  [ngClass]="{'error': userform.controls['code'].invalid && userform.controls['code'].value!='Langue étrangère parler'}"  >
                
-                      <option value=""> votre  prefixe </option> 
+                      <option value=""> {{ 'singnup.prefixe' | translate }} </option> 
                       <option *ngFor="let item of listPrefixe" [value]="item.prefix"> {{item.name}} ({{item.prefix}}) </option>
       
                      </select>
-                   
-                    <!-- <svg  width="12" height="9" viewBox="0 0 12 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M6 0L11.1962 9H0.803848L6 0Z" fill="black" fill-opacity="0.6"/>
-                      </svg> -->
-               
+                         
                 </div>
-                  <input id= 'input_number' type="text"  [ngClass]="{'error': userform.controls['numero'].invalid && userform.controls['numero'].value!=''}"  formControlName="numero" placeholder="Numéro de téléphone" >
+                  <input id= 'input_number' type="text"  [ngClass]="{'error': userform.controls['numero'].invalid && userform.controls['numero'].value!=''}"  formControlName="numero" [placeholder]="'singnup.placeholderNumero' | translate" >
         
                 </div>
 
                 <div class="groupe">
                       
                     <div class="les_inputs">
-                      <input [type]="le_type"  [ngClass]="{'error': userform.controls['mdp'].invalid && userform.controls['mdp'].value!=''}"  formControlName="mdp" placeholder="Mot de passe" >
+                      <input [type]="le_type"  [ngClass]="{'error': userform.controls['mdp'].invalid && userform.controls['mdp'].value!=''}"  formControlName="mdp" [placeholder]="'singnup.mdp' | translate" >
                       <img class="icon_vu" (click)="affiche_mpd()" *ngIf="voir"  src="assets/eye-regular.png" alt="">
                     <img class="icon_vu" (click)="affiche_mpd()" *ngIf="!voir" src="assets/eye-slash-regular.png" alt="">
 
                     </div>
                    <p>
-                        Le mot de passe doit faire au moins 8 caractères de long et contenir au moins une lettre majuscule et un chiffre.
-                    </p>
+                    {{ 'singnup.mdpCara' | translate }}
+                     </p>
 
                  
                   </div>
@@ -59,7 +55,7 @@
                   <div class="groupe">
 
                     <div class="les_inputs">
-                      <input [type]="le_type1"  [ngClass]="{'error': userform.controls['mdp'].value!=confirm_mdp}"  [(ngModel)]="confirm_mdp"   placeholder="Confirmer le mot  de passe" >
+                      <input [type]="le_type1"  [ngClass]="{'error': userform.controls['mdp'].value!=confirm_mdp}"  [(ngModel)]="confirm_mdp"   [placeholder]=" 'singnup.placeholderConfirme' | translate" >
                   
                       <img id="icon_vu1" (click)="affiche_mpd1()" *ngIf="voir1"  src="assets/eye-regular.png" alt="">
                       <img id="icon_vu11" (click)="affiche_mpd1()" *ngIf="!voir1" src="assets/eye-slash-regular.png" alt="">
@@ -71,10 +67,10 @@
                             <div class="case_corchee" (click)="accept_condition()"  [ngClass]="{'active_case': condition_accept}" > </div>
                              <div class="texte_condition">
       
-                                <span> j'accepte la </span>
-                                <a (click) = "goToPolitique() " >  politique</a>
+                                <span>     {{ 'singnup.condition' | translate }} </span>
+                                <a (click) = "goToPolitique() " >  {{ 'singnup.politique' | translate }} </a>
                                 <span> et les</span>
-                                <a (click)="goToTerme() " >  termes</a>
+                                <a (click)="goToTerme() " >  {{ 'singnup.terme' | translate }} </a>
       
                              </div>                      
                         
@@ -84,8 +80,8 @@
     
             <div class="les_boutons" >
  
-                <button  class="boutton" [disabled]=" condition_accept === false "   (click)="sign_up()">S'INSCRIRE</button> 
-                <a id="botton_bas" routerLink="../signin" > Se connecter</a>
+                <button  class="boutton" [disabled]=" condition_accept === false "   (click)="sign_up()">  {{ 'singnup.bouttonIscrire' | translate }} </button> 
+                <a id="botton_bas" routerLink="../signin" >  {{ 'singnup.bouttonConnect' | translate }} </a>
 
             </div>
 

@@ -28,7 +28,7 @@ export class VideosComponent {
   userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
  
   currentUser! : User;
-  maxFileSize = 10;
+  maxFileSize = 20;
   loading = false;
   iserrorlog= false;
   erreur_message = "";

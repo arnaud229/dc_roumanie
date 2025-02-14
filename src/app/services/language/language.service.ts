@@ -10,6 +10,27 @@ export class LanguageService {
   }
 
   switchLanguage(language: string) {
-    this.translate.use(language);
+    this.translate.use(language).subscribe({
+      next: () =>
+        {
+          console.log('Langue changée avec succès'),
+           // Sauvegarde automatique à chaque changement de langue
+          localStorage.setItem('userLanguage', language);
+        },
+      error: (err) => console.error('Erreur de changement', err)
+    });
   }
+
+
+  getLanguage() {
+    // Récupère la langue sauvegardée ou utilise 'fr' par défaut
+    const savedLang = localStorage.getItem('userLanguage') || 'fr';
+    this.translate.use(savedLang); 
+
+    console.log('votre langue est :', savedLang );
+    
+ 
+ }
+ 
 }
+

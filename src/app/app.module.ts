@@ -44,6 +44,8 @@ import { CoursCoachingComponent } from './cours-coaching/cours-coaching.componen
 import { CoursAnglaireComponent } from './cours-anglaire/cours-anglaire.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { PolitiqueComponent } from './politique/politique.component';
+import { TermesComponent } from './termes/termes.component';
 
 
 
@@ -69,6 +71,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     ViewUserComponent,
     CoursCoachingComponent,
     CoursAnglaireComponent,
+    PolitiqueComponent,
+    TermesComponent,
   
     
     

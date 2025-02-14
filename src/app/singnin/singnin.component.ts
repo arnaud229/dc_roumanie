@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { LanguageService } from '../services/language/language.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-singnin',
@@ -19,9 +21,35 @@ export class SingninComponent {
   binding = "";
   iserrorlog = false;
 
+  listeLangueChange = [
+    {
+      langue: "en",
+      picture: "./../../assets/flag-USA.jpg"
+    },
+    {
+      langue: "fr",
+      picture: "./../../assets/flag-france.jpg"
+    },
+    {
+      langue: "ro",
+      picture: "./../../assets/flag-romania.jpg"
+    },
+
+  ];
+
+  private destroy$ = new Subject<void>();
+
+  selectedLanguage : any =  {
+    langue: "fr",
+    picture: "./../../assets/flag-france.jpg"
+  };
+
+  ViewLangue = false ;
+
   constructor(
     private formbuilder: FormBuilder,
     private router: Router,
+    private languageChange: LanguageService, 
     public authService: AuthService,
     public localstorageService: LocalstorageService,
    
@@ -32,9 +60,22 @@ export class SingninComponent {
 
   ngOnInit() {
     this.init_form();
+
+    const savedLang = localStorage.getItem('userLanguage');
+    if (savedLang) {
+      const lang = this.listeLangueChange.find(l => l.langue === savedLang);
+      this.selectedLanguage = lang || this.listeLangueChange[0];
   }
 
+}
 
+
+
+  getViewLanbgue() 
+  {
+
+    this.ViewLangue = !this.ViewLangue;
+  }
  
 
 
@@ -99,6 +140,15 @@ export class SingninComponent {
 
       this.log_erreur = true;
     }
+  }
+
+  switchLanguage(item : any) {
+
+    this.selectedLanguage = item,
+    console.log('item', item);
+    
+    this.languageChange.switchLanguage(item.langue);
+    this.ViewLangue = false;
   }
 
   ferme_erreur() {

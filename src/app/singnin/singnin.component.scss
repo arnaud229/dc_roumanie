@@ -7,6 +7,64 @@ body, html {
   font-family: Arial, sans-serif;
 }
 
+
+.groupLanguer
+{
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+}
+
+.voirGroup
+{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  border: solid 1px #52526F;
+  padding: 10px;
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+
+}
+
+.voirGroup > img
+{
+  width: 20px;
+  height: 20px;
+}
+
+.groupLanguer > div
+{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-family: 'Source Serif 4';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 28px;
+  width: 77px;
+  border: solid 1px #52526F;
+}
+
+.groupLanguer > div > span 
+{
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  padding: 5px;
+
+}
+
+.imgFlag
+{
+  width: 20px;
+  height: 20px;
+}
+
+
 .content_in
 {
     width: 100%;

@@ -23,7 +23,7 @@ export class CoursCoachingComponent {
   filVideo = "";
   message = "";
   userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
-  maxFileSize = 10;
+  maxFileSize = 20;
   loading = false;
   iserrorlog= false;
   erreur_message = "";

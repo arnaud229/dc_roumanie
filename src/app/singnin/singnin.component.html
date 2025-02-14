@@ -2,34 +2,53 @@
 
         <div class="card-in" >
 
-            <h1>Se connecter</h1>
+            <div class="groupLanguer">
+
+                <span class="voirGroup"  >
+                     {{selectedLanguage.langue }} 
+                     <img [src]="selectedLanguage.picture " alt="">    
+                     <img src="./../../assets/fl-bas.png" alt=""  (click)="getViewLanbgue() " >
+                </span>
+
+                <div *ngIf=" ViewLangue ">
+                    <span *ngFor="let item of listeLangueChange"  (click)=" switchLanguage(item)"   > 
+                        {{ item.langue}}
+
+                        <img class="imgFlag" [src]="item.picture"   alt="">
+                    </span>
+
+                </div>
+
+            </div>
+
+            <h1> {{ 'singnin.tittle' | translate }} </h1>
 
             
-      <p class="petit_texte"> veuillez entrer votre email ci-dessous pour commencer à utiliser l'application </p>
+      <p class="petit_texte"> {{ 'singnin.texte' | translate }} </p>
             
 
             <div class="inputs"  [formGroup]="userform" >
                 
-                <input type="email" [ngClass]="{'error': userform.controls['mail'].invalid && userform.controls['mail'].value!=''}"  formControlName="mail" placeholder="Email" >
-                <input type="password" [ngClass]="{'error': userform.controls['mdp'].invalid && userform.controls['mdp'].value!=''}" formControlName="mdp" placeholder="Mot de passe">
+                <input type="email" [ngClass]="{'error': userform.controls['mail'].invalid && userform.controls['mail'].value!=''}"  formControlName="mail" [placeholder]=" 'singnin.placeholder' | translate" >
+                <input type="password" [ngClass]="{'error': userform.controls['mdp'].invalid && userform.controls['mdp'].value!=''}" formControlName="mdp" [placeholder]="'singnin.mdp' | translate">
 
                 <div class="les_boutons">
      
-                    <button  class="boutton"  (click)="connected()">Me connecter</button> 
-                    <a id="botton_bas" (click)="goToSign()" > je suis nouveau ici </a>
+                    <button  class="boutton"  (click)="connected()">{{ 'singnin.boutton' | translate }}</button> 
+                    <a id="botton_bas" (click)="goToSign()" > {{ 'singnin.botton_bas' | translate }}</a>
 
                 </div>
 
-                <a id="mdp_oublier" (click)="change_password()" >Mot de passe oublié ?</a>
+                <a id="mdp_oublier" (click)="change_password()" > {{ 'singnin.botton_basM' | translate }}</a>
 
                 <div class="m-portable">
 
-                    <button  class="bouttonM"  (click)="connected()">Me connecter</button> 
+                    <button  class="bouttonM"  (click)="connected()"> {{ 'singnin.boutton' | translate }}</button> 
 
                     <div>
-                        <a id="mdp_oublierM" (click)="change_password()" >Mot de passe oublié ?</a>
+                        <a id="mdp_oublierM" (click)="change_password()" >{{ 'singnin.botton_basM' | translate }}</a>
 
-                        <a id="botton_basM" (click)="goToSign()" > je suis nouveau ici </a>
+                        <a id="botton_basM" (click)="goToSign()" > {{ 'singnin.botton_bas' | translate }} </a>
 
                     </div>
 

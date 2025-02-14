@@ -4,6 +4,28 @@
         "tittle": "Log in",
         "texte": "vă rugăm să introduceți adresa de e-mail mai jos pentru a începe să utilizați aplicația",
         "mdp": "Parolă",
-        "placeholder": "E-mail"
+        "placeholder": "E-mail",
+        "boutton": "Log in",
+        "botton_bas": "registru",
+        "botton_basM": "Ați uitat parola?"
+    },
+
+    "singnup":
+    {
+        "tittle": "Înscrie-te",
+        "texte": "Vă rugăm să completați informațiile dvs. pentru a vă înregistra și a începe preselecția",
+        "placeholderNom": "Nume",
+        "placeholderPrenom": "Prenume",
+        "placeholderEmail": "E-mail", 
+        "prefixe": "prefixul dvs",
+        "placeholderNumero": "Număr de telefon",
+        "mdp": "Parolă",
+        "mdpCara": "Parola trebuie să aibă cel puțin 8 caractere și să conțină cel puțin o literă mare și un număr.",
+        "placeholderConfirme": "Confirmați parola",
+        "condition": "Accept",
+        "politique": "politică",
+        "terme": "termeni",
+        "bouttonIscrire": "REGISTRU",
+        "bouttonConnect": "Log in"
     }
 }
