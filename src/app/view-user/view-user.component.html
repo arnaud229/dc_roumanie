@@ -296,7 +296,7 @@
 
         </div>
 
-        <div class="groupViewFils">
+        <div class="groupViewFils"  *ngIf="theUser.nom === 'admin'">
 
             <h1> {{ 'viewUser.rfils' | translate }}  </h1>
 
@@ -315,6 +315,14 @@
             <div class="groupViewImages"  >
 
                 <img [src]="item" alt="" *ngFor="let item of currentUser.fils_diplome " >
+
+                <div class="groupePdf"  >
+                    <div>
+                        <img src="" alt="">
+                        <span></span>
+                    </div>
+                    <img src="" alt="">
+                </div>
 
             </div>
 

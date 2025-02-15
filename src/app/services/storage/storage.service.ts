@@ -41,7 +41,8 @@ import { AuthService } from "../auth/auth.service";
         public fbauth: AngularFireAuth,
         public firestore: AngularFirestore,
         private authService: AuthService,
-        private httpClient: HttpClient,) { }
+        private httpClient: HttpClient,
+      ) { }
 
 
 
@@ -182,6 +183,36 @@ import { AuthService } from "../auth/auth.service";
     //     })
     //   );
     // }
+
+
+    
+  async downloadFile(url: string, fileName: string): Promise<void> {
+    try {
+      // Télécharger le fichier en tant que Blob
+      const file = await this.httpClient.get(url, { responseType: 'blob' }).toPromise();
+      
+      // Créer un lien temporaire
+      const blob = new Blob([file!], { type: file!.type });
+      const link = document.createElement('a');
+      link.href = window.URL.createObjectURL(blob);
+      
+      // Forcer le téléchargement avec le bon nom de fichier
+      link.download = fileName || this.extractFileNameFromUrl(url);
+      link.click();
+      
+      // Nettoyer la mémoire
+      window.URL.revokeObjectURL(link.href);
+    } catch (error) {
+      console.error('Échec du téléchargement :', error);
+      throw error;
+    }
+  }
+
+  private extractFileNameFromUrl(url: string): string {
+    // Extraire le nom du fichier de l'URL
+    const matches = url.match(/[^/?#]+(?=([^.]\w{3,4}\b)|$)/);
+    return matches ? matches[0] : 'document';
+  }
       
     
 
