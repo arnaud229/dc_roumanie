@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { VideosService } from '../services/videos/videos.service';
 import { UsersService } from '../services/firebase/user.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-view-user',
@@ -140,10 +141,12 @@ export class ViewUserComponent {
     private Aroute: ActivatedRoute,
     private videoService: VideosService,
     private userServ : UsersService,
+     private languageChange: LanguageService, 
   ) {}
 
 
 async  ngOnInit() {
+  this.languageChange.getLanguage()
     this.getUsers();
     let user = this.localstorageService.getCurrentUser();
 

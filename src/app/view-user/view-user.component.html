@@ -15,101 +15,101 @@
 
         <div class="groupViewPreselect">
 
-            <p> Agê:</p>
-            <span class="viewValue"> {{ currentUser.age }} ans  </span>
+            <p> {{ 'viewUser.age' | translate }} </p>
+            <span class="viewValue"> {{ currentUser.age }} {{ 'viewUser.ageIndice' | translate }}    </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Situation matrimonial:</p>
+            <p> {{ 'viewUser.matrimonial' | translate }} </p>
             <span class="viewValue"> {{ currentUser.sMatrimoniale }} 
-                <span *ngIf="currentUser.nbrEnfants == 0" > sans enfant </span>
-                <span *ngIf="currentUser.nbrEnfants != 0" > avec  {{currentUser.nbrEnfants}} </span>
+                <span *ngIf="currentUser.nbrEnfants == 0" > {{ 'viewUser.matrimonialSans' | translate }}  </span>
+                <span *ngIf="currentUser.nbrEnfants != 0" >{{ 'viewUser.matrimonial' | translate }}  {{currentUser.nbrEnfants}} </span>
             </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Niveau d'étude:</p>
+            <p> {{ 'viewUser.NEtude' | translate }} </p>
             <span class="viewValue"> {{ currentUser.NEtude }}  </span>
 
         </div>
 
          <div class="groupViewPreselect">
 
-            <p> Métier: </p>
+            <p> {{ 'viewUser.NEtude' | translate }}  </p>
             <span class="viewValue"> {{ currentUser.metier }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Année de dîplome:</p>
+            <p> {{ 'viewUser.aDiplome' | translate }} </p>
             <span class="viewValue"> {{ currentUser.aDiplome }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Durée d'apprentissage:</p>
-            <span class="viewValue"> {{ currentUser.dApprentissage }} ans </span>
+            <p> {{ 'viewUser.dapprentis' | translate }}  </p>
+            <span class="viewValue"> {{ currentUser.dApprentissage }} {{ 'viewUser.ageIndice' | translate }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Année d'experience professionnelle:</p>
-            <span class="viewValue"> {{ currentUser.aExperience }} ans </span>
+            <p> {{ 'viewUser.aprof' | translate }}</p>
+            <span class="viewValue"> {{ currentUser.aExperience }} {{ 'viewUser.ageIndice' | translate }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Employeur précédent:</p>
+            <p> {{ 'viewUser.eprecedent' | translate }} </p>
             <span class="viewValue"> {{ currentUser.ePrecedent }} </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Aviez vous un passeport en cours de validité:</p>
+            <p>{{ 'viewUser.PPdispo' | translate }}  </p>
             <span class="viewValue"> {{ viewPasseportDisponible}}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Nationnalité:</p>
+            <p> {{ 'viewUser.nationalite' | translate }} </p>
             <span class="viewValue"> {{ currentUser.nationalite }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p>  Contact whatapp:</p>
+            <p>{{ 'viewUser.cwhatsapp' | translate }}</p>
             <span class="viewValue"> {{ currentUser.cWhatapp.code }}  {{currentUser.cWhatapp.numero }} </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Parrain/Marraine:</p>
+            <p> {{ 'viewUser.parrain' | translate }}</p>
             <span class="viewValue"> {{ currentUser.parrain  }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Réligion:</p>
+            <p> {{ 'viewUser.religion' | translate }} </p>
             <span class="viewValue"> {{ currentUser.religion }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Être vous libre de toute engagement au moins pendant 2 ans:</p>
+            <p> {{ 'viewUser.libre' | translate }} </p>
             <span class="viewValue"> {{ viewDisponibilite }}  </span>
 
         </div>
@@ -117,32 +117,32 @@
 
         <div class="groupViewPreselect">
 
-            <p> Lieu de naissance:</p>
+            <p> {{ 'viewUser.lNaissance' | translate }} </p>
             <span class="viewValue"> {{ currentUser.LieuNaissance }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Date de naissance:</p>
+            <p> {{ 'viewUser.dNaissance' | translate }}  </p>
             <span class="viewValue"> {{ currentUser.dateNaissance.toLocaleString() }}  </span>
 
         </div>
 
         <div class="cardParents">
 
-            <h2>Père</h2>
+            <h2> {{ 'viewUser.pere' | translate }} </h2>
 
             <div class="groupViewPreselect">
 
-                <p> Nom:</p>
+                <p> {{ 'singnup.placeholderNom' | translate }} </p>
                 <span class="viewValue"> {{ currentUser.Pere.nom }}  </span>
 
             </div>
 
             <div class="groupViewPreselect">
 
-                <p> Prénoms:</p>
+                <p> {{ 'singnup.placeholderPrenom' | translate }}</p>
                 <span class="viewValue"> {{ currentUser.Pere.prenoms }}  </span>
 
             </div>
@@ -151,18 +151,18 @@
 
         <div class="cardParents">
 
-            <h2>Mère</h2>
+            <h2> {{ 'viewUser.mere' | translate }} </h2>
 
             <div class="groupViewPreselect">
 
-                <p> Nom:</p>
+                <p>{{ 'singnup.placeholderNom' | translate }}  </p>
                 <span class="viewValue"> {{ currentUser.Mere.nom }}  </span>
 
             </div>
 
             <div class="groupViewPreselect">
 
-                <p> Prénoms:</p>
+                <p> {{ 'singnup.placeholderPrenom' | translate }} </p>
                 <span class="viewValue"> {{ currentUser.Mere.prenoms }}  </span>
 
             </div>
@@ -171,35 +171,28 @@
 
         <div class="groupViewPreselect">
 
-            <p> Nationalité:</p>
-            <span class="viewValue"> {{ currentUser.nationalite }}  </span>
-
-        </div>
-
-        <div class="groupViewPreselect">
-
-            <p> Num passeport:</p>
+            <p> {{ 'viewUser.numpasseport' | translate }} </p>
             <span class="viewValue"> {{ currentUser.nPasseport }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Lieu d'émission:</p>
+            <p> {{ 'viewUser.lemission' | translate }} </p>
             <span class="viewValue"> {{ currentUser.lieuPasseport }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Date d'émission:</p>
+            <p> {{ 'viewUser.demission' | translate }} </p>
             <span class="viewValue"> {{ currentUser.dateEmiPasseport.toLocaleString() }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> date d'expiration:</p>
+            <p> {{ 'viewUser.dexpiration' | translate }} </p>
             <span class="viewValue"> {{ currentUser.dateExpPasseport.toLocaleString() }}  </span>
 
         </div>
@@ -207,25 +200,25 @@
 
         <div class="cardParents">
 
-            <h2>Dernière résidence</h2>
+            <h2> {{ 'viewUser.dresidence' | translate }}</h2>
 
             <div class="groupViewPreselect">
 
-                <p> Pays:</p>
+                <p>{{ 'viewUser.pays' | translate }} </p>
                 <span class="viewValue"> {{ currentUser.derniereResidencePays }}  </span>
 
             </div>
 
             <div class="groupViewPreselect">
 
-                <p> Ville/Village:</p>
+                <p>{{ 'viewUser.ville' | translate }} </p>
                 <span class="viewValue"> {{ currentUser.derniereResidence }}  </span>
 
             </div>
 
             <div class="groupViewPreselect">
 
-                <p> Quartier:</p>
+                <p>{{ 'viewUser.quartier' | translate }} </p>
                 <span class="viewValue"> {{ currentUser.derniereResidenceVillage }}  </span>
 
             </div>
@@ -235,31 +228,31 @@
 
         <div class="groupViewPreselect">
 
-            <p> Qualification Profrssionnelle:</p>
+            <p> {{ 'viewUser.qprofessionnelle' | translate }} </p>
             <span class="viewValue"> {{ currentUser.qualiProfession }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p> Quartier:</p>
-            <span class="viewValue"> {{ currentUser.derniereResidenceVillage }}  </span>
+            <p> {{ 'viewUser.pprofession' | translate }} </p>
+            <span class="viewValue"> {{ currentUser.principalProfession }}  </span>
 
         </div>
 
         <div class="cardExperience">     
             
-            <h2>Experience Professionnelle</h2>
+            <h2>{{ 'viewUser.exprofessionnelle' | translate }} </h2>
             
             
         <table>
 
             <thead>
                 <tr>
-                    <th>Num</th>
-                    <th>Entreprise</th>
-                    <th>Date de debut</th>
-                    <th>Date Fin</th>
+                    <th>{{ 'viewUser.num' | translate }} </th>
+                    <th> {{ 'viewUser.entreprise' | translate }}</th>
+                    <th> {{ 'viewUser.ddebut' | translate }} </th>
+                    <th> {{ 'viewUser.dfin' | translate }}  </th>
                 </tr>
 
             </thead>
@@ -281,31 +274,31 @@
         </div>
 
 
-
+<!-- 
         <div class="groupViewPreselect">
 
             <p> Profession Principale:</p>
             <span class="viewValue"> {{ currentUser.principalProfession }}  </span>
 
-        </div>
+        </div> -->
 
         <div class="groupViewPreselect">
 
-            <p> Langue parlée :</p>
+            <p> {{ 'viewUser.lparlee' | translate }}   </p>
             <span class="viewValue"> {{ currentUser.langueParler }}  </span>
 
         </div>
 
         <div class="groupViewPreselect">
 
-            <p>  Declaration d'honneur:</p>
+            <p> {{ 'viewUser.dhonneur' | translate }}  </p>
             <span class="viewValue"> {{ viewHonneur }}  </span>
 
         </div>
 
         <div class="groupViewFils">
 
-            <h1> Les reçus de préinscription :</h1>
+            <h1> {{ 'viewUser.rfils' | translate }}  </h1>
 
             <div class="groupViewImages"  >
 
@@ -317,7 +310,7 @@
 
         <div class="groupViewFils">
 
-            <h1> Les diplômes :</h1>
+            <h1> {{ 'viewUser.dfils' | translate }} </h1>
 
             <div class="groupViewImages"  >
 
@@ -330,7 +323,7 @@
         
         <div class="groupViewFils">
 
-            <h1> Photo complète :</h1>
+            <h1> {{ 'viewUser.pfils' | translate }} </h1>
 
             <div class="groupViewImages"  >
 
@@ -344,7 +337,7 @@
                 
         <div class="groupViewFils">
 
-            <h1> Photo du casier judicière :</h1>
+            <h1> {{ 'viewUser.pcfils' | translate }} </h1>
 
             <div class="groupViewImages"  >
 
@@ -356,7 +349,7 @@
 
         <div class="groupViewFils">
 
-            <h1> Photo du passeport :</h1>
+            <h1> {{ 'viewUser.ppfils' | translate }} </h1>
 
             <div class="groupViewImages"  >
 
@@ -376,13 +369,13 @@
                 <div >  
 
                   <select [(ngModel)]="selectedPartner">
-                    <option [ngValue]="null"> choix du partenaire </option>
+                    <option [ngValue]="null"> {{ 'viewUser.choixpart' | translate }}  </option>
                     <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
     
                    </select>
                 </div>
 
-                <button id="boutton1"  (click)="validSelct(currentUser.uid, selectedPartner)" >valider</button>
+                <button id="boutton1"  (click)="validSelct(currentUser.uid, selectedPartner)" > {{ 'viewUser.rfils' | translate }}valider</button>
                 
             </div>
 
@@ -411,8 +404,8 @@
                             {{ item.nom }}  {{ item.prenoms }}
                         </span>
 
-                        <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)">Valider</button>
-                        <button class="btn3"  (click)="beginReject(item.id)">observation</button>
+                        <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)">{{ 'viewUser.valide' | translate }} </button>
+                        <button class="btn3"  (click)="beginReject(item.id)"> {{ 'viewUser.observe' | translate }} </button>
 
                   </div>
 
@@ -423,7 +416,7 @@
 
                   <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
 
-                  <button  class="btn2" (click)="setReject(theObservation, idOfItem)" > Rejeter</button>
+                  <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >{{ 'viewUser.reject' | translate }} </button>
 
                 </div>
 
@@ -436,7 +429,7 @@
               
               <div class="notvalide" *ngIf=" liste_videosByUser.length == 0 ">
                   <p>
-                      Il n'y a aucune video de presetation d'activité validée 
+                    {{ 'viewUser.aucunV' | translate }}  
                   </p>
   
               </div>               
@@ -452,15 +445,15 @@
 
 
         <div class="groupViewPreselect" *ngIf="theUser.nom === 'admin'" >
-            <button  class="botton_bas"   (click)="goBack()">Retour</button> 
-            <button  class="boutton" *ngIf="currentUser.isvalidePreselect === false"  (click)="validPreselect(currentUser.uid)">Preselection</button> 
-            <button  class="boutton" *ngIf="currentUser.isvalidSelect === false"   (click)="beginCValidSelectByPartenaire(currentUser.uid)">Selection</button> 
+            <button  class="botton_bas"   (click)="goBack()"> {{ 'viewUser.btnRetour' | translate }} </button> 
+            <button  class="boutton" *ngIf="currentUser.isvalidePreselect === false"  (click)="validPreselect(currentUser.uid)">{{ 'viewUser.btnpreselect' | translate }} </button> 
+            <button  class="boutton" *ngIf="currentUser.isvalidSelect === false"   (click)="beginCValidSelectByPartenaire(currentUser.uid)"> {{ 'viewUser.btnsect' | translate }} </button> 
 
         </div>
 
         <div class="groupViewPreselect" *ngIf="theUser.nom === 'partenaire'">        
-        <button  class="botton_bas"   (click)="goBack()">Retour</button> 
-        <button  class="boutton"   (click)="beginValid(currentUser.uid)">Valider</button> 
+        <button  class="botton_bas"   (click)="goBack()"> {{ 'viewUser.btnRetour' | translate }} </button> 
+        <button  class="boutton"   (click)="beginValid(currentUser.uid)"> {{ 'viewUser.valide' | translate }} </button> 
 
         </div>
 
