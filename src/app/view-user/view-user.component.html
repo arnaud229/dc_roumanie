@@ -313,16 +313,19 @@
             <h1> {{ 'viewUser.dfils' | translate }} </h1>
 
             <div class="groupViewImages"  >
+                <div  *ngFor="let item of currentUser.fils_diplome ">
+                    <img [src]="item" alt="" >
 
-                <img [src]="item" alt="" *ngFor="let item of currentUser.fils_diplome " >
-
-                <div class="groupePdf"  >
-                    <div>
-                        <img src="" alt="">
-                        <span></span>
+                    <div class="groupePdf"  *ngIf="contientPDF(item)" >
+                     
+                            <img class="idpdf"  src="./../../assets/pdfIcon.jpg" alt="">
+                            <img class="iddown" src="./../../assets/downicon.png" alt="" (click)="downBack(item )" >
+                           
                     </div>
-                    <img src="" alt="">
+
                 </div>
+
+              
 
             </div>
 
@@ -454,7 +457,7 @@
 
         <div class="groupViewPreselect" *ngIf="theUser.nom === 'admin'" >
             <button  class="botton_bas"   (click)="goBack()"> {{ 'viewUser.btnRetour' | translate }} </button> 
-            <button  class="boutton" *ngIf="currentUser.isvalidePreselect === false"  (click)="validPreselect(currentUser.uid)">{{ 'viewUser.btnpreselect' | translate }} </button> 
+            <button  class="boutton" *ngIf="currentUser.isvalidePreselect === false"  (click)="validPreselect(currentUser.uid)">{{ 'viewUser.btnpresect' | translate }} </button> 
             <button  class="boutton" *ngIf="currentUser.isvalidSelect === false"   (click)="beginCValidSelectByPartenaire(currentUser.uid)"> {{ 'viewUser.btnsect' | translate }} </button> 
 
         </div>

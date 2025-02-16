@@ -328,6 +328,31 @@ line-height: 18px;
 margin-top: 10px;
   }
 
+  .groupePdf
+  {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .idpdf
+  {
+    width: 70px;
+    height: 70px;
+  }
+
+  .iddown
+  {
+    width: 50px;
+    height: 50px;
+    margin-top: 4px;
+
+  }
+
+
+
   .rejectV
   {
     display: flex;

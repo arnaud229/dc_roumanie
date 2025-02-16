@@ -6,6 +6,7 @@ import { LocalstorageService } from '../services/localStorage/localStorage.servi
 import { VideosService } from '../services/videos/videos.service';
 import { UsersService } from '../services/firebase/user.service';
 import { LanguageService } from '../services/language/language.service';
+import { StorageService } from '../services/storage/storage.service';
 
 @Component({
   selector: 'app-view-user',
@@ -133,6 +134,7 @@ export class ViewUserComponent {
   isReject = false;
   theObservation = '';
   idOfItem = '';
+  isPDF = false;
 
   constructor(
     private router: Router,
@@ -142,6 +144,7 @@ export class ViewUserComponent {
     private videoService: VideosService,
     private userServ : UsersService,
      private languageChange: LanguageService, 
+        private firebaseStorageService: StorageService,
   ) {}
 
 
@@ -503,6 +506,31 @@ beginValid(val: any)
 {
   this.theId = val
   this.getvideosByUser(val)
+}
+
+downBack(bal: string)  
+{
+
+  let cal = "diplomes"
+
+  this.firebaseStorageService.downloadFile(bal, cal).then
+  (
+    ()=> {
+      console.log("telechargement terminer");
+      
+    }
+  )
+  .catch(
+    () => {
+
+    }
+  )
+
+}
+
+
+contientPDF(lien: string):  boolean  {
+  return lien.includes('.pdf')
 }
 
 
