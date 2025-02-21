@@ -2,12 +2,12 @@
 
     <div class="card-in" *ngIf="!switch" >
 
-        <h1>Selection</h1>
+        <h1>{{ 'viewUser.btnsect' | translate }}  </h1>
 
          <div class="titles">
-            <span  [ngClass]="{'titleSelect': telVisible ==0}" > Informations Personnelles</span>
-            <span  [ngClass]="{'titleSelect': telVisible ==1}" > Informations professionnelles</span>
-            <span  [ngClass]="{'titleSelect': telVisible ==2}" > Les documents </span>
+            <span  [ngClass]="{'titleSelect': telVisible ==0}" > {{ 'edit.tittleInfo' | translate }}  </span>
+            <span  [ngClass]="{'titleSelect': telVisible ==1}" > {{ 'edit.tittleInfoP' | translate }} </span>
+            <span  [ngClass]="{'titleSelect': telVisible ==2}" > {{ 'edit.tittleDoc' | translate }}  </span>
 
          </div>
         
@@ -21,24 +21,24 @@
 
            <div class="groupInfos"  [formGroup]="selectform"  >
 
-            <h2>  Ajouter vos informations personnelles</h2>
-            <label for="">Lieu de naissance</label>
+            <h2> {{ 'edit.tittleInfoH' | translate }} </h2>
+            <label for=""> {{ 'viewUser.lNaissance' | translate }}</label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
           
-            <label for=""> Pays de naissance</label>
+            <label for=""> {{ 'edit.paysNaissance' | translate }} </label>
              <select  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!='Votre pays de naissance'}"  formControlName="paysNaissance" >
                
                 <option  [value]="currentUser.paysNaissance"> {{currentUser.paysNaissance}} </option>
                 <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
 
                </select>
-            <label for=""> Date de naissance</label>
+            <label for=""> {{ 'viewUser.dNaissance' | translate }} </label>
             <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
           
         
             <div class="groupe_Parent">
 
-                <label for="">Père</label>
+                <label for=""> {{ 'viewUser.pere' | translate }}</label>
 
                 <div class="groupeNomsPrenoms">
                     <input class='theNom' type="text" [ngClass]="{'error': selectform.controls['pereName'].invalid && selectform.controls['pereName'].value!=''}"  formControlName="pereName"   placeholder="Nom de votre Père" >
@@ -52,7 +52,7 @@
 
                 <div class="groupe_Parent">
 
-                    <label for="">Mère</label>
+                    <label for=""> {{ 'viewUser.mere' | translate }} </label>
     
                     <div class="groupeNomsPrenoms">
                          
@@ -65,7 +65,7 @@
                     </div>
          <div >
 
-            <label for="">Votre Pays de résidence</label>
+            <label for=""> {{ 'edit.Textpays' | translate }}</label>
         
             <select  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!='Votre dernière Résidence (Pays)'}"  formControlName="derniereResidencePays" >
                
@@ -73,16 +73,16 @@
                 <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
 
                </select> 
-            <label for="">ville/village de résidence</label>
+            <label for=""> {{ 'edit.Textville' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" placeholder="ville/village de résidence" >
            
-            <label for="">Quartier de résidence</label>
+            <label for=""> {{ 'edit.Textville' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidenceVillage'].invalid && selectform.controls['derniereResidenceVillage'].value!=''}"  formControlName="derniereResidenceVillage" placeholder="Quartier de résidence" >
            
-            <label for="">Qualification professionnelle</label>
+            <label for=""> {{ 'viewUser.qprofessionnelle' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['qualiProfession'].invalid && selectform.controls['qualiProfession'].value!=''}"  formControlName="qualiProfession" placeholder="Qualification professionnelle" >
           
-            <label for="">Profession Principale</label>
+            <label for=""> {{ 'viewUser.pprofession' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" placeholder="Profession Principale" >
            
            
@@ -93,7 +93,7 @@
 
                </select>
 
-               <label for="">Nombre d'enfant</label>
+               <label for=""> {{ 'edit.Textenfant' | translate }}</label>
             <input  type="number"  [ngClass]="{'error': selectform.controls['nbrEnfants'].invalid && selectform.controls['nbrEnfants'].value!=''}"  formControlName="nbrEnfants" placeholder="Nombre d'enfant" >
            
             <div  class="lecheck">
@@ -101,15 +101,15 @@
                     'error': selectform.controls['dHonneur'].invalid && selectform.controls['dHonneur'].value!='', 
                     'checked':  selectform.controls['dHonneur'].value === true} " 
                      formControlName="dHonneur">
-                     Je déclare que je n’ai pas de casier criminel, que j’ai l’aptitude médicale apte au travail
-                      et j’ai une connaissance d’une langue circulation internationale
+                     {{ 'edit.Textdeclaration' | translate }} 
+                    
               
                </div>
 
 
                <button
                  [disabled]="!selectform.get('dHonneur')?.valid "  
-                class="boutton"  (click)="suivant(1)"> Suivant </button> 
+                class="boutton"  (click)="suivant(1)">  {{ 'edit.btnSuiv' | translate }} </button> 
              
            </div>
 
@@ -121,22 +121,22 @@
            <div class="groupInfos" *ngIf="telVisible==1" >
 
 
-                  <h2>  Ajouter vos experiences professionnelles</h2>
+                  <h2> {{ 'viewUser.exprofessionnelle' | translate }}  </h2>
 
                   <div  *ngIf="isValExperience" >   
                     
                     <div  *ngFor="let item of currentUser.expProfesionnel; let i = index" >
 
-                        <label for="">L'entrerise</label> 
+                        <label for=""> {{ 'viewUser.entreprise' | translate }}</label> 
                         <input  type="text"  [(ngModel)]="item.entreprise" placeholder="L'entrerise" >
   
-                        <label for="">Poste occupé</label>
+                        <label for=""> {{ 'edit.pocupe' | translate }}</label>
                         <input  type="text"  [(ngModel)]="item.posteOccupe" placeholder="Poste occupé" >
   
-                        <label for="">La date de début</label>
+                        <label for="">{{ 'viewUser.ddebut' | translate }} </label>
                         <input  type="date" [(ngModel)]="item.dateDebut" placeholder="La date de début" >
   
-                        <label for="">La date fin</label>
+                        <label for=""> {{ 'viewUser.dfin' | translate }} </label>
                         <input  type="date"  [(ngModel)]=" item.datefin" placeholder="La date fin" >
   
                                             
@@ -145,7 +145,7 @@
   
                     </div>
 
-                    <button  class="boutton"  (click)="activeAjoutExperience()"> nouvel Ajout </button> 
+                    <button  class="boutton"  (click)="activeAjoutExperience()">{{ 'edit.najoute' | translate }} </button> 
 
                   </div>
 
@@ -156,13 +156,13 @@
                 <input  type="date"  [(ngModel)]="dateDebut" placeholder="La date de début" >
                 <input  type="date"  [(ngModel)]="datefin" placeholder="La date fin" >
 
-                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> Ajouter </button>
+                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> {{ 'finance.btnAjoute' | translate }} </button>
                   </div>
 
                   <div class="lesboutonSP">
 
                       <button  class="boutton1"  (click)="precedent(0)"> Précédent </button> 
-                      <button [disabled]="!valAjout" class="boutton"  (click)="suivant(2)"> Suivant </button> 
+                      <button [disabled]="!valAjout" class="boutton"  (click)="suivant(2)">{{ 'edit.btnSuiv' | translate }} </button> 
 
                   </div>
 
@@ -174,13 +174,13 @@
 
        <div class="inputs_suivant"  *ngIf="telVisible==2" [formGroup]="selectform" >
 
-          <p>Ajouter les images des differents documents </p>
+          <p>{{ 'edit.textDoc' | translate }} </p>
 
 
          <div>
 
              <div class="cardFils">
-                 <p>le(s) Diplôme(s)</p>
+                 <p>{{ 'edit.docDiplome' | translate }} </p>
                  <mat-progress-bar id="laBarDownload" mode="indeterminate" *ngIf="isUploading"></mat-progress-bar>
 
                  <span (click)="getfils()"> 
@@ -206,7 +206,7 @@
 
 
              <div class="cardFils">
-                 <p>une photo de complete</p>
+                 <p>{{ 'edit.docPhoto' | translate }}</p>
                  <mat-progress-bar id="laBarDownload1" mode="indeterminate" *ngIf="isUploading1"></mat-progress-bar>
 
                  <span (click)="getfils1()"> 
@@ -219,7 +219,7 @@
 
 
              <div class="cardFils">
-                 <p>une photo de vote passeport</p>
+                 <p>{{ 'edit.docPasseport' | translate }} </p>
             
                  <mat-progress-bar id="laBarDownload2" mode="indeterminate" *ngIf="isUploading2"></mat-progress-bar>
                  <span (click)="getfils2()"> 
@@ -231,7 +231,7 @@
 
 
              <div class="cardFils">
-                 <p>une photo de vote cassier judicière</p>
+                 <p>{{ 'edit.docCassier' | translate }} </p>
                    
                  <mat-progress-bar id="laBarDownload3" mode="indeterminate"  *ngIf="isUploading3"></mat-progress-bar>
 
@@ -254,9 +254,9 @@
     
          <div class="lesboutonSP">
         
-             <button  class="boutton1"  (click)="precedent(1)"> Précédent </button> 
+             <button  class="boutton1"  (click)="precedent(1)">{{ 'edit.btnPrecede' | translate }}  </button> 
             
-             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="editSelect()">Soumettre</button> 
+             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="editSelect()">{{ 'coursAnglais.btnSoumettre' | translate }}</button> 
         
          </div>
            

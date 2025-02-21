@@ -10,6 +10,7 @@ import { UsersService } from '../services/firebase/user.service';
 import { map } from 'rxjs';
 import { coachingService } from '../services/coaching/coaching.service';
 import { anglaireService } from '../services/anglaire/anglaire.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -1647,10 +1648,12 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     private cdr: ChangeDetectorRef,
     private coachService: coachingService,
     private anglaireService: anglaireService,
+    private languageChange: LanguageService, 
   ) {}
 
 
   async ngOnInit() {
+    this.languageChange.getLanguage()
     this.currentUser = this.localstorageService.getCurrentUser();  
     
   await  this.getusers();   

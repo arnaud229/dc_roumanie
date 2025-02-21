@@ -3,11 +3,11 @@
     
     <div class="card-in"  [formGroup]="videoform">
 
-        <h1>Cours d'anglaire </h1>
+        <h1> {{ 'coursAnglais.tittle' | translate }} </h1>
     
-        <input  type="text"  [ngClass]="{'error': videoform.controls['tittre'].invalid && videoform.controls['tittre'].value!=''}"  formControlName="tittre" placeholder="Tittre du cours" >
+        <input  type="text"  [ngClass]="{'error': videoform.controls['tittre'].invalid && videoform.controls['tittre'].value!=''}"  formControlName="tittre" [placeholder]="'coursAnglais.placeholderTittle' | translate " >
       
-        <textarea  [ngClass]="{'error': videoform.controls['description'].invalid && videoform.controls['description'].value!=''}"  formControlName="description" placeholder="Description" rows="6" cols="6"></textarea>
+        <textarea  [ngClass]="{'error': videoform.controls['description'].invalid && videoform.controls['description'].value!=''}"  formControlName="description" [placeholder]=" 'coursAnglais.placeholderDescript' | translate " rows="6" cols="6"></textarea>
      
      
 
@@ -29,7 +29,7 @@
          
 
 
-          <button  id="boutton1"  (click)="ajoutCoursAnglaire()">Soumettre</button> 
+          <button  id="boutton1"  (click)="ajoutCoursAnglaire()">{{ 'coursAnglais.btnSoumettre' | translate }}</button> 
      
     </div>
 

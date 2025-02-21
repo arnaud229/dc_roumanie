@@ -36,6 +36,7 @@
         "matrimonial": "Marital status:",
         "matrimonialSans": "childless",
         "matrimonialAvec": "whith",
+        "matrimonialEnfant": "child",
         "NEtude": "Level of study:",
         "metier": "Job:",
         "aDiplome": "Year of graduation:",
@@ -81,5 +82,124 @@
         "btnpresect": "Preselection",
         "btnsect": "Selection",
         "aucunV": "There is no validated activity presentation video"
+    },
+
+    "dashboard": 
+    {
+        "btndettes": "Debts",
+        "btnremboursement": "Refunds",
+        "btnvideos": "Videos",
+        "btnvideosNV": "Unvalidated videos",
+        "btnvideosA": "Approved videos",
+        "btnvideosV": "Validated videos",
+        "btnvideosR": "Rejected Videos",
+        "btncoach": "Coaching",
+        "btncoursA": "English",
+        "btnEF": "Financial Statement",
+        "btnDeconexion": "LogOut",
+        "telephone": "Phone Number",
+        "nationalite": "Nationality",
+        "parrains": "Godfather/Godmother",
+        "dpasseport": "passport availability",
+        "action": "Actions",
+        "btnDette": "Add a Debt",
+        "btnRem": "Add a Refund",
+        "aucunUser": "No users are registered yet.",
+        "aucunVideo": "No activity presentation video for this traveler",
+        "montantdu": "Amount Of",
+        "libele": " Label",
+        "Admin": "Admin",
+        "montantRe": "Amount Refunded",
+        "datePaie": "Date",
+        "All": "All",
+        "textAny": "There is no activity presentation video",
+        "textAnyV": "There is no validated activity presentation video",
+        "textAnyP": "There is no activity presentation video to propose to a partner",
+        "textAnyR": "There are no rejected activity presentation videos",
+        "textAnyS": "No statistics yet",
+        "textAnyAnglais": "No English lessons registered yet",
+        "textAncoachS": "No coaching classes registered yet",
+        "btnDelete": "Delete",
+        "Etatfinance": "Financial Statement",
+        "btnAjout": "Add a course", 
+        "videoU": "My videos",
+        "CoursCU": "Coaching",
+        "CoursAU": "English classes ",
+        "statut": "Status ",
+        "statutF": "Financial Status",
+        "recuPre": "Did you have your pre-registration receipts?",
+        "pasPreselect": "you had not yet validated your Preselection?",
+        "pasSelect": "you had not yet validated your selection",
+        "pasVideo": "you had no activity preset videos",
+        "pasCoursC": "No coaching courses have been added yet.",
+        "pasCoursA": "No English courses have been added yet.",
+        "pasPret": " you have not taken out any loan yet",
+        "dResidence": "Last residence",
+        "btnVideo": "Add a video"
+
+    },
+
+    "coursAnglais":
+    {
+        "tittle": "English courses",
+        "placeholderTittle": "Course Title",
+        "placeholderDescript": "Description",
+        "btnSoumettre": "Submit"
+
+    },
+    "coursCoach":
+    {
+        "tittle": "Coaching courses",
+        "placeholderTittle": "Course Title",
+        "placeholderDescript": "Description",
+        "btnSoumettre": "Submit"
+
+    },
+    "finance":
+    {
+        "tittleDette": "Create a debt",
+        "tittleDetteEdit": "Edit a debt",
+        "tittleRembEdit": "Edit a refund",
+        "textDette": "Please fill in the fields to register a new debt for a traveler",
+        "placeholderLibele": "Label",
+        "placeholderLibeleRemb": "Label",
+        "choixProfil": "choose profile",
+        "montant": "Amount",
+        "dateDette": "Date",
+        "dateRemb": "Date",
+        "btnAjoute": "Add",
+        "tittleRemb": "Create a refund",
+        "textRemb": "Please fill in the fields to register a new refund for a traveler"
+    },
+
+    "edit":
+    {
+        "textPreselect": "Please change your information for pre-selection",
+        "textRecus": "did you have your pre-selection receipts?",
+        "textFilsRecus": "Add images of pre-selected receipts",
+        "btnPrecede": "Previous",
+        "tittleInfo": "Personal Information",
+        "tittleInfoP": " Professional information",
+        "tittleDoc": "The documents",
+        "tittleInfoH": "Add your personal information",
+        "paysNaissance": "Country of birth",
+        "Textpays": "Your Country of Residence",
+        "Textville": "city/village of residence",
+        "Textquaert": "Residential area",
+        "Textenfant": "Number of children",
+        "btnSuiv": "Next",
+        "pocupe": "Position held",
+        "najoute": "new Add",
+        "docDiplome": "The Diploma(s)",
+        "docPhoto": "A complete photo",
+        "docCassier": "A photo of your criminal record",
+        "docPasseport": "A photo of your passport",
+        "textDoc": "Add images from different documents ",
+        "textResidenceP": "Your Last Residence (Country)",
+        "textExperience": "Add your professional experiences",
+        "textPreselect1": "Please enter your information for pre-selection",
+        "Textdeclaration": "I declare that I have no criminal record, that I am medically fit for work and that I have knowledge of an international language."
     }
+
+
 }

@@ -2,12 +2,12 @@
 
     <div class="card-in" *ngIf="!switch" >
 
-        <h1>Selection</h1>
+        <h1> {{ 'viewUser.btnsect' | translate }}  </h1>
 
          <div class="titles">
-            <span  [ngClass]="{'titleSelect': telVisible ==0}" > Informations Personnelles</span>
-            <span  [ngClass]="{'titleSelect': telVisible ==1}" > Informations professionnelles</span>
-            <span  [ngClass]="{'titleSelect': telVisible ==2}" > Les documents </span>
+            <span  [ngClass]="{'titleSelect': telVisible ==0}" > {{ 'edit.tittleInfo' | translate }} </span>
+            <span  [ngClass]="{'titleSelect': telVisible ==1}" > {{ 'edit.tittleInfoP' | translate }} </span>
+            <span  [ngClass]="{'titleSelect': telVisible ==2}" > {{ 'edit.tittleDoc' | translate }}  </span>
 
          </div>
 
@@ -15,33 +15,33 @@
 
            <div class="groupInfos"  *ngIf="telVisible==0"  [formGroup]="selectform"  >
 
-            <h2>  Ajouter vos informations personnelles</h2>
+            <h2> {{ 'edit.tittleInfoH' | translate }}  </h2>
 
-            <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" placeholder="Lieu de naissance" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['LieuNaissance'].invalid && selectform.controls['LieuNaissance'].value!=''}"  formControlName="LieuNaissance" [placeholder]=" 'viewUser.lNaissance' | translate " >
             <select  [ngClass]="{'error': selectform.controls['paysNaissance'].invalid && selectform.controls['paysNaissance'].value!='Votre pays de naissance'}"  formControlName="paysNaissance" >
                
-                <option  value=""> Votre pays de naissance</option>
+                <option  value="">  {{ 'edit.paysNaissance' | translate }} </option>
                 <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
 
                </select>
 
                <div class="groupeLabel">
-                <label for="">Date de naissance</label>
+                <label for=""> {{ 'viewUser.dNaissance' | translate }} </label>
                 <input  type="date"  [ngClass]="{'error': selectform.controls['dateNaissance'].invalid && selectform.controls['dateNaissance'].value!=null}"  formControlName="dateNaissance" placeholder="Date de naissance" >
                 
                </div>
 
-        <input  type="text"  [ngClass]="{'error': selectform.controls['nPasseport'].invalid && selectform.controls['nPasseport'].value!=''}"  formControlName="nPasseport" placeholder="Num de votre passeport">
-            <input  type="text"  [ngClass]="{'error': selectform.controls['lieuPasseport'].invalid && selectform.controls['lieuPasseport'].value!=''}"  formControlName="lieuPasseport" placeholder="Lieu d'établissement de votre passeport">
+        <input  type="text"  [ngClass]="{'error': selectform.controls['nPasseport'].invalid && selectform.controls['nPasseport'].value!=''}"  formControlName="nPasseport" [placeholder]=" 'viewUser.numpasseport' | translate ">
+            <input  type="text"  [ngClass]="{'error': selectform.controls['lieuPasseport'].invalid && selectform.controls['lieuPasseport'].value!=''}"  formControlName="lieuPasseport" [placeholder]=" 'viewUser.lemission' | translate ">
           
             <div class="groupeLabel">
-                <label for="">Date emition du passeport</label>
+                <label for=""> {{ 'viewUser.demission' | translate }}</label>
                 <input  type="date"  [ngClass]="{'error': selectform.controls['dateEmiPasseport'].invalid && selectform.controls['dateEmiPasseport'].value!=null}"  formControlName="dateEmiPasseport" placeholder="Date emition du passeport" >
                
             </div>
 
             <div class="groupeLabel">
-                <label for="">Date d'expiration du passeport</label>
+                <label for=""> {{ 'viewUser.dexpiration' | translate }}</label>
                 <input  type="date"  [ngClass]="{'error': selectform.controls['dateExpPasseport'].invalid && selectform.controls['dateExpPasseport'].value!=null}"  formControlName="dateExpPasseport" placeholder="Date d'expiration du passeport" >
               
             </div>
@@ -51,21 +51,21 @@
 
             <div class="groupe_Parent" >
 
-                <label for="">Père</label>
+                <label for=""> {{ 'viewUser.pere' | translate }}</label>
 
                 <div class="groupeNomsPrenoms">      
-                    <input class='theNom' type="text"  [ngClass]="{'error': selectform.controls['pereName'].invalid && selectform.controls['pereName'].value!=''}"  formControlName="pereName"  placeholder="Nom de votre Père" >
-                    <input class='theNom' type="text"     [ngClass]="{'error': selectform.controls['perePrenoms'].invalid && selectform.controls['perePrenoms'].value!=''}"  formControlName="perePrenoms" placeholder="Prénoms de votre père" >
+                    <input class='theNom' type="text"  [ngClass]="{'error': selectform.controls['pereName'].invalid && selectform.controls['pereName'].value!=''}"  formControlName="pereName"  [placeholder]="'singnup.placeholderNom' | translate " >
+                    <input class='theNom' type="text"     [ngClass]="{'error': selectform.controls['perePrenoms'].invalid && selectform.controls['perePrenoms'].value!=''}"  formControlName="perePrenoms" [placeholder]="'singnup.placeholderPrenom' | translate " >
                 </div>
                 </div>
 
                 <div class="groupe_Parent"  >
 
-                    <label for="">Mère</label>
+                    <label for=""> {{ 'viewUser.mere' | translate }} </label>
     
                     <div class="groupeNomsPrenoms">      
-                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['mereName'].invalid && selectform.controls['mereName'].value!=''}"  formControlName="mereName"  placeholder="Nom de votre mère" >
-                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['merePrenoms'].invalid && selectform.controls['merePrenoms'].value!=''}"  formControlName="merePrenoms" placeholder="Prénoms de votre mère" >
+                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['mereName'].invalid && selectform.controls['mereName'].value!=''}"  formControlName="mereName"  [placeholder]="'singnup.placeholderNom' | translate" >
+                        <input class='theNom' type="text"   [ngClass]="{'error': selectform.controls['merePrenoms'].invalid && selectform.controls['merePrenoms'].value!=''}"  formControlName="merePrenoms" [placeholder]="'singnup.placeholderPrenom' | translate " >
                    
                     </div>    
              </div>
@@ -74,59 +74,57 @@
            
             <select  [ngClass]="{'error': selectform.controls['derniereResidencePays'].invalid && selectform.controls['derniereResidencePays'].value!='Votre dernière Résidence (Pays)'}"  formControlName="derniereResidencePays" >
                
-                <option  value=""> Votre dernière Résidence (Pays)</option>
+                <option  value="">{{ 'edit.textResidenceP' | translate }} </option>
                 <option *ngFor="let item of listCountries" [value]="item">  {{item}} </option>
 
                </select>
            
-            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" placeholder="ville/village de résidence" >
-            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidenceVillage'].invalid && selectform.controls['derniereResidenceVillage'].value!=''}"  formControlName="derniereResidenceVillage" placeholder="Quartier de résidence" >
-            <input  type="text"  [ngClass]="{'error': selectform.controls['qualiProfession'].invalid && selectform.controls['qualiProfession'].value!=''}"  formControlName="qualiProfession" placeholder="Qualification professionnelle" >
-            <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" placeholder="Profession Principale" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidence'].invalid && selectform.controls['derniereResidence'].value!=''}"  formControlName="derniereResidence" [placeholder]="'edit.Textville' | translate" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['derniereResidenceVillage'].invalid && selectform.controls['derniereResidenceVillage'].value!=''}"  formControlName="derniereResidenceVillage" [placeholder]="'edit.Textquaert' | translate " >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['qualiProfession'].invalid && selectform.controls['qualiProfession'].value!=''}"  formControlName="qualiProfession" [placeholder]="'edit.qprofessionnelle' | translate" >
+            <input  type="text"  [ngClass]="{'error': selectform.controls['pricipalProfession'].invalid && selectform.controls['pricipalProfession'].value!=''}"  formControlName="pricipalProfession" [placeholder]="'edit.pprofession' | translate " >
            
             <select  [ngClass]="{'error': selectform.controls['langueParler'].invalid && selectform.controls['langueParler'].value!='Langue étrangère parler'}"  formControlName="langueParler" >
                
-                <option  value=""> Langue étrangère parler </option>
+                <option  value=""> {{ 'viewUser.lparlee' | translate }}  </option>
                 <option *ngFor="let item of listLangue" [value]="item">  {{item}} </option>
 
                </select>
 
-            <input  type="number"  [ngClass]="{'error': selectform.controls['nbrEnfants'].invalid }"  formControlName="nbrEnfants" placeholder="Nombre d'enfant" >
+            <input  type="number"  [ngClass]="{'error': selectform.controls['nbrEnfants'].invalid }"  formControlName="nbrEnfants" [placeholder]="'edit.Textenfant' | translate " >
            
             <div  class="lecheck">
                 <input id="lecheck_input" type="checkbox"  [ngClass]="{
                     'error': selectform.controls['dHonneur'].invalid && selectform.controls['dHonneur'].value!='', 
                     'checked':  selectform.controls['dHonneur'].value === true} " 
                      formControlName="dHonneur">
-                     Je déclare que je n’ai pas de casier criminel, que j’ai l’aptitude médicale apte au travail
-                      et j’ai une connaissance d’une langue circulation internationale
-              
+                     {{ 'edit.Textdeclaration' | translate }} 
                </div>
 
 
-               <button [disabled]="!selectform.get('dHonneur')?.valid"  class="boutton"  (click)="suivant(1)"> Suivant </button> 
+               <button [disabled]="!selectform.get('dHonneur')?.valid"  class="boutton"  (click)="suivant(1)">  {{ 'edit.btnSuiv' | translate }} </button> 
              
            </div>
 
            <div class="groupInfos" *ngIf="telVisible==1" >
 
-            <h2>  Ajouter vos experiences professionnelles</h2>
+            <h2> {{ 'edit.textExperience' | translate }} </h2>
 
             <div>
                 
-                <input  type="text"  [(ngModel)]="Lentreprise" placeholder="L'entrerise" >
-                <input  type="text"  [(ngModel)]="posteOccupe" placeholder="Poste occupé" >
-                <input  type="date" #dateInput [(ngModel)]="dateDebut" placeholder="La date de début" >
-                <input  type="date"  [(ngModel)]="datefin" placeholder="La date fin" >
+                <input  type="text"  [(ngModel)]="Lentreprise" [placeholder]="'viewUser.entreprise' | translate" >
+                <input  type="text"  [(ngModel)]="posteOccupe" [placeholder]="'edit.pocupe' | translate " >
+                <input  type="date" #dateInput [(ngModel)]="dateDebut" [placeholder]="'viewUser.ddebut' | translate " >
+                <input  type="date"  [(ngModel)]="datefin" [placeholder]="'viewUser.dfin' | translate " >
 
-                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> Ajouter </button> 
+                <button [disabled]="!datefin" class="boutton"  (click)="ajout()"> {{ 'finance.btnAjoute' | translate }} </button> 
 
             </div>
 
             <div class="lesboutonSP">
 
-                <button  class="boutton1"  (click)="precedent(0)"> Précédent </button> 
-                <button [disabled]="!valAjout" class="boutton"  (click)="suivant(2)"> Suivant </button> 
+                <button  class="boutton1"  (click)="precedent(0)"> {{ 'edit.btnPrecede' | translate }} </button> 
+                <button [disabled]="!valAjout" class="boutton"  (click)="suivant(2)">  {{ 'edit.btnSuiv' | translate }} </button> 
 
             </div>
 
@@ -138,13 +136,13 @@
 
        <div class="inputs_suivant"  *ngIf="telVisible==2" [formGroup]="selectform" >
 
-          <p>Ajouter les images des differents documents </p>
+          <p> {{ 'edit.textDoc' | translate }} </p>
 
 
          <div>
 
              <div class="cardFils">
-                 <p>le(s) Diplôme(s)</p>
+                 <p> {{ 'edit.docDiplome' | translate }} </p>
                  <mat-progress-bar id="laBarDownload" mode="determinate" [value]="progressValue" *ngIf="isUploading"></mat-progress-bar>
 
                  <span (click)="getfils()"> 
@@ -153,7 +151,7 @@
              </div>
 
              <div class="cardFils">
-                 <p>une photo de complete</p>
+                 <p> {{ 'edit.docPhoto' | translate }}</p>
                  <mat-progress-bar id="laBarDownload1" mode="determinate" [value]="progressValue1" *ngIf="isUploading1"></mat-progress-bar>
 
                  <span (click)="getfils1()"> 
@@ -162,7 +160,7 @@
              </div>
 
              <div class="cardFils">
-                 <p>une photo de vote passeport</p>
+                 <p> {{ 'edit.docPasseport' | translate }}</p>
             
                  <mat-progress-bar id="laBarDownload2" mode="determinate" [value]="progressValue2" *ngIf="isUploading2"></mat-progress-bar>
                  <span (click)="getfils2()"> 
@@ -171,7 +169,7 @@
              </div>
 
              <div class="cardFils">
-                 <p>une photo de votre cassier judicière</p>
+                 <p> {{ 'edit.docCassier' | translate }} </p>
                    
                  <mat-progress-bar id="laBarDownload3" mode="determinate" [value]="progressValue3"  *ngIf="isUploading3"></mat-progress-bar>
 
@@ -191,9 +189,9 @@
     
          <div class="lesboutonSP">
         
-             <button  class="boutton1"  (click)="precedent(1)"> Précédent </button> 
+             <button  class="boutton1"  (click)="precedent(1)"> {{ 'edit.btnPrecede' | translate }} </button> 
             
-             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="select()">Soumettre</button> 
+             <button [disabled]="selectform.get('fil_casierJudiciere')?.value === null"  class="boutton"  (click)="select()"> {{ 'coursAnglais.btnSoumettre' | translate }}</button> 
         
          </div>
            

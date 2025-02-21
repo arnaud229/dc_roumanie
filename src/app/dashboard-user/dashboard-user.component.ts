@@ -10,6 +10,7 @@ import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { FinancesService } from '../services/Finances/finances.service';
 import { coachingService } from '../services/coaching/coaching.service';
 import { anglaireService } from '../services/anglaire/anglaire.service';
+import { LanguageService } from '../services/language/language.service';
 // import { Ng2GoogleChartsModule, ChartType } from 'ng2-google-charts';
 
 
@@ -206,10 +207,13 @@ public pieChart: GoogleChartInterface = {
     private videoService: VideosService,
     private coachService: coachingService,
     private anglaireService: anglaireService,
+    private languageChange: LanguageService, 
+
   ) {}
 
 
   ngOnInit() {
+    this.languageChange.getLanguage();
   this.getTotalsRemboursements();
   this.getTotalsDettes();
    let user = this.localstorageService.getCurrentUser()

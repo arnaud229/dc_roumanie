@@ -208,7 +208,7 @@ import { AuthService } from "../auth/auth.service";
     }
   }
 
-  private extractFileNameFromUrl(url: string): string {
+   extractFileNameFromUrl(url: string): string {
     // Extraire le nom du fichier de l'URL
     const matches = url.match(/[^/?#]+(?=([^.]\w{3,4}\b)|$)/);
     return matches ? matches[0] : 'document';

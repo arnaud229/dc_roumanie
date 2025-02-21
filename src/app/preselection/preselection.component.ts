@@ -8,6 +8,7 @@ import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/compat
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { StorageService } from '../services/storage/storage.service';
 import { UtilsService } from '../services/utils/utilis.service';
+import { LanguageService } from '../services/language/language.service';
 
 
 
@@ -52,7 +53,9 @@ export class PreselectionComponent {
     private firebaseStorageService: StorageService,
     public localstorageService: LocalstorageService,
     public utilsService: UtilsService,
+     private languageChange: LanguageService, 
   ) {
+    this.languageChange.getLanguage();
     this.listPrefixe =  this.utilsService.getListPrefixe()
     this.listReligion = this.utilsService.getListReligion();
     this.init_form();

@@ -2,36 +2,36 @@
 
     <div class="card-in" *ngIf="!switch" >
 
-        <h1>Pré selection</h1>
+        <h1>{{ 'viewUser.btnpresect' | translate }} </h1>
 
         
-  <p class="petit_texte"> veuillez entrer vos informations pour la préselection </p>
+  <p class="petit_texte"> {{ 'edit.textPreselect1' | translate }} </p>
         
 
         <div class="inputs"  [formGroup]="preselectform" >
             
-            <input  type="number"  [ngClass]="{'error': preselectform.controls['age'].invalid || preselectform.controls['age'].value>120}"  formControlName="age" placeholder="Age" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['age'].invalid || preselectform.controls['age'].value>120}"  formControlName="age" [placeholder]=" 'viewUser.age' | translate" >
           
-            <select  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
-                <option value=""> Situation Matrimoniale </option>
+            <select  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  [formControlName]="'viewUser.matrimonial' | translate" >
+                <option value=""> {{ 'viewUser.matrimonial' | translate }}</option>
                 <option *ngFor="let item of listMatrimonial" [value]="item">  {{item}} </option>
 
                </select>
 
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['NEtude'].invalid && preselectform.controls['NEtude'].value!=''}"  formControlName="NEtude" placeholder="Niveau d'étude" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['metier'].invalid && preselectform.controls['metier'].value!=''}"  formControlName="metier" placeholder="Métier" >
-            <input  type="number"  [ngClass]="{'error': preselectform.controls['aDiplome'].invalid || preselectform.controls['aDiplome'].value>=2026}"  formControlName="aDiplome" placeholder="Année de Diplôme" >
-            <input  type="number"  [ngClass]="{'error': preselectform.controls['dApprentissage'].invalid || preselectform.controls['dApprentissage'].value>=60}"  formControlName="dApprentissage" placeholder="Durée d'apprentissage" >
-            <input  type="number"  [ngClass]="{'error': preselectform.controls['aExperience'].invalid || preselectform.controls['aExperience'].value>=50}"  formControlName="aExperience" placeholder="Année d'experience" >
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['ePrecedent'].invalid && preselectform.controls['ePrecedent'].value!=''}"  formControlName="ePrecedent" placeholder="Employeur précédent" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['NEtude'].invalid && preselectform.controls['NEtude'].value!=''}"  formControlName="NEtude" [placeholder]=" 'viewUser.NEtude' | translate" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['metier'].invalid && preselectform.controls['metier'].value!=''}"  formControlName="metier" [placeholder]="'viewUser.metier' | translate" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['aDiplome'].invalid || preselectform.controls['aDiplome'].value>=2026}"  formControlName="aDiplome" [placeholder]="'viewUser.aDiplome' | translate " >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['dApprentissage'].invalid || preselectform.controls['dApprentissage'].value>=60}"  formControlName="dApprentissage" [placeholder]="'viewUser.dapprentis' | translate" >
+            <input  type="number"  [ngClass]="{'error': preselectform.controls['aExperience'].invalid || preselectform.controls['aExperience'].value>=50}"  formControlName="aExperience" [placeholder]="'viewUser.aprof' | translate" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['ePrecedent'].invalid && preselectform.controls['ePrecedent'].value!=''}"  formControlName="ePrecedent" [placeholder]=" 'viewUser.eprecedent' | translate " >
             <!-- <input  type="boolean"  [ngClass]="{'error': preselectform.controls['passport'].invalid && preselectform.controls['passport'].value!=''}"  formControlName="passport" placeholder="Passeport" > -->
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['nationalite'].invalid && preselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" placeholder="Nationalité" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['nationalite'].invalid && preselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" [placeholder]="'viewUser.nationalite' | translate" >
           
                       
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" [placeholder]="'viewUser.parrain' | translate" >
              
             <select  [ngClass]="{'error': preselectform.controls['religion'].invalid && preselectform.controls['religion'].value!='votre réligion'}"  formControlName="religion" >
-                <option value=""> votre réligion </option>
+                <option value=""> {{ 'viewUser.religion' | translate }} </option>
                 <option *ngFor="let item of listReligion" [value]="item">  {{item}} </option>
 
                </select>
@@ -45,13 +45,13 @@
                
                     <select  id='code_pays'   [(ngModel)]="pre" placeholder="votre  prefixe"   >
                
-                        <option value=""> votre  prefixe </option> 
+                        <option value=""> {{ 'singnup.prefixe' | translate }} </option> 
                         <option *ngFor="let item of listPrefixe" [value]="item.prefix"> {{item.name}} ({{item.prefix}}) </option>
         
                        </select>
                
                 </div>
-                  <input id= 'input_number' type="text"  [(ngModel)]="edite" placeholder="Numéro Whatsapp" >
+                  <input id= 'input_number' type="text"  [(ngModel)]="edite" [placeholder]="'viewUser.cwhatsapp' | translate" >
         
                 </div>
 
@@ -61,24 +61,22 @@
                     <div  class="lecheck">
                
                         <input id="lecheck_input1" type="checkbox"  [ngClass]="{'checked': preselectform.controls['passport'].value}"  formControlName="passport" placeholder="Passeport" >
-                       Aviez-vous un Passeport en cours de validité ?
-                      
+                        {{ 'viewUser.PPdispo' | translate }}                      
                        </div>
         
                    <div  class="lecheck">
                     <input id="lecheck_input" type="checkbox"  [ngClass]="{ 'checked':  preselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
-                    êtes-vous immediatement disponible ?
-                  
+                    {{ 'viewUser.libre' | translate }}                  
                    </div>
 
                    <div  class="lecheck">
                     <input id="lecheck_input" type="checkbox"  [ngClass]="{ 'checked':  preselectform.controls['noFilRecu'].value} "  formControlName="noFilRecu">
-                    aviez-vous vos reçus de préselection ?
+                    {{ 'dashboard.recuPre' | translate }}
                   
                    </div>
                   
          
-                        <button  class="boutton" [disabled]="preselectform.get('ldtep2')?.value === false "   (click)="suivant()"> Suivant </button> 
+                        <button  class="boutton" [disabled]="preselectform.get('ldtep2')?.value === false "   (click)="suivant()">{{ 'edit.btnSuiv' | translate }} </button> 
                       
 
                 </div>
@@ -95,7 +93,7 @@
 <div  class="content_preImg" *ngIf="switch">
     <div class="inputs_suivant"   [formGroup]="preselectform" >
 
-          <h2>Ajouter les images des reçus de la presélection</h2>
+          <h2> {{ 'edit.textFilsRecus' | translate }} </h2>
 
 
           <div class="card-inputFils" (click)="getfils()">
@@ -118,8 +116,8 @@
         
         <div class="lesboutonSP">
 
-            <button  class="boutton1"  (click)="precedent()"> Précédent </button> 
-            <button  id="boutton1"  (click)="preselect()">Soumettre</button> 
+            <button  class="boutton1"  (click)="precedent()"> n{{ 'edit.btnPrecede' | translate }}  </button> 
+            <button  id="boutton1"  (click)="preselect()"> {{ 'coursAnglais.btnSoumettre' | translate }}</button> 
             
         </div>
 

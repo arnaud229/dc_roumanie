@@ -511,7 +511,7 @@ beginValid(val: any)
 downBack(bal: string)  
 {
 
-  let cal = "diplomes"
+  let cal = this.firebaseStorageService.extractFileNameFromUrl(bal);
 
   this.firebaseStorageService.downloadFile(bal, cal).then
   (

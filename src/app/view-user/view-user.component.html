@@ -300,10 +300,25 @@
 
             <h1> {{ 'viewUser.rfils' | translate }}  </h1>
 
-            <div class="groupViewImages"  >
+            <div class="groupViewImages" *ngFor="let item of currentUser.fils_recus "   >
 
-                <img [src]="item" alt="" *ngFor="let item of currentUser.fils_recus " >
+                <div class="plusFils" *ngIf="currentUser.fils_recus.length > 1 ">
+                    <img id="imgplus" [src]="item" alt="" >
+                    <img class="iddownImg" src="./../../assets/downicon.png" alt="" (click)="downBack(item )" >
+                  
 
+                </div>
+
+                <div class="plusFilsSolo" *ngIf="currentUser.fils_recus.length <= 1 ">
+                    <img id="imgplus"  [src]="item" alt=""  >
+                    <img id="iddownImgSolo" src="./../../assets/downicon.png" alt="" (click)="downBack(item )" >
+
+                </div>
+
+             
+               
+
+               
             </div>
 
         </div>
@@ -314,7 +329,24 @@
 
             <div class="groupViewImages"  >
                 <div  *ngFor="let item of currentUser.fils_diplome ">
-                    <img [src]="item" alt="" >
+
+                    <div *ngIf="!contientPDF(item)">
+
+                        
+                    <div class="plusFils"  *ngIf="currentUser.fils_diplome.length > 1 ">
+                        <img id="imgplus" [src]="item" alt="" >
+                        <img id="iddownImg" src="./../../assets/downicon.png" alt="" (click)="downBack(item )" >
+
+                    </div>
+
+                    <div class="plusFilsSolo" *ngIf="currentUser.fils_diplome.length <= 1 ">
+                        <img id="imgplus"  [src]="item" alt=""  >
+                        <img id="iddownImgSolo" src="./../../assets/downicon.png" alt="" (click)="downBack(item )" >
+    
+                    </div>
+
+                    </div>
+
 
                     <div class="groupePdf"  *ngIf="contientPDF(item)" >
                      
@@ -338,7 +370,11 @@
 
             <div class="groupViewImages"  >
 
-                <img [src]="currentUser.fil_photo " alt=""  >
+                <div class="plusFilsSolo" >
+                    <img id="imgplus"  [src]="currentUser.fil_photo " alt=""  >
+                    <img id="iddownImgSolo" src="./../../assets/downicon.png" alt="" (click)="downBack(currentUser.fil_photo  )" >
+
+                </div>
 
             </div>
 
@@ -352,7 +388,19 @@
 
             <div class="groupViewImages"  >
 
-                <img [src]="currentUser.fil_casierJudiciere " alt=""  >
+                <div class="plusFilsSolo"  *ngIf="!contientPDF(currentUser.fil_casierJudiciere)" >
+                    <img id="imgplus"  [src]="currentUser.fil_casierJudiciere " alt=""  >
+                    <img id="iddownImgSolo" src="./../../assets/downicon.png" alt="" (click)="downBack(currentUser.fil_casierJudiciere  )" >
+
+                </div>
+                
+
+                <div class="groupePdf"  *ngIf="contientPDF(currentUser.fil_casierJudiciere)" >
+                     
+                    <img class="idpdf"  src="./../../assets/pdfIcon.jpg" alt="">
+                    <img class="iddown" src="./../../assets/downicon.png" alt="" (click)="downBack(currentUser.fil_casierJudiciere )" >
+                   
+            </div>
 
             </div>
 
@@ -364,7 +412,18 @@
 
             <div class="groupViewImages"  >
 
-                <img [src]="currentUser.fil_passportPhoto " alt=""  >
+                <div class="plusFilsSolo"  *ngIf="!contientPDF(currentUser.fil_passportPhoto)" >
+                    <img id="imgplus"  [src]="currentUser.fil_passportPhoto " alt=""  >
+                    <img id="iddownImgSolo" src="./../../assets/downicon.png" alt="" (click)="downBack(currentUser.fil_passportPhoto  )" >
+
+                </div>
+
+                <div class="groupePdf"  *ngIf="contientPDF(currentUser.fil_passportPhoto)" >
+                     
+                    <img class="idpdf"  src="./../../assets/pdfIcon.jpg" alt="">
+                    <img class="iddown" src="./../../assets/downicon.png" alt="" (click)="downBack(currentUser.fil_passportPhoto )" >
+                   
+            </div>
 
             </div>
 

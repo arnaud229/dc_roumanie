@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { dette, User } from 'src/models/variables';
 import { UsersService } from '../services/firebase/user.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-edit-dette',
@@ -33,6 +34,7 @@ export class EditDetteComponent {
     public userService: UsersService,
     private Aroute: ActivatedRoute,
     public localstorageService: LocalstorageService,
+     private languageChange: LanguageService, 
    
  
   ) {
@@ -42,6 +44,7 @@ export class EditDetteComponent {
   }
 
   ngOnInit() {
+    this.languageChange.getLanguage();
 
     this.init_form();
     this.getAllUsers();

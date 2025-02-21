@@ -2,10 +2,10 @@
 
     <div class="card-in" >
 
-        <h1>Editer un remboursement</h1>
+        <h1>{{ 'finance.tittleRembEdit' | translate }} </h1>
 
         
-  <p class="petit_texte"> veuillez remplir les champ pour enregistrer un nouveau remboursement pour un voyageur </p>
+  <p class="petit_texte"> {{ 'finance.tittleRembEdit' | translate }} </p>
         
 
         <div class="inputs"  [formGroup]="remboursementform" >
@@ -14,7 +14,7 @@
            
              
             <select  [ngClass]="{'error': remboursementform.controls['user'].invalid && remboursementform.controls['user'].value!='choisir le profil'}"  formControlName="user" >
-              <option value=""> choisir le profil </option>
+              <option value=""> {{theUser.nom}}    {{theUser.prenom}} </option>
               <option *ngFor="let item of listUser" [value]="item">  {{item.nom}}    {{item.prenom}}  </option>
 
              </select> 
@@ -23,7 +23,7 @@
             <input  type="number"  [ngClass]="{'error': remboursementform.controls['dateRemboursement'].invalid }"  formControlName="dateRemboursement" placeholder="Date de la dette" >
        
  
-                <button  class="boutton"  (click)="editRemboursement()">Ajouter</button>               
+                <button  class="boutton"  (click)="editRemboursement()">{{ 'finance.btnAjoute' | translate }}</button>               
 
             </div>
 

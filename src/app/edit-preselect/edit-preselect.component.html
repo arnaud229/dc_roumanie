@@ -2,17 +2,17 @@
 
     <div class="card-in" *ngIf="!switch" >
 
-        <h1>Pré-selection</h1>
+        <h1>{{ 'viewUser.btnpresect' | translate }} </h1>
 
         
-  <p class="petit_texte"> veuillez modifier vos informations pour la préselection </p>
+  <p class="petit_texte"> {{ 'edit.textPreselect' | translate }} </p>
         
 
         <div class="inputs"  [formGroup]="editPreselectform" >
-            <label for="">Age</label>
+            <label for=""> {{ 'viewUser.age' | translate }} </label>
             <input  type="number"  [ngClass]="{'error': editPreselectform.controls['age'].invalid || editPreselectform.controls['age'].value>120}"  formControlName="age" placeholder="Age" >
           
-            <label for="">Situation Matriminiale</label>
+            <label for="">  {{ 'viewUser.matrimonial' | translate }} </label>
             <select   [ngClass]="{'error': editPreselectform.controls['sMatrimoniale'].invalid && editPreselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
                
                 <option value=""> {{currentUser.sMatrimoniale}} </option>
@@ -21,50 +21,51 @@
 
                </select>
 
-               <label for="">Niveau d'étude</label>
+               <label for="">  {{ 'viewUser.NEtude' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': editPreselectform.controls['NEtude'].invalid && editPreselectform.controls['NEtude'].value!=''}"  formControlName="NEtude" placeholder="Niveau d'étude" >
            
-            <label for="">Métier</label>
+            <label for=""> {{ 'viewUser.metier' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': editPreselectform.controls['metier'].invalid && editPreselectform.controls['metier'].value!=''}"  formControlName="metier" placeholder="Métier" >
           
-            <label for="">Année du dîplome</label>
+            <label for=""> {{ 'viewUser.aDiplome' | translate }} </label>
             <input  type="number"  [ngClass]="{'error': editPreselectform.controls['aDiplome'].invalid || editPreselectform.controls['aDiplome'].value>=2026}"  formControlName="aDiplome" placeholder="Année de Diplôme" >
           
-            <label for="">Durée d'apprentissage</label>
+            <label for=""> {{ 'viewUser.dapprentis' | translate }} </label>
             <input  type="number"  [ngClass]="{'error': editPreselectform.controls['dApprentissage'].invalid || editPreselectform.controls['dApprentissage'].value>=60}"  formControlName="dApprentissage" placeholder="Durée d'apprentissage" >
           
-            <label for="">Année d'experience</label>
+            
+            <label for=""> {{ 'viewUser.aprof' | translate }} </label>
             <input  type="number"  [ngClass]="{'error': editPreselectform.controls['aExperience'].invalid || editPreselectform.controls['aExperience'].value>=50}"  formControlName="aExperience" placeholder="Année d'experience" >
           
-            <label for="">Employeur précédant</label>
+            <label for=""> {{ 'viewUser.eprecedent' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': editPreselectform.controls['ePrecedent'].invalid && editPreselectform.controls['ePrecedent'].value!=''}"  formControlName="ePrecedent" placeholder="Employeur précédent" >
             
         
-            <label for="">Nationalité</label>
+            <label for=""> {{ 'viewUser.nationalite' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': editPreselectform.controls['nationalite'].invalid && editPreselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" placeholder="Nationalité" >
           
            
            
 
 
-                <label for="">Parrain</label>
+                <label for="">  {{ 'viewUser.parrain' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': editPreselectform.controls['parrain'].invalid && editPreselectform.controls['parrain'].value!=''}"  formControlName="parrain" placeholder="Parrein" >
            
-            <label for="">Votre Réligion</label>
+            <label for=""> {{ 'viewUser.religion' | translate }} </label>
             <input  type="text"  [ngClass]="{'error': editPreselectform.controls['religion'].invalid && editPreselectform.controls['religion'].value!=''}"  formControlName="religion" placeholder="Région" >
            
           
  
         </div>
 
-        <label for="">Numéro whatsapp</label>
+        <label for=""> {{ 'viewUser.cwhatsapp' | translate }} </label>
         <div class="groupe_number">
 
             <div class="groupe_prefixe">
                  
                 <select  id='code_pays'   [(ngModel)]="pre"    >
                
-                    <option value=""> votre  prefixe </option> 
+                    <option value=""> {{ 'singnup.prefixe' | translate }} </option> 
                     <option *ngFor="let item of listPrefixe" [value]="item.prefix"> {{item.name}} ({{item.prefix}}) </option>
     
                    </select>
@@ -76,7 +77,7 @@
             </div>
 
             <div  [formGroup]="editPreselectform" >
-                <label for="">Votre réligion</label>
+                <label for=""> {{ 'viewUser.religion' | translate }} </label>
 
                 <select  [ngClass]="{'error': editPreselectform.controls['religion'].invalid && editPreselectform.controls['religion'].value!='votre réligion'}"  formControlName="religion" >
                     <option value=""> {{currentUser.religion}} </option>
@@ -88,20 +89,18 @@
             <div  class="lecheck">
                
                 <input id="lecheck_input1" type="checkbox"  [ngClass]="{'checked': editPreselectform.controls['passport'].value}"  formControlName="passport" placeholder="Passeport" >
-               Aviez vous un Passeport en cours de validité ?
+                {{ 'viewUser.PPdispo' | translate }}
               
                </div>
 
            <div  class="lecheck">
             <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': editPreselectform.controls['ldtep2'].value!='', 'checked':  editPreselectform.controls['ldtep2'].value} "  formControlName="ldtep2">
-            êtes vous immediatement disponible ?
-          
+            {{ 'viewUser.libre' | translate }}          
            </div>
 
            <div  class="lecheck">
             <input id="lecheck_input" type="checkbox"  [ngClass]="{'error': editPreselectform.controls['noFilRecu'].value!='', 'checked':  editPreselectform.controls['noFilRecu'].value} "  formControlName="noFilRecu">
-            aviez-vous vos reçus de préselection ?
-          
+            {{ 'edit.textRecus' | translate }}         
            </div>
 
            
@@ -120,7 +119,7 @@
 <div  class="content_preImg" *ngIf="switch">
     <div class="inputs_suivant"  [formGroup]="editPreselectform"  >
 
-          <h2>Ajouter les images des reçus de la presélection</h2>
+          <h2>   {{ 'edit.textFilsRecus' | translate }}  </h2>
 
 
           <div class="card-inputFils" (click)="getfilsPreselect()">
@@ -157,8 +156,8 @@
            
             <div class="lesboutonSP">
 
-                <button  class="boutton1"  (click)="suivantPreselect()"> Précédent </button> 
-                <button  id="boutton1"  (click)="editPreselect()">Soumettre</button> 
+                <button  class="boutton1"  (click)="suivantPreselect()">  {{ 'edit.btnPrecede' | translate }} </button> 
+                <button  id="boutton1"  (click)="editPreselect()"> {{ 'coursAnglais.btnSoumettre' | translate }} Soumettre</button> 
 
             </div>
 

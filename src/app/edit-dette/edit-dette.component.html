@@ -2,10 +2,10 @@
 
     <div class="card-in" >
 
-        <h1>Editer une dette</h1>
+        <h1> {{ 'finance.tittleDetteEdit' | translate }}</h1>
 
         
-  <p class="petit_texte"> veuillez remplir les champ pour enregistrer une nouvelle dette pour un voyageur </p>
+  <p class="petit_texte"> {{ 'finance.textDette' | translate }} </p>
         
 
         <div class="inputs"  [formGroup]="detteform" >
@@ -23,7 +23,7 @@
             <input  type="number"  [ngClass]="{'error': detteform.controls['dateDette'].invalid }"  formControlName="dateDette" placeholder="Date de la dette" >
        
  
-                <button  class="boutton"  (click)="editDette()">Ajouter</button>               
+                <button  class="boutton"  (click)="editDette()">{{ 'finance.btnAjoute' | translate }}</button>               
 
             </div>
 

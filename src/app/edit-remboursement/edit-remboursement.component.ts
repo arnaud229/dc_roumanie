@@ -5,6 +5,7 @@ import { remboursement, User } from 'src/models/variables';
 import { FinancesService } from '../services/Finances/finances.service';
 import { UsersService } from '../services/firebase/user.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-edit-remboursement',
@@ -33,6 +34,7 @@ export class EditRemboursementComponent {
     public userService: UsersService,
     private Aroute: ActivatedRoute,
      public localstorageService: LocalstorageService,
+     private languageChange: LanguageService, 
    
  
   ) {
@@ -42,6 +44,7 @@ export class EditRemboursementComponent {
   }
 
   ngOnInit() {
+    this.languageChange.getLanguage();
     this.getAllUsers();
     this.init_form();
     this.currentUser = this.localstorageService.getCurrentUser();

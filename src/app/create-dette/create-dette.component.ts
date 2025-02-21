@@ -6,6 +6,7 @@ import { dette, User } from 'src/models/variables';
 import { AuthService } from '../services/auth/auth.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { UsersService } from '../services/firebase/user.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-create-dette',
@@ -31,6 +32,7 @@ export class CreateDetteComponent {
     private financeServices: FinancesService,
     public userService: UsersService,
     public localstorageService: LocalstorageService,
+     private languageChange: LanguageService, 
  
   ) {
 
@@ -41,6 +43,7 @@ export class CreateDetteComponent {
   }
 
   ngOnInit() {
+    this.languageChange.getLanguage();
     this.init_form();
     this.getAllUsers();
   }

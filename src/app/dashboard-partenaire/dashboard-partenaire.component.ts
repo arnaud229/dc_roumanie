@@ -7,6 +7,7 @@ import { VideosService } from '../services/videos/videos.service';
 import { User } from 'src/models/variables';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { UsersService } from '../services/firebase/user.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-dashboard-partenaire',
@@ -1419,11 +1420,13 @@ export class DashboardPartenaireComponent {
     public localstorageService: LocalstorageService,
     private videoService: VideosService,
     private userServ : UsersService,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private languageChange: LanguageService, 
   ) {}
 
 
   ngOnInit() {
+    this.languageChange.getLanguage()
 
    let user = this.localstorageService.getCurrentUser();   
     this.currentUser  = user;

@@ -36,6 +36,7 @@
         "matrimonial": "Starea civilă:",
         "matrimonialSans": "fără copii",
         "matrimonialAvec": "cu",
+        "matrimonialEnfant": "enfant",
         "NEtude": "Nivel de studiu:",
         "metier": "Post:",
         "aDiplome": " Anul absolvirii:",
@@ -81,5 +82,122 @@
         "btnpresect": "Preselecție",
         "btnsect": "Selecţie",
         "aucunV": "Nu există un videoclip validat de prezentare a activității"
+    },
+
+    "dashboard": 
+    {
+        "btndettes": "Datorii",
+        "btnremboursement": "Rambursări",
+        "btnvideos": "Videoclipuri",
+        "btnvideosNV": " Videoclipuri nevalidate",
+        "btnvideosA": "Videoclipuri aprobate",
+        "btnvideosV": "Videoclipuri validate",
+        "btnvideosR": "Videoclipuri respinse",
+        "btncoach": "Coaching",
+        "btncoursA": "Curs de engleză",
+        "btnEF": "Situatia financiara",
+        "btnDeconexion": "Deconectare",
+        "telephone": "Telefon",
+        "nationalite": "Naţionalitate",
+        "parrains": "Nașul/Nașa",
+        "dpasseport": "disponibilitatea pașaportului",
+        "action": "Acțiuni",
+        "btnDette": "Adăugați",
+        "btnRem": "Adăugați",
+        "aucunUser": "Niciun utilizator nu este încă înregistrat.",
+        "aucunVideo": "Niciun videoclip de prezentare a activității pentru acest călător",
+        "montantdu": "Suma de",
+        "libele": " Eticheta",
+        "Admin": "Admin",
+        "montantRe": "Suma rambursată",
+        "datePaie": "Data",
+        "All": "Toate",
+        "textAny": "Nu există un videoclip de prezentare a activității",
+        "textAnyV": "Nu există un videoclip validat de prezentare a activității",
+        "textAnyP": "Nu există un videoclip de prezentare a activității de propus unui partener",
+        "textAnyR": "Nu există videoclipuri de prezentare a activității respinse",
+        "textAnyS": "Nicio statistică încă",
+        "textAnyAnglais": "Nu s-au înregistrat încă lecții de engleză",
+        "textAncoachS": "Nu au fost înregistrate încă cursuri de coaching",
+        "btnDelete": "ŞTERGE",
+        "Etatfinance": "Situatia financiara",
+        "btnAjout": "Adăugați un curs", 
+        "videoU": "Videoclipurile mele",
+        "CoursCU": "Cursuri de coaching ",
+        "CoursAU": "Cursuri de engleză ",
+        "statut": "Stare ",
+        "statutF": "Starea financiară",
+        "recuPre": "Ai avut chitanțele de preînregistrare?",
+        "pasPreselect": "nu v-ați validat încă Preselecția?",
+        "pasSelect": "nu v-ați validat încă selecția",
+        "pasVideo": "nu ai avut niciun videoclip prestabilit de activitate",
+        "pasCoursC": "Nu au fost adăugate încă cursuri de coaching",
+        "pasCoursA": "Încă nu au fost adăugate cursuri de engleză.",
+        "pasPret": " inca nu ati contractat niciun imprumut",
+        "dResidence": "Ultima resedinta",
+        "btnVideo": "Adăugați un videoclip"
+
+    },
+
+    "coursAnglais":
+    {
+        "tittle": "Cursuri de engleză",
+        "placeholderTittle": "Titlu",
+        "placeholderDescript": "Descriere",
+        "btnSoumettre": "Trimiteți"
+
+    },
+    "coursCoach":
+    {
+        "tittle": "Cursuri de coaching",
+        "placeholderTittle": "Titlu",
+        "placeholderDescript": "Descriere",
+        "btnSoumettre": "Trimiteți"
+
+    },
+    "finance":
+    {
+        "tittleDette": "Creați o datorie",
+        "tittleDetteEdit": "Editați o datorie",
+        "tittleRembEdit": "Editați o rambursare",
+        "textDette": "Vă rugăm să completați câmpurile pentru a înregistra o nouă datorie pentru un călător",
+        "placeholderLibele": "Formularea datoriei",
+        "placeholderLibeleRemb": "Formularea rambursării",
+        "choixProfil": "alege profilul",
+        "montant": "Cantitate",
+        "dateDette": "Data",
+        "dateRemb": "Data",
+        "btnAjoute": "Adăuga",
+        "tittleRemb": "Creați o rambursare",
+        "textRemb": "Vă rugăm să completați câmpurile pentru a înregistra o nouă rambursare pentru un călător"
+    },
+
+    "edit":
+    {
+        "textPreselect": "Vă rugăm să vă schimbați informațiile pentru preselecție",
+        "textRecus": "Ai avut chitanțele tale de preselecție?",
+        "textFilsRecus": "Adăugați imagini ale chitanțelor preselectate",
+        "btnPrecede": "Anterior",
+        "tittleInfo": "Informații personale",
+        "tittleInfoP": " Informații profesionale",
+        "tittleDoc": "Informații profesionale",
+        "tittleInfoH": "Adăugați informațiile dvs. personale",
+        "paysNaissance": "Țara de naștere",
+        "Textpays": "Țara dvs. de reședință",
+        "Textville": "oraș/sat de reședință",
+        "Textquaert": "Zonă rezidenţială",
+        "Textenfant": "Numărul de copii",
+        "btnSuiv": "Urmând",
+        "pocupe": "Poziția deținută",
+        "najoute": "noua completare",
+        "docDiplome": "Le(s) Diplôme(s)",
+        "docPhoto": "O fotografie completă",
+        "docCassier": "O fotografie a cazierului dvs. judiciar",
+        "docPasseport": "O fotografie a pașaportului dvs",
+        "textDoc": "Adăugați imagini din diferite documente ",
+        "textResidenceP": "Ultima ta reședință (țara)",
+        "textExperience": "Adaugă experiențele tale profesionale",
+        "textPreselect1": "Vă rugăm să introduceți informațiile dvs. pentru preselecție ",
+        "Textdeclaration": "Declar că nu am antecedente penale, că sunt apt din punct de vedere medical pentru muncă și că cunosc o limbă internațională."
     }
 }

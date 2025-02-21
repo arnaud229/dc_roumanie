@@ -14,22 +14,22 @@
 
             </div>
 
-            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
-            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
-            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Dettes</li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > Remboursements </li>
-            <li (click)="viewGroupVideo()"  [ngClass]="{'selctIn': isViewVideo}" >Les vidéos </li>
+            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    > {{ 'viewUser.btnpresect' | translate }} </li>
+            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" > {{ 'viewUser.btnsect' | translate }} </li>
+            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >{{ 'dashboard.btndettes' | translate }} </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > {{ 'dashboard.btnremboursement' | translate }}   </li>
+            <li (click)="viewGroupVideo()"  [ngClass]="{'selctIn': isViewVideo}" > {{ 'dashboard.btnvideos' | translate }}  </li>
 
             <div class="ul_menu" *ngIf=" isViewVideo"  >
-              <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos non validées</li>
-              <li (click)="selected(9)"  [ngClass]="{'selctIn': selecterMobile === 9}"    >Les vidéos agrées</li>
-              <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >Les vidéos validées</li>
-              <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    >Les vidéos Rejetées</li>
+              <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    > {{ 'dashboard.btnvideosNV' | translate }} </li>
+              <li (click)="selected(9)"  [ngClass]="{'selctIn': selecterMobile === 9}"    > {{ 'dashboard.btnvideosA' | translate }}</li>
+              <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    > {{ 'dashboard.btnvideosV' | translate }}</li>
+              <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    > {{ 'dashboard.btnvideosR' | translate }}</li>
             </div>
-            <li (click)="selected(6)"  [ngClass]="{'selctIn': selecter == 6}" >Le Coaching </li>
-            <li (click)="selected(10)"  [ngClass]="{'selctIn': selecterMobile === 10}" >Cours Anglaire</li>
-            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Etat Financier </li>
-            <li (click)="logOut()" >Déconnexion</li>
+            <li (click)="selected(6)"  [ngClass]="{'selctIn': selecter == 6}" > {{ 'dashboard.btncoach' | translate }} </li>
+            <li (click)="selected(10)"  [ngClass]="{'selctIn': selecterMobile === 10}" >{{ 'dashboard.btncoursA' | translate }}</li>
+            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >{{ 'dashboard.btnEF' | translate }} </li>
+            <li (click)="logOut()" > {{ 'dashboard.btnDeconexion' | translate }}</li>
 
         </ul>
 
@@ -62,22 +62,22 @@
     
                 </div>
     
-                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>
-                <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
-                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Dettes</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Remboursements</li>
-                <li (click)="viewGroupVideo()"  [ngClass]="{'selctIn': isViewVideo}"    >Les vidéos</li>
+                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >{{ 'viewUser.btnpresect' | translate }} </li>
+                <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   > {{ 'viewUser.btnsect' | translate }} </li>
+                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >{{ 'dashboard.btndettes' | translate }}</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >{{ 'dashboard.btnremboursement' | translate }} </li>
+                <li (click)="viewGroupVideo()"  [ngClass]="{'selctIn': isViewVideo}"    >{{ 'dashboard.btnvideos' | translate }}</li>
 
                 <div class="ul_menu" *ngIf=" isViewVideo"  >
-                  <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    >Les vidéos non validées</li>
-                  <li (click)="selected(9)"  [ngClass]="{'selctIn': selecterMobile === 9}"    >Les vidéos agrées</li>
-                  <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >Les vidéos validées</li>
-                  <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    >Les vidéos Rejetées</li>
+                  <li (click)="selected(4)"  [ngClass]="{'selctIn': selecterMobile === 4}"    > {{ 'dashboard.btnvideosNV' | translate }}</li>
+                  <li (click)="selected(9)"  [ngClass]="{'selctIn': selecterMobile === 9}"    >{{ 'dashboard.btnvideosA' | translate }}</li>
+                  <li (click)="selected(8)"  [ngClass]="{'selctIn': selecterMobile === 8}"    >{{ 'dashboard.btnvideosV' | translate }}</li>
+                  <li (click)="selected(7)"  [ngClass]="{'selctIn': selecterMobile === 7}"    > {{ 'dashboard.btnvideosR' | translate }}</li>
                 </div>
-                <li (click)="selected(6)"  [ngClass]="{'selctIn': selecterMobile === 6}"    >Le Coaching</li>
-                <li (click)="selected(10)"  [ngClass]="{'selctIn': selecterMobile === 10}"    >Cours Anglaire</li>
-                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >Etat financier </li>
-                <li (click)="logOut()"  >Déconnexion</li>
+                <li (click)="selected(6)"  [ngClass]="{'selctIn': selecterMobile === 6}"    >{{ 'dashboard.btncoach' | translate }}</li>
+                <li (click)="selected(10)"  [ngClass]="{'selctIn': selecterMobile === 10}"    >{{ 'dashboard.btncoursA' | translate }}</li>
+                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecterMobile === 5}"    >{{ 'dashboard.btnEF' | translate }} </li>
+                <li (click)="logOut()"  >{{ 'dashboard.btnDeconexion' | translate }}</li>
     
             </ul>
 
@@ -127,48 +127,48 @@
                     
                               <table mat-table [dataSource]="liste_preselect" class="mat-elevation-z8">
                                 <ng-container matColumnDef="nom">
-                                  <th mat-header-cell *matHeaderCellDef>Nom</th>
+                                  <th mat-header-cell *matHeaderCellDef>{{ 'singnup.placeholderNom' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
                                 </ng-container>
                     
                                 <ng-container matColumnDef="prenom">
-                                  <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ 'singnup.placeholderPrenom' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
                                 </ng-container>
                     
                                 <ng-container matColumnDef="telephone">
-                                  <th mat-header-cell *matHeaderCellDef>Télephone</th>
+                                  <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.telephone' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">{{fichier.telephone.code }}  {{fichier.telephone.numero }}</td>
                                 </ng-container>
 
                                 
                                 <ng-container matColumnDef="Netude">
-                                    <th mat-header-cell *matHeaderCellDef>Niveau d'étude</th>
+                                    <th mat-header-cell *matHeaderCellDef>{{ 'viewUser.NEtude' | translate }}  </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.NEtude }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="metier">
-                                    <th mat-header-cell *matHeaderCellDef>Métier</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'viewUser.metier' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.metier }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="nationalite">
-                                    <th mat-header-cell *matHeaderCellDef>Nationalité</th>
+                                    <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.nationalite' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.nationalite }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="passport">
-                                    <th mat-header-cell *matHeaderCellDef>disponibilité de passeport</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.dpasseport' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.passport }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="parrain">
-                                    <th mat-header-cell *matHeaderCellDef>Parrain</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.parrains' | translate }}  </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.parrain }}  </td>
                                   </ng-container>
                               
                                 <ng-container matColumnDef="actions">
-                                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.action' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">
                                     <button mat-icon-button (click)="beginValid(fichier.uid, fichier?.noFilRecu)">
                                       <img src="./../../assets/valider.png" alt="" >
@@ -192,7 +192,7 @@
                     
                                                 </div>
                     
-                                                <button id="boutton1"  (click)="validPreselect(fichier.uid)" >valider</button>
+                                                <button id="boutton1"  (click)="validPreselect(fichier.uid)" >{{ 'viewUser.valide' | translate }} </button>
                                                 
                                             </div>
                     
@@ -220,7 +220,7 @@
     
                 <div class="notvalide" *ngIf="liste_preselect.length == 0">
                     <p>
-                        Aucun utilisateur n'est enregister pour l'instant
+                      {{ 'dashboard.aucunUser' | translate }}
                     </p>
     
                 </div>
@@ -269,46 +269,46 @@
                     
                               <table mat-table [dataSource]="liste_select" class="mat-elevation-z8">
                                 <ng-container matColumnDef="nom">
-                                  <th mat-header-cell *matHeaderCellDef>Nom</th>
+                                  <th mat-header-cell *matHeaderCellDef>{{ 'singnup.placeholderNom' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
                                 </ng-container>
                     
                                 <ng-container matColumnDef="prenom">
-                                  <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ 'singnup.placeholderPrenom' | translate }}</th>
                                   <td mat-cell *matCellDef="let fichier">{{fichier.prenom}}</td>
                                 </ng-container>
                     
                                 <ng-container matColumnDef="sMatrimoniale">
-                                  <th mat-header-cell *matHeaderCellDef>Situation Matrimonial</th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ 'viewUser.matrimonial' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">
-                                    <span *ngIf="fichier.nbrEnfants == 0"> sans enfant </span>
-                                    <span *ngIf="fichier.nbrEnfants > 0"> avec {{fichier.nbrEnfants}} enfant </span>
+                                    <span *ngIf="fichier.nbrEnfants == 0"> {{ 'viewUser.matrimonialSans' | translate }} </span>
+                                    <span *ngIf="fichier.nbrEnfants > 0"> avec {{fichier.nbrEnfants}}  {{ 'viewUser.matrimonialAvec' | translate }} </span>
                                   </td>
                                 </ng-container>
 
                                 
                                 <ng-container matColumnDef="qualiProfession">
-                                    <th mat-header-cell *matHeaderCellDef>Qualification professionnelle</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'viewUser.qprofessionnelle' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.qualiProfession }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="principalProfession">
-                                    <th mat-header-cell *matHeaderCellDef>Qualification principale</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'viewUser.pprofession' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.principalProfession }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="nationalite">
-                                    <th mat-header-cell *matHeaderCellDef>Nationalité</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.nationalite' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.nationalite }}  </td>
                                   </ng-container>
 
                                   <ng-container matColumnDef="langueParler">
-                                    <th mat-header-cell *matHeaderCellDef>Langue parlées</th>
+                                    <th mat-header-cell *matHeaderCellDef> {{ 'viewUser.lparlee' | translate }} </th>
                                     <td mat-cell *matCellDef="let fichier">{{fichier.langueParler }}  </td>
                                   </ng-container>
                               
                                 <ng-container matColumnDef="actions">
-                                  <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                  <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.action' | translate }} </th>
                                   <td mat-cell *matCellDef="let fichier">
                                     <button mat-icon-button (click)="beginCValidSelectByPartenaire(fichier.uid)">
                                       <img src="./../../assets/valider.png" alt="" >
@@ -327,7 +327,7 @@
                                               <div >  
                   
                                                 <select [(ngModel)]="selectedPartner">
-                                                  <option [ngValue]="null"> choix du partenaire </option>
+                                                  <option [ngValue]="null"> {{ 'viewUser.choixpart' | translate }} </option>
                                                   <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
                                   
                                                  </select>
@@ -366,7 +366,7 @@
                                                     
                                                   <div class="notvalide" *ngIf=" liste_videosByUser.length == 0 ">
                                                       <p>
-                                                        Aucune video de presetation d'activité pour ce voyageur
+                                                        {{ 'dashboard.aucunVideo' | translate }}  
                                                       </p>
                                                   </div>
                                       
@@ -403,7 +403,7 @@
 
                 <div class="notvalide" *ngIf="liste_select.length == 0">
                     <p>
-                        Aucun utilisateur n'est enregister pour l'instant
+                      {{ 'dashboard.aucunUser' | translate }}    
                     </p>
     
                 </div>
@@ -431,14 +431,14 @@
     
                             <input type="text" (input)="applyFilteDette($event)">
 
-                            <button class="btn-ajout" (click)="goTocreateDette() " >Ajouter une Dette</button>
+                            <button class="btn-ajout" (click)="goTocreateDette() " >  {{ 'dashboard.btnDette' | translate }} </button>
     
                           
     
                         </div>
     
                         <div class="group_header2"    *ngIf="isFiltre" >
-                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > montant Du </span>
+                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" >  {{ 'dashboard.montantdu' | translate }}</span>
                             <!-- <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span> -->
                            </div>
     
@@ -450,37 +450,37 @@
                     
                         <table mat-table [dataSource]="liste_Dette" class="mat-elevation-z8">
                           <ng-container matColumnDef="nom">
-                            <th mat-header-cell *matHeaderCellDef>Nom</th>
+                            <th mat-header-cell *matHeaderCellDef>{{ 'singnup.placeholderNom' | translate }} </th>
                             <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
                           </ng-container>
               
                           <ng-container matColumnDef="prenom">
-                            <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                            <th mat-header-cell *matHeaderCellDef>{{ 'singnup.placeholderPrenom' | translate }} </th>
                             <td mat-cell *matCellDef="let fichier">{{fichier.prenoms}}</td>
                           </ng-container>
                                        
                           <ng-container matColumnDef="libele">
-                              <th mat-header-cell *matHeaderCellDef>Libelé</th>
+                              <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.libele' | translate }} </th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.libele }}  </td>
                             </ng-container>
 
                             <ng-container matColumnDef="montantDu">
-                              <th mat-header-cell *matHeaderCellDef>Montant du</th>
+                              <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.montantdu' | translate }} </th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.montantDu }}  </td>
                             </ng-container>
 
                             <ng-container matColumnDef="dateDette">
-                              <th mat-header-cell *matHeaderCellDef>Date de la dette</th>
+                              <th mat-header-cell *matHeaderCellDef>  {{ 'dashboard.datePaie' | translate }} </th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.dateDette.toLocaleString() }}  </td>
                             </ng-container>  
 
                             <ng-container matColumnDef="admin">
-                              <th mat-header-cell *matHeaderCellDef>Admin</th>
+                              <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.admin' | translate }}</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.adminNom }}  </td>
                             </ng-container>
 
                             <ng-container matColumnDef="actions">
-                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                <th mat-header-cell *matHeaderCellDef> {{ 'dashboard.action' | translate }}</th>
                                 <td mat-cell *matCellDef="let fichier">
                                   <button mat-icon-button (click)="goToEditDette(fichier.id)">
                                     <img src="./../../assets/edit2.png" alt="" >
@@ -505,10 +505,10 @@
 
                 <div class="notvalide" *ngIf="liste_Dette.length == 0">
                     <p>
-                        Aucun utilisateur n'est enregister pour l'instant
+                      {{ 'dashboard.aucunUser' | translate }} 
                     </p>
 
-                    <button (click)="goTocreateDette()">Ajouter une Dette</button>
+                    <button (click)="goTocreateDette()">  {{ 'dashboard.btnDette' | translate }}</button>
     
                 </div>
                   
@@ -533,16 +533,16 @@
     
                           
 
-                            <button class="btn-ajout" (click)="goTocreateRemboursement() " >Ajouter un Remboursement</button>
+                            <button class="btn-ajout" (click)="goTocreateRemboursement() " >  {{ 'dashboard.btnremboursement' | translate }} </button>
     
                         </div>
     
                         <div class="group_header2"    *ngIf="isFiltre" >
-                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > montant Rembourser </span>
-                            <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span>
-                            <span  class="theFiltre" (click)="getFiltreByValue(6)"  [ngClass]="{'filtreIn': filter == 6}"> libele </span>
-                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 7}"> nom </span>
-                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 8}"> prenoms </span>
+                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > {{ 'dashboard.montantRe' | translate }}  </span>
+                            <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > {{ 'dashboard.datePaie' | translate }}  </span>
+                            <span  class="theFiltre" (click)="getFiltreByValue(6)"  [ngClass]="{'filtreIn': filter == 6}"> {{ 'dashboard.libele' | translate }}  </span>
+                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 7}"> {{ 'singnup.placeholderNom' | translate }}  </span>
+                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 8}"> {{ 'singnup.placeholderPrenom' | translate }}  </span>
                         </div>
     
                        
@@ -553,37 +553,37 @@
                     
                         <table mat-table [dataSource]="liste_Remboursement" class="mat-elevation-z8">
                           <ng-container matColumnDef="nom">
-                            <th mat-header-cell *matHeaderCellDef>Nom</th>
+                            <th mat-header-cell *matHeaderCellDef>{{ 'singnup.placeholderNom' | translate }} </th>
                             <td mat-cell *matCellDef="let fichier">{{fichier.nom}}</td>
                           </ng-container>
               
                           <ng-container matColumnDef="prenom">
-                            <th mat-header-cell *matHeaderCellDef>Prenoms</th>
+                            <th mat-header-cell *matHeaderCellDef> {{ 'singnup.placeholderPrenom' | translate }}</th>
                             <td mat-cell *matCellDef="let fichier">{{fichier.prenoms}}</td>
                           </ng-container>
                                        
                           <ng-container matColumnDef="libele">
-                              <th mat-header-cell *matHeaderCellDef>Libelé</th>
+                              <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.libele' | translate }}</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.libele }}  </td>
                             </ng-container>
 
                             <ng-container matColumnDef="montantRembourse">
-                              <th mat-header-cell *matHeaderCellDef>Montant rembourser</th>
+                              <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.libele' | translate }}</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.montantRembourse }}  </td>
                             </ng-container>
 
                             <ng-container matColumnDef="dateRemboursement">
-                              <th mat-header-cell *matHeaderCellDef>Date du remboursement</th>
+                              <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.datePaie' | translate }}</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.dateRemboursement.toLocaleString() }}  </td>
                             </ng-container> 
 
                             <ng-container matColumnDef="admin">
-                              <th mat-header-cell *matHeaderCellDef>Admin</th>
+                              <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.Admin' | translate }}</th>
                               <td mat-cell *matCellDef="let fichier">{{fichier.adminNom }}  </td>
                             </ng-container>
                             
                             <ng-container matColumnDef="actions">
-                                <th mat-header-cell *matHeaderCellDef>Actions</th>
+                                <th mat-header-cell *matHeaderCellDef>{{ 'dashboard.action' | translate }}</th>
                                 <td mat-cell *matCellDef="let fichier">
                                   <button mat-icon-button (click)="goToEditRemboursement(fichier.id)">
                                     <img src="./../../assets/edit2.png" alt="" >
@@ -607,10 +607,10 @@
 
                 <div class="notvalide" *ngIf="liste_Remboursement.length == 0">
                     <p>
-                        Aucun utilisateur n'est enregister pour l'instant
+                      {{ 'dashboard.aucunUser' | translate }} 
                     </p>
 
-                    <button id="btn-remboursement" (click)="goTocreateRemboursement()">Ajouter un Remboursement</button>
+                    <button id="btn-remboursement" (click)="goTocreateRemboursement()">  {{ 'dashboard.btnRem' | translate }} </button>
     
                 </div>
                 
@@ -642,7 +642,7 @@
                           {{ item.observation }}
                          </span>
                         
-                         <button (click)="beginCValidSelectByPartenaire(item.id)" >Valider</button>
+                         <button (click)="beginCValidSelectByPartenaire(item.id)" > {{ 'viewUser.valide' | translate }} </button>
 
 
 
@@ -654,13 +654,13 @@
                               <div >  
   
                                 <select [(ngModel)]="selectedPartner">
-                                  <option [ngValue]="null"> choix du partenaire </option>
+                                  <option [ngValue]="null"> {{ 'viewUser.choixpart' | translate }} </option>
                                   <option *ngFor="let item of listePartemaire" [ngValue]="item">  {{item.prenom}} </option>
                   
                                  </select>
                               </div>
   
-                              <button id="boutton2"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >valider</button>
+                              <button id="boutton2"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >{{ 'viewUser.valide' | translate }}</button>
                               
                           </div>
   
@@ -678,7 +678,7 @@
                
                 <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
                     <p>
-                        Il n'y a aucune video de presetation d'activité
+                      {{ 'dashboard.textAny' | translate }} 
                     </p>
     
                 </div>               
@@ -721,7 +721,7 @@
                
                 <div class="notvalide" *ngIf=" liste_videosValid.length == 0 ">
                     <p>
-                        Il n'y a aucune video de presetation d'activité validée
+                      {{ 'dashboard.textAnyV' | translate }} 
                     </p>
     
                 </div>               
@@ -778,7 +778,7 @@
                 <div class="notvalide" *ngIf=" liste_videosAgrees.length == 0 ">
                   <div class="group_header2"     >
 
-                    <span class="theFiltre"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'filtreIn': filterP == 11}" > Tous </span>
+                    <span class="theFiltre"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'filtreIn': filterP == 11}" >  {{ 'dashboard.All' | translate }}  </span>
                     <div *ngFor="let item of listePartemaire; let i = index ">
                       <span class="theFiltre"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'filtreIn': filterP == i}" > {{item.prenom}} </span>
   
@@ -786,7 +786,7 @@
                 
                    </div>
                     <p>
-                        Il n'y a aucune video de presetation d'activité à proposer a un partenaire
+                      {{ 'dashboard.textAnyP' | translate }}  
                     </p>
     
                 </div>               
@@ -825,7 +825,7 @@
                
                 <div class="notvalide" *ngIf=" liste_videosReject.length == 0 ">
                     <p>
-                        Il n'y a aucune video de presetation d'activité rejetée
+                      {{ 'dashboard.textAnyR' | translate }}    
                     </p>
     
                 </div>               
@@ -849,7 +849,7 @@
                 <div class="notvalide" *ngIf="TotalsDettes == 0 && TotalsRemboursements == 0">
     
                     <p>
-                        Aucun statistique pour l'instant
+                      {{ 'dashboard.textAnyS' | translate }}  
                     </p>
     
     
@@ -883,7 +883,7 @@
                           </span>
 
 
-                          <button (click)="delectVideoCoaching(item)" >Supprimer</button>
+                          <button (click)="delectVideoCoaching(item)" >  {{ 'dashboard.btnDelete' | translate }}  </button>
                     </div>
                     
                     <button  class="addVideoCSS" (click)="goTocreateCoaching()" >+</button>
@@ -899,10 +899,10 @@
 
              <div class="notvalide" *ngIf="liste_coaching.length == 0">
               <p>
-                  Aucun cours de coaching enregistrer pour l'instant
+                {{ 'dashboard.textAncoachS' | translate }} 
               </p>
 
-              <button (click)="goTocreateCoaching()">Ajouter un cours</button>
+              <button (click)="goTocreateCoaching()">  {{ 'dashboard.btnAjout' | translate }} </button>
 
           </div>
 
@@ -936,7 +936,7 @@
                         </span>
 
 
-                        <button (click)="delectVideoCoursAnglaire(item)" >Supprimer</button>
+                        <button (click)="delectVideoCoursAnglaire(item)" >  {{ 'dashboard.btnDelete' | translate }}</button>
                   </div>
                   
                   <button  class="addVideoCSS" (click)="goTocreateCoursAnglaire()" >+</button>
@@ -952,10 +952,10 @@
 
            <div class="notvalide" *ngIf="liste_coursAnglaire.length == 0">
             <p>
-                Aucun cours de coaching enregistrer pour l'instant
+              {{ 'dashboard.textAnyAnglais' | translate }} 
             </p>
 
-            <button (click)="goTocreateCoursAnglaire()">Ajouter un cours</button>
+            <button (click)="goTocreateCoursAnglaire()">  {{ 'dashboard.textAnyAnglais' | translate }} </button>
 
         </div>
 

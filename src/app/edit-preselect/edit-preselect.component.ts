@@ -7,6 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { StorageService } from '../services/storage/storage.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { UtilsService } from '../services/utils/utilis.service';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-edit-preselect',
@@ -153,6 +154,7 @@ export class EditPreselectComponent {
     private firebaseStorageService: StorageService,
     public localstorageService: LocalstorageService,
     public utilsService: UtilsService,
+     private languageChange: LanguageService, 
   ) {
     this.listPrefixe =  this.utilsService.getListPrefixe();
     this.listReligion = this.utilsService.getListReligion();
@@ -160,6 +162,7 @@ export class EditPreselectComponent {
   }
 
   ngOnInit() {
+    this.languageChange.getLanguage();
     this.currentUser = this.localstorageService.getCurrentUser();
     this.userId = this.currentUser.uid
    

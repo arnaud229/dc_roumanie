@@ -4,6 +4,7 @@ import { LocalstorageService } from '../services/localStorage/localStorage.servi
 import { coachingService } from '../services/coaching/coaching.service';
 import { StorageService } from '../services/storage/storage.service';
 import { Router } from '@angular/router';
+import { LanguageService } from '../services/language/language.service';
 
 @Component({
   selector: 'app-cours-coaching',
@@ -35,6 +36,7 @@ export class CoursCoachingComponent {
     private firebaseStorageService: StorageService,
     private coachService: coachingService,
     public localstorageService: LocalstorageService,
+    private languageChange: LanguageService, 
    
   ) {
 
@@ -42,6 +44,7 @@ export class CoursCoachingComponent {
   }
 
   ngOnInit() {
+    this.languageChange.getLanguage();
     
     this.init_form();
   }

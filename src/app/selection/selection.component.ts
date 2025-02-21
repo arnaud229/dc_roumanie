@@ -6,6 +6,7 @@ import { RecuFile, User } from 'src/models/variables';
 import { StorageService } from '../services/storage/storage.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
 import { UtilsService } from '../services/utils/utilis.service';
+import { LanguageService } from '../services/language/language.service';
 
 
 @Component({
@@ -92,6 +93,7 @@ export class SelectionComponent {
     private cdr: ChangeDetectorRef,
     public localstorageService: LocalstorageService,
     public utilsService: UtilsService,
+      private languageChange: LanguageService,
   ) {
     this.listReligion = this.utilsService.getListReligion();
     this.listCountries = this.utilsService.getListCountries();
@@ -99,6 +101,7 @@ export class SelectionComponent {
   }
 
   ngOnInit() {
+    this.languageChange.getLanguage();
     this.init_form();
     this.currentUser = this.localstorageService.getCurrentUser();
     this.userId = this.currentUser.uid

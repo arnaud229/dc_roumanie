@@ -13,13 +13,13 @@
 
             </div>
 
-            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    >Préselection</li>
-            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" >Seléction</li>
-            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" >Etat Finacier</li>
-            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" >Mes vidéos </li>
-            <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les cours de coaching </li>
-            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Les cours d'anglaire </li>
-            <li (click)="logOut()"  >Déconnexion</li>
+            <li (click)="selected(0)"  [ngClass]="{'selctIn': selecter == 0}"    > {{ 'viewUser.btnpresect' | translate }}</li>
+            <li (click)="selected(1)"  [ngClass]="{'selctIn': selecter == 1}" > {{ 'viewUser.btnsect' | translate }}</li>
+            <li (click)="selected(2)"  [ngClass]="{'selctIn': selecter == 2}" > {{ 'dashboard.Etatfinance' | translate }} </li>
+            <li (click)="selected(3)"  [ngClass]="{'selctIn': selecter == 3}" > {{ 'dashboard.videoU' | translate }} </li>
+            <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" > {{ 'dashboard.CoursCU' | translate }}</li>
+            <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" > {{ 'dashboard.CoursAU' | translate }}</li>
+            <li (click)="logOut()"  > {{ 'dashboard.btnDeconexion' | translate }}</li>
 
         </ul>
 
@@ -40,12 +40,12 @@
             <div class="groupe2Mobile" >
 
                 <div class="statut">
-                    <span> Statut</span>
+                    <span> {{ 'dashboard.statut' | translate }}</span>
                     <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
                 </div>
 
                 <div class="statut">
-                    <span> Statut Finacier</span>
+                    <span> {{ 'dashboard.statutF' | translate }} </span>
                     <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}}  </span>
                 </div>
 
@@ -68,13 +68,13 @@
     
                 </div>
     
-                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >Préselection</li>
-                <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >Seléction</li>
-                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   >Etat Finacier</li>
-                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >Mes vidéos</li>
-                <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >Les cours de coaching </li>
-                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >Les cours d'anglaire </li>
-                <li (click)="logOut()"  >Déconnexion</li>
+                <li (click)="selected(0)"   [ngClass]="{'selctIn': selecterMobile === 0}"    >{{ 'viewUser.btnpresect' | translate }}</li>
+                <li (click)="selected(1)"   [ngClass]="{'selctIn': selecterMobile === 1}"   >{{ 'viewUser.btnsect' | translate }}</li>
+                <li (click)="selected(2)"   [ngClass]="{'selctIn': selecterMobile === 2}"   > {{ 'dashboard.Etatfinance' | translate }}</li>
+                <li (click)="selected(3)"  [ngClass]="{'selctIn': selecterMobile === 3}"    >{{ 'dashboard.videoU' | translate }}</li>
+                <li (click)="selected(4)"  [ngClass]="{'selctIn': selecter == 4}" >{{ 'dashboard.CoursCU' | translate }} </li>
+                <li (click)="selected(5)"  [ngClass]="{'selctIn': selecter == 5}" >{{ 'dashboard.CoursAU' | translate }} </li>
+                <li (click)="logOut()"  >{{ 'dashboard.btnDeconexion' | translate }}</li>
     
             </ul>
 
@@ -97,18 +97,18 @@
                 <div class="cardHead"> 
                      <div class="cardStatut">
                         <div class="statut">
-                            <span> Statut</span>
+                            <span> {{ 'dashboard.statut' | translate }}</span>
                             <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
                         </div>
 
                         <div class="statut">
-                            <span> Statut Finacier</span>
+                            <span> {{ 'dashboard.statutF' | translate }}</span>
                             <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}} </span>
                         </div>
 
                      </div>
 
-                    <h1>Préselection</h1>
+                    <h1> {{ 'viewUser.btnpresect' | translate }} </h1>
 
                     <img (click)="editPreselect()" src="./../../assets/edit2.png" alt="">
 
@@ -120,108 +120,108 @@
 
                     <div class="groupViewPreselect">
 
-                        <p> Agê:</p>
-                        <span class="viewValue"> {{ currentUser.age }} ans  </span>
+                        <p> {{ 'viewUser.age' | translate }}:</p>
+                        <span class="viewValue"> {{ currentUser.age }} {{ 'viewUser.ageIndice' | translate }}   </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Situation matrimonial:</p>
+                        <p>  {{ 'viewUser.matrimonial' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.sMatrimoniale }} 
-                            <span *ngIf="currentUser.nbrEnfants == 0" > sans enfant </span>
-                            <span *ngIf="currentUser.nbrEnfants != 0" > avec  {{currentUser.nbrEnfants}} </span>
+                            <span *ngIf="currentUser.nbrEnfants == 0" > {{ 'viewUser.matrimonialSans' | translate }} </span>
+                            <span *ngIf="currentUser.nbrEnfants != 0" > {{ 'viewUser.matrimonialAvec' | translate }}   {{currentUser.nbrEnfants}}  {{ 'viewUser.matrimonialEnfant' | translate }} </span>
                         </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Niveau d'étude:</p>
+                        <p>  {{ 'viewUser.NEtude' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.NEtude }}  </span>
 
                     </div>
 
                      <div class="groupViewPreselect">
 
-                        <p> Métier: </p>
+                        <p>  {{ 'viewUser.metier' | translate }}: </p>
                         <span class="viewValue"> {{ currentUser.metier }}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Année de dîplome:</p>
+                        <p>  {{ 'viewUser.aDiplome' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.aDiplome }}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Durée d'apprentissage:</p>
-                        <span class="viewValue"> {{ currentUser.dApprentissage }} ans </span>
+                        <p>  {{ 'viewUser.dapprentis' | translate }}:</p>
+                        <span class="viewValue"> {{ currentUser.dApprentissage }}  {{ 'viewUser.ageIndice' | translate }} </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Année d'experience professionnelle:</p>
-                        <span class="viewValue"> {{ currentUser.aExperience }} ans </span>
+                        <p>  {{ 'viewUser.aprof' | translate }}:</p>
+                        <span class="viewValue"> {{ currentUser.aExperience }}   {{ 'viewUser.ageIndice' | translate }} </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Employeur précédent:</p>
+                        <p>  {{ 'viewUser.eprecedent' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.ePrecedent }} </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Aviez vous un passeport en cours de validité:</p>
+                        <p>  {{ 'viewUser.PPdispo' | translate }} :</p>
                         <span class="viewValue"> {{ viewPasseportDisponible}}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Nationnalité:</p>
+                        <p>  {{ 'viewUser.nationalite' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.nationalite }}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p>  Contact whatapp:</p>
+                        <p>   {{ 'viewUser.cwhatsapp' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.cWhatapp.code }}  {{currentUser.cWhatapp.numero }} </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Parrain/Marraine:</p>
+                        <p>  {{ 'viewUser.parrain' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.parrain  }}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Réligion:</p>
+                        <p>  {{ 'viewUser.religion' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.religion }}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Être vous libre de toute engagement au moins pendant 2 ans:</p>
+                        <p>  {{ 'viewUser.matrimonialAvec' | translate }}:</p>
                         <span class="viewValue"> {{ viewDisponibilite }}  </span>
 
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Aviez vos reçus de préinscription:</p>
+                        <p>  {{ 'dashboard.recuPre' | translate }}:</p>
                         <span class="viewValue"> {{ viewFilsRecu }}  </span>
 
                     </div>
@@ -237,10 +237,10 @@
             <div class="notvalide" *ngIf="!isPreselect">
 
                 <p>
-                    vous n'aviez pas encore valider votre Préselection
+                    {{ 'dashboard.recuPre' | translate }}
                 </p>
 
-                <button (click)="goToPreinscription()">Préselection</button>
+                <button (click)="goToPreinscription()"> {{ 'viewUser.btnpresect' | translate }}</button>
 
             </div>
             
@@ -255,18 +255,18 @@
                 <div class="cardHead"> 
                     <div class="cardStatut">
                        <div class="statut">
-                           <span> Statut</span>
+                           <span> {{ 'dashboard.statut' | translate }} </span>
                            <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
                        </div>
 
                        <div class="statut">
-                           <span> Statut Finacier</span>
+                           <span> {{ 'dashboard.statutF' | translate }} </span>
                            <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}} </span>
                        </div>
 
                     </div>
 
-                   <h1>Selection</h1>
+                   <h1> {{ 'viewUser.btnsect' | translate }}</h1>
 
                    <img (click)="editSelect()" src="./../../assets/edit2.png" alt="">
 
@@ -279,32 +279,32 @@
 
                 <div class="groupViewPreselect">
 
-                    <p> Lieu de naissance:</p>
+                    <p> {{ 'viewUser.lNaissance' | translate }} :</p>
                     <span class="viewValue"> {{ currentUser.LieuNaissance }}  </span>
 
                 </div>
 
                 <div class="groupViewPreselect">
 
-                    <p> Date de naissance:</p>
+                    <p> {{ 'viewUser.dNaissance' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.dateNaissance }}  </span>
 
                 </div>
 
                 <div class="cardParents">
 
-                    <h2>Père</h2>
+                    <h2>{{ 'viewUser.pere' | translate }} </h2>
 
                     <div class="groupViewPreselect">
 
-                        <p> Nom:</p>
+                        <p> {{ 'singnup.placeholderNom' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.Pere.nom }}  </span>
     
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Prénoms:</p>
+                        <p> {{ 'singnup.placeholderPrenom' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.Pere.prenoms }}  </span>
     
                     </div>
@@ -313,55 +313,55 @@
 
                 <div class="cardParents">
 
-                    <h2>Mère</h2>
+                    <h2> {{ 'viewUser.mere' | translate }}</h2>
 
                     <div class="groupViewPreselect">
 
-                        <p> Nom:</p>
+                        <p> {{ 'singnup.placeholderNom' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.Mere.nom }}  </span>
     
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Prénoms:</p>
+                        <p>{{ 'singnup.placeholderPrenom' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.Mere.prenoms }}  </span>
     
                     </div>
 
                 </div>
 
-                <div class="groupViewPreselect">
+                <!-- <div class="groupViewPreselect">
 
-                    <p> Nationalité:</p>
+                    <p> {{ 'viewUser.btnpresect' | translate }} Nationalité:</p>
                     <span class="viewValue"> {{ currentUser.nationalite }}  </span>
 
-                </div>
+                </div> -->
 
                 <div class="groupViewPreselect">
 
-                    <p> Num passeport:</p>
+                    <p> {{ 'viewUser.numpasseport' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.nPasseport }}  </span>
 
                 </div>
 
                 <div class="groupViewPreselect">
 
-                    <p> Lieu d'émission:</p>
+                    <p> {{ 'viewUser.lemission' | translate }} :</p>
                     <span class="viewValue"> {{ currentUser.lieuPasseport }}  </span>
 
                 </div>
 
                 <div class="groupViewPreselect">
 
-                    <p> Date d'émission:</p>
+                    <p>{{ 'viewUser.demission' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.dateEmiPasseport }}  </span>
 
                 </div>
 
                 <div class="groupViewPreselect">
 
-                    <p> date d'expiration:</p>
+                    <p> {{ 'viewUser.dexpiration' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.dateExpPasseport }}  </span>
 
                 </div>
@@ -369,59 +369,61 @@
 
                 <div class="cardParents">
 
-                    <h2>Dernière résidence</h2>
+                    <h2>n {{ 'dashboard.dResidence' | translate }}</h2>
 
                     <div class="groupViewPreselect">
 
-                        <p> Pays:</p>
+                        <p> {{ 'viewUser.pays' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.derniereResidencePays }}  </span>
     
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Ville/Village:</p>
+                        <p> {{ 'viewUser.ville' | translate }}:</p>
                         <span class="viewValue"> {{ currentUser.derniereResidence }}  </span>
     
                     </div>
 
                     <div class="groupViewPreselect">
 
-                        <p> Quartier:</p>
+                        <p> {{ 'viewUser.quartier' | translate }} :</p>
                         <span class="viewValue"> {{ currentUser.derniereResidenceVillage }}  </span>
     
                     </div>
 
                 </div>
 
-
                 <div class="groupViewPreselect">
 
-                    <p> Qualification Profrssionnelle:</p>
-                    <span class="viewValue"> {{ currentUser.qualiProfession }}  </span>
-
-                </div>
-
-                <div class="groupViewPreselect">
-
-                    <p> Quartier:</p>
+                    <p> {{ 'viewUser.quartier' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.derniereResidenceVillage }}  </span>
 
                 </div>
 
+
+                <div class="groupViewPreselect">
+
+                    <p> {{ 'viewUser.qprofessionnelle' | translate }}:</p>
+                    <span class="viewValue"> {{ currentUser.qualiProfession }}  </span>
+
+                </div>
+
+                
+
                 <div class="cardExperience">     
                     
-                    <h2>Experience Professionnelle</h2>
+                    <h2> {{ 'viewUser.exprofessionnelle' | translate }}</h2>
                     
                     
                 <table>
 
                     <thead>
                         <tr>
-                            <th>Num</th>
-                            <th>Entreprise</th>
-                            <th>Date de debut</th>
-                            <th>Date Fin</th>
+                            <th> {{ 'viewUser.num' | translate }}</th>
+                            <th> {{ 'viewUser.entreprise' | translate }}</th>
+                            <th> {{ 'viewUser.ddebut' | translate }}</th>
+                            <th> {{ 'viewUser.dfin' | translate }}</th>
                         </tr>
 
                     </thead>
@@ -446,14 +448,14 @@
 
                 <div class="groupViewPreselect">
 
-                    <p> Profession Principale:</p>
+                    <p> {{ 'viewUser.pprofession' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.principalProfession }}  </span>
 
                 </div>
 
                 <div class="groupViewPreselect">
 
-                    <p> Langue parlée :</p>
+                    <p> {{ 'viewUser.lparlee' | translate }}:</p>
                     <span class="viewValue"> {{ currentUser.langueParler }}  </span>
 
                 </div>
@@ -461,7 +463,7 @@
 
                 <div class="groupViewPreselect">
 
-                    <p>  Declaration d'honneur:</p>
+                    <p> {{ 'viewUser.dhonneur' | translate }} :</p>
                     <span class="viewValue"> {{ viewHonneur }}  </span>
 
                 </div>
@@ -477,10 +479,10 @@
             <div class="notvalide" *ngIf="!isSelect">
 
                 <p>
-                    vous n'aviez pas encore valider votre selection
+                    {{ 'dashboard.pasSelect' | translate }} 
                 </p>
 
-                <button (click)="goToSelection()">Selection</button>
+                <button (click)="goToSelection()"> {{ 'viewUser.btnsect' | translate }}</button>
 
             </div>
 
@@ -504,7 +506,7 @@
             <div class="notvalide" *ngIf="!isFinance">
 
                 <p>
-                    vous n'aviez pas contratracter aucun prêt pour l'instant
+                    {{ 'dashboard.pasPret' | translate }} 
                 </p>
 
 
@@ -525,20 +527,20 @@
                 <div class="cardHead"> 
                     <div class="cardStatut">
                        <div class="statut">
-                           <span> Statut</span>
+                           <span>   {{ 'dashboard.statut' | translate }} </span>
                            <span class="statutSimple" [ngClass]="{'colorSelect': colorValidPreselect }"> {{statutPreselect}} </span>
                        </div>
 
                        <div class="statut">
-                           <span> Statut Finacier</span>
+                           <span>   {{ 'dashboard.statutF' | translate }} </span>
                            <span class="statutSimple" [ngClass]="{'colorSelect': colorValidSelect }"> {{statutFinance}} </span>
                        </div>
 
                     </div>
 
-                   <h1>Mes Vidéos</h1>
+                   <h1>  {{ 'dashboard.videoU' | translate }} </h1>
 
-                   <button (click)="goToVideos()" >Ajouter une vidéo</button>
+                   <button (click)="goToVideos()" >  {{ 'dashboard.btnVideo' | translate }}</button>
 
                </div>
 
@@ -564,7 +566,7 @@
                           {{ item.observation }}
                          </span>
                     
-                         <button (click)="delectVideo(item)">Supprimer</button>
+                         <button (click)="delectVideo(item)"> {{ 'dashboard.btnVideo' | translate }} </button>
                     </div>
 
                    
@@ -577,10 +579,10 @@
               
             <div class="notvalide" *ngIf=" liste_videos.length == 0 ">
                 <p>
-                    vous n'aviez aucune video de presetation d'activité
+                    {{ 'dashboard.pasVideo' | translate }} 
                 </p>
 
-                <button (click)="goToVideos()">Ajouter une video</button>
+                <button (click)="goToVideos()"> {{ 'dashboard.btnVideo' | translate }}</button>
 
             </div>
 
@@ -591,7 +593,7 @@
             
             <div class="notvalide" *ngIf="!isCoaching">
                 <p>
-                    Ancun cours de coachuing n'a été ajouter pour le moment
+                    {{ 'dashboard.pasCoursC' | translate }} 
                 </p>
 
             </div>
@@ -626,7 +628,7 @@
             
             <div class="notvalide" *ngIf="!isCoursAnglaire">
                 <p>
-                    Ancun cours de coachuing n'a été ajouter pour le moment
+                    {{ 'dashboard.pasCoursA' | translate }}  
                 </p>
 
             </div>
