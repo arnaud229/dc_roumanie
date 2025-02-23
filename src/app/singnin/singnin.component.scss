@@ -382,6 +382,20 @@ cursor: pointer;
 
 @media (max-width: 800px ) {
 
+  .voirGroup
+  {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+
+  }
+
+  .groupLanguer > div {
+    position: absolute;
+    top: 93px;
+    right: 20px;
+}
+
   .content_in
   {
     background: none; 

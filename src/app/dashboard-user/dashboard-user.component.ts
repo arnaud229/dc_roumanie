@@ -980,9 +980,19 @@ getTotalsRemboursements() {
     }
   )
 
- 
-
  }
+
+ openWhatsApp() {
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const phone = '22967186317';
+  
+  // Format spécial pour iOS
+  const url = isMobile ? 
+    `https://api.whatsapp.com/send?phone=${phone}` : 
+    `https://web.whatsapp.com/send?phone=${phone}`;
+
+  window.open(url, '_blank');
+}
 
  
 
