@@ -135,78 +135,27 @@ import { AuthService } from "../auth/auth.service";
       }
 
 
+  // Dans votre fonction de téléchargement
+async downloadFile(filePath: string, fileName: string) {
+  try {
+    const storage = getStorage();
+    const fileRef = ref(storage, filePath);
 
-    //   getFileFromUrl(options: {
-    //     folder?: string;
-    //     url: string;
-    //   }): Promise<any> {
-    //     return new Promise(async (resolve, reject) => {
-    //       const { folder, url } = options;
-    
-    //       const firebaseApiKey = await this.authService.getCurrentUserFirebaseIdToken()
-    
-    //       const headers = new HttpHeaders({
-    //         // 'Content-Type': 'application/json',
-    //         'Authorization': `Bearer ${firebaseApiKey}`
-    //       })
-    
-    //       this.httpClient.post(this.appServerUrl + '/firebase-storage/get-file-from-url',
-    //         { url },
-    //         {
-    //           headers:
-    //             headers,
-    //           responseType: 'blob'
-    //         }
-    //       ).toPromise().then((result) => {
-    //         resolve(result)
-    //       }).catch((err) => {
-    //         reject(err)
-    //       });
-    
-    //     });
-    //   }
+    // Récupérer l'URL de téléchargement signée
+    const url = await getDownloadURL(fileRef);
 
-    // uploadFileProgress(file: File): Observable<number> {
-    //   this.isUploadingSubject.next(true); // Indique que l'upload a commencé
-  
-    //   return interval(1000).pipe(
-    //     takeWhile(()=> {
-    //       // Au lieu d'utiliser isUploading$.value, on s'abonne à isUploading$
-    //       return this.isUploading$.pipe(
-    //         take(1), // Prendre seulement la première valeur émise
-    //         map(isUploading => isUploading) // Mapper la valeur pour retourner le booléen
-    //       );
-    //     }),
-    //     map(i => Math.floor((i + 1) / 10) * 10),
-    //     finalize(() => {
-    //       this.isUploadingSubject.next(false); // Indique que l'upload est terminé
-    //     })
-    //   );
-    // }
+    // Créer un lien invisible et déclencher le téléchargement
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName; // Nom du fichier pour l'utilisateur
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
 
-
-    
-  async downloadFile(url: string, fileName: string): Promise<void> {
-    try {
-      // Télécharger le fichier en tant que Blob
-      const file = await this.httpClient.get(url, { responseType: 'blob' }).toPromise();
-      
-      // Créer un lien temporaire
-      const blob = new Blob([file!], { type: file!.type });
-      const link = document.createElement('a');
-      link.href = window.URL.createObjectURL(blob);
-      
-      // Forcer le téléchargement avec le bon nom de fichier
-      link.download = fileName || this.extractFileNameFromUrl(url);
-      link.click();
-      
-      // Nettoyer la mémoire
-      window.URL.revokeObjectURL(link.href);
-    } catch (error) {
-      console.error('Échec du téléchargement :', error);
-      throw error;
-    }
+  } catch (error) {
+    console.error("Erreur de téléchargement :", error);
   }
+}
 
    extractFileNameFromUrl(url: string): string {
     // Extraire le nom du fichier de l'URL
@@ -215,7 +164,6 @@ import { AuthService } from "../auth/auth.service";
   }
       
     
-
     
   }
 

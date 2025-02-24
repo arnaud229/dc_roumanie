@@ -334,7 +334,7 @@ async  ngOnInit() {
             console.log('selector:', this.userId);
             this.list_users.forEach(
               (user) => {
-                console.log('dans le forEche',user);
+                // console.log('dans le forEche',user);
                 
                 if(user.uid  === this.userId) {
                   this.currentUser = user;
