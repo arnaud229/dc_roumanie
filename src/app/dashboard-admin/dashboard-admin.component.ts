@@ -1887,7 +1887,9 @@ applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
   console.log('filtervalue', filterValue);
+  this.getusers;
   console.log('origine liste', this.liste_preselect);
+  
   
   
   this.liste_preselect = this.liste_preselect.filter(fichier => 
@@ -1904,6 +1906,7 @@ applyFilterSelect(event: Event)
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
   console.log('filtervalue', filterValue);
+  this.getusers;
   console.log('origine liste', this.liste_select);
   
   
