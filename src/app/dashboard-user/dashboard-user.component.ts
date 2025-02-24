@@ -985,11 +985,12 @@ getTotalsRemboursements() {
  openWhatsApp() {
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const phone = '22967186317';
+  const message = encodeURIComponent('Bonjour/Bonsoir Directrice. Je viens d\'être informé de ce que j\'ai un employeur, quelle est la suite du processus '); // Message encodé pour URL
   
   // Format spécial pour iOS
   const url = isMobile ? 
-    `https://api.whatsapp.com/send?phone=${phone}` : 
-    `https://web.whatsapp.com/send?phone=${phone}`;
+    `https://api.whatsapp.com/send?phone=${phone}&text=${message}` : 
+    `https://web.whatsapp.com/send?phone=${phone}&text=${message}`;
 
   window.open(url, '_blank');
 }
