@@ -81,6 +81,7 @@
         "btnRetour": "Back",
         "btnpresect": "Preselection",
         "btnsect": "Selection",
+        "noFils": "No files uploaded by user",
         "aucunV": "There is no validated activity presentation video"
     },
 

@@ -327,8 +327,12 @@
 
             <h1> {{ 'viewUser.dfils' | translate }} </h1>
 
+          
+                <span class="nofils" *ngIf="currentUser.fils_diplome?.length == 0"> {{ 'viewUser.noFils' | translate }} </span>
+           
+
             <div class="groupViewImages"  >
-                <div  *ngFor="let item of currentUser.fils_diplome ">
+                <div  *ngFor="let item of currentUser.fils_diplome">
 
                     <div *ngIf="!contientPDF(item)">
 
@@ -345,8 +349,9 @@
     
                     </div>
 
+                
                     </div>
-
+             
 
                     <div class="groupePdf"  *ngIf="contientPDF(item)" >
                      
@@ -368,7 +373,10 @@
 
             <h1> {{ 'viewUser.pfils' | translate }} </h1>
 
-            <div class="groupViewImages"  >
+            <span class="nofils" *ngIf="!currentUser.fil_photo?.trim()" > {{ 'viewUser.noFils' | translate }} </span>
+           
+
+            <div class="groupViewImages" *ngIf="currentUser.fil_photo?.trim()"  >
 
                 <div class="plusFilsSolo" >
                     <img id="imgplus"  [src]="currentUser.fil_photo " alt=""  >
@@ -386,7 +394,10 @@
 
             <h1> {{ 'viewUser.pcfils' | translate }} </h1>
 
-            <div class="groupViewImages"  >
+            <span class="nofils" *ngIf="!currentUser.fil_casierJudiciere?.trim()" > {{ 'viewUser.noFils' | translate }} </span>
+           
+
+            <div class="groupViewImages" *ngIf="currentUser.fil_casierJudiciere?.trim()"  >
 
                 <div class="plusFilsSolo"  *ngIf="!contientPDF(currentUser.fil_casierJudiciere)" >
                     <img id="imgplus"  [src]="currentUser.fil_casierJudiciere " alt=""  >
@@ -409,8 +420,10 @@
         <div class="groupViewFils">
 
             <h1> {{ 'viewUser.ppfils' | translate }} </h1>
+            
+            <span class="nofils" *ngIf="!currentUser.fil_passportPhoto?.trim()" > {{ 'viewUser.noFils' | translate }} </span>
 
-            <div class="groupViewImages"  >
+            <div class="groupViewImages"  *ngIf="currentUser.fil_passportPhoto?.trim()"   >
 
                 <div class="plusFilsSolo"  *ngIf="!contientPDF(currentUser.fil_passportPhoto)" >
                     <img id="imgplus"  [src]="currentUser.fil_passportPhoto " alt=""  >

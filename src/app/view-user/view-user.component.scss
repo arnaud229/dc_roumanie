@@ -11,6 +11,18 @@
     transform: translateX(-50%);
 }
 
+.nofils
+{
+    display: flex;
+    justify-content: center;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 16px;
+}
+
+
+
 .card_user > img
 {
     width: 150px;

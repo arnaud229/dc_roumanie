@@ -82,6 +82,7 @@
         "btnRetour": "Retour",
         "btnpresect": "Préselection",
         "btnsect": "Selection",
+        "noFils": "Auncun fichier chargé par l'utilisateur",
         "aucunV": "Il n'y a aucune video de presetation d'activité validée "
     },
 
