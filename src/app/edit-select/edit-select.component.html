@@ -181,7 +181,7 @@
 
              <div class="cardFils">
                  <p>{{ 'edit.docDiplome' | translate }} </p>
-                 <mat-progress-bar id="laBarDownload" mode="indeterminate" *ngIf="isUploading"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload" mode="determinate" *ngIf="isUploading"></mat-progress-bar>
 
                  <span (click)="getfils()"> 
                      <img src="./../../assets/download_icon.png " alt="">
@@ -207,7 +207,7 @@
 
              <div class="cardFils">
                  <p>{{ 'edit.docPhoto' | translate }}</p>
-                 <mat-progress-bar id="laBarDownload1" mode="indeterminate" *ngIf="isUploading1"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload1" mode="determinate" *ngIf="isUploading1"></mat-progress-bar>
 
                  <span (click)="getfils1()"> 
                      <img src="./../../assets/download_icon.png " alt="">
@@ -221,7 +221,7 @@
              <div class="cardFils">
                  <p>{{ 'edit.docPasseport' | translate }} </p>
             
-                 <mat-progress-bar id="laBarDownload2" mode="indeterminate" *ngIf="isUploading2"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload2" mode="determinate"  *ngIf="isUploading2"></mat-progress-bar>
                  <span (click)="getfils2()"> 
                      <img src="./../../assets/download_icon.png " alt="">
                  </span>
@@ -233,7 +233,7 @@
              <div class="cardFils">
                  <p>{{ 'edit.docCassier' | translate }} </p>
                    
-                 <mat-progress-bar id="laBarDownload3" mode="indeterminate"  *ngIf="isUploading3"></mat-progress-bar>
+                 <mat-progress-bar id="laBarDownload3" mode="determinate"  *ngIf="isUploading3"></mat-progress-bar>
 
                  <span (click)="getfils3()"> 
                      <img src="./../../assets/download_icon.png " alt="">
@@ -266,5 +266,16 @@
 
 <div>
 
+    <div  *ngIf="loading" class="loader">
+
+        <div *ngIf="!iserrorlog" class="lds-ring"><div></div><div></div><div></div></div>
+      
+        <div class="groupError"  *ngIf="iserrorlog" >
+          <p class="smsError" >  {{message}} </p>
+          <button  (click)="closeError() " >ok</button>
+        </div>
+      
+      </div>
+   
   
 

@@ -98,6 +98,7 @@ export class SelectionComponent {
     this.listReligion = this.utilsService.getListReligion();
     this.listCountries = this.utilsService.getListCountries();
     this.init_form();
+    this.languageChange.getLanguage();
   }
 
   ngOnInit() {
@@ -114,8 +115,6 @@ export class SelectionComponent {
       LieuNaissance: ['',Validators.required],
       dateNaissance:  ['',Validators.required],
       paysNaissance:  ['',Validators.required],
-      // Pere: ['',Validators.required],
-      // Mere: ['',Validators.required],
       nPasseport: ['',Validators.required],
       lieuPasseport: ['',Validators.required],
       dateEmiPasseport: [,Validators.required],
@@ -127,7 +126,7 @@ export class SelectionComponent {
       pricipalProfession: ['',Validators.required],
       langueParler: ['',Validators.required],
       expProfesionnel: [,Validators.required],
-      nbrEnfants: [,Validators.required, Validators.pattern(/^[0-9] {2}$/), Validators.max(50)],
+      nbrEnfants: [,[Validators.required, Validators.pattern(/^[0-9]{2}$/), Validators.max(50)]],
       dHonneur: ['',Validators.required],   
       fils_diplome: [,Validators.required],    
       fil_photo: [,Validators.required],    
@@ -157,13 +156,14 @@ export class SelectionComponent {
   }
 
   suivant(index: number) {
+    this.languageChange.getLanguage();
 
       if (index == 1) {
 
         this.telVisible = 1;
          console.log(" pere et mere ",this.selectform.value);
       
-        this.cdr.detectChanges();
+        // this.cdr.detectChanges();
         
       } else if (index==2) {
         this.telVisible = 2
@@ -205,12 +205,11 @@ export class SelectionComponent {
  async  onFilesSelected1(event : any) {
   this.loading = true;
   this.iserrorlog = false;
-
     this.isUploading1 = true;
+
     const filess = event.target.files;
     console.log("files de input",filess);
     console.log("files de tyoe ",typeof filess);
-
 
     console.log('event', event);
     let files = [...event.target.files];
@@ -264,7 +263,6 @@ export class SelectionComponent {
 
   this.loading = true;
   this.iserrorlog = false;
-
     this.isUploading2 = true;
 
     const filess = event.target.files;
@@ -324,8 +322,7 @@ export class SelectionComponent {
   async onFilesSelected3(event : any) {
 
     this.loading = true;
-    this.iserrorlog = false;
-    
+    this.iserrorlog = false; 
     this.isUploading3 = true;
 
     const filess = event.target.files;

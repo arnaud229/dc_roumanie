@@ -171,7 +171,8 @@ export class EditSelectComponent {
   oldFilCassierJudiciere: any = "";
   listReligion: any[] = [];
   listCountries: any[] = [];
-
+  loading = false;
+  iserrorlog : boolean = false;
 
   
   constructor(
@@ -345,6 +346,10 @@ getfils3() {
 }
 
   async onFilesSelected1(event : any) {
+    this.loading = true;
+    this.iserrorlog = false;
+      this.isUploading1 = true;
+
   const filess = event.target.files;
 
   console.log('event', event);    
@@ -354,33 +359,25 @@ getfils3() {
     (e) => e.size / 1024 / 1024 > this.maxFileSize
   );
   if (invalidFile) {
+    this.loading = true;
+    this.iserrorlog = true;
   
     this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
     return;
   }
+
+  const {urlOld} = this.oldFilPhoto;
+
+
+if (urlOld) {
+  console.log('ici le problème');
+
+      await this.firebaseStorageService.deleteFileFromUrl({ url: urlOld });
+
+}
       console.log('this.oldFilPhoto', this.oldFilPhoto); 
       
-      const table = [...this.oldFilPhoto ]
-      console.log('table', table); 
-      
-      const tableOld = (table || []).map((e: any) => {
-        return { previewUrl: e, type: 'image', url: e }
-      })
-
-       await Promise.all(tableOld.map(async (image: any) => {
-       
-        const  { url } = image
-        return await this.firebaseStorageService.deleteFileFromUrl({
-           url 
-        });
-      })).catch(e => {
-        // this.isLoading = false
-        console.log('lerreur', e);
-        
-        // this.,
-      })
-
-
+     
      let imagePhoto: any = files.map(async (asset: any) => {
       const url = await this.firebaseStorageService.uploadFile({
         folder: 'filsPhoto',
@@ -408,11 +405,16 @@ getfils3() {
 
     console.log('le url', this.filPhoto);
 
+    this.loading = false;
+    this.iserrorlog = false;
+
 }
 
 async onFilesSelected2(event : any) {
 
-  this.isUploading2 = true;
+  this.loading = true;
+  this.iserrorlog = false;
+    this.isUploading2 = true;
 
   const filess = event.target.files;
   console.log("files de input",filess);
@@ -427,14 +429,21 @@ const invalidFile = files.find(
 );
 if (invalidFile) {
 
+  this.loading = true;
+      this.iserrorlog = true;
   this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
   return;
 }
 
 const {urlOld} = this.oldFilPasseport;
+console.log('le oldurl', urlOld)
 
-if (this.oldFilPasseport !='' || this.oldFilPasseport != undefined ) {
-      await this.firebaseStorageService.deleteFileFromUrl(urlOld);
+
+
+if (urlOld) {
+  console.log('ici le problème');
+
+      await this.firebaseStorageService.deleteFileFromUrl({ url: urlOld });
 
 }
 
@@ -455,9 +464,7 @@ asset.downloadUrl = url;
 return url;
 });
 
-
 const uploadedUrls = await Promise.all(imagePhotoPasseport);
-
 
 // Filtrer les URLs null (échecs de téléchargement)
 const successfulUrls = uploadedUrls.filter(url => url !== null);
@@ -465,12 +472,16 @@ const successfulUrls = uploadedUrls.filter(url => url !== null);
 this.filPhotoPassport = successfulUrls[0];
 
 console.log('le url', this.filPhotoPassport);
+this.loading = false;
+this.iserrorlog = false;
 
 
 }
 
 async onFilesSelected3(event : any) {
 
+  this.loading = true;
+  this.iserrorlog = false;
   this.isUploading3 = true;
 
   const filess = event.target.files;
@@ -486,6 +497,9 @@ const invalidFile = files.find(
 
   if (invalidFile) {
 
+    this.loading = true;
+    this.iserrorlog = true;
+
     this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
     return;
   }
@@ -496,8 +510,8 @@ const {urlOld} = this.oldFilCassierJudiciere;
 
 
 
-if (this.oldFilCassierJudiciere !='' || this.oldFilCassierJudiciere != undefined ) {
-  await this.firebaseStorageService.deleteFileFromUrl(urlOld);
+if (urlOld) {
+  await this.firebaseStorageService.deleteFileFromUrl({ url: urlOld });
 
 }
 
@@ -528,6 +542,9 @@ const successfulUrls = uploadedUrls.filter(url => url !== null);
 this.filPhotoCasier = successfulUrls[0];
 
 console.log('le url', this.filPhotoCasier);
+
+this.loading = false;
+this.iserrorlog = false;
 
 
 }
@@ -760,6 +777,16 @@ async editSelect() {
 
     )       
 }
+
+
+closeError() {
+  this.loading = false;
+  this.isUploading = false;
+  this.isUploading1 = false;
+  this.isUploading2 = false;
+  this.isUploading3 = false;
+ }
+
 
 
 
