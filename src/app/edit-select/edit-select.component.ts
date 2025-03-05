@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, EventEmitter, SimpleChanges, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RecuFile, User } from 'src/models/variables';
@@ -183,6 +183,7 @@ export class EditSelectComponent {
     public localstorageService: LocalstorageService,
     public utilsService: UtilsService,
       private languageChange: LanguageService, 
+      private cdr: ChangeDetectorRef
   ) {
     this.listReligion = this.utilsService.getListReligion();
     this.listCountries = this.utilsService.getListCountries();
@@ -193,6 +194,8 @@ export class EditSelectComponent {
     this.languageChange.getLanguage();
     this.currentUser = this.localstorageService.getCurrentUser();
     this.userId = this.currentUser.uid
+    console.log('iud', this.userId);
+    
     this.init_form();
   }
 
@@ -270,7 +273,16 @@ delete(index : number) {
   this.removedImages.push(this.itemToEditImages[index])
   this.itemToEditImages.splice(index, 1);
   this.emitChangeEvent();
+   
   // this.onRemovePicture.emit(this.removedImages)
+
+   // Forcer la mise à jour de l'affichage
+   this.cdr.detectChanges();
+
+   // Émettre un événement si nécessaire
+   this.emitChangeEvent();
+ 
+   console.log('Images restantes après suppression', this.itemToEditImages);
 
 }
 
@@ -370,8 +382,7 @@ getfils3() {
 
 
 if (urlOld) {
-  console.log('ici le problème');
-
+ 
       await this.firebaseStorageService.deleteFileFromUrl({ url: urlOld });
 
 }
@@ -676,7 +687,7 @@ async editSelect() {
         new Date().getTime() +
         this.userId +
         '.' +
-        asset.name?.split('.')?.[1],
+        asset.name?.split('.')?.pop(),
       file: asset.file,
     });
   
@@ -686,6 +697,9 @@ async editSelect() {
 
 
   const uploadedUrls = await Promise.all(imagesDiplomes);
+
+  console.log("1er chargement", uploadedUrls);
+  
 
    
   // Filtrer les URLs null (échecs de téléchargement)
@@ -711,16 +725,35 @@ async editSelect() {
       // console.log('this.sel :>> ', this.selectedImages, this.removedImages, this.itemToEditImages);
       // console.log('this.remainingImagesAfterDeletion :>> ', addedFiles, remainingImagesAfterDeletion);
       const avantupdateImages = [...remainingImagesAfterDeletion, ...successfulUrls];
-  
+    console.log("avant", avantupdateImages);
+      
       const updatedImages = avantupdateImages.flat();
 
 
 
   console.log('uploadedUrls',updatedImages);
- 
 
-   
-      const infoSelect = 
+
+
+      // 4. Validation des images obligatoires
+      const requiredFields = {
+        fil_photo: this.getFieldValue(this.filPhoto, this.oldFilPhoto?.url),
+        fil_casierJudiciere: this.getFieldValue(this.filPhotoCasier, this.oldFilCassierJudiciere?.url),
+        fil_passportPhoto: this.getFieldValue(this.filPhotoPassport, this.oldFilPasseport?.url)
+      };
+
+      console.log('requiredField', requiredFields);
+      
+  
+      const missingFields = this.validateRequiredFields(requiredFields);
+      if (missingFields.length > 0) {
+        this.handleError(`Veuillez choisir : ${missingFields.join(', ')}`);
+        return;
+      }
+      console.log('missing', missingFields);
+      
+
+        const infoSelect = 
     {
       
       LieuNaissance: this.selectform.value.LieuNaissance,
@@ -750,14 +783,13 @@ async editSelect() {
       nbrEnfants: this.selectform.value.nbrEnfants,
       dHonneur: this.selectform.value.dHonneur,   
       fils_diplome:updatedImages,    
-      fil_photo: this.filPhoto ,    
-      fil_passportPhoto: this.filPhotoPassport,    
-      fil_casierJudiciere: this.filPhotoCasier,    
+      ...requiredFields  
       
 
     }
     console.log('toto36');
     console.log('infos pour selecteur', infoSelect); 
+
         
     this.userServ.select(infoSelect, this.userId)
     .then(
@@ -775,7 +807,35 @@ async editSelect() {
         console.log('vous aviez une erreur ' + errorCode + ': ' + errorMessage);
       }
 
-    )       
+    )     
+
+}
+
+
+// Méthodes utilitaires
+private getFieldValue(newValue?: string, oldValue?: string): string {
+  return newValue && newValue.trim() !== '' ? newValue : (oldValue && oldValue.trim() !== '' ? oldValue : '');
+}
+
+private validateRequiredFields(fields: Record<string, string>): string[] {
+  const missing: string[] = [];
+  if (!fields['fil_photo'] || fields['fil_photo'].trim() === '') {
+    missing.push('photo complète');
+  }
+  if (!fields['fil_casierJudiciere'] || fields['fil_casierJudiciere'].trim() === '') {
+    missing.push('casier judiciaire');
+  }
+  if (!fields['fil_passportPhoto'] || fields['fil_passportPhoto'].trim() === '') {
+    missing.push('passeport');
+  }
+  return missing;
+}
+
+private handleError(message: string): void {
+  this.loading = true;
+  this.iserrorlog = true;
+  this.message = message;
+  console.error(message);
 }
 
 
@@ -786,6 +846,10 @@ closeError() {
   this.isUploading2 = false;
   this.isUploading3 = false;
  }
+
+ trackByFn(index: number, item: any): number {
+  return index;
+}
 
 
 
