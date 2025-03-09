@@ -187,7 +187,7 @@ export class EditSelectComponent {
   ) {
     this.listReligion = this.utilsService.getListReligion();
     this.listCountries = this.utilsService.getListCountries();
-    this.init_form();
+    // this.init_form();
   }
 
   ngOnInit() {
@@ -216,7 +216,10 @@ export class EditSelectComponent {
 
     console.log('the currentUser', this.currentUser);
      
-    const arayImg = [this.currentUser.fils_recus];
+    const arayImg = [this.currentUser.fils_diplome];
+
+    console.log('toto reste les photos', arayImg);
+    
 
     this.itemToEditImages = (arayImg || []).map((e: any) => {
       return { previewUrl: e, type: 'image', url: e }
@@ -562,40 +565,34 @@ this.iserrorlog = false;
 
 async onFilesSelected(event : any) {
 
-  for (let index = 0; index < event.length; index++) {
-    const element = {
-       url: event.target.files[index].name
-    }
-
-    this.filPhotoDiplomes.push(element)
-    
-  }
+  this.isUploading = true;
 
   console.log('event', event);
-  let files = [...this.filPhotoDiplomes];
+  let files = [...event.target.files];
+ 
   event.target.value = null;
   const invalidFile = files.find(
     (e) => e.size / 1024 / 1024 > this.maxFileSize
   );
   if (invalidFile) {
-  
+    this.iserrorlog = true;
     this.message = "La taille de votre fichier depasse 10MB, veuillez choisi un fichier moins de  10MB"
     return;
   }
   // .filter(e=>e.type.trim().length>0);
   for (let index = 0; index < files.length; index++) {
     const element = files[index];
-    element.url = element;
+    element.file = element;
     element.previewUrl = await this.fileToBase64(element);
   }
   this.liste_fils = this.multiple
     ? [...this.liste_fils, ...files]
     : [...files];
   this.emitChangeEventLog();
-  // this.les_url = new Array(10).fill({}).map(e=>files[0])
-  console.log('this.les_url', this.currentUser.fils_diplome);
+
+  console.log('les_url old', this.currentUser.fils_diplome);
+  console.log('les nouveaux url ',  this.liste_fils); 
   this.ChoixImg = true;
-  
 
 }
 
@@ -678,6 +675,8 @@ async editSelect() {
   console.log(" experience ",this.expTable); 
   
   if (this.selectform.invalid) return
+
+  console.log('les urls', this.liste_fils); 
   
   let imagesDiplomes: any = this.liste_fils.map(async (asset: any) => {
     const url = await this.firebaseStorageService.uploadFile({
@@ -687,7 +686,7 @@ async editSelect() {
         new Date().getTime() +
         this.userId +
         '.' +
-        asset.name?.split('.')?.pop(),
+        asset.name?.split('.')?.[1],
       file: asset.file,
     });
   
@@ -699,8 +698,7 @@ async editSelect() {
   const uploadedUrls = await Promise.all(imagesDiplomes);
 
   console.log("1er chargement", uploadedUrls);
-  
-
+//  return;
    
   // Filtrer les URLs null (échecs de téléchargement)
   const successfulUrls = uploadedUrls.filter(url => url !== null);
@@ -716,12 +714,14 @@ async editSelect() {
         // this.isLoading = false
         console.log('lerreur', e);
         
-        // this.,
       })
   
       const remainingImagesAfterDeletion = this.itemToEditImages.filter(initial => {
         return !this.removedImages.some(removed => removed.url === initial.url)
       }).map(e => e.url)
+
+     console.log('apres suppression de img', remainingImagesAfterDeletion);
+     
       // console.log('this.sel :>> ', this.selectedImages, this.removedImages, this.itemToEditImages);
       // console.log('this.remainingImagesAfterDeletion :>> ', addedFiles, remainingImagesAfterDeletion);
       const avantupdateImages = [...remainingImagesAfterDeletion, ...successfulUrls];
@@ -731,10 +731,9 @@ async editSelect() {
 
 
 
-  console.log('uploadedUrls',updatedImages);
+  console.log('uploadedUrls..',updatedImages);
 
-
-
+    
       // 4. Validation des images obligatoires
       const requiredFields = {
         fil_photo: this.getFieldValue(this.filPhoto, this.oldFilPhoto?.url),

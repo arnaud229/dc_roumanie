@@ -192,10 +192,10 @@
              <div   *ngIf="!ChoixImg"  >
 
                 <ul >
-                    <li  *ngFor="let to of itemToEditImages; let i = index; trackBy: trackByFn">
+                    <li  *ngFor="let to of itemToEditImages[0].previewUrl ; let i = index;">
                     
                       <img class="delect" (click)="delete(i) " src="./../../assets/croixDelete.png" alt="Delete">
-                      <img class="imgCard" [src]="to.previewUrl" alt="Image" >
+                      <img class="imgCard" [src]="to" alt="Image" >
                     </li>
                   </ul>
 
