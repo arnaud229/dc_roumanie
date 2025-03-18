@@ -1429,7 +1429,12 @@ export class DashboardAdminComponent {
 
   TotalsDettes: number =1;
   TotalsRemboursements: number =1;
-  theId: any 
+  theId: any;
+  minVal = 0;
+  maxVal = 1;
+  minValR = 0;
+  maxValR = 1;
+
 
 
 
@@ -1444,6 +1449,7 @@ liste_Dette = [
     prenoms: 'folo',
     createdAt: new Date(),
     user_id: 'ertgfrgferkjgjktktedrzesey',
+    adminNom: 'foto',
 },
 {
   id: 'edtzergsdfgkhrftgmryumlfgklm',
@@ -1454,6 +1460,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergsddfgrfdffgkmryumlfgklm',
@@ -1464,6 +1471,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergsdfgkfghjfgyumlfgklm',
@@ -1474,6 +1482,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergsdfgkuiouyumlfgklm',
@@ -1484,6 +1493,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergsdfgkhftgmlfgklm',
@@ -1494,6 +1504,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergsdikikkkkmryumlfgklm',
@@ -1504,6 +1515,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergolpmlyuiyumryumlfgklm',
@@ -1514,6 +1526,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 {
   id: 'edtzergsdpoklklkmryumlfgklm',
@@ -1524,6 +1537,7 @@ liste_Dette = [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foto',
 },
 ];
 liste_Remboursement= [
@@ -1536,6 +1550,7 @@ liste_Remboursement= [
     prenoms: 'folo',
     createdAt: new Date(),
     user_id: 'ertgfrgferkjgjktktedrzesey',
+    adminNom: 'foto',
 },
 {
   id: 'edtzergsdfgkhrftgmryumlfgklm',
@@ -1546,6 +1561,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'fouo',
 },
 {
   id: 'edtzergsddfgrfdffgkmryumlfgklm',
@@ -1556,6 +1572,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foko',
 },
 {
   id: 'edtzergsdfgkfghjfgyumlfgklm',
@@ -1566,6 +1583,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foko',
 },
 {
   id: 'edtzergsdfgkuiouyumlfgklm',
@@ -1576,6 +1594,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foko',
 },
 {
   id: 'edtzergsdfgkhftgmlfgklm',
@@ -1586,6 +1605,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'foko',
 },
 {
   id: 'edtzergsdikikkkkmryumlfgklm',
@@ -1596,6 +1616,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'joko',
 },
 {
   id: 'edtzergolpmlyuiyumryumlfgklm',
@@ -1606,6 +1627,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'koko',
 },
 {
   id: 'edtzergsdpoklklkmryumlfgklm',
@@ -1616,6 +1638,7 @@ liste_Remboursement= [
   prenoms: 'folo',
   createdAt: new Date(),
   user_id: 'ertgfrgferkjgjktktedrzesey',
+  adminNom: 'vopo',
 },
 ];
 
@@ -1633,9 +1656,19 @@ displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', '
 displayedColumnsDette: string[] = ['nom', 'prenom', 'libele', 'montantDu', 'dateDette','admin','actions'];  
 displayedColumnsRemboursement: string[] = ['nom', 'prenom', 'libele', 'montantRembourse', 'dateRemboursement','admin', 'actions'];  
 displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfession', 'principalProfession', 'langueParler','actions'];  
-  typeInput = 'text'
+  textSearch = 'text';
   isViewVideo = false;
+  searchFiltre :boolean = false;
+  searchFiltreMontDu :boolean = false;
+  searchFiltreMontRem :boolean = false;
+  searchFiltreDate :boolean = false;
+  searchFiltreDateR :boolean = false;
   selectedPartner : any = null;
+  dateDebut!: Date;
+  dateFin!: Date;
+  dateDebutR!: Date;
+  dateFinR!: Date;
+
 
   constructor(
     private router: Router,
@@ -1741,18 +1774,37 @@ getFiltre() {
   this.isFiltre = !this.isFiltre;
 }
 
-getFiltreByValue(inde: number) {
-  this.filter = inde;
+getFiltreByValue(index: number) {
+  this.filter = index;
   console.log('(val filtre', this.filter);
+  this.searchFiltre = true;
 
-  if (this.filter == 2) {
-    this.typeInput = 'date'
-
-    console.log("input type", this.typeInput);
+  if (index === 5) {
+    this.searchFiltreMontDu = true;
+    this.searchFiltreDate = false;
+    this.searchFiltre = false;
     
-    
+  } else if(index === 6) {
+    this.searchFiltreMontDu = false;
+    this.searchFiltreDate = true;
+    this.searchFiltre = false;
+  } else if(index === 7) {
+    this.searchFiltreMontDu = false;
+    this.searchFiltreDate = false;
+    this.searchFiltre = true;
+  }  else if(index === 8) {
+    this.searchFiltreMontRem = true;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+  }  else if(index === 9) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = true;
+    this.searchFiltre = false;
+  } else if(index === 10) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = true;
   }
-  
 
 }
 
@@ -1890,8 +1942,6 @@ applyFilter(event: Event) {
   this.getusers;
   console.log('origine liste', this.liste_preselect);
   
-  
-  
   this.liste_preselect = this.liste_preselect.filter(fichier => 
     fichier.nom.toLowerCase().includes(filterValue) ||
     fichier.prenom.toLowerCase().includes(filterValue)
@@ -1899,6 +1949,53 @@ applyFilter(event: Event) {
 
   console.log('liste filtre', this.liste_preselect);
   
+}
+
+applyFilterByNumber(event: Event) {
+
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  this.getusers;
+  if (this.filter === 1) {
+
+    this.liste_preselect = this.liste_preselect.filter(fichier => 
+      fichier.parrain.toLowerCase().includes(filterValue)
+     
+    );    
+  } else if (this.filter === 2) {
+    
+    this.liste_preselect = this.liste_preselect.filter(fichier => 
+      fichier.metier.toLowerCase().includes(filterValue)
+     
+    );   
+    
+  } else if (this.filter === 3) {
+    
+    this.liste_preselect = this.liste_preselect.filter(fichier => 
+      fichier.NEtude.toLowerCase().includes(filterValue)
+     
+    );   
+    
+  } else if (this.filter === 4) {
+    
+    this.liste_select = this.liste_select.filter(fichier => 
+    fichier.qualiProfession.toLowerCase().includes(filterValue) ||
+    fichier.principalProfession.toLowerCase().includes(filterValue)
+  );  
+    
+  } else if (this.filter === 7) {
+    
+    this.liste_Dette = this.liste_Dette.filter(fichier => 
+    fichier.adminNom.toLowerCase().includes(filterValue)
+  );  
+    
+  } else if (this.filter === 10) {
+    
+    this.liste_Remboursement = this.liste_Remboursement.filter(fichier => 
+    fichier.adminNom.toLowerCase().includes(filterValue)
+  );  
+    
+  }
+
 }
 
 applyFilterSelect(event: Event)
@@ -2446,6 +2543,156 @@ delectVideoCoaching(item: any) {
   )
 
  }
+
+ applyFilterMontant() 
+ {
+  if (this.minVal !== 0 && this.maxVal === 1 ) {
+
+   this.liste_Dette = this.liste_Dette.filter(
+    (el) => el.montantDu >= this.minVal
+   )
+
+   
+   console.log('1');
+ 
+  } else if (this.minVal === 0 && this.maxVal !== 1) {
+
+    
+   this.liste_Dette = this.liste_Dette.filter(
+    (el) => el.montantDu <= this.maxVal
+   )
+   
+   console.log('2');
+    
+  } else if (this.minVal !== 0 && this.maxVal !== 1) {
+    
+     
+   this.liste_Dette = this.liste_Dette.filter(
+    (el) => {
+      el.montantDu >= this.minVal
+      el.montantDu <= this.maxVal
+    
+    } 
+   )
+
+   console.log('3');
+   
+  }
+  
+ }
+
+ applyFilterMontantR() 
+ {
+  if (this.minVal !== 0 && this.maxVal === 1 ) {
+
+   this.liste_Remboursement = this.liste_Remboursement.filter(
+    (el) => el.montantRembourse >= this.minVal
+   )
+
+   
+   console.log('1');
+ 
+  } else if (this.minValR === 0 && this.maxValR !== 1) {
+
+    
+   this.liste_Remboursement = this.liste_Remboursement.filter(
+    (el) => el.montantRembourse <= this.maxValR
+   )
+   
+   console.log('2');
+    
+  } else if (this.minValR !== 0 && this.maxValR !== 1) {
+    
+     
+   this.liste_Remboursement = this.liste_Remboursement.filter(
+    (el) => {
+      el.montantRembourse >= this.minValR
+      el.montantRembourse <= this.maxValR
+    
+    } 
+   )
+
+   console.log('3');
+   
+  }
+  
+ }
+
+
+ applyFilterDateR() {
+
+  if (this.dateDebutR && this.dateFinR === null || this.dateFinR === undefined ) {
+
+    this.liste_Remboursement = this.liste_Remboursement.filter(
+     (el) => el.dateRemboursement >= this.dateDebut
+    )
+ 
+    
+    console.log('1');
+  
+   } else if (this.dateDebut === null || this.dateDebut === undefined && this.dateFin) {
+ 
+     
+    this.liste_Remboursement = this.liste_Remboursement.filter(
+     (el) => el.dateRemboursement <= this.dateFin
+    )
+    
+    console.log('2');
+     
+   } else if (this.dateDebut  && this.dateFin ) {
+     
+      
+    this.liste_Remboursement = this.liste_Remboursement.filter(
+     (el) => {
+       el.dateRemboursement >= this.dateDebut
+       el.dateRemboursement <= this.dateFin
+     
+     } 
+    )
+ 
+    console.log('3');
+    
+   }
+  
+ }
+
+ applyFilterDate() {
+
+  if (this.dateDebut && this.dateFin === null || this.dateFin === undefined ) {
+
+    this.liste_Dette = this.liste_Dette.filter(
+     (el) => el.dateDette >= this.dateDebut
+    )
+ 
+    
+    console.log('1');
+  
+   } else if (this.dateDebut === null || this.dateDebut === undefined && this.dateFin) {
+ 
+     
+    this.liste_Dette = this.liste_Dette.filter(
+     (el) => el.dateDette <= this.dateFin
+    )
+    
+    console.log('2');
+     
+   } else if (this.dateDebut  && this.dateFin ) {
+     
+      
+    this.liste_Dette = this.liste_Dette.filter(
+     (el) => {
+       el.dateDette >= this.dateDebut
+       el.dateDette <= this.dateFin
+     
+     } 
+    )
+ 
+    console.log('3');
+    
+   }
+  
+ }
+
 
 
 

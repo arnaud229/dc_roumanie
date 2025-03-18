@@ -62,6 +62,7 @@
         "quartier": "province:",
         "qprofessionnelle": "Professional Qualification:",
         "pprofession": "Main Profession",
+        "profession": "Profession",
         "num": "Num",
         "entreprise": "Company",
         "ddebut": "Start date",
@@ -109,7 +110,7 @@
         "aucunVideo": "No activity presentation video for this traveler",
         "montantdu": "Amount Of",
         "libele": " Label",
-        "Admin": "Admin",
+        "admin": "Admin",
         "montantRe": "Amount Refunded",
         "datePaie": "Date",
         "All": "All",
@@ -136,7 +137,11 @@
         "pasCoursA": "No English courses have been added yet.",
         "pasPret": " you have not taken out any loan yet",
         "dResidence": "Last residence",
-        "btnVideo": "Add a video"
+        "btnVideo": "Add a video",
+        "min": "min",
+        "max": "max",
+         "debutD": "start",
+        "finD": "End"
 
     },
 

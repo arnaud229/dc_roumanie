@@ -110,14 +110,22 @@
                             </div>
     
                         </div>
-    
-                        <div class="group_header2"    *ngIf="isFiltre" >
-                          <p>ca viendra après</p>
-                           <!-- <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
-                          -->
+
+                        <div *ngIf="isFiltre">
+
+                          <div class="group_header2" >
+                         
+                            <span  class="FiltreIn" (click)="getFiltreByValue(1)"  [ngClass]="{'theFiltre': filter === 1}"> {{ 'dashboard.parrains' | translate }} </span>
+                            <span  class="FiltreIn" (click)="getFiltreByValue(2)"  [ngClass]="{'theFiltre': filter === 2}"> {{ 'viewUser.metier' | translate }} </span>
+                            <span  class="FiltreIn" (click)="getFiltreByValue(3)"  [ngClass]="{'theFiltre': filter === 3}"> {{ 'viewUser.NEtude' | translate }} </span>
+                          
+                         </div>
+ 
+                         <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">                      
+
                         </div>
     
-                       
+                      
                     </div>
     
                                       
@@ -242,7 +250,7 @@
 
                         <div class="group_header1" >
     
-                            <input [type]="typeInput"  (input)="applyFilterSelect($event)" >
+                            <input type="text"  (input)="applyFilterSelect($event)" >
     
                             <div>
                                 <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
@@ -250,14 +258,20 @@
                             </div>
     
                         </div>
-    
-                        <div class="group_header2"    *ngIf="isFiltre" >
-                           <p>ca viendra après</p>
 
-                            <!-- <span  class="theFiltre" (click)="getFiltreByValue(2)"  [ngClass]="{'filtreIn': filter == 2}"> date </span>
-                            <span  class="theFiltre"  (click)="getFiltreByValue(3)"  [ngClass]="{'filtreIn': filter == 3}"> nom </span>
-                       -->
+                        <div *ngIf="isFiltre">
+
+                          <div class="group_header2"     >
+                         
+                            <span  class="FiltreIn" (click)="getFiltreByValue(4)"  [ngClass]="{'theFiltre': filter === 4}"> {{ 'viewUser.profession' | translate }}  </span>
+                            <!-- <span  class="FiltreIn"  (click)="getFiltreByValue(5)"  [ngClass]="{'theFiltre': filter === 5}"> nom </span> -->
+                      
                           </div>
+                          
+                        <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">   
+                       
+
+                        </div>
     
                        
                     </div>
@@ -436,14 +450,55 @@
                           
     
                         </div>
-    
-                        <div class="group_header2"    *ngIf="isFiltre" >
-                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" >  {{ 'dashboard.montantdu' | translate }}</span>
-                            <!-- <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > Date </span> -->
-                           </div>
-    
-                       
-                    </div>
+
+                        <div *ngIf="isFiltre">
+
+                                
+                        <div class="group_header2" >
+                          <span class="FiltreIn"  (click)="getFiltreByValue(5)"  [ngClass]="{'theFiltre': filter == 5}" >  {{ 'dashboard.montantdu' | translate }}</span>
+                          <span  class="FiltreIn" (click)="getFiltreByValue(6)"  [ngClass]="{'theFiltre': filter == 6}"  > {{ 'dashboard.datePaie' | translate }}  </span>
+                          <span  class="FiltreIn" (click)="getFiltreByValue(7)"  [ngClass]="{'theFiltre': filter == 7}"  > {{ 'dashboard.admin' | translate }}  </span>
+                         </div>
+  
+                         <input  *ngIf="searchFiltre" class="SeachFiltre" [type]="textSearch"  (input)="applyFilterByNumber($event)"> 
+                 
+                         <div class="groupeMont"  *ngIf="searchFiltreMontDu">
+
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.min' | translate }} </label>
+                            <input type="number" [(ngModel)]="minVal" >
+                          </div>
+
+                          
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.max' | translate }} </label>
+                            <input type="number" [(ngModel)]="maxVal" >
+                          </div>
+
+                          <img src="./../../assets/search.png" alt="" (click)="applyFilterMontant()" >
+                         </div>
+
+
+                         <div class="groupeMont"  *ngIf="searchFiltreDate">
+
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.debutD' | translate }} </label>
+                            <input type="date" [(ngModel)]="dateDebut" >
+                          </div>
+
+                          
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.finD' | translate }} </label>
+                            <input type="date" [(ngModel)]="dateFin" >
+                          </div>
+
+                          <img src="./../../assets/search.png" alt="" (click)="applyFilterDate()" >
+                         </div>
+
+                        </div>
+                     </div>
+
+                     
     
                     <div class="content">
                                
@@ -536,14 +591,53 @@
                             <button class="btn-ajout" (click)="goTocreateRemboursement() " >  {{ 'dashboard.btnremboursement' | translate }} </button>
     
                         </div>
-    
-                        <div class="group_header2"    *ngIf="isFiltre" >
-                            <span class="theFiltre"  (click)="getFiltreByValue(4)"  [ngClass]="{'filtreIn': filter == 4}" > {{ 'dashboard.montantRe' | translate }}  </span>
-                            <span  class="theFiltre" (click)="getFiltreByValue(5)"  [ngClass]="{'filtreIn': filter == 5}"  > {{ 'dashboard.datePaie' | translate }}  </span>
-                            <span  class="theFiltre" (click)="getFiltreByValue(6)"  [ngClass]="{'filtreIn': filter == 6}"> {{ 'dashboard.libele' | translate }}  </span>
-                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 7}"> {{ 'singnup.placeholderNom' | translate }}  </span>
-                            <span  class="theFiltre"  (click)="getFiltreByValue(7)"  [ngClass]="{'filtreIn': filter == 8}"> {{ 'singnup.placeholderPrenom' | translate }}  </span>
+
+                      <div *ngIf="isFiltre" >
+
+                          <div class="group_header2"     >
+                            <span class="FiltreIn"  (click)="getFiltreByValue(8)"  [ngClass]="{'theFiltre': filter == 8}" > {{ 'dashboard.montantRe' | translate }}  </span>
+                            <span  class="FiltreIn" (click)="getFiltreByValue(9)"  [ngClass]="{'theFiltre': filter == 9}"  > {{ 'dashboard.datePaie' | translate }}  </span>
+                            <span  class="FiltreIn" (click)="getFiltreByValue(10)"  [ngClass]="{'theFiltre': filter == 10}"> {{ 'dashboard.admin' | translate }}  </span>
+                
+                         </div>
+
+                        <input  *ngIf="searchFiltre" class="SeachFiltre" [type]="textSearch"  (input)="applyFilterByNumber($event)"> 
+                 
+                        <div class="groupeMont"  *ngIf="searchFiltreMontRem">
+
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.min' | translate }} </label>
+                            <input type="number" [(ngModel)]="minValR" >
+                          </div>
+
+                          
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.max' | translate }} </label>
+                            <input type="number" [(ngModel)]="maxValR" >
+                          </div>
+
+                          <img src="./../../assets/search.png" alt="" (click)="applyFilterMontantR()" >
+                         </div>
+
                         </div>
+
+                        <div class="groupeMont"  *ngIf="searchFiltreDateR">
+
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.debutD' | translate }} </label>
+                            <input type="date" [(ngModel)]="dateDebutR" >
+                          </div>
+
+                          
+                          <div class="onlyMont">
+                            <label > {{ 'dashboard.finD' | translate }} </label>
+                            <input type="date" [(ngModel)]="dateFinR" >
+                          </div>
+
+                          <img src="./../../assets/search.png" alt="" (click)="applyFilterDateR()" >
+                         </div>
+    
+                     </div>
     
                        
                     </div>

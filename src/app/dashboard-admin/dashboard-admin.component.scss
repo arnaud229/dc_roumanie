@@ -69,7 +69,23 @@
     flex-direction: column;
     text-align: center;
 }
-.selctIn, .filtreIn
+ .FiltreIn
+{
+    border: solid 1px #45d00f;
+    color: #45d00f;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    
+}
+.selctIn
 {
     color: white;
     background-color: #45d00f;
@@ -500,6 +516,14 @@ margin-bottom: 30px;
    
 }
 
+.SeachFiltre
+{
+    width: 210px;
+    height: 40px;
+    border-radius: 30px;
+    margin-left: 34%;
+}
+
 .cardHead_Preselect
 {
     display: flex;
@@ -508,17 +532,9 @@ margin-bottom: 30px;
 }
 .theFiltre
 {
-    border: solid 1px #45d00f;
-    color: #45d00f;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    padding: 10px;
-    border-radius: 10px;
+    color: white;
+    background-color: #45d00f;
     margin-left: 10px;
-    background: white;
-    margin-bottom: 20px;
     
 }
 
@@ -899,6 +915,36 @@ font-weight: 600;
 font-size: 35px;
 line-height: 24px;
 }
+
+.groupeMont
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}
+
+.onlyMont
+{
+    display: flex;
+    flex-direction: column;
+} 
+.onlyMont > input 
+{
+
+    width: 100px;
+    height: 40px;
+    border-radius: 30px;
+    padding-left: 20px;
+
+}
+
+.groupeMont > img 
+{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+} 
 
 
 

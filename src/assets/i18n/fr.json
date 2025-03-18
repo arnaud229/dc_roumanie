@@ -63,6 +63,7 @@
         "quartier": "Quartier",
         "qprofessionnelle": "Qualification Professionnelle",
         "pprofession": "Principale Profession",
+        "profession": "Professions",
         "num": " Num",
         "entreprise": "Entreprise",
         "ddebut": "Date de debut",
@@ -110,7 +111,7 @@
         "aucunVideo": "  Aucune video de presetation d'activité pour ce voyageur",
         "montantdu": "  Montant Du",
         "libele": " Libelé",
-        "Admin": "Admin",
+        "admin": "Admin",
         "montantRe": "Montant Rembourser",
         "datePaie": "Date",
         "All": "Tous",
@@ -137,7 +138,12 @@
         "pasCoursA": "Ancun cours d'anglais n'a été ajouter pour le moment",
         "pasPret": " vous n'aviez pas contratracter aucun prêt pour l'instant",
         "dResidence": "Dernière résidence",
-        "btnVideo": "Ajouter une vidéo"
+        "btnVideo": "Ajouter une vidéo",
+        "min": "min",
+        "max": "max",
+        "debutD": "debut",
+        "finD": "Fin"
+
 
     },
 

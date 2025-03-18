@@ -62,6 +62,7 @@
         "quartier": "Cartier:",
         "qprofessionnelle": "Calificare profesionala:",
         "pprofession": "Profesia principală",
+        "profession": "Profesia",
         "num": " Num",
         "entreprise": "Companie",
         "ddebut": "Data de începere",
@@ -109,7 +110,7 @@
         "aucunVideo": "Niciun videoclip de prezentare a activității pentru acest călător",
         "montantdu": "Suma de",
         "libele": " Eticheta",
-        "Admin": "Admin",
+        "admin": "Admin",
         "montantRe": "Suma rambursată",
         "datePaie": "Data",
         "All": "Toate",
@@ -136,7 +137,11 @@
         "pasCoursA": "Încă nu au fost adăugate cursuri de engleză.",
         "pasPret": " inca nu ati contractat niciun imprumut",
         "dResidence": "Ultima resedinta",
-        "btnVideo": "Adăugați un videoclip"
+        "btnVideo": "Adăugați un videoclip",
+        "min": "min",
+        "max": "max",
+         "debutD": "început",
+        "finD": "Sfârşit"
 
     },
 
