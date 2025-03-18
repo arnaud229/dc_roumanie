@@ -594,7 +594,7 @@
 
                       <div *ngIf="isFiltre" >
 
-                          <div class="group_header2"     >
+                          <div class="group_header2">
                             <span class="FiltreIn"  (click)="getFiltreByValue(8)"  [ngClass]="{'theFiltre': filter == 8}" > {{ 'dashboard.montantRe' | translate }}  </span>
                             <span  class="FiltreIn" (click)="getFiltreByValue(9)"  [ngClass]="{'theFiltre': filter == 9}"  > {{ 'dashboard.datePaie' | translate }}  </span>
                             <span  class="FiltreIn" (click)="getFiltreByValue(10)"  [ngClass]="{'theFiltre': filter == 10}"> {{ 'dashboard.admin' | translate }}  </span>
@@ -636,10 +636,7 @@
 
                           <img src="./../../assets/search.png" alt="" (click)="applyFilterDateR()" >
                          </div>
-    
-                     </div>
-    
-                       
+                        
                     </div>
 
                     <div class="content">
@@ -740,9 +737,9 @@
 
 
 
-                         <div class="viewVideoValidate"   >
+                         <div class="viewVideoValidate"  *ngIf="theId === item.id" >
     
-                          <div class="corpsSelectV" *ngIf="theId === item.id"  >
+                          <div class="corpsSelectV"   >
                               <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
   
                               <div >  
