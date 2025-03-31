@@ -399,15 +399,15 @@ margin-top: 10px;
 
   .idpdf
   {
-    width: 70px;
-    height: 70px;
+    width: 100px !important; 
+    height: 100px !important;
   }
 
   .iddown
   {
-    width: 50px;
-    height: 50px;
-    margin-top: 4px;
+    width: 80px !important;
+    height: 80px !important;
+    margin-top: 25px !important;
 
   }
 
@@ -428,6 +428,20 @@ margin-top: 10px;
   }
 
 @media (max-width: 1000px ) {
+
+    .idpdf
+  {
+    width: 70px !important; 
+    height: 70px !important;
+  }
+
+  .iddown
+  {
+    width: 50px !important;
+    height: 50px !important;
+    margin-top: 4px !important;
+
+  }
 
     .contentViewPreselect {
         width: calc(100vw - 80px);
