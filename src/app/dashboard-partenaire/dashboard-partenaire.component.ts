@@ -1737,7 +1737,7 @@ getVideos() {
 
       this.updateRestantVideos()
 
-      console.log('liste_video', this.liste_videos);
+      console.log('liste_video autre', this.liste_videos);
       
       
 
