@@ -471,9 +471,10 @@ let imagePhotoCassierJudiciaire: any = files.map(async (asset: any) => {
  async select() {
   
     console.log(" select",this.selectform.value); 
+    console.log(" select",this.selectform.invalid); 
     console.log(" experience ",this.expTable); 
-    
-    if (this.selectform.invalid) return
+
+    // if (this.selectform.invalid) return
 
     this.loading = true;
     this.iserrorlog = false;

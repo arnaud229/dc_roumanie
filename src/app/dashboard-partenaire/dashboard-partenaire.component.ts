@@ -1404,6 +1404,8 @@ export class DashboardPartenaireComponent {
   isReject = false;
   theObservation = '';
   idOfItem = '';
+  filter =0;
+  searchFiltre :boolean = false;
 
   liste_videos: any[] = [];
   liste_videosValid: any[] = [];
@@ -1778,6 +1780,42 @@ getVideoReject()
       
     }
   )
+
+}
+
+getFiltreByValue(index: number) {
+  this.filter = index;
+  console.log('(val filtre', this.filter);
+  this.searchFiltre = true;
+
+}
+
+
+applyFilterByNumber(event: Event) {
+
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  this.getusers;
+  if (this.filter === 1) {
+
+    this.list_users = this.list_users.filter(fichier => 
+      fichier.parrain.toLowerCase().includes(filterValue)
+     
+    );    
+  } else if (this.filter === 2) {
+    
+    this.list_users = this.list_users.filter(fichier => 
+      fichier.metier.toLowerCase().includes(filterValue)
+     
+    );   
+    
+  } else if (this.filter === 3) {
+    
+    this.list_users = this.list_users.filter(fichier => 
+      fichier.NEtude.toLowerCase().includes(filterValue)
+     
+    );   
+    
+  } 
 
 }
 

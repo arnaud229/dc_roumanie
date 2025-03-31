@@ -427,21 +427,17 @@ margin-bottom: 30px;
     flex-direction: column;
     width: 100%;
 }
+
+
 .theFiltre
-{
-    border: solid 1px #45d00f;
-    color: #45d00f;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 14px;
-    line-height: 16px;
-    padding: 10px;
-    border-radius: 10px;
-    margin-left: 10px;
-    background: white;
-    margin-bottom: 20px;
-    
-}
+    {
+          color: white;
+          background-color: #45d00f;
+          margin-left: 10px;
+
+  }
+
+
 
 .group_header11
 {
@@ -794,6 +790,23 @@ textarea
     left: 153px;
     margin-bottom: 19px;
 
+}
+
+.FiltreIn
+{
+    border: solid 1px #45d00f;
+    color: #45d00f;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    margin-left: 10px;
+    background: white;
+    margin-bottom: 20px;
+    cursor: pointer;
+    
 }
 
 
