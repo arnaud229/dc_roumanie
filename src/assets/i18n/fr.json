@@ -34,6 +34,7 @@
     {
         "age": "Agê",
         "ageIndice": "ans",
+        "choixMetier": "Choix de metier",
         "matrimonial": "Situation Matrimonial",
         "matrimonialSans": "sans enfant",
         "matrimonialAvec": "avec",

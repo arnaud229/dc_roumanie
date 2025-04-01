@@ -1729,7 +1729,7 @@ getVideos() {
   this.videoService.getVideosByPartId(this.currentUser.uid).subscribe(
   // this.videoService.getVideos().subscribe(
     (res) => {
-      console.log('res', res);
+      console.log('res les videos avant filtre', res);
 
       this.liste_videos = res.data.filter(
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
@@ -1764,7 +1764,7 @@ getViodeosValid()
 
 
 
-   this.updateRestantVideos()
+   this.updateRestantVideos();
 
 }
 
@@ -1780,6 +1780,8 @@ getVideoReject()
       
     }
   )
+
+  this.updateRestantVideos();
 
 }
 

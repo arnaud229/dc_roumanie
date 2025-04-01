@@ -869,9 +869,9 @@
                 <div class="notvalide" *ngIf=" liste_videosAgrees.length == 0 ">
                   <div class="group_header2"     >
 
-                    <span class="theFiltre"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'filtreIn': filterP == 11}" >  {{ 'dashboard.All' | translate }}  </span>
+                    <span class="filtreIn"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" >  {{ 'dashboard.All' | translate }}  </span>
                     <div *ngFor="let item of listePartemaire; let i = index ">
-                      <span class="theFiltre"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'filtreIn': filterP == i}" > {{item.prenom}} </span>
+                      <span class="filtreIn"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
   
                     </div>
                 

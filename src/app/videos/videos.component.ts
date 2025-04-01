@@ -6,6 +6,7 @@ import { RecuFile, User, videoPresentation } from 'src/models/variables';
 import { StorageService } from '../services/storage/storage.service';
 import { VideosService } from '../services/videos/videos.service';
 import { LocalstorageService } from '../services/localStorage/localStorage.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 @Component({
   selector: 'app-videos',
@@ -32,6 +33,7 @@ export class VideosComponent {
   loading = false;
   iserrorlog= false;
   erreur_message = "";
+  liste_metiers: any[] = [];
  
 
 
@@ -44,8 +46,11 @@ export class VideosComponent {
     private firebaseStorageService: StorageService,
     private videoService: VideosService,
     public localstorageService: LocalstorageService,
+     public utilsService: UtilsService,
    
   ) {
+
+    this.liste_metiers = this.utilsService.getMetiers();
 
     this.init_form();
   }
@@ -151,10 +156,12 @@ export class VideosComponent {
     this.iserrorlog = false;
 
     console.log('le form:', this.videoform.value);
+
+    let a = ` ${this.videoform.value.secteur.category}: ${this.videoform.value.secteur.metier} `
     
 
       const updateData: videoPresentation = {
-        secteur: this.videoform.value.secteur,
+        secteur: a,
         description: this.videoform.value.description,
         fileVideo: this.filVideo,
         user_id: this.currentUser.uid,

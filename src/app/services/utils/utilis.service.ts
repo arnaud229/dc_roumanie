@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { arrondissements, communes, countries, departements, prefixe, quartiers, religion } from "./constants";
+import { arrondissements, communes, countries, departements, metiers, prefixe, quartiers, religion } from "./constants";
 
 @Injectable({
     providedIn: 'root',
@@ -43,7 +43,12 @@ import { arrondissements, communes, countries, departements, prefixe, quartiers,
 
     getListPrefixe() 
     {
-      return prefixe
+      return prefixe ;
+    }
+
+    getMetiers()
+    {
+      return metiers;
     }
    
 

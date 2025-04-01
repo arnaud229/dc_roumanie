@@ -6742,6 +6742,64 @@ export const countries = [
     'ZOGBODOMEY',
   ];
 
+  export const metiers = [
+    // Production audiovisuelle
+    { category: "Production audiovisuelle", metier: "Producteur/Productrice" },
+    { category: "Production audiovisuelle", metier: "Réalisateur/Réalisatrice" },
+    { category: "Production audiovisuelle", metier: "Monteur/Monteuse" },
+  
+    // Communication
+    { category: "Communication", metier: "Community Manager" },
+    { category: "Communication", metier: "Rédacteur/Rédactrice web" },
+    { category: "Communication", metier: "Chargé(e) de communication" },
+  
+    // Management/Vente
+    { category: "Management/Vente", metier: "Responsable de magasin" },
+  
+    // Maintenance et technique
+    { category: "Maintenance et technique", metier: "Agent(e) de maintenance" },
+    { category: "Maintenance et technique", metier: "Agent(e) d'entretien" },
+    { category: "Maintenance et technique", metier: "Chauffeur/Chauffeuse" },
+    { category: "Maintenance et technique", metier: "Conducteur/Conductrice d'engin" },
+    { category: "Maintenance et technique", metier: "Soudeur/Soudeuse" },
+    { category: "Maintenance et technique", metier: "Électricien/Électricienne" },
+    { category: "Maintenance et technique", metier: "Carreleur/Carreleuse" },
+    { category: "Maintenance et technique", metier: "Magasinier/Magasinière" },
+    { category: "Maintenance et technique", metier: "Technicien/Technicienne BTP", notes: "Bâtiment et Travaux Publics" },
+    { category: "Maintenance et technique", metier: "Technicien/Technicienne chimiste" },
+    { category: "Maintenance et technique", metier: "Ingénieur en génie biomédical" },
+  
+    // Informatique
+    { category: "Informatique", metier: "Informaticien/Informaticienne", notes: "Développeur, technicien réseau, etc." },
+  
+    // Alimentation et restauration
+    { category: "Alimentation et restauration", metier: "Pâtissier/Pâtissière" },
+    { category: "Alimentation et restauration", metier: "Cuisinier/Cuisinière" },
+    { category: "Alimentation et restauration", metier: "Serveur/Serveuse" },
+    { category: "Alimentation et restauration", metier: "Manager de restaurant" },
+  
+    // Agriculture et élevage
+    { category: "Agriculture et élevage", metier: "Agriculteur/Agricultrice" },
+    { category: "Agriculture et élevage", metier: "Fermier/Fermière" },
+    { category: "Agriculture et élevage", metier: "Boucher/Bouchère" },
+  
+    // Environnement
+    { category: "Environnement", metier: "Éboueur/Éboueuse", notes: "Agent de collecte des déchets" },
+    { category: "Environnement", metier: "Jardinier paysagiste", notes: "Correction : Aménagement des espaces verts" },
+  
+    // Industrie
+    { category: "Industrie", metier: "Ouvrier/Ouvrière de chaîne de production" },
+    { category: "Industrie", metier: "Ouvrier/Ouvrière d'usine" },
+    { category: "Industrie", metier: "Chaudronnier/Chaudronnière" },
+    { category: "Industrie", metier: "Charpentier/Charpentière" },
+    { category: "Industrie", metier: "Peintre" },
+    { category: "Industrie", metier: "Tôlier/Tôlière" },
+  
+    // Services à la personne
+    { category: "Services à la personne", metier: "Coiffeur/Coiffeuse" },
+    { category: "Services à la personne", metier: "Tresseur/Tresseuse" }
+  ];
+
   export const religion = [
     'Catholique',
     'Musulmane',
