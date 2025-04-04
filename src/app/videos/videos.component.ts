@@ -70,7 +70,7 @@ export class VideosComponent {
       
       secteur:  ['',Validators.required],
       description:  ['',Validators.required],
-      filVideo:  [,Validators.required],
+      filVideo:  [null,Validators.required],
       
    
     });
@@ -151,17 +151,14 @@ export class VideosComponent {
 
   ajoutVideo() {
 
-    if (this.videoform.invalid) return
+    // if (this.videoform.invalid) return
     this.loading = true;
     this.iserrorlog = false;
 
-    console.log('le form:', this.videoform.value);
-
-    let a = ` ${this.videoform.value.secteur.category}: ${this.videoform.value.secteur.metier} `
-    
+    console.log('le form:', this.videoform.value);    
 
       const updateData: videoPresentation = {
-        secteur: a,
+        secteur: this.videoform.value.secteur,
         description: this.videoform.value.description,
         fileVideo: this.filVideo,
         user_id: this.currentUser.uid,
