@@ -12,8 +12,8 @@
             
             <input  type="number"  [ngClass]="{'error': preselectform.controls['age'].invalid || preselectform.controls['age'].value>120}"  formControlName="age" [placeholder]=" 'viewUser.age' | translate" >
           
-            <select  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  [formControlName]="'viewUser.matrimonial' | translate" >
-                <option value=""> {{ 'viewUser.matrimonial' | translate }}</option>
+            <select  [ngClass]="{'error': preselectform.controls['sMatrimoniale'].invalid && preselectform.controls['sMatrimoniale'].value!='Situation Matrimoniale'}"  formControlName="sMatrimoniale" >
+                <option value=""> {{ 'viewUser.matrimonial' | translate }}  </option>
                 <option *ngFor="let item of listMatrimonial" [value]="item">  {{item}} </option>
 
                </select>
@@ -24,10 +24,7 @@
             <input  type="number"  [ngClass]="{'error': preselectform.controls['dApprentissage'].invalid || preselectform.controls['dApprentissage'].value>=60}"  formControlName="dApprentissage" [placeholder]="'viewUser.dapprentis' | translate" >
             <input  type="number"  [ngClass]="{'error': preselectform.controls['aExperience'].invalid || preselectform.controls['aExperience'].value>=50}"  formControlName="aExperience" [placeholder]="'viewUser.aprof' | translate" >
             <input  type="text"  [ngClass]="{'error': preselectform.controls['ePrecedent'].invalid && preselectform.controls['ePrecedent'].value!=''}"  formControlName="ePrecedent" [placeholder]=" 'viewUser.eprecedent' | translate " >
-            <!-- <input  type="boolean"  [ngClass]="{'error': preselectform.controls['passport'].invalid && preselectform.controls['passport'].value!=''}"  formControlName="passport" placeholder="Passeport" > -->
-            <input  type="text"  [ngClass]="{'error': preselectform.controls['nationalite'].invalid && preselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" [placeholder]="'viewUser.nationalite' | translate" >
-          
-                      
+            <input  type="text"  [ngClass]="{'error': preselectform.controls['nationalite'].invalid && preselectform.controls['nationalite'].value!=''}"  formControlName="nationalite" [placeholder]="'viewUser.nationalite' | translate" >                  
             <input  type="text"  [ngClass]="{'error': preselectform.controls['parrain'].invalid && preselectform.controls['parrain'].value!=''}"  formControlName="parrain" [placeholder]="'viewUser.parrain' | translate" >
              
             <select  [ngClass]="{'error': preselectform.controls['religion'].invalid && preselectform.controls['religion'].value!='votre réligion'}"  formControlName="religion" >
@@ -73,17 +70,11 @@
                     <input id="lecheck_input" type="checkbox"  [ngClass]="{ 'checked':  preselectform.controls['noFilRecu'].value} "  formControlName="noFilRecu">
                     {{ 'dashboard.recuPre' | translate }}
                   
-                   </div>
-                  
+                   </div>   
          
                         <button  class="boutton" [disabled]="preselectform.get('ldtep2')?.value === false "   (click)="suivant()">{{ 'edit.btnSuiv' | translate }} </button> 
                       
-
-                </div>
-
-
-          
-       
+                </div>      
 
 </div>
 
@@ -95,33 +86,25 @@
 
           <h2> {{ 'edit.textFilsRecus' | translate }} </h2>
 
-
           <div class="card-inputFils" (click)="getfils()">
               +
           </div>
-
-         
+   
             <mat-progress-bar id="laBarDownload33" mode="determinate" [value]="progressValue"  *ngIf="isUploading"></mat-progress-bar>
 
             <span (click)="getfils()"> 
                 <img src="./../../assets/download_icon.png " alt="">
-            </span>
-       
-                
+            </span>        
         
         <input  type="file" multiple #fileInput [ngClass]="{'error': preselectform.controls['fils_recus'].invalid && preselectform.controls['fils_recus'].value!=''}"  formControlName="fils_recus" placeholder="" (change)="onFilesSelected($event)" >
            
-  
-
         
         <div class="lesboutonSP">
 
-            <button  class="boutton1"  (click)="precedent()"> n{{ 'edit.btnPrecede' | translate }}  </button> 
+            <button  class="boutton1"  (click)="precedent()"> {{ 'edit.btnPrecede' | translate }}  </button> 
             <button  id="boutton1"  (click)="preselect()"> {{ 'coursAnglais.btnSoumettre' | translate }}</button> 
             
-        </div>
-
-           
+        </div>          
           
     </div>
 
@@ -136,8 +119,3 @@
     </div>
   
   </div>
-
-
-
-
-

@@ -69,24 +69,36 @@ export class PreselectionComponent {
   }
 
   init_form(){
+   
     this.preselectform = this.formbuilder.group({
-      age: [,Validators.required, Validators.min(1), Validators.max(120)],
-      sMatrimoniale: ['',Validators.required],
-      NEtude: ['',Validators.required],
-      metier: ['',Validators.required],
-      aDiplome: [,Validators.required, Validators.pattern(/^[0-9] {4}$/), Validators.max(2026) ],
-      dApprentissage: [,Validators.required, Validators.pattern(/^[0-9] {2}$/), Validators.max(2026)],
-      aExperience: [,Validators.required, Validators.pattern(/^[0-9] {2}$/), Validators.max(50)],
-      ePrecedent: ['',Validators.required],
-      passport: [ ,Validators.required],
-      nationalite: ['',Validators.required],
-      cWhatapp: ['',Validators.required],
-    parrain: ['',Validators.required],
-      religion: ['',Validators.required], 
-      ldtep2: [false,Validators.required], 
-      noFilRecu: [false,Validators.required], 
-      fils_recus: ['',Validators.required], 
-         
+      age: [null, [Validators.required, Validators.min(1), Validators.max(120)]],
+      sMatrimoniale: ['', Validators.required],
+      NEtude: ['', Validators.required],
+      metier: ['', Validators.required],
+      aDiplome: [null, [
+        Validators.required, 
+        Validators.pattern(/^[0-9]{4}$/), 
+        Validators.max(2026)
+      ]],
+      dApprentissage: [null, [
+        Validators.required, 
+        Validators.pattern(/^[0-9]{2}$/), 
+        Validators.max(2026)
+      ]],
+      aExperience: [null, [
+        Validators.required, 
+        Validators.pattern(/^[0-9]{2}$/), 
+        Validators.max(50)
+      ]],
+      ePrecedent: ['', Validators.required],
+      passport: [null, Validators.required],
+      nationalite: ['', Validators.required],
+      cWhatapp: ['', Validators.required],
+      parrain: ['', Validators.required],
+      religion: ['', Validators.required],
+      ldtep2: [false, Validators.required],
+      noFilRecu: [false, Validators.required],
+      fils_recus: ['', Validators.required]
     });
   } 
 
@@ -122,9 +134,15 @@ export class PreselectionComponent {
   }
 
   async preselect(){
+    console.log("Preselect valid",this.preselectform.invalid)
+ this.preselectform.value.cWhatapp =
+  {  code: this.pre,
+      numero: this.edite
+    }
+
     console.log("Preselect",this.preselectform.value)
     
-    if (this.preselectform.invalid) return
+    // if (this.preselectform.invalid) return
     this.loading = true;
     this.iserrorlog = false;
       console.log('tete0');
@@ -143,12 +161,7 @@ export class PreselectionComponent {
           ePrecedent: this.preselectform.value.ePrecedent,
           passport: this.preselectform.value.passport,
           nationalite: this.preselectform.value.nationalite,
-          cWhatapp:
-          {
-            code: this.pre,
-            numero: this.edite
-          },
-           
+          cWhatapp: this.preselectform.value.cWhatapp ,    
            parrain: this.preselectform.value.parrain,
            religion: this.preselectform.value.religion, 
           ldtep2: this.preselectform.value.ldtep2, 
@@ -203,12 +216,7 @@ export class PreselectionComponent {
           ePrecedent: this.preselectform.value.ePrecedent,
           passport: this.preselectform.value.passport,
           nationalite: this.preselectform.value.nationalite,
-          cWhatapp:
-          {
-            code: this.pre,
-            numero: this.edite
-          },
-           
+          cWhatapp: this.preselectform.value.cWhatapp,    
            parrain: this.preselectform.value.parrain,
            religion: this.preselectform.value.religion, 
           ldtep2: this.preselectform.value.ldtep2, 
