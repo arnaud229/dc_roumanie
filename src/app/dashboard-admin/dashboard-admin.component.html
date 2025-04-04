@@ -126,9 +126,7 @@
                         </div>
     
                       
-                    </div>
-    
-                                      
+                    </div>                             
                                          
                             <div class="content">
                                
@@ -268,7 +266,7 @@
                       
                           </div>
                           
-                        <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">   
+                          <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">   
                        
 
                         </div>
@@ -709,8 +707,42 @@
                 </div>
 
             <div class="" *ngIf="selecter==4">  
+              <div class="group_header1" >
+    
+                <input type="text"  (input)="applyFilterSelect($event)" >
 
-              <div  *ngIf=" liste_videos.length > 0 ">
+                <div>
+                    <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                    <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                </div>
+
+            </div>
+
+            <div *ngIf="isFiltre">
+
+              <div class="group_header2" >
+             
+                <span  class="FiltreIn" (click)="getFiltreByValue(11)"  [ngClass]="{'theFiltre': filter === 11}"> {{ 'edit.btnCat' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(12)"  [ngClass]="{'theFiltre': filter === 12}"> {{ 'dashboard.datePaie' | translate }} </span>
+              
+              </div>
+
+             
+                     <select  *ngIf="searchFiltreCategorie" placeholder="Choix de metier"   (change)="applyFilterByCat($event)">
+                       <option value=""> {{ 'viewUser.choixMetier' | translate }}</option>
+                       <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
+             
+                      </select>
+
+             <div class="isFiltreDateVideo"  *ngIf="searchFiltreDateV">                       
+             <input  class="SeachFiltre" type="date"  [(ngModel)]="dateVideo" >     
+             <img class="searchS" src="./../../assets/search.png" alt="" (click)="applyFilterDateV()" >      
+             </div>
+                               
+
+            </div>
+
+              <div  *ngIf=" liste_videos.length > 0 ">  
 
                 <div class="cardVideos" >
 
@@ -758,8 +790,6 @@
                       
                   </div>
                        
-
-
                     </div>
 
                    

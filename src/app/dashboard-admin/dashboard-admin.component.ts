@@ -11,6 +11,7 @@ import { map } from 'rxjs';
 import { coachingService } from '../services/coaching/coaching.service';
 import { anglaireService } from '../services/anglaire/anglaire.service';
 import { LanguageService } from '../services/language/language.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 @Component({
   selector: 'app-dashboard-admin',
@@ -1434,6 +1435,7 @@ export class DashboardAdminComponent {
   maxVal = 1;
   minValR = 0;
   maxValR = 1;
+  liste_metiers: any[] = [];
 
 
 
@@ -1662,12 +1664,15 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
   searchFiltreMontDu :boolean = false;
   searchFiltreMontRem :boolean = false;
   searchFiltreDate :boolean = false;
+  searchFiltreDateV :boolean = false;
   searchFiltreDateR :boolean = false;
+  searchFiltreCategorie :boolean = false;
   selectedPartner : any = null;
   dateDebut!: Date;
   dateFin!: Date;
   dateDebutR!: Date;
   dateFinR!: Date;
+  dateVideo!: Date;
 
 
   constructor(
@@ -1682,7 +1687,11 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
     private coachService: coachingService,
     private anglaireService: anglaireService,
     private languageChange: LanguageService, 
-  ) {}
+       public utilsService: UtilsService,
+  ) {
+    this.liste_metiers = this.utilsService.getMetiers();
+
+  }
 
 
   async ngOnInit() {
@@ -1783,6 +1792,8 @@ getFiltreByValue(index: number) {
     this.searchFiltreMontDu = true;
     this.searchFiltreDate = false;
     this.searchFiltre = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = false;
     
   } else if(index === 6) {
     this.searchFiltreMontDu = false;
@@ -1792,19 +1803,42 @@ getFiltreByValue(index: number) {
     this.searchFiltreMontDu = false;
     this.searchFiltreDate = false;
     this.searchFiltre = true;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = false;
   }  else if(index === 8) {
     this.searchFiltreMontRem = true;
     this.searchFiltreDateR = false;
     this.searchFiltre = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = false;
   }  else if(index === 9) {
     this.searchFiltreMontRem = false;
     this.searchFiltreDateR = true;
     this.searchFiltre = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = false;
   } else if(index === 10) {
     this.searchFiltreMontRem = false;
     this.searchFiltreDateR = false;
     this.searchFiltre = true;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = false;
   }
+  else if(index === 11) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = true;
+  }
+  else if(index === 12) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = true;
+  }
+
 
 }
 
@@ -1951,6 +1985,21 @@ applyFilter(event: Event) {
   
 }
 
+
+applyFilterByCat(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', this.liste_metiers);
+  this.getusers;
+  console.log('origine liste', this.liste_videos);
+  
+  this.liste_videos = this.liste_videos.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videos);
+  
+}
 applyFilterByNumber(event: Event) {
 
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
@@ -2691,6 +2740,14 @@ delectVideoCoaching(item: any) {
     
    }
   
+ }
+
+ applyFilterDateV(){
+  console.log('toto', this.dateVideo);
+  this.liste_videos = this.liste_videos.filter(
+    (el) => el.createdAt <= this.dateVideo
+   )
+
  }
 
 
