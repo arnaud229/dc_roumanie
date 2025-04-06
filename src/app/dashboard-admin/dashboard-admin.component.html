@@ -479,18 +479,18 @@
 
                          <div class="groupeMont"  *ngIf="searchFiltreDate">
 
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.debutD' | translate }} </label>
-                            <input type="date" [(ngModel)]="dateDebut" >
-                          </div>
+                              <div class="onlyMont">
+                                <label > {{ 'dashboard.debutD' | translate }} </label>
+                                <input type="date" [(ngModel)]="dateDebut" >
+                              </div>
 
-                          
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.finD' | translate }} </label>
-                            <input type="date" [(ngModel)]="dateFin" >
-                          </div>
+                              
+                              <div class="onlyMont">
+                                <label > {{ 'dashboard.finD' | translate }} </label>
+                                <input type="date" [(ngModel)]="dateFin" >
+                              </div>
 
-                          <img src="./../../assets/search.png" alt="" (click)="applyFilterDate()" >
+                              <img src="./../../assets/search.png" alt="" (click)="applyFilterDate()" >
                          </div>
 
                         </div>
@@ -733,11 +733,21 @@
                        <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
              
                       </select>
+             <div class="groupeMont"  *ngIf="searchFiltreDateV">
 
-             <div class="isFiltreDateVideo"  *ngIf="searchFiltreDateV">                       
-             <input  class="SeachFiltre" type="date"  [(ngModel)]="dateVideo" >     
-             <img class="searchS" src="./../../assets/search.png" alt="" (click)="applyFilterDateV()" >      
-             </div>
+              <div class="onlyMont">
+                <label > {{ 'dashboard.debutD' | translate }} </label>
+                <input type="date" [(ngModel)]="dateDebutVideo" >
+              </div>
+
+              
+              <div class="onlyMont">
+                <label > {{ 'dashboard.finD' | translate }} </label>
+                <input type="date" [(ngModel)]="dateFinVideo" >
+              </div>
+
+              <img src="./../../assets/search.png" alt="" (click)="applyFilterDateV()" >
+         </div>
                                
 
             </div>
@@ -748,7 +758,7 @@
 
                     <div class="oneVideo" *ngFor="let item of liste_videos" >
 
-                       <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
+                       
 
 
                         <video controls>
@@ -764,11 +774,14 @@
                          <span *ngIf="item.observation !== '' ">
                           {{ item.observation }}
                          </span>
+
+                         <div class="lesbtnV">
+                          <button (click)="beginCValidSelectByPartenaire(item.id)" > {{ 'viewUser.valide' | translate }} </button>
+
+                          <img (click)="delectVideoCoaching(item.id) " src="./../../assets/delete.png" alt="">
+                         </div>
                         
-                         <button (click)="beginCValidSelectByPartenaire(item.id)" > {{ 'viewUser.valide' | translate }} </button>
-
-
-
+                        
                          <div class="viewVideoValidate"  *ngIf="theId === item.id" >
     
                           <div class="corpsSelectV"   >

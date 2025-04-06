@@ -1672,7 +1672,9 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
   dateFin!: Date;
   dateDebutR!: Date;
   dateFinR!: Date;
-  dateVideo!: Date;
+  dateDebutVideo!: Date;
+  dateFinVideo!: Date;
+
 
 
   constructor(
@@ -2670,86 +2672,113 @@ delectVideoCoaching(item: any) {
 
  applyFilterDateR() {
 
-  if (this.dateDebutR && this.dateFinR === null || this.dateFinR === undefined ) {
+   this.getRemboursement();
 
-    this.liste_Remboursement = this.liste_Remboursement.filter(
-     (el) => el.dateRemboursement >= this.dateDebut
-    )
- 
-    
-    console.log('1');
-  
-   } else if (this.dateDebut === null || this.dateDebut === undefined && this.dateFin) {
- 
-     
-    this.liste_Remboursement = this.liste_Remboursement.filter(
-     (el) => el.dateRemboursement <= this.dateFin
-    )
-    
-    console.log('2');
-     
-   } else if (this.dateDebut  && this.dateFin ) {
-     
-      
-    this.liste_Remboursement = this.liste_Remboursement.filter(
-     (el) => {
-       el.dateRemboursement >= this.dateDebut
-       el.dateRemboursement <= this.dateFin
-     
-     } 
-    )
- 
-    console.log('3');
-    
-   }
-  
- }
+   console.log("dates avant conversion:", this.dateDebutR, this.dateFin);
 
- applyFilterDate() {
-
-  if (this.dateDebut && this.dateFin === null || this.dateFin === undefined ) {
-
-    this.liste_Dette = this.liste_Dette.filter(
-     (el) => el.dateDette >= this.dateDebut
-    )
+   // Conversion des dates si elles existent
+   const dateDebut = this.dateDebutR ? new Date(this.dateDebutR) : null;
+   const dateFin = this.dateFinR ? new Date(this.dateFinR) : null;
  
-    
-    console.log('1');
-  
-   } else if (this.dateDebut === null || this.dateDebut === undefined && this.dateFin) {
+   console.log("dates après conversion:", dateDebut, dateFin);
  
+   // Filtrage des vidéos
+   this.liste_Remboursement = this.liste_Remboursement.filter((el) => {
+     const detteDate = el.dateRemboursement;
      
-    this.liste_Dette = this.liste_Dette.filter(
-     (el) => el.dateDette <= this.dateFin
-    )
-    
-    console.log('2');
-     
-   } else if (this.dateDebut  && this.dateFin ) {
-     
-      
-    this.liste_Dette = this.liste_Dette.filter(
-     (el) => {
-       el.dateDette >= this.dateDebut
-       el.dateDette <= this.dateFin
-     
-     } 
-    )
+     // Cas 1: seulement date de début définie
+     if (dateDebut && !dateFin) {
+       return detteDate >= dateDebut;
+     }
+     // Cas 2: seulement date de fin définie
+     else if (!dateDebut && dateFin) {
+       return detteDate <= dateFin;
+     }
+     // Cas 3: les deux dates sont définies
+     else if (dateDebut && dateFin) {
+       return detteDate >= dateDebut && detteDate <= dateFin;
+     }
+     // Cas 4: aucune date définie - retourne tout
+     else {
+       return true;
+     }
+   });
  
-    console.log('3');
-    
-   }
+   console.log('Filtre appliqué:', this.liste_Remboursement.length + ' Remboursements trouvées');
   
  }
 
- applyFilterDateV(){
-  console.log('toto', this.dateVideo);
-  this.liste_videos = this.liste_videos.filter(
-    (el) => el.createdAt <= this.dateVideo
-   )
+ applyFilterDate() {  
+  this.getDettes();
 
+   console.log("dates avant conversion:", this.dateDebut, this.dateFin);
+
+   // Conversion des dates si elles existent
+   const dateDebut = this.dateDebut ? new Date(this.dateDebut) : null;
+   const dateFin = this.dateFin ? new Date(this.dateFin) : null;
+ 
+   console.log("dates après conversion:", dateDebut, dateFin);
+ 
+   // Filtrage des vidéos
+   this.liste_Dette = this.liste_Dette.filter((el) => {
+     const detteDate = el.dateDette;
+     
+     // Cas 1: seulement date de début définie
+     if (dateDebut && !dateFin) {
+       return detteDate >= dateDebut;
+     }
+     // Cas 2: seulement date de fin définie
+     else if (!dateDebut && dateFin) {
+       return detteDate <= dateFin;
+     }
+     // Cas 3: les deux dates sont définies
+     else if (dateDebut && dateFin) {
+       return detteDate >= dateDebut && detteDate <= dateFin;
+     }
+     // Cas 4: aucune date définie - retourne tout
+     else {
+       return true;
+     }
+   });
+ 
+   console.log('Filtre appliqué:', this.liste_Dette.length + ' Dettes trouvées');
+  
  }
 
+ applyFilterDateV() {
+  this.getVideos();
+  console.log("dates avant conversion:", this.dateDebutVideo, this.dateFinVideo);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebutVideo ? new Date(this.dateDebutVideo) : null;
+  const dateFin = this.dateFinVideo ? new Date(this.dateFinVideo) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videos = this.liste_videos.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
 
 
 
