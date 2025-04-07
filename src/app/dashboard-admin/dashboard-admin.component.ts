@@ -2121,11 +2121,66 @@ getVideoByPart(index: number, name: string) {
       }
     )
   }
+}
+
+
+getVideoByPartVideoValid(index: number, name: string) {
+
+  this.filterP = index;
+
+  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
+    fichier.partenairePrenom.toLowerCase().includes(name)
+  );
+
+  if(name === 'tous') {
+    this.filterP = index;
+
+    this.videoService.getVideos().subscribe(
+      (res) => {
+        console.log('res', res);
+  
+        this.liste_videosValid  = res.data.filter(
+          (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
+        )
+  
+        console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
+        
+      }
+    )
+  }
 
 
 
 
 }
+
+getVideoByPartVideoReject(index: number, name: string) {
+
+  this.filterP = index;
+
+  this.liste_videosReject = this.liste_videosReject.filter(fichier => 
+    fichier.partenairePrenom.toLowerCase().includes(name)
+  );
+
+  if(name === 'tous') {
+    this.filterP = index;
+
+    this.videoService.getVideos().subscribe(
+      (res) => {
+        console.log('res', res);
+  
+        this.liste_videosReject  = res.data.filter(
+          (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
+        )
+  
+        console.log('liste de video valid par admin et visible par partenaire', this.liste_videosReject);
+        
+      }
+    )
+  }
+
+}
+
 
 logOut() {
 
@@ -2597,75 +2652,62 @@ delectVideoCoaching(item: any) {
 
  applyFilterMontant() 
  {
-  if (this.minVal !== 0 && this.maxVal === 1 ) {
-
-   this.liste_Dette = this.liste_Dette.filter(
-    (el) => el.montantDu >= this.minVal
-   )
-
    
-   console.log('1');
- 
-  } else if (this.minVal === 0 && this.maxVal !== 1) {
-
-    
-   this.liste_Dette = this.liste_Dette.filter(
-    (el) => el.montantDu <= this.maxVal
-   )
-   
-   console.log('2');
-    
-  } else if (this.minVal !== 0 && this.maxVal !== 1) {
-    
+   // Filtrage des montants
+   this.liste_Dette = this.liste_Dette.filter((el) => {
+     const montantDu = el.montantDu;
      
-   this.liste_Dette = this.liste_Dette.filter(
-    (el) => {
-      el.montantDu >= this.minVal
-      el.montantDu <= this.maxVal
-    
-    } 
-   )
-
-   console.log('3');
+     // Cas 1: seulement montant minimal défini
+     if (this.minVal && !this.maxVal) {
+       return montantDu >= this.minVal;
+     }
+     // Cas 2: seulement montant maximal défini
+     else if (!this.minVal && this.maxVal) {
+       return montantDu <= this.maxVal;
+     }
+     // Cas 3: les deux montants sont définis
+     else if (this.minVal && this.maxVal) {
+       return montantDu >= this.minVal && montantDu <= this.maxVal;
+     }
+     // Cas 4: aucun montant définie - retourne tout
+     else {
+       return true;
+     }
+   });
+ 
+   console.log('Filtre appliqué:', this.liste_Dette.length + ' dettes trouvées');
    
   }
   
- }
-
+ 
  applyFilterMontantR() 
  {
-  if (this.minVal !== 0 && this.maxVal === 1 ) {
-
-   this.liste_Remboursement = this.liste_Remboursement.filter(
-    (el) => el.montantRembourse >= this.minVal
-   )
-
-   
-   console.log('1');
- 
-  } else if (this.minValR === 0 && this.maxValR !== 1) {
-
-    
-   this.liste_Remboursement = this.liste_Remboursement.filter(
-    (el) => el.montantRembourse <= this.maxValR
-   )
-   
-   console.log('2');
-    
-  } else if (this.minValR !== 0 && this.maxValR !== 1) {
-    
      
-   this.liste_Remboursement = this.liste_Remboursement.filter(
-    (el) => {
-      el.montantRembourse >= this.minValR
-      el.montantRembourse <= this.maxValR
+    // Filtrage des montants
+    this.liste_Remboursement = this.liste_Remboursement.filter((el) => {
+      const montantR = el.montantRembourse;
+      
+      // Cas 1: seulement montant minimal défini
+      if (this.minVal && !this.maxVal) {
+        return montantR >= this.minVal;
+      }
+      // Cas 2: seulement montant maximal défini
+      else if (!this.minVal && this.maxVal) {
+        return montantR <= this.maxVal;
+      }
+      // Cas 3: les deux montants sont définis
+      else if (this.minVal && this.maxVal) {
+        return montantR >= this.minVal && montantR <= this.maxVal;
+      }
+      // Cas 4: aucun montant définie - retourne tout
+      else {
+        return true;
+      }
+    });
+  
+    console.log('Filtre appliqué:', this.liste_Remboursement.length + ' dettes trouvées');
     
-    } 
-   )
-
-   console.log('3');
-   
-  }
+ 
   
  }
 

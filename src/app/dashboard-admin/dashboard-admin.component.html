@@ -820,16 +820,21 @@
             </div>
 
             <div class="" *ngIf="selecter==8">  
+              <div class="group_header2"     >
+
+                <span class="FiltreIn"  (click)="getVideoByPartVideoValid(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
+                <div *ngFor="let item of listePartemaire; let i = index ">
+                  <span class="FiltreIn"  (click)="getVideoByPartVideoValid(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
+
+                </div>
+            
+               </div>
 
               <div  *ngIf=" liste_videosValid.length > 0 ">
 
                 <div class="cardVideos" >
 
                     <div class="oneVideo" *ngFor="let item of liste_videosValid" >
-
-                        <!-- <img (click)="validVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt=""> -->
-                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
-
 
                         <video controls>
                             <source [src]="item.fileVideo" type="video/mp4">
@@ -847,8 +852,6 @@
 
 
                     </div>
-
-                   
 
                 </div>
               </div>
@@ -862,30 +865,21 @@
                
             </div>
 
-
-
             <div class="" *ngIf="selecter==9">  
+              <div class="group_header2" >
+
+                <span class="FiltreIn"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
+                <div *ngFor="let item of listePartemaire; let i = index ">
+                  <span class="FiltreIn"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
+
+                </div>
+               </div>
 
               <div  *ngIf=" liste_videosAgrees.length > 0 ">
-
-                <div class="group_header2"     >
-
-                  <span class="FiltreIn"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
-                  <div *ngFor="let item of listePartemaire; let i = index ">
-                    <span class="FiltreIn"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
-
-                  </div>
-              
-                 </div>
 
                 <div class="cardVideos" >
 
                     <div class="oneVideo" *ngFor="let item of liste_videosAgrees" >
-
-                        <!-- <img (click)="validVideo(item.id, item.user_id)" src="./../../assets/valider.png" alt=""> -->
-                        <!-- <img (click)="delectVideo(item.id)" src="./../../assets/suprime.png" alt=""> -->
-
-
                         <video controls>
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
@@ -896,29 +890,17 @@
                               {{ item.nom }}  {{ item.prenoms }}
                           </span>
 
-
                          <span *ngIf="item.observation !== '' " >
                           {{ item.observation }}
                          </span>
 
-
                     </div>
-
-                   
 
                 </div>
               </div>
                
                 <div class="notvalide" *ngIf=" liste_videosAgrees.length == 0 ">
-                  <div class="group_header2"     >
-
-                    <span class="filtreIn"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" >  {{ 'dashboard.All' | translate }}  </span>
-                    <div *ngFor="let item of listePartemaire; let i = index ">
-                      <span class="filtreIn"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
-  
-                    </div>
-                
-                   </div>
+               
                     <p>
                       {{ 'dashboard.textAnyP' | translate }}  
                     </p>
@@ -928,6 +910,15 @@
             </div>
 
             <div class="" *ngIf="selecter==7">  
+              <div class="group_header2"     >
+
+                <span class="FiltreIn"  (click)="getVideoByPartVideoReject(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
+                <div *ngFor="let item of listePartemaire; let i = index ">
+                  <span class="FiltreIn"  (click)="getVideoByPartVideoReject(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
+
+                </div>
+            
+               </div>
 
               <div  *ngIf=" liste_videosReject.length > 0 ">
 
