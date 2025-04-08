@@ -332,31 +332,31 @@ tbody td
     width: 100%;
 }
 
-.oneVideo {
-    width: 100px;
-    height: 100px;
-    position: relative;
-    margin-right: 20px;
-    margin-bottom: 100px;
+// .oneVideo {
+//     width: 100px;
+//     height: 100px;
+//     position: relative;
+//     margin-right: 20px;
+//     margin-bottom: 100px;
 
-}
+// }
 
-.oneVideo > img 
-{
-    position: absolute;
-    right: 10px;
-    top: 8px;
-    width: 20px;
-    height: 20px;
+// .oneVideo > img 
+// {
+//     position: absolute;
+//     right: 10px;
+//     top: 8px;
+//     width: 20px;
+//     height: 20px;
     
-}
+// }
 
 
-.oneVideo > video 
-{
-    width: 100%;
-    height: 100%;
-}
+// .oneVideo > video 
+// {
+//     width: 100%;
+//     height: 100%;
+// }
 
 .legooglechart
 {
@@ -573,6 +573,26 @@ margin-bottom: 30px;
     width: 100%;
 }
 
+.oneVideo > h1 
+{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 3px;
+}
+
+.oneVideo > span
+{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 16px;
+  margin-bottom: 10px;
+}
+
 .oneVideo {
     width: 150px;
     height: 150px;
@@ -764,7 +784,7 @@ textarea
     border: solid 1px #45d00f;
     padding: 20px;
     margin-left: 100px;
-    padding-bottom: 49px;
+    padding-bottom: 130px;
     // box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 

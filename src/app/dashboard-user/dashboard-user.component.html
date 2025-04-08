@@ -549,9 +549,6 @@
 
                     <div class="oneVideo" *ngFor="let item of liste_videos" >
 
-                        <!-- <img (click)="delectVideo(item)" src="./../../assets/suprime.png" alt=""> -->
-
-
                         <video controls>
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
@@ -566,10 +563,8 @@
                           {{ item.observation }}
                          </span>
                     
-                         <button (click)="delectVideo(item)"> {{ 'dashboard.btnVideo' | translate }} </button>
-                    </div>
-
-                   
+                         <button *ngIf="!item.isvalideProcess" class="isDelet" (click)="delectVideo(item)"> {{ 'dashboard.btnDelete' | translate }} </button>
+                    </div>          
 
                 </div>
 
@@ -657,10 +652,6 @@
             </div>
 
         </div>
-
-
-
-
 
     </div>
 

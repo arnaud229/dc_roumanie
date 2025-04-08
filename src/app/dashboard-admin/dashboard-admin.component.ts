@@ -1674,6 +1674,9 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
   dateFinR!: Date;
   dateDebutVideo!: Date;
   dateFinVideo!: Date;
+  isReject = false;
+  theObservation = '';
+  idOfItem = '';
 
 
 
@@ -2113,8 +2116,8 @@ getVideoByPart(index: number, name: string) {
         console.log('res', res);
   
         this.liste_videosAgrees  = res.data.filter(
-          (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
-        )
+          (res)=> res.isvalidVideo === true   && res.isvalideProcess === false 
+         )
   
         console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
         
@@ -2318,7 +2321,7 @@ getVideos() {
    
 
       this.liste_videos = res.data.filter(
-        (res)=> res.isvalidVideo === false   && res.isvalideProcess === false
+        (res)=> res.isvalidVideo === false   && res.isvalideProcess === false && res.observation ===""
       )
       console.log('liste de video no valid ajouter par user', this.liste_videos);
     }
@@ -2603,6 +2606,29 @@ validVideo(index: string, idUser: string, data: any ) {
 
 }
 
+delectVideo(item: any) {
+
+  const le_url = item.fileVideo
+  const index = item.id
+   
+  const options: {
+    folder?: string; // Littéral de chaîne
+    url: string; // Utilisez string comme type explicite
+  } = {
+    folder: 'filsVideoPresentation',
+    url: le_url, // Assignation de la valeur
+  };
+  
+
+  this.videoService.deleteVideo(options, index).then(
+    () => {
+      console.log('reussi');
+      
+    }
+  )
+
+ }
+
 delectVideoCoaching(item: any) {
 
   const le_url = item.fileVideo
@@ -2820,6 +2846,37 @@ delectVideoCoaching(item: any) {
   });
 
   console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
+
+beginReject(index: string) {
+  this.idOfItem = index;
+  this.theId = "";
+}
+
+setReject(val: string, index: string) {
+
+  this.videoService.rejectObservation(val, index).then(
+    () => {
+      console.log('reussi');
+      this.selecter =0;
+      this.selecterMobile = 0;
+      this.isReject = false;   
+      this.idOfItem ='';
+      this.getVideos();
+    }
+  )
+  .catch(
+    (er) => {
+      console.log("reject", er);
+      
+    }
+  )
+
+}
+
+close_validReject()
+{
+  this.idOfItem =""
 }
 
 

@@ -202,7 +202,7 @@
                           
                                                 </div>
                           
-                                                <div class="viewVaidPreselct"   *ngIf="isReject"  >
+                                                <div class="viewVaidPreselct"   *ngIf="isReject">
                           
                                                        
                                                   <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
@@ -288,7 +288,7 @@
                              
                         <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
 
-                      <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
+                      <textarea  [(ngModel)]="theObservation" placeholder="Objection" rows="10" cols="10" ></textarea>
 
                       <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >  {{ 'viewUser.reject' | translate }} </button>
 
@@ -329,7 +329,6 @@
                               {{ item.nom }}  {{ item.prenoms }}
                           </span>
                          
-
                     </div>
 
 

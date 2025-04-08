@@ -1516,6 +1516,7 @@ openMenu() {
 beginReject(index: string) {
   this.isReject = true;
   this.idOfItem = index;
+  this.theId = "";
 }
 close_valid()
 {
@@ -1578,9 +1579,8 @@ setReject(val: string, index: string) {
       console.log('reussi');
       this.selecter =0;
       this.selecterMobile = 0;
-      this.isReject = false;
-
-      
+      this.isReject = false; 
+      this.theId = "";    
     }
   )
   .catch(
@@ -1711,6 +1711,9 @@ getvideosByUser(uid: any)
      console.log('res', res);  
 
      this.liste_videosByUser = res.data;
+     this.liste_videosByUser = this.liste_videosByUser.filter(
+       (el) => el.partenaireId === this.currentUser.uid
+     )
      console.log("les videos", this.liste_videosByUser);
 
   

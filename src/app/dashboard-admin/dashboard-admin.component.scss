@@ -153,9 +153,61 @@ line-height: 24px;
 margin-bottom: 30px;
 
 }
+.btn2 
+{
+  width: 100px;
+  height: 33px;
+  text-align: center;
+  border-radius: 50px;
+  color:  white;
+  background: red;
+ border: 1px solid red;
+ box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+ font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
+margin-top: 10px;
+}
 
+.btn3
+{
+  width: 100px;
+  height: 33px;
+  text-align: center;
+  border-radius: 50px;
+  color:  #45d00f;
+  background: white;
+ border: 1px solid #45d00f;
+ box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+ font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 18px;
 
+}
 
+.isDelet
+{
+    width: 125px !important;
+    height: 33px !important;
+    text-align: center !important;
+    color:  red !important;
+    background: white !important;
+   border: 1px solid red !important;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+margin-bottom: 30px !important;
+margin-left: 30%;
+
+}
 
 
 .notvalide > button
@@ -406,13 +458,14 @@ tbody td
 
 .oneVideo {
     width: 200px;
-    height: 200px;
+    height: auto;
     position: relative;
     border: solid 1px #45d00f;
     display: flex;
     flex-direction: column;
-    margin-bottom: 120px;
-    padding: 15px;
+    margin-bottom: 60px;
+    margin-right: 20px;
+    padding: 12px;
 
 }
 
@@ -430,26 +483,6 @@ tbody td
 {
     width: 100%;
     height: 100%;
-}
-
-.oneVideo > h1
-{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 14px;
-    margin-top: 9px;
-   
-}
-
-.oneVideo > span
-{
-    font-style: normal;
-    font-weight: bold;
-    font-size: 18px;
-    line-height: 24px;
-    padding-left: 10px;
-    margin-bottom: 5px;
 }
 
 .oneVideo > button
@@ -661,14 +694,17 @@ margin-bottom: 30px;
     
 }
 
+
+
+
 .corpsSelectV > .imgdelectV
 {
-    background: white;
-    width: 20px;
-    height: 20px;
-    position: relative;
-    left: 153px;
-    margin-bottom: 19px;
+    background: white !important;
+    width: 20px !important;
+    height: 20px !important;
+    position: relative !important;
+    left: 153px !important;
+    margin-bottom: 19px !important;
 
 }
 
@@ -753,29 +789,20 @@ select > option
 
 .viewVaidPreselct
 {
-    position: absolute;
-    top: 30px;
-    width: 75%;
-    padding: 20px;
-    left: 210px;
     display: flex;
     flex-direction: column;
-    background: white;
+    position: fixed; /* Fixe l'élément par rapport à la fenêtre */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour être parfaitement centré */
+    width: 400px;
+    z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+    background-color: #FFFFFF;  
+    padding: 20px;
     border: solid 1px #45d00f;
-    z-index: 2;
 }
 
 .imgdelect
-{
-    position: absolute;
-    top: 5px;
-    right: 10px;
-    background: white;
-    width: 20px;
-    height: 20px;
-}
-
-.imgdelectV
 {
     background: white;
     width: 20px;
@@ -783,6 +810,28 @@ select > option
     position: relative;
     left: 370px;
     margin-bottom: 19px;
+}
+
+.imgdelectS {
+    background: white;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    left: 95%;
+    margin-bottom: 19px;
+
+}
+
+
+
+.imgdelectV
+{
+    background: white !important;
+    width: 20px !important;
+    height: 20px !important;
+    position: relative !important;
+    left: 370px !important;
+    margin-bottom: 19px !important;
 }
 
 .viewVaidPreselct > div
@@ -805,32 +854,6 @@ select > option
     display: flex;
     flex-wrap: wrap;
     width: 100%;
-}
-
-.oneVideo {
-    width: 150px;
-    height: 150px;
-    position: relative;
-    margin-right: 20px;
-    margin-bottom: 100px;
-
-}
-
-.oneVideo > img 
-{
-    // position: absolute;
-    // right: 10px;
-    // top: 8px;
-    width: 20px;
-    height: 20px;
-    
-}
-
-
-.oneVideo > video 
-{
-    width: 100%;
-    height: 100%;
 }
 
 .legooglechart
@@ -908,6 +931,7 @@ line-height: 24px;
     font-weight: bolder;
     font-size: 12px;
     line-height: 16px;
+    margin-bottom: 3px;
 }
 
 .oneVideo > span
@@ -917,6 +941,7 @@ line-height: 24px;
     font-weight: 400;
     font-size: 10px;
     line-height: 16px;
+    margin-bottom: 10px;
 }
 
 .ul_menu

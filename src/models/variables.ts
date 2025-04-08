@@ -50,6 +50,7 @@ export interface User {
     isProcessSucceful: boolean,
     adminId: any,
     adminPrenoms: string,
+    paysDestination?: string,
 
 }
 

@@ -113,6 +113,27 @@
     margin-bottom: 50px;
 }
 
+.isDelet
+{
+    width: 80px !important;
+    height: 33px !important;
+    text-align: center !important;
+    color:  red !important;
+    background: white !important;
+   border: 1px solid red !important;
+   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+   border-radius: 30px;
+   font-family: 'Inter';
+font-style: normal;
+font-weight: 600;
+font-size: 12px;
+line-height: 24px;
+margin-bottom: 30px !important;
+margin-bottom: 10px !important;
+margin-left: 1% !important;
+
+}
+
 .notvalide > button
 
 {
@@ -312,32 +333,36 @@ tr, td, th
 }
 
 .oneVideo {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: auto;
     position: relative;
-    margin-right: 40px;
-    margin-bottom: 100px;
+    border: solid 1px #45d00f;
     display: flex;
     flex-direction: column;
+    margin-bottom: 60px;
+    margin-right: 20px;
+    padding: 12px;
 
 }
 
-.oneVideo > button 
+.oneVideo > h1 
 {
-    width: 100px;
-    height: 50px;
-    text-align: center;
-    color:  white;
-    background: #45d00f;
-   border: 1px solid #45d00f;
-   box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
-   border-radius: 30px;
-   font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 12px;
-line-height: 18px;
-    
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 3px;
+}
+
+.oneVideo > span
+{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 16px;
+  margin-bottom: 10px;
 }
 
 

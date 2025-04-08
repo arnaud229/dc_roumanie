@@ -334,7 +334,7 @@
                                     <div class="corpsSelect" >
     
                                           <div class="viewVaidSelect"  *ngIf="theId === fichier.uid" >
-                                              <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+                                              <img class="imgdelectS" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
                   
                                               <div >  
                   
@@ -758,9 +758,7 @@
 
                     <div class="oneVideo" *ngFor="let item of liste_videos" >
 
-                       
-
-
+                     
                         <video controls>
                             <source [src]="item.fileVideo" type="video/mp4">
                             Your browser does not support the video tag.
@@ -778,11 +776,11 @@
                          <div class="lesbtnV">
                           <button (click)="beginCValidSelectByPartenaire(item.id)" > {{ 'viewUser.valide' | translate }} </button>
 
-                          <img (click)="delectVideoCoaching(item.id) " src="./../../assets/delete.png" alt="">
+                          <img (click)="delectVideo(item) " src="./../../assets/delete.png" alt="">
                          </div>
                         
                         
-                         <div class="viewVideoValidate"  *ngIf="theId === item.id" >
+                        <div class="viewVideoValidate"  *ngIf="theId === item.id" >
     
                           <div class="corpsSelectV"   >
                               <img class="imgdelectV" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
@@ -797,11 +795,31 @@
                               </div>
   
                               <button id="boutton2"  (click)="validVideo(item.id,  item.user_id, selectedPartner)" >{{ 'viewUser.valide' | translate }}</button>
-                              
+                              <button class="btn3"  (click)="beginReject(item.id)">   {{ 'viewUser.observe' | translate }} </button>
+
                           </div>
   
                       
-                  </div>
+                        </div>
+
+
+                        <!-- reject video -->
+
+                        <div class="viewVaidPreselct"   *ngIf="idOfItem === item.id"  >
+      
+                          <img class="imgdelect" (click)="close_validReject()" src="./../../assets/croixDelete.png" alt="">
+  
+                          <textarea  [(ngModel)]="theObservation" placeholder="Objection" rows="10" cols="10" ></textarea>
+    
+                          <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >  {{ 'viewUser.reject' | translate }} </button>
+  
+                         
+                      </div>
+  
+
+                        <!-- fin reject -->
+
+
                        
                     </div>
 
@@ -958,25 +976,19 @@
             </div>
 
             <div  *ngIf="selecter==5"> 
-                
-                
+                        
                 <div class="legooglechart" *ngIf="TotalsDettes > 0 && TotalsRemboursements > 0">
                     <google-chart [data]="pieChart">
                         
                     </google-chart>
                  
-    
                 </div>
-    
-    
-    
-                
+                    
                 <div class="notvalide" *ngIf="TotalsDettes == 0 && TotalsRemboursements == 0">
     
                     <p>
                       {{ 'dashboard.textAnyS' | translate }}  
                     </p>
-    
     
                 </div>
                 
@@ -1008,7 +1020,7 @@
                           </span>
 
 
-                          <button (click)="delectVideoCoaching(item)" >  {{ 'dashboard.btnDelete' | translate }}  </button>
+                          <button class="isDelet"  (click)="delectVideoCoaching(item)" >  {{ 'dashboard.btnDelete' | translate }}  </button>
                     </div>
                     
                     <button  class="addVideoCSS" (click)="goTocreateCoaching()" >+</button>
@@ -1027,7 +1039,7 @@
                 {{ 'dashboard.textAncoachS' | translate }} 
               </p>
 
-              <button (click)="goTocreateCoaching()">  {{ 'dashboard.btnAjout' | translate }} </button>
+              <button  (click)="goTocreateCoaching()">  {{ 'dashboard.btnAjout' | translate }} </button>
 
           </div>
 
@@ -1060,8 +1072,7 @@
                                 
                         </span>
 
-
-                        <button (click)="delectVideoCoursAnglaire(item)" >  {{ 'dashboard.btnDelete' | translate }}</button>
+                        <button class="isDelet"  (click)="delectVideoCoursAnglaire(item)" >  {{ 'dashboard.btnDelete' | translate }}</button>
                   </div>
                   
                   <button  class="addVideoCSS" (click)="goTocreateCoursAnglaire()" >+</button>
