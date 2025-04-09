@@ -8,6 +8,7 @@ import { User } from 'src/models/variables';
 import { GoogleChartInterface, GoogleChartType } from 'ng2-google-charts';
 import { UsersService } from '../services/firebase/user.service';
 import { LanguageService } from '../services/language/language.service';
+import { UtilsService } from '../services/utils/utilis.service';
 
 @Component({
   selector: 'app-dashboard-partenaire',
@@ -1406,14 +1407,24 @@ export class DashboardPartenaireComponent {
   idOfItem = '';
   filter =0;
   searchFiltre :boolean = false;
+  searchFiltreDate :boolean = false;
+  searchFiltreCategorie :boolean = false;
 
   liste_videos: any[] = [];
   liste_videosValid: any[] = [];
   liste_videosReject: any[] = [];
   liste_Restants: any[] = [];
   liste_videosByUser: any[] = [];
+  liste_metiers: any[] = [];
 
   displayedColumns: string[] = ['nom', 'prenom', 'Netude','principalProfession', 'qualiProfession', 'sMatrimoniale', 'langueParler','actions'];  
+  dateDebut!: Date;
+  dateFin!: Date;
+  dateDebutV!: Date;
+  dateFinV!: Date;
+  dateDebutR!: Date;
+  dateFinR!: Date;
+
 
 
   constructor(
@@ -1424,7 +1435,10 @@ export class DashboardPartenaireComponent {
     private userServ : UsersService,
     private cdr: ChangeDetectorRef,
     private languageChange: LanguageService, 
-  ) {}
+       public utilsService: UtilsService,
+  ) {
+    this.liste_metiers = this.utilsService.getMetiers();
+  }
 
 
   ngOnInit() {
@@ -1685,13 +1699,9 @@ getusers() {
 updateRestantVideos() {
 
   this.liste_videos =  this.liste_videos.filter(video =>
-  {
     !this.liste_videosValid.some(validVideo => validVideo.user_id === video.user_id)
     
-  }
- 
   );
-
   console.log('le reste', this.liste_videos);
   
 }
@@ -1738,11 +1748,9 @@ getVideos() {
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
       )
 
-      this.updateRestantVideos()
-
       console.log('liste_video autre', this.liste_videos);
       
-      
+       this.updateRestantVideos()
 
     }
   )
@@ -1793,6 +1801,19 @@ getFiltreByValue(index: number) {
   console.log('(val filtre', this.filter);
   this.searchFiltre = true;
 
+
+   if(index === 11) {
+   
+    this.searchFiltre = false;
+    this.searchFiltreDate = false;
+    this.searchFiltreCategorie = true;
+  }
+  else if(index === 12) {
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDate = true;
+  }
+
 }
 
 
@@ -1823,6 +1844,187 @@ applyFilterByNumber(event: Event) {
   } 
 
 }
+
+
+applyFilterByCat(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', this.liste_metiers);
+  this.getusers;
+  console.log('origine liste', this.liste_videos);
+  
+  this.liste_videos = this.liste_videos.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videos);
+  
+}
+applyFilterByCatV(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', this.liste_metiers);
+  this.getusers;
+  console.log('origine liste', this.liste_videosValid);
+  
+  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+applyFilterByCatR(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', this.liste_metiers);
+  this.getusers;
+  console.log('origine liste', this.liste_videosReject);
+  
+  this.liste_videosReject = this.liste_videosReject.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosReject);
+  
+}
+
+applyFilterDate() {
+  this.getVideos();
+  console.log("dates avant conversion:", this.dateDebut, this.dateFin);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebut ? new Date(this.dateDebut) : null;
+  const dateFin = this.dateFin ? new Date(this.dateFin) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videos = this.liste_videos.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
+applyFilterDateV() {
+  this.getViodeosValid();
+  console.log("dates avant conversion:", this.dateDebutV, this.dateFinV);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebutV ? new Date(this.dateDebutV) : null;
+  const dateFin = this.dateFinV ? new Date(this.dateFinV) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videosValid = this.liste_videosValid.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
+applyFilterDateR() {
+  this.getVideoReject();
+  console.log("dates avant conversion:", this.dateDebutR, this.dateFinR);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebutR ? new Date(this.dateDebutR) : null;
+  const dateFin = this.dateFinR ? new Date(this.dateFinR) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videosReject = this.liste_videosReject.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videosReject.length + ' vidéos trouvées');
+}
+applyFilterV(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  this.liste_videos = this.liste_videos.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
+applyFilterVV(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  this.liste_videosValid = this.liste_videosValid.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
+
+applyFilterVR(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  this.liste_videosReject = this.liste_videosReject.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
+
+
+
 
 
 

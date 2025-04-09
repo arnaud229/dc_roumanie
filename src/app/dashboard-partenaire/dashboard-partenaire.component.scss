@@ -332,31 +332,6 @@ tbody td
     width: 100%;
 }
 
-// .oneVideo {
-//     width: 100px;
-//     height: 100px;
-//     position: relative;
-//     margin-right: 20px;
-//     margin-bottom: 100px;
-
-// }
-
-// .oneVideo > img 
-// {
-//     position: absolute;
-//     right: 10px;
-//     top: 8px;
-//     width: 20px;
-//     height: 20px;
-    
-// }
-
-
-// .oneVideo > video 
-// {
-//     width: 100%;
-//     height: 100%;
-// }
 
 .legooglechart
 {
@@ -431,9 +406,9 @@ margin-bottom: 30px;
 
 .theFiltre
     {
-          color: white;
-          background-color: #45d00f;
-          margin-left: 10px;
+          color: white !important;
+          background-color: #45d00f !important;
+          margin-left: 10px !important;
 
   }
 
@@ -483,7 +458,15 @@ margin-bottom: 30px;
     margin-bottom: 30px;
 }
 
-.group_header1 > input 
+.SeachFiltre
+{
+    width: 210px;
+    height: 40px;
+    border-radius: 30px;
+    margin-left: 34%;
+}
+
+.group_header1 > input
 {
     width: 200px;
     height: 40px;
@@ -594,20 +577,22 @@ margin-bottom: 30px;
 }
 
 .oneVideo {
-    width: 150px;
-    height: 150px;
+    width: 200px;
+    height: auto;
     position: relative;
+    border: solid 1px #45d00f;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 60px;
     margin-right: 20px;
-
+    padding: 12px;
 }
 
 .oneVideo > img 
 {
-    position: absolute;
-    right: 10px;
-    top: 8px;
     width: 20px;
     height: 20px;
+    cursor: pointer;
     
 }
 
@@ -827,6 +812,63 @@ textarea
     margin-bottom: 20px;
     cursor: pointer;
     
+}
+
+select 
+{
+    width: 93%;
+    margin-bottom: 30px;
+    height: 52px;
+    padding-left: 10px;
+    background: #FFFFFF;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    margin-left: 9px;
+}
+
+select > option 
+{
+    width: 93%;
+
+}
+
+.groupeMont
+{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 30px;
+    
+}
+
+.onlyMont
+{
+    display: flex;
+    flex-direction: column;
+} 
+.onlyMont > input 
+{
+
+    width: 100px;
+    height: 40px;
+    border-radius: 30px;
+    padding-left: 20px;
+
+}
+
+.groupeMont > img 
+{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+} 
+
+.isFiltreDateVideo
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+
 }
 
 

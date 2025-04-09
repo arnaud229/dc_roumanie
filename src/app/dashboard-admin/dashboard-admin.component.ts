@@ -2847,6 +2847,16 @@ delectVideoCoaching(item: any) {
 
   console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
 }
+applyFilterV(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  this.liste_videos = this.liste_videos.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
 
 beginReject(index: string) {
   this.idOfItem = index;
