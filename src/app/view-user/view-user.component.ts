@@ -417,7 +417,34 @@ async  ngOnInit() {
   validProcessus(index: string)
   {
     let vak = true;
-    this.userServ.validProcess( vak, index).then(
+    let destination ="";
+
+    if (this.currentUser.prenom.toLowerCase().includes('arnaud') ) {
+  
+      destination = 'Roumanie'
+      
+    } 
+    else if (this.currentUser.prenom.toLowerCase().includes('fatai') ) {
+  
+      destination = 'Roumanie'
+      
+    } 
+    else if (this.currentUser.prenom.toLowerCase().includes('miou') ) {
+  
+      destination = 'Canada'
+      
+    } 
+    else if (this.currentUser.prenom.toLowerCase().includes('delsax') ) {
+  
+      destination = 'Allemand'
+      
+    }  else if (this.currentUser.prenom.toLowerCase().includes('faustin') ) {
+  
+      destination = 'bresil'
+      
+    } 
+    
+    this.userServ.validProcess( vak, index, destination).then(
       () => {
         console.log(' validation reussi pour preselect');
         this.router.navigate(['dashboardPartenaire']);
@@ -464,7 +491,34 @@ async  ngOnInit() {
 valiProcessusBydVideo(index: string, iduser: string)
 {
   let vak = true;
-  this.videoService.validProcessByPartenaireInVideo(vak,index, iduser).then(
+  let destination ="";
+
+  if (this.currentUser.prenom.toLowerCase().includes('arnaud') ) {
+
+    destination = 'Roumanie'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('fatai') ) {
+
+    destination = 'Roumanie'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('miou') ) {
+
+    destination = 'Canada'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('delsax') ) {
+
+    destination = 'Allemand'
+    
+  }   else if (this.currentUser.prenom.toLowerCase().includes('faustin') ) {
+  
+    destination = 'bresil'
+    
+  } 
+
+  this.videoService.validProcessByPartenaireInVideo(vak,index, iduser, destination).then(
     () => {
       console.log("reussi");
     }

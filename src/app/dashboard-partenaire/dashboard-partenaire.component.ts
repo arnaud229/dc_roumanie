@@ -1409,13 +1409,22 @@ export class DashboardPartenaireComponent {
   searchFiltre :boolean = false;
   searchFiltreDate :boolean = false;
   searchFiltreCategorie :boolean = false;
+  searchFiltreDateV :boolean = false;
+  searchFiltreCategorieV :boolean = false;
+  searchFiltreDateR :boolean = false;
+  searchFiltreCategorieR :boolean = false;
 
   liste_videos: any[] = [];
+  originalListe_videos: any[] = [];
   liste_videosValid: any[] = [];
+  originaLliste_videosValid: any[] = [];
   liste_videosReject: any[] = [];
+  originalListe_videosReject: any[] = [];
   liste_Restants: any[] = [];
   liste_videosByUser: any[] = [];
   liste_metiers: any[] = [];
+  liste_destination: any[] = [];
+  originalList_users: any[] = [];
 
   displayedColumns: string[] = ['nom', 'prenom', 'Netude','principalProfession', 'qualiProfession', 'sMatrimoniale', 'langueParler','actions'];  
   dateDebut!: Date;
@@ -1424,6 +1433,7 @@ export class DashboardPartenaireComponent {
   dateFinV!: Date;
   dateDebutR!: Date;
   dateFinR!: Date;
+  searchFiltreCountrie: boolean = false;
 
 
 
@@ -1436,8 +1446,11 @@ export class DashboardPartenaireComponent {
     private cdr: ChangeDetectorRef,
     private languageChange: LanguageService, 
        public utilsService: UtilsService,
+   
   ) {
     this.liste_metiers = this.utilsService.getMetiers();
+    this.liste_destination = this.utilsService.getDestination();
+    
   }
 
 
@@ -1551,7 +1564,33 @@ logOut() {
 
 validProcess(index: string) {
   let vak = true;
-  this.userServ.validProcess( vak, index).then(
+  let destination ="";
+
+  if (this.currentUser.prenom.toLowerCase().includes('arnaud') ) {
+
+    destination = 'Roumanie'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('fatai') ) {
+
+    destination = 'Roumanie'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('miou') ) {
+
+    destination = 'Canada'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('delsax') ) {
+
+    destination = 'Allemand'
+    
+  }   else if (this.currentUser.prenom.toLowerCase().includes('faustin') ) {
+  
+    destination = 'bresil'
+    
+  } 
+  this.userServ.validProcess( vak, index, destination).then(
     () => {
       console.log(' validation reussi pour preselect');
     }
@@ -1569,7 +1608,34 @@ validProcess(index: string) {
 valiProcessusBydVideo(index: string, iduser: string)
 {
   let vak = true;
-  this.videoService.validProcessByPartenaireInVideo(vak,index, iduser).then(
+  let destination ="";
+
+  if (this.currentUser.prenom.toLowerCase().includes('arnaud') ) {
+
+    destination = 'Roumanie'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('fatai') ) {
+
+    destination = 'Roumanie'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('miou') ) {
+
+    destination = 'Canada'
+    
+  } 
+  else if (this.currentUser.prenom.toLowerCase().includes('delsax') ) {
+
+    destination = 'Allemand'
+    
+  }   else if (this.currentUser.prenom.toLowerCase().includes('faustin') ) {
+  
+    destination = 'bresil'
+    
+  } 
+
+  this.videoService.validProcessByPartenaireInVideo(vak,index, iduser, destination).then(
     () => {
       console.log("reussi");
 
@@ -1691,7 +1757,8 @@ getusers() {
       console.log('error :>> ', error);
     
     }
-  )
+  );
+   this.originalList_users = this.list_users;
 
 }
 
@@ -1703,6 +1770,8 @@ updateRestantVideos() {
     
   );
   console.log('le reste', this.liste_videos);
+
+  this.originalListe_videos = this.liste_videos;
   
 }
 
@@ -1768,6 +1837,8 @@ getViodeosValid()
       )
 
       console.log('liste validé', this.liste_videosValid);
+
+      this.originaLliste_videosValid = this.liste_videosValid;
   
       
     }
@@ -1790,7 +1861,9 @@ getVideoReject()
       )
       
     }
-  )
+  );
+
+  this.originalListe_videosReject = this.liste_videosReject;
 
   this.updateRestantVideos();
 
@@ -1807,11 +1880,71 @@ getFiltreByValue(index: number) {
     this.searchFiltre = false;
     this.searchFiltreDate = false;
     this.searchFiltreCategorie = true;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltreCategorieR = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
   }
   else if(index === 12) {
     this.searchFiltre = false;
     this.searchFiltreCategorie = false;
     this.searchFiltreDate = true;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltreCategorieR = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+  }
+  else if(index === 13) {
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDate = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltreCategorieR = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = true;
+  }
+  else if(index === 14) {
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDate = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltreCategorieR = false;
+    this.searchFiltreDateV = true;
+    this.searchFiltreCategorieV = false;
+  }
+  else if(index === 15) {
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDate = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltreCategorieR = true;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+  }
+  else if(index === 16) {
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDate = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateR = true;
+    this.searchFiltreCategorieR = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+  }
+  else if(index === 17) {
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDate = false;
+    this.searchFiltreCountrie = true;
+    this.searchFiltreDateR = false;
+    this.searchFiltreCategorieR = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
   }
 
 }
@@ -1820,7 +1953,7 @@ getFiltreByValue(index: number) {
 applyFilterByNumber(event: Event) {
 
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-  this.getusers;
+  this.list_users = this.originalList_users;
   if (this.filter === 1) {
 
     this.list_users = this.list_users.filter(fichier => 
@@ -1850,7 +1983,7 @@ applyFilterByCat(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
   console.log('filtervalue', this.liste_metiers);
-  this.getusers;
+  this.liste_videos = [...this.originalListe_videos];
   console.log('origine liste', this.liste_videos);
   
   this.liste_videos = this.liste_videos.filter(fichier => 
@@ -1862,10 +1995,8 @@ applyFilterByCat(event: Event) {
 }
 applyFilterByCatV(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
-  console.log('filtervalue', this.liste_metiers);
-  this.getusers;
   console.log('origine liste', this.liste_videosValid);
+  this.liste_videosValid = [...this.originaLliste_videosValid ]
   
   this.liste_videosValid = this.liste_videosValid.filter(fichier => 
     fichier.secteur.toLowerCase().includes(filterValue)
@@ -1876,9 +2007,8 @@ applyFilterByCatV(event: Event) {
 }
 applyFilterByCatR(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
   console.log('filtervalue', this.liste_metiers);
-  this.getusers;
+this.liste_videosReject = [...this.originalListe_videosReject];
   console.log('origine liste', this.liste_videosReject);
   
   this.liste_videosReject = this.liste_videosReject.filter(fichier => 
@@ -1888,9 +2018,23 @@ applyFilterByCatR(event: Event) {
   console.log('liste filtre', this.liste_videosReject);
   
 }
+applyFilterByCountrie(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', this.liste_metiers);
+  this.liste_videosValid = [...this.originaLliste_videosValid]
+  console.log('origine liste', this.liste_videosValid);
+  
+  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
+    fichier.paysDestination?.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
 
 applyFilterDate() {
-  this.getVideos();
+  this.liste_videos = [...this.originalListe_videos];
   console.log("dates avant conversion:", this.dateDebut, this.dateFin);
 
   // Conversion des dates si elles existent
@@ -1924,7 +2068,8 @@ applyFilterDate() {
   console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
 }
 applyFilterDateV() {
-  this.getViodeosValid();
+
+  this.liste_videosValid = [...this.originaLliste_videosValid]
   console.log("dates avant conversion:", this.dateDebutV, this.dateFinV);
 
   // Conversion des dates si elles existent
@@ -1958,7 +2103,7 @@ applyFilterDateV() {
   console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
 }
 applyFilterDateR() {
-  this.getVideoReject();
+  this.liste_videosReject = [...this.originalListe_videosReject];
   console.log("dates avant conversion:", this.dateDebutR, this.dateFinR);
 
   // Conversion des dates si elles existent
@@ -1994,7 +2139,7 @@ applyFilterDateR() {
 applyFilterV(event: Event)
 {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
+    this.liste_videos = [...this.originalListe_videos]
   this.liste_videos = this.liste_videos.filter(video => 
     video.nom.toLowerCase().includes(filterValue)  ||
     video.prenoms.toLowerCase().includes(filterValue)  
@@ -2004,6 +2149,7 @@ applyFilterV(event: Event)
 applyFilterVV(event: Event)
 {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  this.liste_videosValid = [...this.originaLliste_videosValid];
 
   this.liste_videosValid = this.liste_videosValid.filter(video => 
     video.nom.toLowerCase().includes(filterValue)  ||
@@ -2015,7 +2161,7 @@ applyFilterVV(event: Event)
 applyFilterVR(event: Event)
 {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
+  this.liste_videosReject = [...this.originalListe_videosReject];
   this.liste_videosReject = this.liste_videosReject.filter(video => 
     video.nom.toLowerCase().includes(filterValue)  ||
     video.prenoms.toLowerCase().includes(filterValue)  

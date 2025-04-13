@@ -94,15 +94,16 @@ export class VideosService {
   });
   }
 
-  async validProcessByPartenaireInVideo(val: boolean ,index: string, idUser: string) {
+  async validProcessByPartenaireInVideo(val: boolean ,index: string, idUser: string, paysD: string) {
     
   
     await this.firestore.doc(`videos/${index}`).update({
       isvalideProcess: val,
+      paysDestination: paysD,
     }
   ).then(() => {
     console.log('Document mis à jour avec succès');
-    this.userServ.validProcess(val, idUser)
+    this.userServ.validProcess(val, idUser, paysD)
   })
   .catch(error => {
     console.error('Erreur lors de la mise à jour du document:', error);

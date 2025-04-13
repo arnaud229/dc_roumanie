@@ -68,6 +68,7 @@ export interface videoPresentation  {
     observation: string;
     partenairePrenom: string,
     partenaireId: any,
+    paysDestination?: string,
 
 }
 

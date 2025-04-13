@@ -6810,6 +6810,12 @@ export const countries = [
 
   ];
 
+  export const destinationCountrie = [
+    'Allemand',
+    'Roumanie',
+    'Canada'
+  ];
+
   export const prefixe = [
     { "name": "Afghanistan", "prefix": "+93" },
     { "name": "Albania", "prefix": "+355" },

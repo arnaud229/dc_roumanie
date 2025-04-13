@@ -33,6 +33,8 @@
     {
         "age": "Vârstă:",
         "ageIndice": "ani",
+        "choixMetier": "alegerea profesiei",
+        "choixDestination": "alegerea tarii",
         "matrimonial": "Starea civilă:",
         "matrimonialSans": "fără copii",
         "matrimonialAvec": "cu",

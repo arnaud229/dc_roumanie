@@ -33,6 +33,8 @@
     {
         "age": "yers old:",
         "ageIndice": "old",
+        "choixMetier": "choice of Job",
+        "choixDestination": "choice of countrie",
         "matrimonial": "Marital status:",
         "matrimonialSans": "childless",
         "matrimonialAvec": "whith",

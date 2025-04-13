@@ -115,7 +115,7 @@ import { User } from "src/models/variables";
           isvalidSelect: val,
           adminId: PId,
           adminPrenoms: prenomsP,
-
+         
         }
       ).then(() => {
         console.log('Document mis à jour avec succès');
@@ -126,10 +126,11 @@ import { User } from "src/models/variables";
       });
 
       }
-      async validProcess(val: boolean, index: string) {
+      async validProcess(val: boolean, index: string, paysD: string) {
 
         await this.firestore.doc(`utilisateurs/${index}`).update({
           isProcessSucceful: val,
+          paysDestination: paysD,
         }
       ).then(() => { 
         console.log('Document mis à jour avec succès');

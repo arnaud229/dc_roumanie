@@ -371,16 +371,24 @@
              
                 <span  class="FiltreIn" (click)="getFiltreByValue(13)"  [ngClass]="{'theFiltre': filter === 13}"> {{ 'edit.btnCat' | translate }} </span>
                 <span  class="FiltreIn" (click)="getFiltreByValue(14)"  [ngClass]="{'theFiltre': filter === 14}"> {{ 'dashboard.datePaie' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(17)"  [ngClass]="{'theFiltre': filter === 17}"> {{ 'viewUser.pays' | translate }} </span>
               
               </div>
 
              
-                     <select  *ngIf="searchFiltreCategorie" placeholder="Choix de metier"   (change)="applyFilterByCatV($event)">
+                     <select  *ngIf="searchFiltreCategorieV" placeholder="Choix de metier"   (change)="applyFilterByCatV($event)">
                        <option value=""> {{ 'viewUser.choixMetier' | translate }}</option>
                        <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
              
                       </select>
-             <div class="groupeMont"  *ngIf="searchFiltreDate">
+
+                       <select  *ngIf="searchFiltreCountrie" placeholder="Choix du pays"   (change)="applyFilterByCountrie($event)">
+                       <option value=""> {{ 'viewUser.choixDestination' | translate }}</option>
+                       <option *ngFor="let item of liste_destination" [value]="item">  {{item}} </option>
+             
+                      </select>
+
+             <div class="groupeMont"  *ngIf="searchFiltreDateV">
 
               <div class="onlyMont">
                 <label > {{ 'dashboard.debutD' | translate }} </label>
@@ -454,12 +462,12 @@
               </div>
 
              
-                     <select  *ngIf="searchFiltreCategorie" placeholder="Choix de metier"   (change)="applyFilterByCatR($event)">
+                     <select  *ngIf="searchFiltreCategorieR" placeholder="Choix de metier"   (change)="applyFilterByCatR($event)">
                        <option value=""> {{ 'viewUser.choixMetier' | translate }}</option>
                        <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
              
                       </select>
-             <div class="groupeMont"  *ngIf="searchFiltreDate">
+             <div class="groupeMont"  *ngIf="searchFiltreDateR">
 
               <div class="onlyMont">
                 <label > {{ 'dashboard.debutD' | translate }} </label>
