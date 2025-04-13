@@ -1647,11 +1647,14 @@ liste_Remboursement= [
   public pieChart!: GoogleChartInterface; 
 
 liste_preselect : any[] = [];
+originalListe_preselect : any[] = [];
 liste_select: any[] = [];
+originalListe_select: any[] = [];
 liste_coaching: any[] = [];
 liste_coursAnglaire: any[] = [];
 listePartemaire: any[] = [];
 liste_videosByUser: any[] = [];
+originalListe_videosByUser: any[] = [];
 
 filter =0;
 displayedColumns: string[] = ['nom', 'prenom', 'Netude', 'metier', 'passport', 'parrain','actions'];  
@@ -1978,7 +1981,7 @@ applyFilter(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
   console.log('filtervalue', filterValue);
-  this.getusers;
+ this.liste_preselect = [...this.originalListe_preselect];
   console.log('origine liste', this.liste_preselect);
   
   this.liste_preselect = this.liste_preselect.filter(fichier => 
@@ -1995,7 +1998,7 @@ applyFilterByCat(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
 
   console.log('filtervalue', this.liste_metiers);
-  this.getusers;
+  
   console.log('origine liste', this.liste_videos);
   
   this.liste_videos = this.liste_videos.filter(fichier => 
@@ -2008,29 +2011,29 @@ applyFilterByCat(event: Event) {
 applyFilterByNumber(event: Event) {
 
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-  this.getusers;
+  
   if (this.filter === 1) {
-
+    this.liste_preselect = [...this.originalListe_preselect];
     this.liste_preselect = this.liste_preselect.filter(fichier => 
       fichier.parrain.toLowerCase().includes(filterValue)
      
     );    
   } else if (this.filter === 2) {
-    
+    this.liste_preselect = [...this.originalListe_preselect];
     this.liste_preselect = this.liste_preselect.filter(fichier => 
       fichier.metier.toLowerCase().includes(filterValue)
      
     );   
     
   } else if (this.filter === 3) {
-    
+    this.liste_preselect = [...this.originalListe_preselect];
     this.liste_preselect = this.liste_preselect.filter(fichier => 
       fichier.NEtude.toLowerCase().includes(filterValue)
      
     );   
     
   } else if (this.filter === 4) {
-    
+    this.liste_select = [...this.originalListe_select];
     this.liste_select = this.liste_select.filter(fichier => 
     fichier.qualiProfession.toLowerCase().includes(filterValue) ||
     fichier.principalProfession.toLowerCase().includes(filterValue)
@@ -2055,9 +2058,8 @@ applyFilterByNumber(event: Event) {
 applyFilterSelect(event: Event)
 {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
+  this.liste_select = [...this.originalListe_select];
   console.log('filtervalue', filterValue);
-  this.getusers;
   console.log('origine liste', this.liste_select);
   
   
@@ -2288,6 +2290,7 @@ getusers() {
           // }
       
         );
+        this.originalListe_preselect = this.liste_preselect;
       
         this.liste_select =  this.list_users.filter(
       
@@ -2300,6 +2303,8 @@ getusers() {
           // }
       
         );
+
+        this.originalListe_select = this.liste_select;
    
     console.log('preselect', this.liste_preselect);
     console.log('Select', this.liste_select);
