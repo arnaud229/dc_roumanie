@@ -1404,9 +1404,13 @@ export class DashboardAdminComponent {
   statutPreselect = 'En cours'
   statutFinance = 'En cours'
   liste_videos!: any [];
+  originalListe_videos!: any [];
   liste_videosValid!: any [];
+  originalListe_videosValid!: any [];
   liste_videosReject!: any [];
+  originalListe_videosReject!: any [];
   liste_videosAgrees!: any[];
+  originalListe_videosAgrees!: any[];
 
   colorValidPreselect = false;
   colorValidSelect = true;
@@ -1436,7 +1440,11 @@ export class DashboardAdminComponent {
   minValR = 0;
   maxValR = 1;
   liste_metiers: any[] = [];
-
+  liste_destination: any[] = [];
+  originalListe_Dette: any[] = [];
+  originalListe_Remboursement: any[] = [];
+  dateDebutV!: Date;
+  dateFinV!: Date;
 
 
 
@@ -1670,6 +1678,16 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
   searchFiltreDateV :boolean = false;
   searchFiltreDateR :boolean = false;
   searchFiltreCategorie :boolean = false;
+  searchFiltreCategorieV: boolean= false;
+  searchFiltreCategorieVA: boolean= false;
+  searchFiltreCategorieVR: boolean= false;
+  searchFiltreCountrie: boolean= false;
+  searchFiltreDateVV: boolean= false;
+  searchFiltreDateVVA: boolean= false;
+  searchFiltreDateVVR: boolean= false;
+  searchFiltrePartenaireV: boolean= false;
+  searchFiltrePartenaireVA: boolean= false;
+  searchFiltrePartenaireVR: boolean= false;
   selectedPartner : any = null;
   dateDebut!: Date;
   dateFin!: Date;
@@ -1677,6 +1695,12 @@ displayedColumns1: string[] = ['nom', 'prenom', 'sMatrimoniale', 'qualiProfessio
   dateFinR!: Date;
   dateDebutVideo!: Date;
   dateFinVideo!: Date;
+  dateDebutVV!: Date;
+  dateFinVV!: Date;
+  dateDebutVVA!: Date;
+  dateFinVVA!: Date;
+  dateDebutVVR!: Date;
+  dateFinVVR!: Date;
   isReject = false;
   theObservation = '';
   idOfItem = '';
@@ -1802,35 +1826,103 @@ getFiltreByValue(index: number) {
     this.searchFiltre = false;
     this.searchFiltreDateV = false;
     this.searchFiltreCategorie = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
     
   } else if(index === 6) {
     this.searchFiltreMontDu = false;
     this.searchFiltreDate = true;
     this.searchFiltre = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
   } else if(index === 7) {
     this.searchFiltreMontDu = false;
     this.searchFiltreDate = false;
     this.searchFiltre = true;
     this.searchFiltreDateV = false;
     this.searchFiltreCategorie = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
   }  else if(index === 8) {
     this.searchFiltreMontRem = true;
     this.searchFiltreDateR = false;
     this.searchFiltre = false;
     this.searchFiltreDateV = false;
     this.searchFiltreCategorie = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
   }  else if(index === 9) {
     this.searchFiltreMontRem = false;
     this.searchFiltreDateR = true;
     this.searchFiltre = false;
     this.searchFiltreDateV = false;
     this.searchFiltreCategorie = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
   } else if(index === 10) {
     this.searchFiltreMontRem = false;
     this.searchFiltreDateR = false;
     this.searchFiltre = true;
     this.searchFiltreDateV = false;
     this.searchFiltreCategorie = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
   }
   else if(index === 11) {
     this.searchFiltreMontRem = false;
@@ -1838,6 +1930,17 @@ getFiltreByValue(index: number) {
     this.searchFiltre = false;
     this.searchFiltreDateV = false;
     this.searchFiltreCategorie = true;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
   }
   else if(index === 12) {
     this.searchFiltreMontRem = false;
@@ -1845,7 +1948,192 @@ getFiltreByValue(index: number) {
     this.searchFiltre = false;
     this.searchFiltreCategorie = false;
     this.searchFiltreDateV = true;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
   }
+  else if(index === 13) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = true;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
+  }
+  else if(index === 14) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = true;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+
+  }
+
+  else if(index === 15) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = true;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+  }
+  else if(index === 16) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = true;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+  }
+  else if(index === 17) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = true;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+  }
+  else if(index === 18) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = true;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+  }
+  else if(index === 19) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = true;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+  }
+  else if(index === 20) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = true;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = false;
+  }
+  else if(index === 21) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = false;
+    this.searchFiltreDateVVR = true;
+  }
+
+  else if(index === 21) {
+    this.searchFiltreMontRem = false;
+    this.searchFiltreDateR = false;
+    this.searchFiltre = false;
+    this.searchFiltreCategorie = false;
+    this.searchFiltreDateV = false;
+    this.searchFiltreCategorieV = false;
+    this.searchFiltrePartenaireV = false;
+    this.searchFiltreCountrie = false;
+    this.searchFiltreDateVV = false;
+    this.searchFiltreCategorieVA = false;
+    this.searchFiltrePartenaireVA = false;
+    this.searchFiltreDateVVA = false;
+    this.searchFiltreCategorieVR = false;
+    this.searchFiltrePartenaireVR = true;
+    this.searchFiltreDateVVR = false;
+  }
+
 
 
 }
@@ -1996,9 +2284,7 @@ applyFilter(event: Event) {
 
 applyFilterByCat(event: Event) {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
-  console.log('filtervalue', this.liste_metiers);
-  
+this.liste_videos = [...this.originalListe_videos]
   console.log('origine liste', this.liste_videos);
   
   this.liste_videos = this.liste_videos.filter(fichier => 
@@ -2040,13 +2326,13 @@ applyFilterByNumber(event: Event) {
   );  
     
   } else if (this.filter === 7) {
-    
+    this.liste_Dette = [...this.originalListe_Dette];    
     this.liste_Dette = this.liste_Dette.filter(fichier => 
     fichier.adminNom.toLowerCase().includes(filterValue)
   );  
     
   } else if (this.filter === 10) {
-    
+    this.liste_Remboursement = [...this.originalListe_Remboursement];
     this.liste_Remboursement = this.liste_Remboursement.filter(fichier => 
     fichier.adminNom.toLowerCase().includes(filterValue)
   );  
@@ -2126,37 +2412,6 @@ getVideoByPart(index: number, name: string) {
       }
     )
   }
-}
-
-
-getVideoByPartVideoValid(index: number, name: string) {
-
-  this.filterP = index;
-
-  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
-    fichier.partenairePrenom.toLowerCase().includes(name)
-  );
-
-  if(name === 'tous') {
-    this.filterP = index;
-
-    this.videoService.getVideos().subscribe(
-      (res) => {
-        console.log('res', res);
-  
-        this.liste_videosValid  = res.data.filter(
-          (res)=> res.isvalidVideo === true   && res.isvalideProcess === false
-        )
-  
-        console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
-        
-      }
-    )
-  }
-
-
-
-
 }
 
 getVideoByPartVideoReject(index: number, name: string) {
@@ -2323,16 +2578,15 @@ getVideos() {
 
   this.videoService.getVideos().subscribe(
     (res) => {
-   
-
       this.liste_videos = res.data.filter(
         (res)=> res.isvalidVideo === false   && res.isvalideProcess === false && res.observation ===""
       )
       console.log('liste de video no valid ajouter par user', this.liste_videos);
-    }
-
-    
+      
+  this.originalListe_videos = this.liste_videos;
+    } 
   )
+
 
 }
 
@@ -2347,9 +2601,14 @@ getvideoAgree() {
       )
 
       console.log('liste de video valid par admin et visible par partenaire', this.liste_videosValid);
+      this.originalListe_videosAgrees = this.liste_videosAgrees;
+      console.log("originalListe_videosAgrees", this.originalListe_videosAgrees);
       
     }
   )
+
+
+  
 
 }
 
@@ -2385,10 +2644,12 @@ getVideoValid()
         (res)=> res.isvalidVideo === true   && res.isvalideProcess === true
       )
 
-      console.log('liste de video valid par partenaire', this.liste_videosValid);
-      
+      console.log('liste de video valid par partenaire', this.liste_videosValid);   
+      this.originalListe_videosValid = this.liste_videosValid;
     }
-  )
+  );
+
+
 
 }
 getVideoReject()
@@ -2401,8 +2662,11 @@ getVideoReject()
         (res)=> res.isvalidVideo === true   && res.observation !== ''
       )
       console.log('liste de video rehject', this.liste_videosReject);
+      
+  this.originalListe_videosReject = this.liste_videosReject;
     }
-  )
+  );
+
 
 }
 
@@ -2451,6 +2715,8 @@ getDettes() {
         }
       )
 
+      this.originalListe_Dette = this.liste_Dette
+
       console.log('montant du', this.TotalsDettes);
         
      }
@@ -2471,6 +2737,8 @@ getRemboursement() {
         this.TotalsRemboursements += el.montantRembourse
       }
     )
+
+    this.originalListe_Remboursement = this.liste_Remboursement;
 
     console.log('les remboursement', this.TotalsRemboursements);
       
@@ -2683,6 +2951,8 @@ delectVideoCoaching(item: any) {
 
  applyFilterMontant() 
  {
+
+  this.liste_Dette = [...this.originalListe_Dette];
    
    // Filtrage des montants
    this.liste_Dette = this.liste_Dette.filter((el) => {
@@ -2713,7 +2983,7 @@ delectVideoCoaching(item: any) {
  
  applyFilterMontantR() 
  {
-     
+     this.liste_Remboursement = [...this.originalListe_Remboursement]
     // Filtrage des montants
     this.liste_Remboursement = this.liste_Remboursement.filter((el) => {
       const montantR = el.montantRembourse;
@@ -2744,11 +3014,10 @@ delectVideoCoaching(item: any) {
 
 
  applyFilterDateR() {
-
-   this.getRemboursement();
+  this.liste_Remboursement = [...this.originalListe_Remboursement]
 
    console.log("dates avant conversion:", this.dateDebutR, this.dateFin);
-
+   
    // Conversion des dates si elles existent
    const dateDebut = this.dateDebutR ? new Date(this.dateDebutR) : null;
    const dateFin = this.dateFinR ? new Date(this.dateFinR) : null;
@@ -2782,8 +3051,7 @@ delectVideoCoaching(item: any) {
  }
 
  applyFilterDate() {  
-  this.getDettes();
-
+   this.liste_Dette = [...this.originalListe_Dette];
    console.log("dates avant conversion:", this.dateDebut, this.dateFin);
 
    // Conversion des dates si elles existent
@@ -2819,7 +3087,7 @@ delectVideoCoaching(item: any) {
  }
 
  applyFilterDateV() {
-  this.getVideos();
+  this.liste_videos = [...this.originalListe_videos];
   console.log("dates avant conversion:", this.dateDebutVideo, this.dateFinVideo);
 
   // Conversion des dates si elles existent
@@ -2852,16 +3120,155 @@ delectVideoCoaching(item: any) {
 
   console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
 }
+
+applyFilterDateVV() {
+  this.liste_videosValid = [...this.originalListe_videosValid];
+  console.log("dates avant conversion:", this.dateDebutVV, this.dateFinVV);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebutVV ? new Date(this.dateDebutVV) : null;
+  const dateFin = this.dateFinVV ? new Date(this.dateFinVV) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videosValid = this.liste_videosValid.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
+
+applyFilterDateVVA() {
+  this.liste_videosAgrees = [...this.originalListe_videosAgrees];
+  console.log("dates avant conversion:", this.dateDebutVVA, this.dateFinVVA);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebutVVA ? new Date(this.dateDebutVVA) : null;
+  const dateFin = this.dateFinVVA ? new Date(this.dateFinVVA) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videosAgrees = this.liste_videosAgrees.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
+
+applyFilterDateVVR() {
+  this.liste_videosReject = [...this.originalListe_videosReject ];
+  console.log("dates avant conversion:", this.dateDebutVVR, this.dateFinVVR);
+
+  // Conversion des dates si elles existent
+  const dateDebut = this.dateDebutVVA ? new Date(this.dateDebutVVA) : null;
+  const dateFin = this.dateFinVVA ? new Date(this.dateFinVVA) : null;
+
+  console.log("dates après conversion:", dateDebut, dateFin);
+
+  // Filtrage des vidéos
+  this.liste_videosReject = this.liste_videosReject.filter((el) => {
+    const videoDate = el.createdAt.toDate();
+    
+    // Cas 1: seulement date de début définie
+    if (dateDebut && !dateFin) {
+      return videoDate >= dateDebut;
+    }
+    // Cas 2: seulement date de fin définie
+    else if (!dateDebut && dateFin) {
+      return videoDate <= dateFin;
+    }
+    // Cas 3: les deux dates sont définies
+    else if (dateDebut && dateFin) {
+      return videoDate >= dateDebut && videoDate <= dateFin;
+    }
+    // Cas 4: aucune date définie - retourne tout
+    else {
+      return true;
+    }
+  });
+
+  console.log('Filtre appliqué:', this.liste_videos.length + ' vidéos trouvées');
+}
+
 applyFilterV(event: Event)
 {
   const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
-
+  this.liste_videos = [...this.originalListe_videos]
   this.liste_videos = this.liste_videos.filter(video => 
     video.nom.toLowerCase().includes(filterValue)  ||
     video.prenoms.toLowerCase().includes(filterValue)  
    
   );  
 }
+applyFilterVV(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  this.liste_videosValid = [...this.originalListe_videosValid]
+  this.liste_videosValid = this.liste_videosValid.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
+
+applyFilterVA(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  this.liste_videosAgrees = [...this.originalListe_videosAgrees]
+  this.liste_videosAgrees = this.liste_videosAgrees.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
+
+applyFilterVR(event: Event)
+{
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  this.liste_videosReject = [...this.originalListe_videosReject]
+  this.liste_videosReject = this.liste_videosReject.filter(video => 
+    video.nom.toLowerCase().includes(filterValue)  ||
+    video.prenoms.toLowerCase().includes(filterValue)  
+   
+  );  
+}
+
 
 beginReject(index: string) {
   this.idOfItem = index;
@@ -2892,6 +3299,102 @@ setReject(val: string, index: string) {
 close_validReject()
 {
   this.idOfItem =""
+}
+
+applyFilterByCatV(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('origine liste', this.liste_videosValid);
+  this.liste_videosValid = [...this.originalListe_videosValid ]
+  
+  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+
+applyFilterByCatVA(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('origine liste', this.liste_videosAgrees);
+  this.liste_videosAgrees = [...this.originalListe_videosAgrees ]
+  
+  this.liste_videosAgrees = this.liste_videosAgrees.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+
+applyFilterByCatVR(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('origine liste', this.liste_videosReject);
+  this.liste_videosReject = [...this.originalListe_videosReject ]
+  
+  this.liste_videosReject = this.liste_videosReject.filter(fichier => 
+    fichier.secteur.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+
+
+
+applyFilterByCountrie(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+
+  console.log('filtervalue', this.liste_metiers);
+  this.liste_videosValid = [...this.originalListe_videosValid]
+  console.log('origine liste', this.liste_videosValid);
+  
+  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
+    fichier.paysDestination?.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+
+applyFilterByPartenaireV(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('origine liste', this.liste_videosValid);
+  this.liste_videosValid = [...this.originalListe_videosValid ]
+  
+  this.liste_videosValid = this.liste_videosValid.filter(fichier => 
+    fichier.partenairePrenom.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+
+applyFilterByPartenaireVA(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('origine liste', this.liste_videosAgrees);
+  console.log('origine liste', this.originalListe_videosAgrees);
+  this.liste_videosAgrees = [...this.originalListe_videosAgrees ];
+  
+  this.liste_videosAgrees = this.liste_videosAgrees.filter(fichier => 
+    fichier.partenairePrenom.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
+}
+
+applyFilterByPartenaireVR(event: Event) {
+  const filterValue = (event.target as HTMLInputElement).value.toLowerCase();
+  console.log('origine liste', this.liste_videosReject);
+  this.liste_videosReject = [...this.originalListe_videosReject  ]
+  
+  this.liste_videosReject = this.liste_videosReject.filter(fichier => 
+    fichier.partenairePrenom.toLowerCase().includes(filterValue)
+  );
+
+  console.log('liste filtre', this.liste_videosValid);
+  
 }
 
 

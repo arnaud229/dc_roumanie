@@ -95,38 +95,37 @@
 
             <div class="groupe_preselect" *ngIf="selecter==0">
                 
+                
+              <div class="cardHead_Preselect">
+
+                <div class="group_header1" >
+
+                    <input type="text"  (input)="applyFilter($event)" >
+
+                    <div>
+                        <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                        <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                    </div>
+
+                </div>
+
+                <div *ngIf="isFiltre">
+
+                  <div class="group_header2" >
+                 
+                    <span  class="FiltreIn" (click)="getFiltreByValue(1)"  [ngClass]="{'theFiltre': filter === 1}"> {{ 'dashboard.parrains' | translate }} </span>
+                    <span  class="FiltreIn" (click)="getFiltreByValue(2)"  [ngClass]="{'theFiltre': filter === 2}"> {{ 'viewUser.metier' | translate }} </span>
+                    <span  class="FiltreIn" (click)="getFiltreByValue(3)"  [ngClass]="{'theFiltre': filter === 3}"> {{ 'viewUser.NEtude' | translate }} </span>
+                  
+                 </div>
+
+                 <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">                      
+
+                </div>
+
+              
+            </div>   
                 <div *ngIf="list_users.length > 0">
-
-                    
-                    <div class="cardHead_Preselect">
-
-                        <div class="group_header1" >
-    
-                            <input type="text"  (input)="applyFilter($event)" >
-    
-                            <div>
-                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
-                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
-                            </div>
-    
-                        </div>
-
-                        <div *ngIf="isFiltre">
-
-                          <div class="group_header2" >
-                         
-                            <span  class="FiltreIn" (click)="getFiltreByValue(1)"  [ngClass]="{'theFiltre': filter === 1}"> {{ 'dashboard.parrains' | translate }} </span>
-                            <span  class="FiltreIn" (click)="getFiltreByValue(2)"  [ngClass]="{'theFiltre': filter === 2}"> {{ 'viewUser.metier' | translate }} </span>
-                            <span  class="FiltreIn" (click)="getFiltreByValue(3)"  [ngClass]="{'theFiltre': filter === 3}"> {{ 'viewUser.NEtude' | translate }} </span>
-                          
-                         </div>
- 
-                         <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">                      
-
-                        </div>
-    
-                      
-                    </div>                             
                                          
                             <div class="content">
                                
@@ -241,40 +240,37 @@
 
             <div class="groupe_preselect" *ngIf="selecter==1">  
 
+              <div class="cardHead_Preselect">
 
-                <div *ngIf="list_users.length > 0" >
-                  
-                    <div class="cardHead_Preselect">
+                <div class="group_header1" >
 
-                        <div class="group_header1" >
-    
-                            <input type="text"  (input)="applyFilterSelect($event)" >
-    
-                            <div>
-                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
-                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
-                            </div>
-    
-                        </div>
+                    <input type="text"  (input)="applyFilterSelect($event)" >
 
-                        <div *ngIf="isFiltre">
-
-                          <div class="group_header2"     >
-                         
-                            <span  class="FiltreIn" (click)="getFiltreByValue(4)"  [ngClass]="{'theFiltre': filter === 4}"> {{ 'viewUser.profession' | translate }}  </span>
-                            <!-- <span  class="FiltreIn"  (click)="getFiltreByValue(5)"  [ngClass]="{'theFiltre': filter === 5}"> nom </span> -->
-                      
-                          </div>
-                          
-                          <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">   
-                       
-
-                        </div>
-    
-                       
+                    <div>
+                        <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                        <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
                     </div>
-    
-                                      
+
+                </div>
+
+                <div *ngIf="isFiltre">
+
+                  <div class="group_header2"     >
+                 
+                    <span  class="FiltreIn" (click)="getFiltreByValue(4)"  [ngClass]="{'theFiltre': filter === 4}"> {{ 'viewUser.profession' | translate }}  </span>
+                    <!-- <span  class="FiltreIn"  (click)="getFiltreByValue(5)"  [ngClass]="{'theFiltre': filter === 5}"> nom </span> -->
+              
+                  </div>
+                  
+                  <input  *ngIf="searchFiltre" class="SeachFiltre" type="text"  (input)="applyFilterByNumber($event)">   
+               
+
+                </div>
+
+               
+            </div>
+
+                <div *ngIf="list_users.length > 0" >                                      
                                          
                             <div class="content">
                                
@@ -429,75 +425,74 @@
 
             <div class="groupe_preselect" *ngIf="selecter==2">  
 
+              <div class="cardHead_Preselect">
+
+                <div class="group_header11" >
+
+                    <div>
+                        <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                        <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                    </div>
+
+                    <input type="text" (input)="applyFilteDette($event)">
+
+                    <button class="btn-ajout" (click)="goTocreateDette() " >  {{ 'dashboard.btnDette' | translate }} </button>
+
+                  
+
+                </div>
+
+                <div *ngIf="isFiltre">
+
+                        
+                <div class="group_header2" >
+                  <span class="FiltreIn"  (click)="getFiltreByValue(5)"  [ngClass]="{'theFiltre': filter == 5}" >  {{ 'dashboard.montantdu' | translate }}</span>
+                  <span  class="FiltreIn" (click)="getFiltreByValue(6)"  [ngClass]="{'theFiltre': filter == 6}"  > {{ 'dashboard.datePaie' | translate }}  </span>
+                  <span  class="FiltreIn" (click)="getFiltreByValue(7)"  [ngClass]="{'theFiltre': filter == 7}"  > {{ 'dashboard.admin' | translate }}  </span>
+                 </div>
+
+                 <input  *ngIf="searchFiltre" class="SeachFiltre" [type]="textSearch"  (input)="applyFilterByNumber($event)"> 
+         
+                 <div class="groupeMont"  *ngIf="searchFiltreMontDu">
+
+                  <div class="onlyMont">
+                    <label > {{ 'dashboard.min' | translate }} </label>
+                    <input type="number" [(ngModel)]="minVal" >
+                  </div>
+
+                  
+                  <div class="onlyMont">
+                    <label > {{ 'dashboard.max' | translate }} </label>
+                    <input type="number" [(ngModel)]="maxVal" >
+                  </div>
+
+                  <img src="./../../assets/search.png" alt="" (click)="applyFilterMontant()" >
+                 </div>
+
+
+                 <div class="groupeMont"  *ngIf="searchFiltreDate">
+
+                      <div class="onlyMont">
+                        <label > {{ 'dashboard.debutD' | translate }} </label>
+                        <input type="date" [(ngModel)]="dateDebut" >
+                      </div>
+
+                      
+                      <div class="onlyMont">
+                        <label > {{ 'dashboard.finD' | translate }} </label>
+                        <input type="date" [(ngModel)]="dateFin" >
+                      </div>
+
+                      <img src="./../../assets/search.png" alt="" (click)="applyFilterDate()" >
+                 </div>
+
+                </div>
+             </div>
+
+             
                 
                 <div *ngIf="liste_Dette.length > 0" >
 
-                    <div class="cardHead_Preselect">
-
-                        <div class="group_header11" >
-
-                            <div>
-                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
-                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
-                            </div>
-    
-                            <input type="text" (input)="applyFilteDette($event)">
-
-                            <button class="btn-ajout" (click)="goTocreateDette() " >  {{ 'dashboard.btnDette' | translate }} </button>
-    
-                          
-    
-                        </div>
-
-                        <div *ngIf="isFiltre">
-
-                                
-                        <div class="group_header2" >
-                          <span class="FiltreIn"  (click)="getFiltreByValue(5)"  [ngClass]="{'theFiltre': filter == 5}" >  {{ 'dashboard.montantdu' | translate }}</span>
-                          <span  class="FiltreIn" (click)="getFiltreByValue(6)"  [ngClass]="{'theFiltre': filter == 6}"  > {{ 'dashboard.datePaie' | translate }}  </span>
-                          <span  class="FiltreIn" (click)="getFiltreByValue(7)"  [ngClass]="{'theFiltre': filter == 7}"  > {{ 'dashboard.admin' | translate }}  </span>
-                         </div>
-  
-                         <input  *ngIf="searchFiltre" class="SeachFiltre" [type]="textSearch"  (input)="applyFilterByNumber($event)"> 
-                 
-                         <div class="groupeMont"  *ngIf="searchFiltreMontDu">
-
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.min' | translate }} </label>
-                            <input type="number" [(ngModel)]="minVal" >
-                          </div>
-
-                          
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.max' | translate }} </label>
-                            <input type="number" [(ngModel)]="maxVal" >
-                          </div>
-
-                          <img src="./../../assets/search.png" alt="" (click)="applyFilterMontant()" >
-                         </div>
-
-
-                         <div class="groupeMont"  *ngIf="searchFiltreDate">
-
-                              <div class="onlyMont">
-                                <label > {{ 'dashboard.debutD' | translate }} </label>
-                                <input type="date" [(ngModel)]="dateDebut" >
-                              </div>
-
-                              
-                              <div class="onlyMont">
-                                <label > {{ 'dashboard.finD' | translate }} </label>
-                                <input type="date" [(ngModel)]="dateFin" >
-                              </div>
-
-                              <img src="./../../assets/search.png" alt="" (click)="applyFilterDate()" >
-                         </div>
-
-                        </div>
-                     </div>
-
-                     
-    
                     <div class="content">
                                
                     
@@ -571,71 +566,71 @@
 
             <div class="groupe_preselect" *ngIf="selecter==3"> 
                  
+              <div class="cardHead_Preselect">
+
+                <div class="group_header11" >
+                    <div>
+                        <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                        <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
+                    </div>
+
+                    <input type="text" (input)="applyFilteRembourse($event)">
+
+                  
+
+                    <button class="btn-ajout" (click)="goTocreateRemboursement() " >  {{ 'dashboard.btnremboursement' | translate }} </button>
+
+                </div>
+
+              <div *ngIf="isFiltre" >
+
+                  <div class="group_header2">
+                    <span class="FiltreIn"  (click)="getFiltreByValue(8)"  [ngClass]="{'theFiltre': filter == 8}" > {{ 'dashboard.montantRe' | translate }}  </span>
+                    <span  class="FiltreIn" (click)="getFiltreByValue(9)"  [ngClass]="{'theFiltre': filter == 9}"  > {{ 'dashboard.datePaie' | translate }}  </span>
+                    <span  class="FiltreIn" (click)="getFiltreByValue(10)"  [ngClass]="{'theFiltre': filter == 10}"> {{ 'dashboard.admin' | translate }}  </span>
+        
+                 </div>
+
+                <input  *ngIf="searchFiltre" class="SeachFiltre" [type]="textSearch"  (input)="applyFilterByNumber($event)"> 
+         
+                <div class="groupeMont"  *ngIf="searchFiltreMontRem">
+
+                  <div class="onlyMont">
+                    <label > {{ 'dashboard.min' | translate }} </label>
+                    <input type="number" [(ngModel)]="minValR" >
+                  </div>
+
+                  
+                  <div class="onlyMont">
+                    <label > {{ 'dashboard.max' | translate }} </label>
+                    <input type="number" [(ngModel)]="maxValR" >
+                  </div>
+
+                  <img src="./../../assets/search.png" alt="" (click)="applyFilterMontantR()" >
+                 </div>
+
+                </div>
+
+                <div class="groupeMont"  *ngIf="searchFiltreDateR">
+
+                  <div class="onlyMont">
+                    <label > {{ 'dashboard.debutD' | translate }} </label>
+                    <input type="date" [(ngModel)]="dateDebutR" >
+                  </div>
+
+                  
+                  <div class="onlyMont">
+                    <label > {{ 'dashboard.finD' | translate }} </label>
+                    <input type="date" [(ngModel)]="dateFinR" >
+                  </div>
+
+                  <img src="./../../assets/search.png" alt="" (click)="applyFilterDateR()" >
+                 </div>
+                
+            </div>
+
                               
                 <div *ngIf="liste_Remboursement.length > 0" >
-
-                    <div class="cardHead_Preselect">
-
-                        <div class="group_header11" >
-                            <div>
-                                <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
-                                <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
-                            </div>
-    
-                            <input type="text" (input)="applyFilteRembourse($event)">
-    
-                          
-
-                            <button class="btn-ajout" (click)="goTocreateRemboursement() " >  {{ 'dashboard.btnremboursement' | translate }} </button>
-    
-                        </div>
-
-                      <div *ngIf="isFiltre" >
-
-                          <div class="group_header2">
-                            <span class="FiltreIn"  (click)="getFiltreByValue(8)"  [ngClass]="{'theFiltre': filter == 8}" > {{ 'dashboard.montantRe' | translate }}  </span>
-                            <span  class="FiltreIn" (click)="getFiltreByValue(9)"  [ngClass]="{'theFiltre': filter == 9}"  > {{ 'dashboard.datePaie' | translate }}  </span>
-                            <span  class="FiltreIn" (click)="getFiltreByValue(10)"  [ngClass]="{'theFiltre': filter == 10}"> {{ 'dashboard.admin' | translate }}  </span>
-                
-                         </div>
-
-                        <input  *ngIf="searchFiltre" class="SeachFiltre" [type]="textSearch"  (input)="applyFilterByNumber($event)"> 
-                 
-                        <div class="groupeMont"  *ngIf="searchFiltreMontRem">
-
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.min' | translate }} </label>
-                            <input type="number" [(ngModel)]="minValR" >
-                          </div>
-
-                          
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.max' | translate }} </label>
-                            <input type="number" [(ngModel)]="maxValR" >
-                          </div>
-
-                          <img src="./../../assets/search.png" alt="" (click)="applyFilterMontantR()" >
-                         </div>
-
-                        </div>
-
-                        <div class="groupeMont"  *ngIf="searchFiltreDateR">
-
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.debutD' | translate }} </label>
-                            <input type="date" [(ngModel)]="dateDebutR" >
-                          </div>
-
-                          
-                          <div class="onlyMont">
-                            <label > {{ 'dashboard.finD' | translate }} </label>
-                            <input type="date" [(ngModel)]="dateFinR" >
-                          </div>
-
-                          <img src="./../../assets/search.png" alt="" (click)="applyFilterDateR()" >
-                         </div>
-                        
-                    </div>
 
                     <div class="content">
                                
@@ -838,15 +833,64 @@
             </div>
 
             <div class="" *ngIf="selecter==8">  
-              <div class="group_header2"     >
+              <div class="group_header1" >
+    
+                <input type="text"  (input)="applyFilterVV($event)" >
 
-                <span class="FiltreIn"  (click)="getVideoByPartVideoValid(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
-                <div *ngFor="let item of listePartemaire; let i = index ">
-                  <span class="FiltreIn"  (click)="getVideoByPartVideoValid(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
-
+                <div>
+                    <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                    <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
                 </div>
-            
+
+            </div>
+
+            <div  *ngIf="isFiltre"  >
+              <div class="group_header2"  >
+                
+                <span  class="FiltreIn" (click)="getFiltreByValue(13)"  [ngClass]="{'theFiltre': filter === 13}"> {{ 'edit.btnCat' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(14)"  [ngClass]="{'theFiltre': filter === 14}"> {{ 'dashboard.datePaie' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(15)"  [ngClass]="{'theFiltre': filter === 15}"> {{ 'viewUser.pays' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(16)"  [ngClass]="{'theFiltre': filter === 16}"> {{ 'viewUser.choixpart' | translate }} </span>
+                         
                </div>
+
+               <select  *ngIf="searchFiltreCategorieV" placeholder="Choix de metier"   (change)="applyFilterByCatV($event)">
+                <option value=""> {{ 'viewUser.choixMetier' | translate }}</option>
+                <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
+      
+               </select>
+
+               <select  *ngIf="searchFiltrePartenaireV" placeholder="Choix du partenaire"   (change)="applyFilterByPartenaireV($event)">
+                <option value=""> {{ 'viewUser.choixpart' | translate }}</option>
+                <option *ngFor="let item of listePartemaire" [value]="item.prenom">  {{item.prenom}} </option>
+      
+               </select>
+
+                <select  *ngIf="searchFiltreCountrie" placeholder="Choix du pays"   (change)="applyFilterByCountrie($event)">
+                <option value=""> {{ 'viewUser.choixDestination' | translate }}</option>
+                <option *ngFor="let item of liste_destination" [value]="item">  {{item}} </option>
+      
+               </select>
+
+               <div class="groupeMont"  *ngIf="searchFiltreDateVV">
+
+                <div class="onlyMont">
+                  <label > {{ 'dashboard.debutD' | translate }} </label>
+                  <input type="date" [(ngModel)]="dateDebutVV" >
+                </div>
+
+                
+                <div class="onlyMont">
+                  <label > {{ 'dashboard.finD' | translate }} </label>
+                  <input type="date" [(ngModel)]="dateFinVV" >
+                </div>
+
+                <img src="./../../assets/search.png" alt="" (click)="applyFilterDateVV()" >
+               </div>
+
+            </div>
+
+            
 
               <div  *ngIf=" liste_videosValid.length > 0 ">
 
@@ -863,7 +907,7 @@
                           <span>
                               {{ item.nom }}  {{ item.prenoms }}
                           </span>
-
+ 
                          <span *ngIf="item.observation !== '' " >
                           {{ item.observation }}
                          </span>
@@ -884,14 +928,56 @@
             </div>
 
             <div class="" *ngIf="selecter==9">  
-              <div class="group_header2" >
+              <div class="group_header1" >
+    
+                <input type="text"  (input)="applyFilterVA($event)" >
 
-                <span class="FiltreIn"  (click)="getVideoByPart(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
-                <div *ngFor="let item of listePartemaire; let i = index ">
-                  <span class="FiltreIn"  (click)="getVideoByPart(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
-
+                <div>
+                    <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                    <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
                 </div>
+
+             </div>
+
+             <div  *ngIf="isFiltre"  >
+              <div class="group_header2"  >
+                
+                <span  class="FiltreIn" (click)="getFiltreByValue(17)"  [ngClass]="{'theFiltre': filter === 17}"> {{ 'edit.btnCat' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(18)"  [ngClass]="{'theFiltre': filter === 18}"> {{ 'dashboard.datePaie' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(19)"  [ngClass]="{'theFiltre': filter === 19}"> {{ 'viewUser.choixpart' | translate }} </span>
+                         
                </div>
+
+               <select  *ngIf="searchFiltreCategorieVA" placeholder="Choix de metier"   (change)="applyFilterByCatVA($event)">
+                <option value=""> {{ 'viewUser.choixMetier' | translate }}</option>
+                <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
+      
+               </select>
+
+               <select  *ngIf="searchFiltrePartenaireVA" placeholder="Choix du partenaire"   (change)="applyFilterByPartenaireVA($event)">
+                <option value=""> {{ 'viewUser.choixpart' | translate }}</option>
+                <option *ngFor="let item of listePartemaire" [value]="item.prenom">  {{item.prenom}} </option>
+      
+               </select>
+
+
+               <div class="groupeMont"  *ngIf="searchFiltreDateVVA">
+
+                <div class="onlyMont">
+                  <label > {{ 'dashboard.debutD' | translate }} </label>
+                  <input type="date" [(ngModel)]="dateDebutVVA" >
+                </div>
+
+                
+                <div class="onlyMont">
+                  <label > {{ 'dashboard.finD' | translate }} </label>
+                  <input type="date" [(ngModel)]="dateFinVVA" >
+                </div>
+
+                <img src="./../../assets/search.png" alt="" (click)="applyFilterDateVVA()" >
+               </div>
+
+             </div>
 
               <div  *ngIf=" liste_videosAgrees.length > 0 ">
 
@@ -928,15 +1014,58 @@
             </div>
 
             <div class="" *ngIf="selecter==7">  
-              <div class="group_header2"     >
 
-                <span class="FiltreIn"  (click)="getVideoByPartVideoReject(11, 'tous')"  [ngClass]="{'theFiltre': filterP == 11}" > Tous </span>
-                <div *ngFor="let item of listePartemaire; let i = index ">
-                  <span class="FiltreIn"  (click)="getVideoByPartVideoReject(i,item.prenom)"  [ngClass]="{'theFiltre': filterP == i}" > {{item.prenom}} </span>
+              <div class="group_header1" >
+    
+                <input type="text"  (input)="applyFilterVR($event)" >
 
+                <div>
+                    <img  *ngIf="!isFiltre"  (click)="getFiltre()" src="./../../assets/fitreSimple.png" alt="">
+                    <img  *ngIf="isFiltre"   (click)="getFiltre()" src="./../../assets/filtreactive.png" alt="">
                 </div>
-            
+
+             </div>
+
+             <div  *ngIf="isFiltre"  >
+              <div class="group_header2"  >
+                
+                <span  class="FiltreIn" (click)="getFiltreByValue(20)"  [ngClass]="{'theFiltre': filter === 20}"> {{ 'edit.btnCat' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(21)"  [ngClass]="{'theFiltre': filter === 21}"> {{ 'dashboard.datePaie' | translate }} </span>
+                <span  class="FiltreIn" (click)="getFiltreByValue(22)"  [ngClass]="{'theFiltre': filter === 22}"> {{ 'viewUser.choixpart' | translate }} </span>
+                         
                </div>
+
+               <select  *ngIf="searchFiltreCategorieVR" placeholder="Choix de metier"   (change)="applyFilterByCatVR($event)">
+                <option value=""> {{ 'viewUser.choixMetier' | translate }}</option>
+                <option *ngFor="let item of liste_metiers" [value]="item.category">  {{item.category}}: {{item.metier}} </option>
+      
+               </select>
+
+               <select  *ngIf="searchFiltrePartenaireVR" placeholder="Choix du partenaire"   (change)="applyFilterByPartenaireVR($event)">
+                <option value=""> {{ 'viewUser.choixpart' | translate }}</option>
+                <option *ngFor="let item of listePartemaire" [value]="item.prenom">  {{item.prenom}} </option>
+      
+               </select>
+
+
+               <div class="groupeMont"  *ngIf="searchFiltreDateVVR">
+
+                <div class="onlyMont">
+                  <label > {{ 'dashboard.debutD' | translate }} </label>
+                  <input type="date" [(ngModel)]="dateDebutVVR" >
+                </div>
+
+                
+                <div class="onlyMont">
+                  <label > {{ 'dashboard.finD' | translate }} </label>
+                  <input type="date" [(ngModel)]="dateFinVVR" >
+                </div>
+
+                <img src="./../../assets/search.png" alt="" (click)="applyFilterDateVVR()" >
+               </div>
+
+             </div>
+             
 
               <div  *ngIf=" liste_videosReject.length > 0 ">
 
