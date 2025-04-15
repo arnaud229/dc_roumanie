@@ -131,6 +131,7 @@ export class ViewUserComponent {
   selectedPartner : any = null;
   listePartemaire: any[] = [];
   liste_videosByUser: any[] = [];
+  liste_videosForPartenaire: any[] = [];
   isReject = false;
   theObservation = '';
   idOfItem = '';
@@ -282,6 +283,7 @@ async  ngOnInit() {
       
 
       this.liste_videos = res.data;
+     
       console.log("les videos", this.liste_videos);
       
     },
@@ -477,6 +479,10 @@ async  ngOnInit() {
      this.liste_videosByUser = res.data;
      console.log("les videos", this.liste_videosByUser);
 
+     this.liste_videosForPartenaire = this.liste_videosByUser.filter(
+      (video) => video.partenaireId === this.theUser.uid 
+     )
+
   
      
    },
@@ -552,6 +558,7 @@ setReject(val: string, index: string) {
 }
 
 beginReject(index: string) {
+  this.theId = "";
   this.isReject = true;
   this.idOfItem = index;
 }
@@ -559,6 +566,7 @@ beginReject(index: string) {
 beginValid(val: any)
 {
   this.theId = val
+  this.isReject = false;
   this.getvideosByUser(val)
 }
 

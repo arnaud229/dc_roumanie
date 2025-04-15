@@ -473,11 +473,11 @@
         <div class="group">
           <img class="imgdelect" (click)="close_validBySelect()" src="./../../assets/croixDelete.png" alt=""> 
 
-            <div  *ngIf=" liste_videosByUser.length > 0 ">
+            <div  *ngIf=" liste_videosForPartenaire.length > 0 ">
 
               <div class="cardVideos" >
 
-                  <div class="oneVideo" *ngFor="let item of liste_videosByUser" >  
+                  <div class="oneVideo" *ngFor="let item of liste_videosForPartenaire" >  
                       <video controls>
                           <source [src]="item.fileVideo" type="video/mp4">
                           Your browser does not support the video tag.
@@ -492,25 +492,12 @@
 
                   </div>
 
-                  <div class="viewVaidPreselct"   *ngIf="isReject"  >
-
-                         
-                    <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
-
-                  <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
-
-                  <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >{{ 'viewUser.reject' | translate }} </button>
-
-                </div>
-
-
-
-              </div>
+            </div>
             </div>
 
 
               
-              <div class="notvalide" *ngIf=" liste_videosByUser.length == 0 ">
+              <div class="notvalide" *ngIf=" liste_videosForPartenaire.length == 0 ">
                   <p>
                     {{ 'viewUser.aucunV' | translate }}  
                   </p>
@@ -519,6 +506,17 @@
             
 
         </div>
+
+    </div>
+
+      <div class="viewVaidPreselct"   *ngIf="isReject"  >
+
+                         
+          <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+
+        <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
+
+        <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >{{ 'viewUser.reject' | translate }} </button>
 
       </div>
 

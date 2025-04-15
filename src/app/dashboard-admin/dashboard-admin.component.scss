@@ -458,7 +458,7 @@ tbody td
 
 .oneVideo {
     width: 200px;
-    height: auto;
+    height: 300px;
     position: relative;
     border: solid 1px #45d00f;
     display: flex;
@@ -482,7 +482,7 @@ tbody td
 .oneVideo > video 
 {
     width: 100%;
-    height: 100%;
+    height: 70%;
 }
 
 .oneVideo > button
