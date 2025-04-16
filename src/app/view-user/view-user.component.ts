@@ -527,6 +527,7 @@ valiProcessusBydVideo(index: string, iduser: string)
   this.videoService.validProcessByPartenaireInVideo(vak,index, iduser, destination).then(
     () => {
       console.log("reussi");
+      this.theId = "";
     }
   ) 
   .catch(
