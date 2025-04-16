@@ -595,6 +595,12 @@ contientPDF(lien: string):  boolean  {
   return lien.includes('.pdf')
 }
 
+close_validReject()
+{
+  this.isReject = false;
+}
+
+
 
 
 }

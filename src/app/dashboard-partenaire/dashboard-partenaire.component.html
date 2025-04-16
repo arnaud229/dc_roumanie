@@ -197,19 +197,7 @@
                                                       <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)"> {{ 'viewUser.valide' | translate }} </button>
                                                       <button class="btn3"  (click)="beginReject(item.id)"> {{ 'viewUser.observe' | translate }} </button>
                           
-                                                </div>
-                          
-                                                <div class="viewVaidPreselct"   *ngIf="isReject">
-                          
-                                                       
-                                                  <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
-                          
-                                                <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
-                          
-                                                <button  class="btn2" (click)="setReject(theObservation, idOfItem)" > {{ 'viewUser.reject' | translate }} </button>
-                          
-                                              </div>
-                            
+                                                </div>                           
                             
                                             </div>
                                           </div>
@@ -222,14 +210,21 @@
                                                 </p>
                                 
                                             </div>               
-                                           
-                                       
-                          
-                        
 
                                       </div>
 
                                     </div>
+
+                                    <div class="viewVaidPreselct"   *ngIf="isReject">
+                          
+                                                       
+                                      <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
+              
+                                    <textarea  [(ngModel)]="theObservation" placeholder="Métier" rows="10" cols="10" ></textarea>
+              
+                                    <button  class="btn2" (click)="setReject(theObservation, idOfItem)" > {{ 'viewUser.reject' | translate }} </button>
+              
+                                  </div>
                                    
                                   </td>
                                 </ng-container>
@@ -323,23 +318,23 @@
                             <button class="btn1"  (click)="valiProcessusBydVideo(item.id, item.user_id)">   {{ 'viewUser.valide' | translate }} </button>
                             <button class="btn3"  (click)="beginReject(item.id)">   {{ 'viewUser.observe' | translate }} </button>
 
-                      </div>
+                      </div>  
+                  </div>
 
-                      <div class="viewVaidPreselct"   *ngIf="isReject"  >
+                  <div class="viewVaidPreselct"   *ngIf="isReject"  >
 
                              
-                        <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
-
-                      <textarea  [(ngModel)]="theObservation" placeholder="Objection" rows="10" cols="10" ></textarea>
-
-                      <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >  {{ 'viewUser.reject' | translate }} </button>
-
-                    </div>
+                    <img class="imgdelect" (click)="close_valid()" src="./../../assets/croixDelete.png" alt="">
   
+                  <textarea  [(ngModel)]="theObservation" placeholder="Objection" rows="10" cols="10" ></textarea>
   
-                  </div>
+                  <button  class="btn2" (click)="setReject(theObservation, idOfItem)" >  {{ 'viewUser.reject' | translate }} </button>
+  
                 </div>
-  
+                </div>
+
+               
+
   
                   
                   <div class="notvalide" *ngIf=" liste_videos.length == 0 ">

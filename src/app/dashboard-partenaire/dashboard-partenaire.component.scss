@@ -515,11 +515,14 @@ margin-bottom: 30px;
 
 .viewVaidPreselct
 {
-    position: absolute;
-    top: 40px;
-    width: 75%;
+    position: fixed; /* Fixe l'élément par rapport à la fenêtre */
+    top: 50%; /* Centre verticalement */
+    left: 50%; /* Centre horizontalement */
+    transform: translate(-50%, -50%); /* Ajuste pour être parfaitement centré */
+    width: 70%;
+    z-index: 1000; /* S'assure qu'il est au-dessus des autres éléments */
+    width: 85%;
     padding: 20px;
-    left: 210px;
     display: flex;
     flex-direction: column;
     background: white;
