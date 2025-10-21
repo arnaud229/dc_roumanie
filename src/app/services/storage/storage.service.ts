@@ -12,6 +12,7 @@ import {
     uploadBytesResumable,
     getDownloadURL,
     deleteObject,
+    getMetadata,
     getBlob
   } from 'firebase/storage';
 import { AuthService } from "../auth/auth.service";
@@ -162,6 +163,23 @@ async downloadFile(filePath: string, fileName: string) {
     const matches = url.match(/[^/?#]+(?=([^.]\w{3,4}\b)|$)/);
     return matches ? matches[0] : 'document';
   }
+
+  async checkVideoExists(url: string): Promise<boolean> {
+    const storage = getStorage(); // Initialisez avec votre app Firebase si nécessaire
+    
+    try {
+      // Extraire le chemin depuis l'URL (ex: "https://<bucket>/v0/b/<path>?alt=media&token=<token>")
+      const path = new URL(url).pathname.split('/v0/b/')[1].split('?')[0]; 
+      const storageRef = ref(storage, decodeURIComponent(path)); // Décoder les caractères spéciaux
+      
+      await getMetadata(storageRef); // Vérifie l'existence
+      return true;
+    } catch (error: any) {
+      if (error.code === 'storage/object-not-found') return false;
+      console.error("Erreur de vérification :", error);
+      return false;
+    }
+  }
       
     
     
@@ -173,6 +191,14 @@ async downloadFile(filePath: string, fileName: string) {
     const imagePath = url.match(/\/o\/(.*?)\?/);
   
     return imagePath ? decodeURIComponent(imagePath[1]) : null;
-  
 
   }
+
+
+
+
+
+
+
+
+  

@@ -3397,9 +3397,4 @@ applyFilterByPartenaireVR(event: Event) {
   
 }
 
-
-
-
-
-
 }

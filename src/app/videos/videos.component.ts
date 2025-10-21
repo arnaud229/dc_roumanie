@@ -24,7 +24,7 @@ export class VideosComponent {
 
   isUploading = false;
   progressValue  = 0;
-  filVideo = "";
+  filVideo: any;
   message = "";
   userId = "MtobwWoig2O9pxxSIKhwHuG5h3X2"
  
@@ -109,33 +109,67 @@ export class VideosComponent {
       } 
 
 
-      const uploadPromises = files.map(async (image) => {
+      // const uploadPromises = files.map(async (image) => {
 
-        const url = await this.firebaseStorageService.uploadFile({
-          folder: 'filsVideoPresentation',
-          filename:
-            'Video-Presentation-file-' +
-            new Date().getTime() +
-            this.userId +
-            '.' +
-            image.name?.split('.')?.[1],
-          file: image,
+      //   const url = await this.firebaseStorageService.uploadFile({
+      //     folder: 'filsVideoPresentation',
+      //     filename:
+      //       'Video-Presentation-file-' +
+      //       new Date().getTime() +
+      //       this.userId +
+      //       '.' +
+      //       image.name?.split('.')?.[1],
+      //     file: image,
          
-        });
-          console.log('tete1');
+      //   });
+      //     console.log('tete1');
           
-          image.downloadUrl = url;
+      //     image.downloadUrl = url;
   
-          return url;
+      //     return url;
   
-      });
+      // });
   
-      const uploadedUrls = await Promise.all(uploadPromises);
-      // Filtrer les URLs null (échecs de téléchargement)
-      const successfulUrls = uploadedUrls.filter(url => url !== null);    
-      this.filVideo = successfulUrls[0]; 
+      // const uploadedUrls = await Promise.all(uploadPromises);
+      // // Filtrer les URLs null (échecs de téléchargement)
+      // const successfulUrls = uploadedUrls.filter(url => url !== null);    
+      // this.filVideo = successfulUrls[0]; 
 
-      this.loading = false;
+      // this.loading = false;
+
+
+
+      try {
+        const uploadPromises = files.map(async (image) => {
+          try {
+            const url = await this.firebaseStorageService.uploadFile({
+              folder: 'filsVideoPresentation',
+              filename: 'Video-Presentation-file-' + new Date().getTime() + this.userId + '.' + image.name?.split('.')?.[1],
+              file: image,
+            });
+            return url;
+          } catch (error) {
+            console.error('Erreur de téléchargement:', error);
+            return null; // Retourne null si échec
+          }
+        });
+    
+        const uploadedUrls = await Promise.all(uploadPromises);
+        const successfulUrls = uploadedUrls.filter(url => url !== null);
+    
+        if (successfulUrls.length > 0) {
+          this.filVideo = successfulUrls[0]; // Prend le premier lien réussi
+        } else {
+          this.iserrorlog = true;
+          this.message = "Aucune vidéo n'a pu être téléchargée.";
+        }
+      } catch (error) {
+        this.iserrorlog = true;
+        this.message = "Une erreur est survenue lors du téléchargement.";
+        console.error('Erreur générale:', error);
+      } finally {
+        this.loading = false;
+      }
     
 
   }
