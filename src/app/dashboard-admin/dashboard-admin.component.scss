@@ -942,6 +942,10 @@ line-height: 24px;
     font-size: 10px;
     line-height: 16px;
     margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* nombre de lignes */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .ul_menu
